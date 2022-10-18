@@ -38,7 +38,6 @@ public:
     string obtener_personalidad();
     void aumentar_hambre();
     void reducir_higiene();
-    bool debe_ducharse();
     string obtener_comida();
 };
 

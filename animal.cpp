@@ -87,19 +87,17 @@ void Animal::aumentar_hambre(){
 }
 
 void Animal::reducir_higiene(){
-    if (obtener_personalidad() == PERSONALIDAD_SOCIABLE){
-        higiene = higiene - (REDUCCION_HIGIENE / 2);
-    }else if (obtener_personalidad() == PERSONALIDAD_TRAVIESA){
-        higiene = higiene - (REDUCCION_HIGIENE * 2);
-    }else {
-        higiene = higiene - REDUCCION_HIGIENE;
+    if (requiere_ducha){
+        if (obtener_personalidad() == PERSONALIDAD_SOCIABLE){
+            higiene = higiene - (REDUCCION_HIGIENE / 2);
+        }else if (obtener_personalidad() == PERSONALIDAD_TRAVIESA){
+            higiene = higiene - (REDUCCION_HIGIENE * 2);
+        }else {
+            higiene = higiene - REDUCCION_HIGIENE;
+        }
     }
 }
 
 string Animal::obtener_comida(){
     return comida;
-}
-
-bool Animal::debe_ducharse(){
-    return requiere_ducha;
 }
