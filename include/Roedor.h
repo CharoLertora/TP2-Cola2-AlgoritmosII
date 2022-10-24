@@ -2,7 +2,7 @@
 #define _ROEDOR_H_
 
 #include <string>
-#include "animal.h"
+#include "Animal.h"
 
 using namespace std;
 

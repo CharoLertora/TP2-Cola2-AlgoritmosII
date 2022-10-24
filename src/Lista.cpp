@@ -1,6 +1,6 @@
 #include <iostream>
-#include "lista.h"
-#include "nodo.h"
+#include "Lista.h"
+#include "Nodo.h"
 
 using namespace std;
 

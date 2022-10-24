@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "lagartija.h"
+#include "Lagartija.h"
 
 using namespace std;
 

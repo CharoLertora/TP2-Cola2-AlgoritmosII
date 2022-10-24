@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "perro.h"
+#include "Perro.h"
 
 using namespace std;
 

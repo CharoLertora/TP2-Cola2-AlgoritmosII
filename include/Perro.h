@@ -2,7 +2,7 @@
 #define _PERRO_H_
 
 #include <string>
-#include "animal.h"
+#include "Animal.h"
 
 using namespace std;
 

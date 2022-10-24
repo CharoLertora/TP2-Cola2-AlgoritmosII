@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "erizo.h"
+#include "Erizo.h"
 
 using namespace std;
 

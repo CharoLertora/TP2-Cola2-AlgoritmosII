@@ -1,6 +1,6 @@
 #ifndef _LISTA_H_
 #define _LISTA_H_
-#include "nodo.h"
+#include "Nodo.h"
 
 using namespace std;
 
