@@ -10,7 +10,7 @@ class Conejo: public Animal{
 
     //Métodos
 public:
-    Conejo();
+    Conejo(string nombre, int edad, string tamanio, string especie, string personalidad);
 };
 
 #endif

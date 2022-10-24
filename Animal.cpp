@@ -14,7 +14,13 @@ const int HIGIENE_MAXIMA = 100;
 const int AUMENTO_HAMBRE = 10;
 const int REDUCCION_HIGIENE = 10;
 
-Animal::Animal(){
+Animal::Animal(string nombre, int edad, string tamanio, string especie, string personalidad){
+    this->nombre = nombre;
+    this->edad = edad;
+    this->tamanio = tamanio;
+    this->especie = especie;
+    this->personalidad = personalidad;
+
     hambre = HAMBRE_MINIMA;
     higiene = HIGIENE_MAXIMA;
 }

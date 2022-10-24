@@ -14,9 +14,9 @@ private:
     //Métodos
 public:
     Lista();
-    void alta(Animal animal);
-    Animal baja(int pos);
-    Animal consulta(int pos);
+    void alta(Animal* animal, int pos);
+    void baja(int pos);
+    Animal* consulta(int pos);
     bool vacia();
     ~Lista();
 

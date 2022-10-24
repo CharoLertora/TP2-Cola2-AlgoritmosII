@@ -21,7 +21,7 @@ protected:
 
     // Métodos:
 public:
-    Animal();
+    Animal(string nombre, int edad, string tamanio, string especie, string personalidad);
     void alimentar();
     void baniar();
     void asignar_edad(int edad);

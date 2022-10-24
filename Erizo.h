@@ -10,7 +10,7 @@ class Erizo: public Animal{
 
     //Métodos
 public:
-    Erizo();
+    Erizo(string nombre, int edad, string tamanio, string especie, string personalidad);
 };
 
 #endif

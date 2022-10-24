@@ -7,16 +7,16 @@ class Nodo {
 
     //Atributos
 private:
-    Animal animal;
+    Animal* animal;
     Nodo* siguiente;
 
     //Métodos
 
 public:
-    Nodo(Animal animalito);
-    Animal obtener_animal();
+    Nodo(Animal* animal);
+    Animal* obtener_animal();
     Nodo* obtener_siguiente();
-    void asignar_animal(Animal animalito);
+    void asignar_animal(Animal* animalito);
     void asignar_siguiente(Nodo* s);
 };
 

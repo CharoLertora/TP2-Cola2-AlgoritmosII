@@ -4,12 +4,12 @@
 using namespace std;
 
 
-Nodo::Nodo(Animal animalito){
-    animal = animalito;
+Nodo::Nodo(Animal* animal){
+    this->animal = animal;
     siguiente = 0;
 }
 
-Animal Nodo::obtener_animal(){
+Animal* Nodo::obtener_animal(){
     return animal;
 }
 
@@ -21,6 +21,6 @@ void Nodo::asignar_siguiente(Nodo* s){
     siguiente = s;
 }
 
-void Nodo::asignar_animal(Animal animalito){
+void Nodo::asignar_animal(Animal* animalito){
     animal = animalito;
 }

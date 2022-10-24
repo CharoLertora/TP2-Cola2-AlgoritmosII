@@ -10,7 +10,7 @@ class Gato: public Animal{
 
     //Métodos
 public:
-    Gato();
+    Gato(string nombre, int edad, string tamanio, string especie, string personalidad);
 };
 
 #endif

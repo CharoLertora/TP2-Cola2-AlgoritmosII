@@ -19,14 +19,24 @@ Nodo* Lista::encontrar_nodo(int pos){
     return nodo;
 }
 
-void Lista::alta (Animal animal){
+void Lista::alta (Animal* animal, int pos){
     Nodo* nuevo = new Nodo(animal);
-    nuevo->asignar_siguiente(primero);
-    primero = nuevo;
+    if (pos == 1){
+        nuevo->asignar_siguiente(primero);
+        primero = nuevo;
+    }else if (pos == cantidad + 1){
+        Nodo* ultimo = encontrar_nodo(pos - 1);
+        ultimo->asignar_siguiente(nuevo);        
+    }else {
+        Nodo* nodo = encontrar_nodo(pos);
+        Nodo* anterior = encontrar_nodo(pos - 1);
+        nuevo->asignar_siguiente(nodo);
+        anterior->asignar_siguiente(nuevo);
+    }
     cantidad++;
 }
 
-Animal Lista::baja (int pos){
+void Lista::baja (int pos){
     Nodo* auxiliar;
     if (pos == 1){
         auxiliar = primero;
@@ -41,12 +51,10 @@ Animal Lista::baja (int pos){
         anterior->asignar_siguiente(auxiliar->obtener_siguiente());
     }
     cantidad--;
-    Animal devolver = auxiliar->obtener_animal();
     delete auxiliar;
-    return devolver;
 }
 
-Animal Lista::consulta (int pos){
+Animal* Lista::consulta (int pos){
     Nodo* nodo_buscado = encontrar_nodo(pos);
     return nodo_buscado->obtener_animal();
 }

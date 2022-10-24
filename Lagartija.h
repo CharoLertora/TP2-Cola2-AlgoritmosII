@@ -10,7 +10,7 @@ class Lagartija: public Animal{
 
     //Métodos
 public:
-    Lagartija();
+    Lagartija(string nombre, int edad, string tamanio, string especie, string personalidad);
 };
 
 #endif

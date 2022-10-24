@@ -10,7 +10,7 @@ class Roedor: public Animal{
 
     //Métodos
 public:
-    Roedor();
+    Roedor(string nombre, int edad, string tamanio, string especie, string personalidad);
 };
 
 #endif
