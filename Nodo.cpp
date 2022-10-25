@@ -24,3 +24,7 @@ void Nodo::asignar_siguiente(Nodo* s){
 void Nodo::asignar_animal(Animal* animalito){
     animal = animalito;
 }
+
+Nodo::~Nodo (){
+    delete animal;
+}

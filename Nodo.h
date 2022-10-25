@@ -18,6 +18,7 @@ public:
     Nodo* obtener_siguiente();
     void asignar_animal(Animal* animalito);
     void asignar_siguiente(Nodo* s);
+    ~Nodo();
 };
 
 #endif
