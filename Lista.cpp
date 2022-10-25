@@ -54,6 +54,10 @@ void Lista::baja (int pos){
     delete auxiliar;
 }
 
+int Lista::obtener_cantidad (){
+    return cantidad;
+}
+
 Animal* Lista::consulta (int pos){
     Nodo* nodo_buscado = encontrar_nodo(pos);
     return nodo_buscado->obtener_animal();

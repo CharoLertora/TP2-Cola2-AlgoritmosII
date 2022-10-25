@@ -16,6 +16,7 @@ public:
     Lista();
     void alta(Animal* animal, int pos);
     void baja(int pos);
+    int obtener_cantidad();
     Animal* consulta(int pos);
     bool vacia();
     ~Lista();
