@@ -30,6 +30,7 @@ const string ESPECIE_CONEJO = "Conejo";
 const string ESPECIE_ERIZO = "Erizo";
 const string ESPECIE_LAGARTIJA = "Lagartija";
 
+
 void agregar_animal(Lista &lista, string nombre, int edad, string tamanio, string especie, string personalidad){
    
     if (especie == INICIAL_PERRO){
