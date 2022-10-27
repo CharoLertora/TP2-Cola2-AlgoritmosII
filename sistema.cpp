@@ -1,34 +1,7 @@
 #include <iostream>
-#include <fstream>
-#include "Lista.h"
-#include "Animal.h"
-#include "Perro.h"
-#include "Gato.h"
-#include "Caballo.h"
-#include "Roedor.h"
-#include "Conejo.h"
-#include "Erizo.h"
-#include "Lagartija.h"
+#include "sistema.h"
 
-using namespace std;
 
-const string ARCHIVO_ANIMALES = "animales.csv";
-
-const string INICIAL_PERRO = "P";
-const string INICIAL_GATO = "G";
-const string INICIAL_CABALLO = "C";
-const string INICIAL_ROEDOR = "R";
-const string INICIAL_CONEJO = "C";
-const string INICIAL_ERIZO = "E";
-const string INICIAL_LAGARTIJA = "L";
-
-const string ESPECIE_PERRO = "Perro";
-const string ESPECIE_GATO = "Gato";
-const string ESPECIE_CABALLO = "Caballo";
-const string ESPECIE_ROEDOR = "Roedor";
-const string ESPECIE_CONEJO = "Conejo";
-const string ESPECIE_ERIZO = "Erizo";
-const string ESPECIE_LAGARTIJA = "Lagartija";
 
 void agregar_animal(Lista &lista, string nombre, int edad, string tamanio, string especie, string personalidad){
    
@@ -86,4 +59,66 @@ void llenar_lista (Lista &lista){
         agregar_animal(lista, nombre, num_edad, tamanio, especie, personalidad);
     }
     archivo_animales.close();
+}
+
+bool es_respuesta_valida(string respuesta) {
+    return (respuesta == "si") || (respuesta == "Si");
+}
+
+bool es_nombre_existente(string nombre_buscado, Lista &lista, int &posicion_buscado) {
+    
+    bool encontrado = false;
+    
+    while(!encontrado && posicion_buscado <= lista.obtener_cantidad()) {
+
+        if (lista.consulta(posicion_buscado)->obtener_nombre() == nombre_buscado) {
+            encontrado = true;
+            
+        } else {
+            posicion_buscado++;
+        }
+    }
+
+    return encontrado;
+}
+
+void mostrar_animal(Animal* animal) {
+    
+    cout << endl << "-------------------" << endl;
+    cout << "Su nombre es: " << animal->obtener_nombre() << endl <<
+    "Edad: " << animal->obtener_edad() << endl <<
+    "Su tamaño: " << animal->obtener_tamanio() << endl <<
+    "La especie que lo deifne es: " << animal->obtener_especie() << endl <<
+    "Tiene una personalidad: " << animal->obtener_personalidad() << endl <<
+    "Se alimenta a base de: " << animal->obtener_comida() << endl;
+}
+
+void buscar_animal(Lista &lista) {
+
+    string respuesta;
+    string nombre_buscado;
+    int posicion_buscado;
+
+    do {
+        posicion_buscado = 1;
+        cout << endl << "Ingrese el nombre del animal que desea buscar por favor: " << endl;
+        cin >> nombre_buscado;
+
+        if (lista.vacia()) {
+
+            cout << endl << "\t -- Lo sentimos, no hay animales en esta lista, no tenemos nada que buscar. --" << endl;
+
+        } else if(!es_nombre_existente(nombre_buscado, lista, posicion_buscado)) {
+
+            cout << endl << "-- El nombre que ingresaste no se encuentra en nuestra lista de animales :( --" << endl;
+        } else {
+
+            cout << endl << "\t -- Animalito encontrado! Sus datos son: " << endl;
+            mostrar_animal(lista.consulta(posicion_buscado));
+        }
+
+        cout << "\t Desea buscar otro animal? (Rta: Si/No):" << endl;
+        cin >> respuesta;
+
+    } while(es_respuesta_valida(respuesta)); 
 }
