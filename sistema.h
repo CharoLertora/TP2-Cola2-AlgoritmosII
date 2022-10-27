@@ -33,11 +33,22 @@ const string ESPECIE_CONEJO = "Conejo";
 const string ESPECIE_ERIZO = "Erizo";
 const string ESPECIE_LAGARTIJA = "Lagartija";
 
+const string TAMANIO_DIMINUTO = "Diminuto";
+const string TAMANIO_PEQUENIO = "Pequeño";
+const string TAMANIO_MEDIANO = "Mediano";
+const string TAMANIO_GRANDE = "Grande";
+const string TAMANIO_GIGANTE = "Gigante";
+
+const string PERSONALIDAD_DORMILON = "Dormilon";
+const string PERSONALIDAD_JUEGUETON = "Jugueton";
+const string PERSONALIDAD_SOCIABLE = "Sociable";
+const string PERSONALIDAD_TRAVIESO = "Travieso";
 
 void agregar_animal(Lista *lista, string nombre, int edad, string tamanio, string especie, string personalidad);
 
 void llenar_lista (Lista *lista);
 void listar_animales(Lista *lista);
+void rescatar_animal(Lista *lista);
 void buscar_animal(Lista *lista);
-
+void cambiar_hambre_higiene(Lista *lista);
 #endif //_SISTEMA_H_

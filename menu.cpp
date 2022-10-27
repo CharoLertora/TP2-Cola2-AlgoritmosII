@@ -16,13 +16,13 @@ void mostrar_menu(){
 }
 
 void procesar_opcion(Lista *lista_animales, int opcion){
-
+    cambiar_hambre_higiene(lista_animales);
     switch(opcion){
         case LISTAR_ANIMALES:
             listar_animales(lista_animales);
             break;
         case RESCATAR_ANIMAL:
-            //rescatar_animal(lista_animales);
+            rescatar_animal(lista_animales);
             break;
         case BUSCAR_ANIMAL:
             buscar_animal(lista_animales);
