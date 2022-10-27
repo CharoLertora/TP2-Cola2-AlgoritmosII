@@ -366,3 +366,21 @@ void cambiar_hambre_higiene(Lista *lista) {
         lista->consulta(i)->reducir_higiene();
    }
 }
+
+void guardar_y_salir(Lista *lista) {
+
+    ofstream archivo_animales(ARCHIVO_ANIMALES);
+    string inicial_especie;
+
+    for (int i = POSICION_INICIAL; i <= lista->obtener_cantidad(); i++) {
+        inicial_especie = especie_a_inicial(lista->consulta(i)->obtener_especie());
+        
+        archivo_animales << lista->consulta(i)->obtener_nombre() << ",";
+        archivo_animales << lista->consulta(i)->obtener_edad() << ",";
+        archivo_animales << lista->consulta(i)->obtener_tamanio() << ",";
+        archivo_animales << inicial_especie << ",";
+        archivo_animales << lista->consulta(i)->obtener_personalidad() << "\n";
+    }
+    lista->baja(POSICION_INICIAL);
+    lista = nullptr;
+}
