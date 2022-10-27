@@ -65,7 +65,6 @@ bool es_respuesta_valida(string respuesta) {
     return (respuesta == "si") || (respuesta == "Si");
 }
 
-
 string especie_completa(string especie){
     string especie_completa;
     if(especie == INICIAL_PERRO){
@@ -95,6 +94,7 @@ string especie_completa(string especie){
 //Precondiciones: Posicion tiene que ser menor al tope del vector
 //Postcondiciones: Muestra por pantalla el libro completo(Nombre, Genero y Puntaje).
 void mostrar_datos_animal(Animal* animal){
+
     cout << '\t' <<  "******************************" << endl
          
          << '\t' << "* Nombre: " << animal->obtener_nombre()  <<  endl
@@ -109,12 +109,12 @@ void mostrar_datos_animal(Animal* animal){
 }
 
 void listar_animales(Lista *lista_animales){
+
     cout <<  '\t' <<  "***********ANIMALES***********" << '\n' << endl;
     for (int i = 1; i < lista_animales->obtener_cantidad(); i++){
         mostrar_datos_animal(lista_animales->consulta(i));
     }
 }
-
 
 bool es_nombre_existente(string nombre_buscado, Lista *lista, int &posicion_buscado) {
     
@@ -129,10 +129,28 @@ bool es_nombre_existente(string nombre_buscado, Lista *lista, int &posicion_busc
             posicion_buscado++;
         }
     }
-
     return encontrado;
 }
 
+void revisar_lista_animales(Lista *lista, string &nombre_buscado, int &posicion_buscado) {
+    
+    posicion_buscado = POSICION_INICIAL;
+    cout << endl << "Ingrese el nombre del animal que desea buscar por favor: " << endl;
+    cin >> nombre_buscado;
+
+    if (lista->vacia()) {
+
+        cout << endl << "\t -- Lo sentimos, no hay animales en esta lista, no tenemos nada que buscar. --" << endl;
+
+    } else if(!es_nombre_existente(nombre_buscado, lista, posicion_buscado)) {
+
+        cout << endl << "-- El nombre que ingresaste no se encuentra en nuestra lista de animales :( --" << endl;
+    } else {
+
+        cout << endl << "\t -- Animalito encontrado! Sus datos son: --" << endl;
+        mostrar_datos_animal(lista->consulta(posicion_buscado));
+    }
+}
 
 void buscar_animal(Lista *lista) {
 
@@ -141,22 +159,7 @@ void buscar_animal(Lista *lista) {
     int posicion_buscado;
 
     do {
-        posicion_buscado = 1;
-        cout << endl << "Ingrese el nombre del animal que desea buscar por favor: " << endl;
-        cin >> nombre_buscado;
-
-        if (lista->vacia()) {
-
-            cout << endl << "\t -- Lo sentimos, no hay animales en esta lista, no tenemos nada que buscar. --" << endl;
-
-        } else if(!es_nombre_existente(nombre_buscado, lista, posicion_buscado)) {
-
-            cout << endl << "-- El nombre que ingresaste no se encuentra en nuestra lista de animales :( --" << endl;
-        } else {
-
-            cout << endl << "\t -- Animalito encontrado! Sus datos son: " << endl;
-            mostrar_datos_animal(lista->consulta(posicion_buscado));
-        }
+        revisar_lista_animales(lista, nombre_buscado, posicion_buscado);
 
         cout << "\t Desea buscar otro animal? (Rta: Si/No):" << endl;
         cin >> respuesta;
@@ -164,5 +167,68 @@ void buscar_animal(Lista *lista) {
     } while(es_respuesta_valida(respuesta)); 
 }
 
+//Pre: el parámetro espacio debe ser mayor a 0.
+void mostrar_animales_disponibles(int espacio, Lista *lista) {
 
+    if (espacio >= 50) {
+            listar_animales(lista);
+
+    } else {
+        
+        for (int i = 1; i <= lista->obtener_cantidad(); i++) {
+        
+            if ((lista->consulta(i)->obtener_tamanio() == "grande") && (espacio >= 20)) {
+                mostrar_datos_animal(lista->consulta(i));
+
+            } else if ((lista->consulta(i)->obtener_tamanio() == "mediano") && (espacio >= 10)) {
+                mostrar_datos_animal(lista->consulta(i));
+
+            } else if ((lista->consulta(i)->obtener_tamanio() == "pequeño") && (espacio > 2)) {
+                mostrar_datos_animal(lista->consulta(i));
+
+            } else if ((lista->consulta(i)->obtener_tamanio() == "diminuto") && (espacio > 0)) {
+                mostrar_datos_animal(lista->consulta(i));
+            } 
+
+        }
+    }
+}
+
+void realizar_adopcion(Lista *lista) {
+            
+    string nombre_adoptado;
+    int posicion = 1;
+
+    cout << "\t Genial! :D Ingrese el nombre del animalito que le gustaría adoptar: " << endl << endl;
+    cin >> nombre_adoptado;
+
+    if (es_nombre_existente(nombre_adoptado, lista, posicion)) {
+        mostrar_datos_animal(lista->consulta(posicion));
+        cout << "\t HA SIDO ADOPTADO CON ÉXITO! Esperamos que sean muy felices." << endl;
+        lista->baja(posicion);
+    }
+}
+
+void adoptar_animal(Lista *lista) {
+    
+    int espacio;
+    string respuesta;
+
+    cout << "\t Ingrese el espacio en metros cuadrados del cual dispondrá el animalito para vivir (NO INGRESAR NÚMEROS MENORES A 0): " << endl;
+    cin >> espacio;
+
+    mostrar_animales_disponibles(espacio, lista);
+
+    cout << "\t Desea adoptar a alguno de estos animalitos?: " << endl;
+    cin >> respuesta;
+
+    if (es_respuesta_valida(respuesta)) {
+        
+        realizar_adopcion(lista);
+
+    } else {
+        cout << "\t Lamentamos que no quieras adoptar ninguno de nuestros animalitos :( " << endl
+             << "\t Te esperamos nuevamente!" << endl;
+    }
+}
 

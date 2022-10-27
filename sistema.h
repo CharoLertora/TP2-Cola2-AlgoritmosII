@@ -34,10 +34,13 @@ const string ESPECIE_ERIZO = "Erizo";
 const string ESPECIE_LAGARTIJA = "Lagartija";
 
 
+
+
 void agregar_animal(Lista *lista, string nombre, int edad, string tamanio, string especie, string personalidad);
 
 void llenar_lista (Lista *lista);
 void listar_animales(Lista *lista);
 void buscar_animal(Lista *lista);
+void adoptar_animal(Lista *lista);
 
 #endif //_SISTEMA_H_

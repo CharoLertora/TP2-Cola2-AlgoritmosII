@@ -10,7 +10,7 @@ Lista::Lista (){
 }
 
 Nodo* Lista::encontrar_nodo(int pos){
-    int contador = 1;
+    int contador = POSICION_INICIAL;
     Nodo* nodo = primero;
     while (contador != pos){
         nodo = nodo->obtener_siguiente();
@@ -21,7 +21,7 @@ Nodo* Lista::encontrar_nodo(int pos){
 
 void Lista::alta (Animal* animal, int pos){
     Nodo* nuevo = new Nodo(animal);
-    if (pos == 1){
+    if (pos == POSICION_INICIAL){
         nuevo->asignar_siguiente(primero);
         primero = nuevo;
     }else if (pos == cantidad + 1){
@@ -38,7 +38,7 @@ void Lista::alta (Animal* animal, int pos){
 
 void Lista::baja (int pos){
     Nodo* auxiliar;
-    if (pos == 1){
+    if (pos == POSICION_INICIAL){
         auxiliar = primero;
         primero = primero->obtener_siguiente();
     }else if (pos == cantidad){
