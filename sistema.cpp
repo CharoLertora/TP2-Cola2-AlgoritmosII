@@ -301,18 +301,18 @@ void mostrar_animales_disponibles(int espacio, Lista *lista) {
 
     } else {
         
-        for (int i = 1; i <= lista->obtener_cantidad(); i++) {
+        for (int i = POSICION_INICIAL; i <= lista->obtener_cantidad(); i++) {
         
-            if ((lista->consulta(i)->obtener_tamanio() == "grande") && (espacio >= 20)) {
+            if ((lista->consulta(i)->obtener_tamanio() == TAMANIO_GRANDE) && (espacio >= 20)) {
                 mostrar_datos_animal(lista->consulta(i));
 
-            } else if ((lista->consulta(i)->obtener_tamanio() == "mediano") && (espacio >= 10)) {
+            } else if ((lista->consulta(i)->obtener_tamanio() == TAMANIO_MEDIANO) && (espacio >= 10)) {
                 mostrar_datos_animal(lista->consulta(i));
 
-            } else if ((lista->consulta(i)->obtener_tamanio() == "pequeño") && (espacio > 2)) {
+            } else if ((lista->consulta(i)->obtener_tamanio() == TAMANIO_PEQUENIO) && (espacio > 2)) {
                 mostrar_datos_animal(lista->consulta(i));
 
-            } else if ((lista->consulta(i)->obtener_tamanio() == "diminuto") && (espacio > 0)) {
+            } else if ((lista->consulta(i)->obtener_tamanio() == TAMANIO_DIMINUTO) && (espacio > 0)) {
                 mostrar_datos_animal(lista->consulta(i));
             } 
 
@@ -323,7 +323,7 @@ void mostrar_animales_disponibles(int espacio, Lista *lista) {
 void realizar_adopcion(Lista *lista) {
             
     string nombre_adoptado;
-    int posicion = 1;
+    int posicion = POSICION_INICIAL;
 
     cout << "\t Genial! :D Ingrese el nombre del animalito que le gustaría adoptar: " << endl << endl;
     cin >> nombre_adoptado;
