@@ -26,7 +26,7 @@ void mostrar_menu();
 
 //Precondciones:
 //Postcondiciones: Dependiendo de la opcion, se accede a distinas funcionalidades del programa
-void procesar_opcion(Lista &lista_animales, int opcion);
+void procesar_opcion(Lista *lista_animales, int opcion);
 
 //Precondciones:
 //Postcondiciones: Devuelve la opcion ingresada por el usuario
