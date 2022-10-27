@@ -1,8 +1,8 @@
-#ifndef _ERIZO_H_
-#define _ERIZO_H_
+#ifndef _ERIZO_HPP_
+#define _ERIZO_HPP_
 
 #include <string>
-#include "Animal.h"
+#include "Animal.hpp"
 
 using namespace std;
 

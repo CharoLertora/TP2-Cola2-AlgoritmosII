@@ -1,5 +1,5 @@
 #include <iostream>
-#include "sistema.h"
+#include "sistema.hpp"
 #include "menu.hpp"
 
 int main() {

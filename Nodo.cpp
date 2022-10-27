@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Nodo.h"
+#include "Nodo.hpp"
 
 using namespace std;
 

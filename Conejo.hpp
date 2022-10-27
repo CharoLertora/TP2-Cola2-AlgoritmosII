@@ -1,8 +1,8 @@
-#ifndef _CONEJO_H_
-#define _CONEJO_H_
+#ifndef _CONEJO_HPP_
+#define _CONEJO_HPP_
 
 #include <string>
-#include "Animal.h"
+#include "Animal.hpp"
 
 using namespace std;
 

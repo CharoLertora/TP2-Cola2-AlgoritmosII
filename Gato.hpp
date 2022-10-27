@@ -1,8 +1,8 @@
-#ifndef _GATO_H_
-#define _GATO_H_
+#ifndef _GATO_HPP_
+#define _GATO_HPP_
 
 #include <string>
-#include "Animal.h"
+#include "Animal.hpp"
 
 using namespace std;
 

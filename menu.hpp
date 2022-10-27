@@ -1,14 +1,14 @@
-#ifndef MENU_HPP
-#define MENU_HPP
+#ifndef _MENU_HPP_
+#define _MENU_HPP_
 #include <iostream>
-#include "Lista.h"
-#include "Perro.h"
-#include "Gato.h"
-#include "Lagartija.h"
-#include "Erizo.h"
-#include "Caballo.h"
-#include "Roedor.h"
-#include "Conejo.h"
+#include "Lista.hpp"
+#include "Perro.hpp"
+#include "Gato.hpp"
+#include "Lagartija.hpp"
+#include "Erizo.hpp"
+#include "Caballo.hpp"
+#include "Roedor.hpp"
+#include "Conejo.hpp"
 
 enum Opcion_menu {
     LISTAR_ANIMALES = 1,

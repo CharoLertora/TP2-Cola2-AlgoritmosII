@@ -1,8 +1,8 @@
-#ifndef _PERRO_H_
-#define _PERRO_H_
+#ifndef _PERRO_HPP_
+#define _PERRO_HPP_
 
 #include <string>
-#include "Animal.h"
+#include "Animal.hpp"
 
 using namespace std;
 

@@ -1,17 +1,17 @@
-#ifndef _SISTEMA_H_
-#define _SISTEMA_H_
+#ifndef _SISTEMA_HPP_
+#define _SISTEMA_HPP_
 
 #include <fstream>
 #include <cstring>
-#include "Lista.h"
-#include "Animal.h"
-#include "Perro.h"
-#include "Gato.h"
-#include "Caballo.h"
-#include "Roedor.h"
-#include "Conejo.h"
-#include "Erizo.h"
-#include "Lagartija.h"
+#include "Lista.hpp"
+#include "Animal.hpp"
+#include "Perro.hpp"
+#include "Gato.hpp"
+#include "Caballo.hpp"
+#include "Roedor.hpp"
+#include "Conejo.hpp"
+#include "Erizo.hpp"
+#include "Lagartija.hpp"
 
 using namespace std;
 

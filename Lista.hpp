@@ -1,6 +1,6 @@
-#ifndef _LISTA_H_
-#define _LISTA_H_
-#include "Nodo.h"
+#ifndef _LISTA_HPP_
+#define _LISTA_HPP_
+#include "Nodo.hpp"
 
 const int POSICION_INICIAL = 1;
 

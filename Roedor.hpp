@@ -1,8 +1,8 @@
-#ifndef _ROEDOR_H_
-#define _ROEDOR_H_
+#ifndef _ROEDOR_HPP_
+#define _ROEDOR_HPP_
 
 #include <string>
-#include "Animal.h"
+#include "Animal.hpp"
 
 using namespace std;
 

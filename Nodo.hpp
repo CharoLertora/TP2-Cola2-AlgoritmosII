@@ -1,6 +1,6 @@
-#ifndef _NODO_H_
-#define _NODO_H_
-#include "Animal.h"
+#ifndef _NODO_HPP_
+#define _NODO_HPP_
+#include "Animal.hpp"
 
 
 class Nodo {

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Conejo.h"
+#include "Conejo.hpp"
 
 using namespace std;
 

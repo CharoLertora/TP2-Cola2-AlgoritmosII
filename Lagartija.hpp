@@ -1,8 +1,8 @@
-#ifndef _LAGARTIJA_H_
-#define _LAGARTIJA_H_
+#ifndef _LAGARTIJA_HPP_
+#define _LAGARTIJA_HPP_
 
 #include <string>
-#include "Animal.h"
+#include "Animal.hpp"
 
 using namespace std;
 

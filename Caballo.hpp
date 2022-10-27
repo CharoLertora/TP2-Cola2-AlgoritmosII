@@ -1,8 +1,8 @@
-#ifndef _CABALLO_H_
-#define _CABALLO_H_
+#ifndef _CABALLO_HPP_
+#define _CABALLO_HPP_
 
 #include <string>
-#include "Animal.h"
+#include "Animal.hpp"
 
 using namespace std;
 

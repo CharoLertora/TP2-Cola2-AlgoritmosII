@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Caballo.h"
+#include "Caballo.hpp"
 
 using namespace std;
 

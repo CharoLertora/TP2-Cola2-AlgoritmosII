@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Gato.h"
+#include "Gato.hpp"
 
 using namespace std;
 
