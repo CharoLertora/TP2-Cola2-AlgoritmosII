@@ -1,5 +1,5 @@
 #include "menu.hpp"
-#include "listar_animales.hpp"
+#include "sistema.h"
 #include <fstream>
 #include <sstream>
 using namespace std;
@@ -15,17 +15,17 @@ void mostrar_menu(){
     << '\t' << "6. Guardar y salir" << endl;
 }
 
-void procesar_opcion(Lista &lista_animales, int opcion){
+void procesar_opcion(Lista *lista_animales, int opcion){
 
     switch(opcion){
         case LISTAR_ANIMALES:
             listar_animales(lista_animales);
             break;
         case RESCATAR_ANIMAL:
-            //funcion rescartar animal
+            //rescatar_animal(lista_animales);
             break;
         case BUSCAR_ANIMAL:
-            //funcion buscar animal
+            buscar_animal(lista_animales);
             break;
         case CUIDAR_ANIMAL:
             //funcion cuidar animal
