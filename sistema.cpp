@@ -372,3 +372,64 @@ void cambiar_hambre_higiene(Lista *lista) {
         lista->consulta(i)->reducir_higiene();
    }
 }
+
+void pedir_respuesta(int &opcion){
+    cout << endl << '\t' << "¿Qué desea hacer con este animal?" << endl
+    << '\t' << "1. Bañarlo." << endl
+    << '\t' << "2. Alimentarlo." << endl
+    << '\t' << "3. Saltearlo." << endl << endl;
+
+    cin >> opcion;
+    while (opcion < BANIAR_ANIMAL || opcion > SALTEAR_ANIMAL){
+        cout << endl << '\t' << "Esa no es una de las opciones válidas, intente de nuevo: ";
+        cin >> opcion;
+    }
+}
+
+void realizar_cuidado(int opcion, Animal* animal){
+    if (opcion == BANIAR_ANIMAL){
+        animal->baniar();
+        cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido bañado/a!" << endl << endl;
+    }else if (opcion == ALIMENTAR_ANIMAL){
+        animal->alimentar();
+        cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido alimentado/a!" << endl << endl;
+    }
+}
+
+void elegir_individualmente(Lista *lista_animales){
+    int opcion = 0;    
+    for (int i = 1; i < lista_animales->obtener_cantidad(); i++){
+        mostrar_datos_animal(lista_animales->consulta(i));
+        pedir_respuesta(opcion);
+        if (opcion != SALTEAR_ANIMAL){
+            realizar_cuidado(opcion, lista_animales->consulta(i));
+        }
+    }
+    cout << endl << '\t' << "----HAS LLEGADO AL FINAL DE LA LISTA----" << endl << endl;
+}
+
+void alimentar_animales(Lista *lista_animales){
+    for (int i = 1; i < lista_animales->obtener_cantidad(); i++){
+        lista_animales->consulta(i)->alimentar();
+    }
+    cout << endl << '\t' << "¡Todos los animales han sido alimentados! :)" << endl << endl;
+}
+
+
+void guardar_y_salir(Lista *lista) {
+
+    ofstream archivo_animales(ARCHIVO_ANIMALES);
+    string inicial_especie;
+
+    for (int i = POSICION_INICIAL; i <= lista->obtener_cantidad(); i++) {
+        inicial_especie = especie_a_inicial(lista->consulta(i)->obtener_especie());
+        
+        archivo_animales << lista->consulta(i)->obtener_nombre() << ",";
+        archivo_animales << lista->consulta(i)->obtener_edad() << ",";
+        archivo_animales << lista->consulta(i)->obtener_tamanio() << ",";
+        archivo_animales << inicial_especie << ",";
+        archivo_animales << lista->consulta(i)->obtener_personalidad() << "\n";
+    }
+    lista->baja(POSICION_INICIAL);
+    lista = nullptr;
+}

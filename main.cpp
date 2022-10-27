@@ -16,10 +16,8 @@ int main() {
         opcion = pedir_opcion();
         validar_opcion(opcion);
     }
+    guardar_y_salir(lista);
+    delete lista;
+
     return 0;
-
-    //buscar_animal(lista);
-    
-    //lista.~Lista();
-
 }
