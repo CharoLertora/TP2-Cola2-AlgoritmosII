@@ -295,14 +295,14 @@ void buscar_animal(Lista *lista) {
 
 //Pre: el parámetro espacio debe ser mayor a 0.
 void mostrar_animales_disponibles(int espacio, Lista *lista) {
-
+    
     if (espacio >= 50) {
-            listar_animales(lista);
+        listar_animales(lista);
 
     } else {
         
         for (int i = POSICION_INICIAL; i <= lista->obtener_cantidad(); i++) {
-        
+            
             if ((lista->consulta(i)->obtener_tamanio() == TAMANIO_GRANDE) && (espacio >= 20)) {
                 mostrar_datos_animal(lista->consulta(i));
 
