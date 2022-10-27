@@ -1,6 +1,12 @@
 #include <iostream>
 #include "sistema.hpp"
 
+using namespace std;
+
+const int BANIAR_ANIMAL = 1;
+const int ALIMENTAR_ANIMAL = 2;
+const int SALTEAR_ANIMAL = 3;
+
 
 
 void agregar_animal(Lista *lista, string nombre, int edad, string tamanio, string especie, string personalidad){
@@ -94,7 +100,7 @@ string especie_a_inicial(string especie){
 
 //Precondiciones: Posicion tiene que ser menor al tope del vector
 //Postcondiciones: Muestra por pantalla el libro completo(Nombre, Genero y Puntaje).
-void mostrar_datos_animal(Animal* animal){
+void mostrar_datos_animal(Animal *animal){
 
     cout << '\t' <<  "******************************" << endl
          
@@ -365,4 +371,46 @@ void cambiar_hambre_higiene(Lista *lista) {
         lista->consulta(i)->aumentar_hambre();
         lista->consulta(i)->reducir_higiene();
    }
+}
+
+void pedir_respuesta(int &opcion){
+    cout << endl << '\t' << "¿Qué desea hacer con este animal?" << endl
+    << '\t' << "1. Bañarlo." << endl
+    << '\t' << "2. Alimentarlo." << endl
+    << '\t' << "3. Saltearlo." << endl << endl;
+
+    cin >> opcion;
+    while (opcion < BANIAR_ANIMAL || opcion > SALTEAR_ANIMAL){
+        cout << endl << '\t' << "Esa no es una de las opciones válidas, intente de nuevo: ";
+        cin >> opcion;
+    }
+}
+
+void realizar_cuidado(int opcion, Animal* animal){
+    if (opcion == BANIAR_ANIMAL){
+        animal->baniar();
+        cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido bañado/a!" << endl << endl;
+    }else if (opcion == ALIMENTAR_ANIMAL){
+        animal->alimentar();
+        cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido alimentado/a!" << endl << endl;
+    }
+}
+
+void elegir_individualmente(Lista *lista_animales){
+    int opcion = 0;    
+    for (int i = 1; i < lista_animales->obtener_cantidad(); i++){
+        mostrar_datos_animal(lista_animales->consulta(i));
+        pedir_respuesta(opcion);
+        if (opcion != SALTEAR_ANIMAL){
+            realizar_cuidado(opcion, lista_animales->consulta(i));
+        }
+    }
+    cout << endl << '\t' << "----HAS LLEGADO AL FINAL DE LA LISTA----" << endl << endl;
+}
+
+void alimentar_animales(Lista *lista_animales){
+    for (int i = 1; i < lista_animales->obtener_cantidad(); i++){
+        lista_animales->consulta(i)->alimentar();
+    }
+    cout << endl << '\t' << "¡Todos los animales han sido alimentados! :)" << endl << endl;
 }

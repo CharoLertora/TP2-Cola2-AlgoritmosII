@@ -52,8 +52,9 @@ void llenar_lista (Lista *lista);
 void listar_animales(Lista *lista);
 void rescatar_animal(Lista *lista);
 void buscar_animal(Lista *lista);
-void cambiar_hambre_higiene(Lista *lista);
+void elegir_individualmente(Lista *lista);
+void alimentar_animales(Lista *lista);
 void adoptar_animal(Lista *lista);
-
+void cambiar_hambre_higiene(Lista *lista);
 
 #endif //_SISTEMA_H_
