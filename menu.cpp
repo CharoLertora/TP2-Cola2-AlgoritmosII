@@ -31,7 +31,7 @@ void procesar_opcion(Lista *lista_animales, int opcion){
             //funcion cuidar animal
             break;
         case ADOPTAR_ANIMAL:
-            //funcion adoptar
+            adoptar_animal(lista_animales);
             break;
         case GUARDAR_Y_SALIR:
             //funcion guardar y salir

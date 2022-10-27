@@ -2,6 +2,8 @@
 #define _LISTA_H_
 #include "Nodo.h"
 
+const int POSICION_INICIAL = 1;
+
 using namespace std;
 
 class Lista {
