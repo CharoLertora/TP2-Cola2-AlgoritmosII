@@ -33,11 +33,11 @@ const string ESPECIE_CONEJO = "Conejo";
 const string ESPECIE_ERIZO = "Erizo";
 const string ESPECIE_LAGARTIJA = "Lagartija";
 
-const string TAMANIO_DIMINUTO = "Diminuto";
-const string TAMANIO_PEQUENIO = "Pequeño";
-const string TAMANIO_MEDIANO = "Mediano";
-const string TAMANIO_GRANDE = "Grande";
-const string TAMANIO_GIGANTE = "Gigante";
+const string TAMANIO_DIMINUTO = "diminuto";
+const string TAMANIO_PEQUENIO = "pequeño";
+const string TAMANIO_MEDIANO = "mediano";
+const string TAMANIO_GRANDE = "grande";
+const string TAMANIO_GIGANTE = "gigante";
 
 const string PERSONALIDAD_DORMILON = "Dormilon";
 const string PERSONALIDAD_JUEGUETON = "Jugueton";
@@ -52,8 +52,6 @@ void llenar_lista (Lista *lista);
 void listar_animales(Lista *lista);
 void rescatar_animal(Lista *lista);
 void buscar_animal(Lista *lista);
-void elegir_individualmente(Lista *lista);
-void alimentar_animales(Lista *lista);
 void adoptar_animal(Lista *lista);
 void cambiar_hambre_higiene(Lista *lista);
 
