@@ -133,16 +133,6 @@ bool es_nombre_existente(string nombre_buscado, Lista *lista, int &posicion_busc
     return encontrado;
 }
 
-void mostrar_animal(Animal* animal) {
-    
-    cout << endl << "-------------------" << endl;
-    cout << "Su nombre es: " << animal->obtener_nombre() << endl <<
-    "Edad: " << animal->obtener_edad() << endl <<
-    "Su tamaño: " << animal->obtener_tamanio() << endl <<
-    "La especie que lo deifne es: " << animal->obtener_especie() << endl <<
-    "Tiene una personalidad: " << animal->obtener_personalidad() << endl <<
-    "Se alimenta a base de: " << animal->obtener_comida() << endl;
-}
 
 void buscar_animal(Lista *lista) {
 
@@ -165,7 +155,7 @@ void buscar_animal(Lista *lista) {
         } else {
 
             cout << endl << "\t -- Animalito encontrado! Sus datos son: " << endl;
-            mostrar_animal(lista->consulta(posicion_buscado));
+            mostrar_datos_animal(lista->consulta(posicion_buscado));
         }
 
         cout << "\t Desea buscar otro animal? (Rta: Si/No):" << endl;
