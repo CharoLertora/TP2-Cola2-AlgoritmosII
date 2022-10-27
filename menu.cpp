@@ -41,7 +41,7 @@ void procesar_opcion(Lista *lista_animales, int opcion){
 
 int pedir_opcion(){
     int opcion;
-    cout << "\n" << '\t' << "Que accion queres realizar?" << endl;
+    cout << "\n" << '\t' << "¿Qué acción quiere realizar?" << endl;
     cin >> opcion;
     
     return opcion;
@@ -50,7 +50,7 @@ int pedir_opcion(){
 void validar_opcion(int &opcion){
     bool es_opcion_valida = opcion > 0 && opcion <= CANTIDAD_DE_OPCIONES;
     while(!es_opcion_valida){
-        cout << "La opcion elegida no es valida, por favor intente de nuevo: " << endl;
+        cout << "La opción elegida no es válida, por favor intente de nuevo: " << endl;
         cin >> opcion;
         es_opcion_valida = opcion > 0 && opcion < CANTIDAD_DE_OPCIONES;
     }
