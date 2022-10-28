@@ -54,6 +54,7 @@ void rescatar_animal(Lista *lista);
 void buscar_animal(Lista *lista);
 void elegir_individualmente(Lista *lista);
 void alimentar_animales(Lista *lista);
+void baniar_animales(Lista *lista);
 void adoptar_animal(Lista *lista);
 void cambiar_hambre_higiene(Lista *lista);
 void guardar_y_salir(Lista *lista);

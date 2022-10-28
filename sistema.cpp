@@ -352,7 +352,7 @@ void adoptar_animal(Lista *lista) {
 
     mostrar_animales_disponibles(espacio, lista);
 
-    cout << "\t ¿Desea adoptar a alguno de estos animalitos?: " << endl;
+    cout << "\t ¿Desea adoptar a alguno de estos animalitos? (Rta: si/no):" << endl;
     cin >> respuesta;
 
     if (es_respuesta_valida(respuesta)) {
@@ -398,7 +398,7 @@ void realizar_cuidado(int opcion, Animal* animal){
 
 void elegir_individualmente(Lista *lista_animales){
     int opcion = 0;    
-    for (int i = 1; i < lista_animales->obtener_cantidad(); i++){
+    for (int i = POSICION_INICIAL; i < lista_animales->obtener_cantidad(); i++){
         mostrar_datos_animal(lista_animales->consulta(i));
         pedir_respuesta(opcion);
         if (opcion != SALTEAR_ANIMAL){
@@ -409,10 +409,18 @@ void elegir_individualmente(Lista *lista_animales){
 }
 
 void alimentar_animales(Lista *lista_animales){
-    for (int i = 1; i < lista_animales->obtener_cantidad(); i++){
+    for (int i = POSICION_INICIAL; i < lista_animales->obtener_cantidad(); i++){
         lista_animales->consulta(i)->alimentar();
     }
     cout << endl << '\t' << "¡Todos los animales han sido alimentados! :)" << endl << endl;
+}
+
+void baniar_animales(Lista *lista) {
+
+    for (int i = POSICION_INICIAL; i < lista->obtener_cantidad(); i++) {
+        lista->consulta(i)->baniar();
+    }
+    cout << endl << '\t' << "¡Todos los animales que necesitaban bañarse han sido higienizados! :)" << endl << endl;
 }
 
 

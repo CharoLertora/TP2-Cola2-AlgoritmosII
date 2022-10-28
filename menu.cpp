@@ -59,7 +59,7 @@ void procesar_opcion_submenu(Lista* lista_animales, int opcion){
             alimentar_animales(lista_animales);
             break;
         case BANIAR_TODOS:
-            //baniar_animales(lista_animales);
+            baniar_animales(lista_animales);
             break;
     }
 }
@@ -90,13 +90,10 @@ void procesar_opcion(Lista *lista_animales, int opcion){
             buscar_animal(lista_animales);
             break;
         case CUIDAR_ANIMALES:
-            //abrir_submenu(lista_animales);
+            abrir_submenu(lista_animales);
             break;
         case ADOPTAR_ANIMAL:
             adoptar_animal(lista_animales);
-            break;
-        case GUARDAR_Y_SALIR:
-            //funcion guardar y salir
             break;
     }
 }
