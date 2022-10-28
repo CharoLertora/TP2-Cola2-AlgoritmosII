@@ -1,7 +1,8 @@
 #include "menu.hpp"
-#include "sistema.hpp"
+#include "Sistema.hpp"
 #include <fstream>
 #include <sstream>
+
 using namespace std;
 
 void mostrar_menu(){
@@ -14,7 +15,6 @@ void mostrar_menu(){
     << '\t' << "5. Adoptar animal" << endl
     << '\t' << "6. Guardar y salir" << endl;
 }
-
 
 int pedir_opcion(){
     int opcion;
@@ -47,53 +47,5 @@ void validar_opcion_submenu(int &opcion){
         cout << "La opción elegida no es válida, por favor intente de nuevo: " << endl;
         cin >> opcion;
         es_opcion_valida = opcion > 0 && opcion < CANTIDAD_DE_OPCIONES_SUBMENU;
-    }
-}
-
-void procesar_opcion_submenu(Lista* lista_animales, int opcion){
-    switch(opcion){
-        case ELEGIR_INDIVIDUALMENTE:
-            elegir_individualmente(lista_animales);
-            break;
-        case ALIMENTAR_TODOS:
-            alimentar_animales(lista_animales);
-            break;
-        case BANIAR_TODOS:
-            baniar_animales(lista_animales);
-            break;
-    }
-}
-
-void abrir_submenu(Lista *lista){
-    mostrar_submenu();
-    int opcion = pedir_opcion();
-    validar_opcion_submenu(opcion);
-    while(opcion != REGRESAR_INICIO){
-        procesar_opcion_submenu(lista, opcion);
-        mostrar_submenu();
-        opcion = pedir_opcion();
-        validar_opcion_submenu(opcion);
-    }
-}
-
-
-void procesar_opcion(Lista *lista_animales, int opcion){
-    cambiar_hambre_higiene(lista_animales);
-    switch(opcion){
-        case LISTAR_ANIMALES:
-            listar_animales(lista_animales);
-            break;
-        case RESCATAR_ANIMAL:
-            rescatar_animal(lista_animales);
-            break;
-        case BUSCAR_ANIMAL:
-            buscar_animal(lista_animales);
-            break;
-        case CUIDAR_ANIMALES:
-            abrir_submenu(lista_animales);
-            break;
-        case ADOPTAR_ANIMAL:
-            adoptar_animal(lista_animales);
-            break;
     }
 }

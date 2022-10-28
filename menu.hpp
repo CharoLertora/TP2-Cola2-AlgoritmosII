@@ -33,10 +33,6 @@ enum Opcion_submenu {
 void mostrar_menu();
 
 //Precondciones:
-//Postcondiciones: Dependiendo de la opcion, se accede a distinas funcionalidades del programa
-void procesar_opcion(Lista *lista_animales, int opcion);
-
-//Precondciones:
 //Postcondiciones: Devuelve la opcion ingresada por el usuario
 int pedir_opcion();
 
@@ -52,12 +48,4 @@ void mostrar_submenu();
 //Postcondiciones: Valida que la opcion sea valida en el submenu, sino vuelve a preguntar
 void validar_opcion_submenu(int &opcion);
 
-//Precondciones:
-//Postcondiciones: Dependiendo de la opcion, se accede a distinas funcionalidades del programa
-void procesar_opcion_submenu(Lista* lista_animales, int opcion);
-
-//Precondciones:
-//Postcondiciones: Lleva al usuario al submenu y procesará las diferentes respuestas mientras no vuelva al inicio
-void abrir_submenu(Lista *lista);
-
-#endif
+#endif //_MENU_HPP_
