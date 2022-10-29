@@ -235,5 +235,10 @@ void realizar_cuidado(int opcion, Animal* animal){
     }
 }
 
-
+void validar_espacio(string &espacio){
+    while(hay_letras_en_edad(espacio)){
+        cout << "Espacio no valido, utlice numeros positivos por favor. Gracias!!" << endl;
+        getline(cin, espacio);
+    }
+}
 #endif

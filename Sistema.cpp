@@ -168,16 +168,18 @@ void Sistema::mostrar_animales_disponibles(int espacio, Lista *lista) {
 }
 
 void Sistema::adoptar_animal(Lista *lista) {
-    
-    int espacio;
+    string esp;
+    //int espacio;
     string respuesta;
 
     cout << "\t Ingrese el espacio en metros cuadrados del cual dispondrá el animalito para vivir" << endl;
     cout << "\t (NO INGRESAR NÚMEROS MENORES A 0): " << endl;
-    cin >> espacio;
+    //cin >> espacio;
+    getline(cin >> ws,esp);
+    validar_espacio(esp);
+    mostrar_animales_disponibles(stoi(esp), lista);
 
-    mostrar_animales_disponibles(espacio, lista);
-
+   
     cout << "\t ¿Desea adoptar a alguno de estos animalitos? (Rta: si/no):" << endl;
     cin >> respuesta;
 
@@ -187,8 +189,9 @@ void Sistema::adoptar_animal(Lista *lista) {
 
     } else {
         cout << "\t Lamentamos que no quiera adoptar ninguno de nuestros animalitos :( " << endl
-             << "\t ¡Te esperamos nuevamente!" << endl;
-    }
+            << "\t ¡Te esperamos nuevamente!" << endl;
+        }
+
 }
 
 void Sistema::cambiar_hambre_higiene(Lista *lista) {
