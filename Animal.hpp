@@ -29,6 +29,7 @@ public:
     void asignar_especie(string especie);
     void asignar_tamanio(string tamanio);
     void asignar_personalidad(string personalidad);
+    bool obtener_requiere_ducha();
     int obtener_edad();
     int obtener_higiene();
     int obtener_hambre();

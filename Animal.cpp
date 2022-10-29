@@ -83,17 +83,20 @@ string Animal::obtener_personalidad(){
 }
 
 void Animal::aumentar_hambre(){
-    if (obtener_personalidad() == PERSONALIDAD_DORMILONA){
-        hambre = hambre + (AUMENTO_HAMBRE / 2);
+    if(hambre < 100){
+        if (obtener_personalidad() == PERSONALIDAD_DORMILONA){
+            hambre = hambre + (AUMENTO_HAMBRE / 2);
     }else if (obtener_personalidad() == PERSONALIDAD_JUGUETONA){
-        hambre = hambre + (AUMENTO_HAMBRE * 2);
+            hambre = hambre + (AUMENTO_HAMBRE * 2);
     }else {
-        hambre = hambre + AUMENTO_HAMBRE;
+            hambre = hambre + AUMENTO_HAMBRE;
     }
 }
+    }
+   
 
 void Animal::reducir_higiene(){
-    if (requiere_ducha){
+    if (requiere_ducha && higiene > 0){
         if (obtener_personalidad() == PERSONALIDAD_SOCIABLE){
             higiene = higiene - (REDUCCION_HIGIENE / 2);
         }else if (obtener_personalidad() == PERSONALIDAD_TRAVIESA){
@@ -106,4 +109,8 @@ void Animal::reducir_higiene(){
 
 string Animal::obtener_comida(){
     return comida;
+}
+
+bool Animal::obtener_requiere_ducha(){
+    return requiere_ducha;
 }
