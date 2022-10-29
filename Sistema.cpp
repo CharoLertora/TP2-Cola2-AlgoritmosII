@@ -124,7 +124,6 @@ void Sistema::rescatar_animal(Lista *lista_animales){
     }
 }
 
-
 void Sistema::buscar_animal(Lista *lista) {
 
     string respuesta;
