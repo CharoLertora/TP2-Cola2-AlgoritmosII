@@ -5,7 +5,7 @@
 #include <cstring>
 #include "Lista.hpp"
 #include "Animal.hpp"
-#include "menu.hpp"
+
 
 using namespace std;
 
@@ -50,34 +50,24 @@ class Sistema {
     
     public:
         Sistema();
-        void inicializar_sistema(Lista *lista_animales);
+        void inicializar_sistema(Sistema sistema);
         Lista* obtener_lista_animales();
+        void cambiar_hambre_higiene(Lista *lista_animales);
 
-    private:
-        void agregar_animal(Lista *lista_animales, string nombre, int edad, string tamanio, string especie, string personalidad);
-        void llenar_lista (Lista *lista_animales);
         void listar_animales(Lista *lista_animales);
         void rescatar_animal(Lista *lista_animales);
         void buscar_animal(Lista *lista_animales);
         void elegir_individualmente(Lista *lista_animales);
         void alimentar_animales(Lista *lista_animales);
         void baniar_animales(Lista *lista_animales);
-        void mostrar_animales_disponibles(int espacio, Lista *lista_animales);
         void adoptar_animal(Lista *lista_animales);
-        void cambiar_hambre_higiene(Lista *lista_animales);
         void guardar_y_salir(Lista *lista_animales);
 
-        //Precondciones:
-        //Postcondiciones: Dependiendo de la opcion, se accede a distinas funcionalidades del programa
-        void procesar_opcion(Lista *lista_animales, int opcion);
-
-        //Precondciones:
-        //Postcondiciones: Dependiendo de la opcion, se accede a distinas funcionalidades del programa
-        void procesar_opcion_submenu(Lista* lista_animales, int opcion);
-
-        //Precondciones:
-        //Postcondiciones: Lleva al usuario al submenu y procesará las diferentes respuestas mientras no vuelva al inicio
-        void abrir_submenu(Lista *lista_animales);
+    private:
+        void agregar_animal(Lista *lista_animales, string nombre, int edad, string tamanio, string especie, string personalidad);
+        void llenar_lista (Lista *lista_animales);
+        
+        void mostrar_animales_disponibles(int espacio, Lista *lista_animales);
 
 };
 

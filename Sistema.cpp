@@ -8,6 +8,7 @@
 #include "Erizo.hpp"
 #include "Lagartija.hpp"
 #include "funciones_auxiliares.hpp"
+#include "menu.hpp"
 
 Sistema::Sistema() {
 
@@ -15,19 +16,19 @@ Sistema::Sistema() {
     llenar_lista(lista_animales);
 }
 
-void Sistema::inicializar_sistema(Lista *lista) {
+void Sistema::inicializar_sistema(Sistema sistema) {
 
     mostrar_menu();
     int opcion = pedir_opcion();
     validar_opcion(opcion);
     while(opcion != GUARDAR_Y_SALIR){
-        procesar_opcion(lista, opcion);
+        procesar_opcion(sistema, opcion);
         mostrar_menu();
         opcion = pedir_opcion();
         validar_opcion(opcion);
     }
-    guardar_y_salir(lista);
-    delete lista;
+    guardar_y_salir(sistema.obtener_lista_animales());
+    delete sistema.obtener_lista_animales();
 }
 
 Lista* Sistema::obtener_lista_animales() {
@@ -124,14 +125,14 @@ void Sistema::rescatar_animal(Lista *lista_animales){
     }
 }
 
-void Sistema::buscar_animal(Lista *lista) {
+void Sistema::buscar_animal(Lista *lista_animales) {
 
     string respuesta;
     string nombre_buscado;
     int posicion_buscado;
 
     do {
-        revisar_lista_animales(lista, nombre_buscado, posicion_buscado);
+        revisar_lista_animales(lista_animales, nombre_buscado, posicion_buscado);
 
         cout << "\t ¿Desea buscar otro animal? (Rta: Si/No):" << endl;
         cin >> respuesta;
@@ -140,33 +141,33 @@ void Sistema::buscar_animal(Lista *lista) {
 }
 
 //Pre: el parámetro espacio debe ser mayor a 0.
-void Sistema::mostrar_animales_disponibles(int espacio, Lista *lista) {
+void Sistema::mostrar_animales_disponibles(int espacio, Lista *lista_animales) {
     
     if (espacio >= 50) {
-        listar_animales(lista);
+        listar_animales(lista_animales);
 
     } else {
         
-        for (int i = POSICION_INICIAL; i <= lista->obtener_cantidad(); i++) {
+        for (int i = POSICION_INICIAL; i <= lista_animales->obtener_cantidad(); i++) {
             
-            if ((lista->consulta(i)->obtener_tamanio() == TAMANIO_GRANDE) && (espacio >= 20)) {
-                mostrar_datos_animal(lista->consulta(i));
+            if ((lista_animales->consulta(i)->obtener_tamanio() == TAMANIO_GRANDE) && (espacio >= 20)) {
+                mostrar_datos_animal(lista_animales->consulta(i));
 
-            } else if ((lista->consulta(i)->obtener_tamanio() == TAMANIO_MEDIANO) && (espacio >= 10)) {
-                mostrar_datos_animal(lista->consulta(i));
+            } else if ((lista_animales->consulta(i)->obtener_tamanio() == TAMANIO_MEDIANO) && (espacio >= 10)) {
+                mostrar_datos_animal(lista_animales->consulta(i));
 
-            } else if ((lista->consulta(i)->obtener_tamanio() == TAMANIO_PEQUENIO) && (espacio > 2)) {
-                mostrar_datos_animal(lista->consulta(i));
+            } else if ((lista_animales->consulta(i)->obtener_tamanio() == TAMANIO_PEQUENIO) && (espacio > 2)) {
+                mostrar_datos_animal(lista_animales->consulta(i));
 
-            } else if ((lista->consulta(i)->obtener_tamanio() == TAMANIO_DIMINUTO) && (espacio > 0)) {
-                mostrar_datos_animal(lista->consulta(i));
+            } else if ((lista_animales->consulta(i)->obtener_tamanio() == TAMANIO_DIMINUTO) && (espacio > 0)) {
+                mostrar_datos_animal(lista_animales->consulta(i));
             } 
 
         }
     }
 }
 
-void Sistema::adoptar_animal(Lista *lista) {
+void Sistema::adoptar_animal(Lista *lista_animales) {
     string esp;
     //int espacio;
     string respuesta;
@@ -176,7 +177,7 @@ void Sistema::adoptar_animal(Lista *lista) {
     //cin >> espacio;
     getline(cin >> ws,esp);
     validar_espacio(esp);
-    mostrar_animales_disponibles(stoi(esp), lista);
+    mostrar_animales_disponibles(stoi(esp), lista_animales);
 
    
     cout << "\t ¿Desea adoptar a alguno de estos animalitos? (Rta: si/no):" << endl;
@@ -184,7 +185,7 @@ void Sistema::adoptar_animal(Lista *lista) {
 
     if (es_respuesta_valida(respuesta)) {
         
-        realizar_adopcion(lista);
+        realizar_adopcion(lista_animales);
 
     } else {
         cout << "\t Lamentamos que no quiera adoptar ninguno de nuestros animalitos :( " << endl
@@ -193,11 +194,11 @@ void Sistema::adoptar_animal(Lista *lista) {
 
 }
 
-void Sistema::cambiar_hambre_higiene(Lista *lista) {
+void Sistema::cambiar_hambre_higiene(Lista *lista_animales) {
 
-    for (int i = 1; i < lista->obtener_cantidad() + 1; i++){
-        lista->consulta(i)->aumentar_hambre();
-        lista->consulta(i)->reducir_higiene();
+    for (int i = 1; i < lista_animales->obtener_cantidad() + 1; i++){
+        lista_animales->consulta(i)->aumentar_hambre();
+        lista_animales->consulta(i)->reducir_higiene();
    }
 }
 
@@ -214,7 +215,7 @@ void Sistema::elegir_individualmente(Lista *lista_animales){
 }
 
 void Sistema::alimentar_animales(Lista *lista_animales){
-    for (int i = POSICION_INICIAL; i < lista_animales->obtener_cantidad(); i++){
+    for (int i = POSICION_INICIAL; i <= lista_animales->obtener_cantidad(); i++){
         lista_animales->consulta(i)->alimentar();
     }
     cout << endl << '\t' << "¡Todos los animales han sido alimentados! :)" << endl << endl;
@@ -244,52 +245,5 @@ void Sistema::guardar_y_salir(Lista *lista) {
     }
     lista->baja(POSICION_INICIAL);
     lista = nullptr;
-}
-
-void Sistema::procesar_opcion_submenu(Lista* lista_animales, int opcion){
-    switch(opcion){
-        case ELEGIR_INDIVIDUALMENTE:
-            elegir_individualmente(lista_animales);
-            break;
-        case ALIMENTAR_TODOS:
-            alimentar_animales(lista_animales);
-            break;
-        case BANIAR_TODOS:
-            baniar_animales(lista_animales);
-            break;
-    }
-}
-
-void Sistema::abrir_submenu(Lista *lista){
-    mostrar_submenu();
-    int opcion = pedir_opcion();
-    validar_opcion_submenu(opcion);
-    while(opcion != REGRESAR_INICIO){
-        procesar_opcion_submenu(lista, opcion);
-        mostrar_submenu();
-        opcion = pedir_opcion();
-        validar_opcion_submenu(opcion);
-    }
-}
-
-void Sistema::procesar_opcion(Lista *lista_animales, int opcion){
-    cambiar_hambre_higiene(lista_animales);
-    switch(opcion){
-        case LISTAR_ANIMALES:
-            listar_animales(lista_animales);
-            break;
-        case RESCATAR_ANIMAL:
-            rescatar_animal(lista_animales);
-            break;
-        case BUSCAR_ANIMAL:
-            buscar_animal(lista_animales);
-            break;
-        case CUIDAR_ANIMALES:
-            abrir_submenu(lista_animales);
-            break;
-        case ADOPTAR_ANIMAL:
-            adoptar_animal(lista_animales);
-            break;
-    }
 }
 

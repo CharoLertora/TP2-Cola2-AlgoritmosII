@@ -49,3 +49,51 @@ void validar_opcion_submenu(int &opcion){
         es_opcion_valida = opcion > 0 && opcion < CANTIDAD_DE_OPCIONES_SUBMENU;
     }
 }
+
+void procesar_opcion_submenu(Sistema sistema, int opcion){
+    switch(opcion) {
+        case ELEGIR_INDIVIDUALMENTE:
+            sistema.elegir_individualmente(sistema.obtener_lista_animales());
+            break;
+        case ALIMENTAR_TODOS:
+            sistema.alimentar_animales(sistema.obtener_lista_animales());
+            break;
+        case BANIAR_TODOS:
+            sistema.baniar_animales(sistema.obtener_lista_animales());
+            break;
+    }
+}
+
+void abrir_submenu(Sistema sistema){
+    mostrar_submenu();
+    int opcion = pedir_opcion();
+    validar_opcion_submenu(opcion);
+    while(opcion != REGRESAR_INICIO){
+        procesar_opcion_submenu(sistema, opcion);
+        mostrar_submenu();
+        opcion = pedir_opcion();
+        validar_opcion_submenu(opcion);
+    }
+}
+
+void procesar_opcion(Sistema sistema, int opcion) {
+
+    sistema.cambiar_hambre_higiene(sistema.obtener_lista_animales());
+    switch(opcion){
+        case LISTAR_ANIMALES:
+            sistema.listar_animales(sistema.obtener_lista_animales());
+            break;
+        case RESCATAR_ANIMAL:
+            sistema.rescatar_animal(sistema.obtener_lista_animales());
+            break;
+        case BUSCAR_ANIMAL:
+            sistema.buscar_animal(sistema.obtener_lista_animales());
+            break;
+        case CUIDAR_ANIMALES:
+            abrir_submenu(sistema);
+            break;
+        case ADOPTAR_ANIMAL:
+            sistema.adoptar_animal(sistema.obtener_lista_animales());
+            break;
+    }
+}

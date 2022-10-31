@@ -2,7 +2,10 @@
 #define _FUNCIONES_AUXILIARES_
 #include "Lista.hpp"
 #include <string>
+#include <iostream>
 #include "Sistema.hpp"
+
+using namespace std;
 
 bool es_nombre_existente(string nombre_buscado, Lista *lista, int &posicion_buscado);
 
