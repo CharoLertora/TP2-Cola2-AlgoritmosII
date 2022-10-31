@@ -147,17 +147,20 @@ void preguntar_datos_animal(string &nombre, string &edad, string &tamanio, strin
     getline(cin, edad);
     validar_edad(edad);
 
-    cout << "\nIngrese el tamaño, acuérdese que los tamaños aceptados son:" << endl
-         << "\n-Diminuto \n-Pequeño \n-Mediano \n-Grande \n-Gigante\n" << endl << "\nTamaño: ";
+    cout << "\nIngrese el tamaño, acuérdese que los tamaños aceptados son: " << endl << endl
+         << "\t(POR FAVOR, NO INGRESAR LETRAS MAYÚSCULAS)" << endl
+         << "\n-diminuto \n-pequeño \n-mediano \n-grande \n-gigante\n" << endl << "\nTamaño: ";
     getline(cin >> ws, tamanio);
     validar_tamanio(tamanio);
 
-    cout << "\nIngrese la personalidad, acuérdese que las personalidades permitidas son las siguientes: \n" << endl
+    cout << "\nIngrese la personalidad, acuérdese que las personalidades permitidas son las siguientes: " << endl << endl
+         << "\t(POR FAVOR, INGRESAR PRIMERA LETRA EN MAYÚSCULA)" << endl
          << "\n-Dormilón \n-Juguetón \n-Sociable \n-Travieso\n" << endl << "\nPersonalidad: ";
     getline(cin >> ws, personalidad);
     validar_personalidad(personalidad);
 
-    cout << "\nIngrese la especie, puede poner la inicial en mayúscula o la palabra completa. Acuérdese que las especies permitidas son: " << endl
+    cout << "\nIngrese la especie, puede poner la inicial en mayúscula o la palabra completa. Acuérdese que las especies permitidas son: " << endl << endl
+         << "\t \t(POR FAVOR, INGRESAR PRIMERA LETRA EN MAYÚSCULA)" << endl
          << "\n-Perro \n-Gato \n-Caballo \n-Roedor \n-Conejo \n-Erizo \n-Lagartija\n" << endl << "\nEspecie: ";
     getline(cin >> ws, especie);
     validar_especie(especie);

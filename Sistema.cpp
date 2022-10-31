@@ -8,7 +8,7 @@
 #include "Erizo.hpp"
 #include "Lagartija.hpp"
 #include "funciones_auxiliares.hpp"
-#include "menu.hpp"
+#include "funciones_del_menu.hpp"
 
 Sistema::Sistema() {
 
