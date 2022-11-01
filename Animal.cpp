@@ -10,9 +10,13 @@ const string PERSONALIDAD_SOCIABLE = "sociable";
 const string PERSONALIDAD_TRAVIESA = "travieso";
 
 const int HAMBRE_MINIMA = 0;
+const int HAMBRE_MAXIMA = 100;
+const int HIGIENE_MINIMA = 0;
 const int HIGIENE_MAXIMA = 100;
 const int AUMENTO_HAMBRE = 10;
 const int REDUCCION_HIGIENE = 10;
+
+
 
 Animal::Animal(string nombre, int edad, string tamanio, string especie, string personalidad){
     this->nombre = nombre;
@@ -83,7 +87,7 @@ string Animal::obtener_personalidad(){
 }
 
 void Animal::aumentar_hambre(){
-    if(hambre < 100){
+    if(hambre < HAMBRE_MAXIMA){
         if (obtener_personalidad() == PERSONALIDAD_DORMILONA){
             hambre = hambre + (AUMENTO_HAMBRE / 2);
     }else if (obtener_personalidad() == PERSONALIDAD_JUGUETONA){
@@ -96,7 +100,7 @@ void Animal::aumentar_hambre(){
    
 
 void Animal::reducir_higiene(){
-    if (requiere_ducha && higiene > 0){
+    if (requiere_ducha && higiene > HIGIENE_MINIMA){
         if (obtener_personalidad() == PERSONALIDAD_SOCIABLE){
             higiene = higiene - (REDUCCION_HIGIENE / 2);
         }else if (obtener_personalidad() == PERSONALIDAD_TRAVIESA){

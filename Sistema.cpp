@@ -114,7 +114,7 @@ void Sistema::rescatar_animal(Lista *lista_animales){
 
         if(!existe_en_la_reserva(lista_animales, nombre)){
             ir_a_menu = true;
-            preguntar_datos_animal(nombre, edad, tamanio, especie, personalidad, lista_animales);
+            preguntar_datos_animal(edad, tamanio, especie, personalidad, lista_animales);
             agregar_animal(lista_animales, nombre, stoi(edad), tamanio, especie_a_inicial(especie), personalidad);
         }else if(existe_en_la_reserva(lista_animales, nombre) && !quiere_ingresar_otro_nombre()){
             ir_a_menu = true;
@@ -168,16 +168,15 @@ void Sistema::mostrar_animales_disponibles(int espacio, Lista *lista_animales) {
 }
 
 void Sistema::adoptar_animal(Lista *lista_animales) {
-    string esp;
-    //int espacio;
+    string espacio;
     string respuesta;
 
     cout << "\t Ingrese el espacio en metros cuadrados del cual dispondrá el animalito para vivir" << endl;
     cout << "\t (NO INGRESAR NÚMEROS MENORES A 0): " << endl;
-    //cin >> espacio;
-    getline(cin >> ws,esp);
-    validar_espacio(esp);
-    mostrar_animales_disponibles(stoi(esp), lista_animales);
+ 
+    getline(cin >> ws, espacio);
+    validar_espacio(espacio);
+    mostrar_animales_disponibles(stoi(espacio), lista_animales);
 
    
     cout << "\t ¿Desea adoptar a alguno de estos animalitos? (Rta: si/no):" << endl;

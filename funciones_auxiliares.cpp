@@ -20,6 +20,7 @@ bool es_respuesta_valida(string respuesta) {
     return (respuesta == "si") || (respuesta == "Si");
 }
 
+
 string especie_a_inicial(string especie) {
     string inicial_especie;
     if(especie == INICIAL_PERRO || especie == ESPECIE_PERRO){
@@ -46,8 +47,7 @@ string especie_a_inicial(string especie) {
     return inicial_especie;
 }
 
-//Precondiciones: Posicion tiene que ser menor al tope del vector
-//Postcondiciones: Muestra por pantalla el libro completo(Nombre, Genero y Puntaje).
+
 void mostrar_datos_animal(Animal *animal) {
 
     cout << '\t' <<  "******************************" << endl
@@ -62,6 +62,7 @@ void mostrar_datos_animal(Animal *animal) {
          << '\t' <<"******************************" << "\n" << endl
          << '\n' << endl;
 }
+
 
 bool existe_en_la_reserva(Lista *lista, string nombre) {
     bool existe_en_reserva = false;
@@ -103,6 +104,7 @@ void validar_tamanio(string &tamanio) {
     }
 }
 
+
 void validar_personalidad(string &personalidad) {
     while (!(personalidad == PERSONALIDAD_DORMILON || personalidad == PERSONALIDAD_JUEGUETON || personalidad == PERSONALIDAD_SOCIABLE || personalidad == PERSONALIDAD_TRAVIESO)){
         cout << "\nPersonalidad no válida, acuérdese que las personalidades válidas son: " << endl
@@ -110,6 +112,7 @@ void validar_personalidad(string &personalidad) {
         getline(cin >> ws, personalidad);
     }
 }
+
 
 void validar_especie(string &especie) {
     while (!(especie == INICIAL_PERRO || especie == ESPECIE_PERRO || especie == INICIAL_GATO || especie == ESPECIE_GATO
@@ -123,25 +126,27 @@ void validar_especie(string &especie) {
     }
 }
 
-bool hay_letras_en_edad(string edad) {
+
+bool hay_letras_en_string(string palabra) {
     bool hay_letras = false;
-    for (int i = 0; i < int(edad.length()); i++){
-        if (edad[i] < '0' || edad[i] > '9'){
+    for (int i = 0; i < int(palabra.length()); i++){
+        if (palabra[i] < PRIMER_NUMERO_ASCII || palabra[i] > ULTIMO_NUMERO_ASCII){
             hay_letras = true;
         }
     }
     return hay_letras;
 }
 
+
 void validar_edad(string &edad) {
-    while (hay_letras_en_edad(edad)){
+    while (hay_letras_en_string(edad)){
         cout << "\nLa edad ingresada no válida, acuérdese que la edad es sólo con números" << endl;
         cout << "\nEdad: ";
         getline(cin, edad);
     }
 }
 
-void preguntar_datos_animal(string &nombre, string &edad, string &tamanio, string &especie, string &personalidad,Lista* lista_animales) {
+void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad,Lista* lista_animales) {
 
     cout << "\nIngrese la edad: " << "\nEdad: ";
     getline(cin, edad);
@@ -155,7 +160,7 @@ void preguntar_datos_animal(string &nombre, string &edad, string &tamanio, strin
 
     cout << "\nIngrese la personalidad, acuérdese que las personalidades permitidas son las siguientes: " << endl << endl
          << "\t(POR FAVOR, INGRESAR PRIMERA LETRA EN MAYÚSCULA)" << endl
-         << "\n-Dormilón \n-Juguetón \n-Sociable \n-Travieso\n" << endl << "\nPersonalidad: ";
+         << "\n-Dormilon \n-Jugueton \n-Sociable \n-Travieso\n" << endl << "\nPersonalidad: ";
     getline(cin >> ws, personalidad);
     validar_personalidad(personalidad);
 
@@ -231,7 +236,7 @@ void realizar_cuidado(int opcion, Animal* animal) {
 }
 
 void validar_espacio(string &espacio) {
-    while(hay_letras_en_edad(espacio)){
+    while(hay_letras_en_string(espacio)){
         cout << "Espacio no valido, utlice numeros positivos por favor. Gracias!!" << endl;
         getline(cin, espacio);
     }
