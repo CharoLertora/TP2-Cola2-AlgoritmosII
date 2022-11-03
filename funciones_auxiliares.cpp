@@ -65,9 +65,12 @@ void mostrar_datos_animal(Animal *animal) {
 
 
 bool existe_en_la_reserva(Lista *lista, string nombre) {
+    
     bool existe_en_reserva = false;
     int i = 1;
+
     while(!existe_en_reserva && i <= lista->obtener_cantidad()){
+
         if(lista->consulta(i)->obtener_nombre() == nombre){
             existe_en_reserva = true;
         }
@@ -77,11 +80,14 @@ bool existe_en_la_reserva(Lista *lista, string nombre) {
 }
 
 bool quiere_ingresar_otro_nombre() {
+
     bool quiere_ingresar_otro = false;
     string ingreso;
+
     cout << "Ese animal ya existe en nuestra Reserva" << endl;
     cout << "¿Desea ingresar otro nombre? Si/No\n" << endl << "Respuesta: ";
     getline(cin, ingreso);
+
     if(es_respuesta_valida(ingreso)){
         quiere_ingresar_otro = true;
     }
@@ -89,14 +95,18 @@ bool quiere_ingresar_otro_nombre() {
 }
 
 void validar_nombre(Lista *lista, string &nombre) {
+
     while (existe_en_la_reserva(lista, nombre)){
+
         cout << "Ya existe ese animal en el refugio, ingresa otro nombre: ";
         getline(cin >> ws, nombre);
     }
 }
 
 void validar_tamanio(string &tamanio) {
+
     while (!(tamanio == TAMANIO_DIMINUTO || tamanio == TAMANIO_PEQUENIO || tamanio == TAMANIO_MEDIANO || tamanio == TAMANIO_GRANDE || tamanio == TAMANIO_GIGANTE)){
+
         cout << "\nEl tamaño ingresado no es correcto, ingrese un tamaño válido" << endl
              << "Acuérdese que los tamaños válidos son: " << endl
              << "\n-Diminuto \n-Pequeño \n-Mediano \n-Grande \n-Gigante\n" << endl << "\nTamaño: ";
@@ -106,7 +116,9 @@ void validar_tamanio(string &tamanio) {
 
 
 void validar_personalidad(string &personalidad) {
+
     while (!(personalidad == PERSONALIDAD_DORMILON || personalidad == PERSONALIDAD_JUEGUETON || personalidad == PERSONALIDAD_SOCIABLE || personalidad == PERSONALIDAD_TRAVIESO)){
+
         cout << "\nPersonalidad no válida, acuérdese que las personalidades válidas son: " << endl
              << "\n-Dormilón \n-Juguetón \n-Sociable \n-Travieso\n" << endl << "\nPersonalidad: ";
         getline(cin >> ws, personalidad);
@@ -115,9 +127,11 @@ void validar_personalidad(string &personalidad) {
 
 
 void validar_especie(string &especie) {
+
     while (!(especie == INICIAL_PERRO || especie == ESPECIE_PERRO || especie == INICIAL_GATO || especie == ESPECIE_GATO
     || especie == INICIAL_CABALLO || especie == ESPECIE_CABALLO || especie == INICIAL_ROEDOR || especie == ESPECIE_ROEDOR || especie == INICIAL_CONEJO || especie == ESPECIE_CONEJO 
     || especie == INICIAL_ERIZO || especie == ESPECIE_ERIZO || especie == INICIAL_LAGARTIJA || especie == ESPECIE_LAGARTIJA)){
+
         cout << "\nEspecie no válida, ingrese una especie válida, acuérdese que puede poner la incial en mayúscula o"
                 "la especie completa con la inicial en mayúscula"
              << endl
@@ -127,7 +141,8 @@ void validar_especie(string &especie) {
 }
 
 
-bool hay_letras_en_string(string palabra) {
+bool hay_letras(string palabra) {
+
     bool hay_letras = false;
     for (int i = 0; i < int(palabra.length()); i++){
         if (palabra[i] < PRIMER_NUMERO_ASCII || palabra[i] > ULTIMO_NUMERO_ASCII){
@@ -139,14 +154,15 @@ bool hay_letras_en_string(string palabra) {
 
 
 void validar_edad(string &edad) {
-    while (hay_letras_en_string(edad)){
+
+    while (hay_letras(edad)){
         cout << "\nLa edad ingresada no válida, acuérdese que la edad es sólo con números" << endl;
         cout << "\nEdad: ";
         getline(cin, edad);
     }
 }
 
-void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad,Lista* lista_animales) {
+void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad, Lista* lista_animales) {
 
     cout << "\nIngrese la edad: " << "\nEdad: ";
     getline(cin, edad);
@@ -207,6 +223,7 @@ void realizar_adopcion(Lista *lista) {
 }
 
 void pedir_respuesta(int &opcion) {
+    
     cout << endl << '\t' << "¿Qué desea hacer con este animal?" << endl
     << '\t' << "1. Bañarlo." << endl
     << '\t' << "2. Alimentarlo." << endl
@@ -220,6 +237,7 @@ void pedir_respuesta(int &opcion) {
 }
 
 void realizar_cuidado(int opcion, Animal* animal) {
+
     if (opcion == BANIAR_ANIMAL){
         if(animal->obtener_requiere_ducha()){
             animal->baniar();
@@ -236,7 +254,8 @@ void realizar_cuidado(int opcion, Animal* animal) {
 }
 
 void validar_espacio(string &espacio) {
-    while(hay_letras_en_string(espacio)){
+
+    while(hay_letras(espacio)){
         cout << "Espacio no valido, utlice numeros positivos por favor. Gracias!!" << endl;
         getline(cin, espacio);
     }

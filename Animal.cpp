@@ -18,7 +18,8 @@ const int REDUCCION_HIGIENE = 10;
 
 
 
-Animal::Animal(string nombre, int edad, string tamanio, string especie, string personalidad){
+Animal::Animal(string nombre, int edad, string tamanio, string especie, string personalidad) {
+    
     this->nombre = nombre;
     this->edad = edad;
     this->tamanio = tamanio;

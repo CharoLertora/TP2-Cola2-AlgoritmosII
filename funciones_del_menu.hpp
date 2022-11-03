@@ -29,36 +29,36 @@ enum Opcion_submenu {
     CANTIDAD_DE_OPCIONES_SUBMENU
 };
 
-//Precondciones:
-//Postcondiciones: Imprime por pantalla el menu del programa
+//Pre: -
+//Pos: Imprime por pantalla el menu del programa
 void mostrar_menu();
 
-//Precondciones:
-//Postcondiciones: Devuelve la opcion ingresada por el usuario
+//Pre: -
+//Post: Devuelve la opcion ingresada por el usuario.
 int pedir_opcion();
 
-//Precondciones:
-//Postcondiciones: Valida que la opcion sea valida en el menu, sino vuelve a preguntar
+//Pre: 'opcion' debe ser pasada por referencia.
+//Post: Valida que 'opcion' esté dentro de las opciones del menu, sino vuelve a preguntar.
 void validar_opcion(int &opcion);
 
-//Precondciones:
-//Postcondiciones: Muestra por pantalla el submenu de la opción "Cuidar animales"
+//Pre: -
+//Post: Muestra por pantalla el submenu de la opción "Cuidar animales"
 void mostrar_submenu();
 
-//Precondciones:
-//Postcondiciones: Valida que la opcion sea valida en el submenu, sino vuelve a preguntar
+//Pre: 'opcion' debe ser pasada por referencia.
+//Post: Valida que 'opcion' esté dentro de las opciones del submenu, sino vuelve a preguntar.
 void validar_opcion_submenu(int &opcion);
 
-//Precondciones:
-//Postcondiciones: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
+//Pre: 'opcion' debe estar previamente inicializado.
+//Post: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
 void procesar_opcion(Sistema sistema, int opcion);
 
-//Precondciones:
-//Postcondiciones: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
+//Pre: 'opcion' debe estar previamente inicializado.
+//Post: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
 void procesar_opcion_submenu(Sistema sistema, int opcion);
 
-//Precondciones:
-//Postcondiciones: Lleva al usuario al submenu y procesará las diferentes respuestas mientras no vuelva al inicio
+//Pre: 'sistema' debe estar previamente inicializado.
+//Post: Lleva al usuario al submenu y procesará las diferentes respuestas mientras no vuelva al inicio
 void abrir_submenu(Sistema sistema);
 
 #endif //_MENU_HPP_

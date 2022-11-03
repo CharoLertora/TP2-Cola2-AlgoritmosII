@@ -7,66 +7,89 @@
 
 using namespace std;
 
+/*
+ * pre: 
+    + El parámetro 'posicion_buscado' debe estar inicializado en 1.
+
+ * pos: devolverá true en caso de que 'nombre_buscado' sea igual a alguno de los nombres de la lista de animales, o false en caso contrario.
+*/
 bool es_nombre_existente(string nombre_buscado, Lista *lista, int &posicion_buscado);
 
+//pre: -
+//pos: va a devolver true en caso de que la respuesta coincida con si/Si, y false en cualquier otro caso.
 bool es_respuesta_valida(string respuesta);
 
-//pre:
+//pre: el parámetro 'especie' debe estar previamente inicializado y debe contener valores válidos.
 //pos: Devuelve un string con la inicial del animal correspondiente
 string especie_a_inicial(string especie);
 
-//Pre: 
+//Pre: el parámetro '*animal' debe apuntar a una variable previamente inicializada y debe contener valores válidos.
 //Pos: Muestra por pantalla el animal con sus datos.
 void mostrar_datos_animal(Animal *animal);
 
-//pre:
-//pos: Devuelve la variable booleana 'existe_en_reserva' con verdadero si el animal existe en la reserva, sino falso.
+//pre: 'nombre' debe estar previamente inicializado y contener algún valor.
+//pos: devolverá true si el animal ya existe en la reserva, sino false.
 bool existe_en_la_reserva(Lista *lista, string nombre);
 
-//pre:
-//pos: Devuelve la variable booleana 'quiere_ingresar_otro' con verdadero si el usuario quiere ingresar otro nombre, sino falso.
+//pre: -
+//pos: devolverá true si el usuario quiere ingresar otro nombre, sino false.
 bool quiere_ingresar_otro_nombre();
 
-//pre:
-//pos: Valida que el nombre no este en el refugio hasta que el nombre ingresdo no este en la reserva.
+//pre: -
+//pos: Valida que 'nombre' no este en la lista de animalesn y pedirá uno nuevo hasta si es encontrado.
 void validar_nombre(Lista *lista, string &nombre);
 
-//pre:
-//pos: Valida el tamaño hasta que sea valido
+//pre: -
+//pos: Valida que 'tamanio' esté dentro de las opciones permitidas.
 void validar_tamanio(string &tamanio);
 
-//pre:
-//pos: Valida la personalidad hasta que sea valida
+//pre: -
+//pos: Valida que 'personalidad' esté dentro de las opciones permitidas.
 void validar_personalidad(string &personalidad);
 
-//pre:
-//pos: Valida la especie hasta que sea valida
+//pre: -
+//pos: Valida que 'especie' esté dentro de las opciones permitidas.
 void validar_especie(string &especie);
 
-//pre:
-//pos: Devuelve la variable booleana 'hay_letras' con verdadero si hay caracteres que no son numericos, sino falso.
-bool hay_letras_en_string(string edad);
+//pre: -
+//pos: Devuelve true si hay caracteres que no son numericos, sino false.
+bool hay_letras(string edad);
 
-//pre:
-//pos: Valida la edad hasta que sea válida.
+//pre: -
+//pos: Validará que la edad no contenga letras.
 void validar_edad(string &edad);
 
-//pre:
-//pos: Pregunta al usuario los datos del animal y valida que sean validos.
+//pre: los parámetros edad, tamanio, especie y personalidad deben estar previamente inicializados y ser pasados por referencia.
+//pos: Pregunta al usuario los datos del animal y valida que sean correctos.
 void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad,Lista* lista_animales);
 
+/*
+ * pre: 
+    + 'nombre_buscado' debe estar previamente inicializado.
+    + 'posicion_buscado' debe estar inicializado en 1.
+
+ * pos:
+    + Va a recorrer la lista de animales y devolverá un msj. por pantalla al usuario según cada caso:
+        - Avisará si la lista está vacía.
+        - Avisará en el caso de que el nombre no se encuentre en la lista.
+        - Avisará y mostrará los datos del animal en caso de que haya sido encontrado en la lista.
+*/
 void revisar_lista_animales(Lista *lista, string &nombre_buscado, int &posicion_buscado);
 
+//pre: -
+//pos: Solicitará el nombre del animal a adoptar y, en el caso de que el usuario desee adoptarlo, se eleminará de la lista de animales.
 void realizar_adopcion(Lista *lista);
 
-//pre:
+//pre: 'opcion' debe estar previamente inicializado y ser pasado por referencia.
 //pos: Le pregunta al usuario si desea cuidar al animal o saltearlo y una vez que su respuesta es vàlida, la guarda.
 void pedir_respuesta(int &opcion);
 
-//pre:
+//pre: los parámetros 'opcion' y 'animal' deben estar previamente inicializados y contener valores válidos.
 //pos: Dependiendo la opción seleccionada, baña o alimenta al animal ingresado.
 void realizar_cuidado(int opcion, Animal* animal);
 
+//pre: 'espacio' debe estar previamente inicializado y ser pasado por referencia.
+//pos: se encarga de verificar que el espacio ingresado por el usuario no contenga letras ni números negativos.
 void validar_espacio(string &espacio);
 
 #endif //_FUNCIONES_AUXILIARES_HPP_

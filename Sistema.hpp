@@ -47,16 +47,18 @@ const int SALTEAR_ANIMAL = 3;
 
 class Sistema {
 
+    //Atributos
 private:
     Lista* lista_animales;
     
+    //Métodos
 public:
     //Constructor
     //pre:-
     //pos: Construye un objeto sistema
     Sistema();
 
-    //pre: - 
+    //pre: 'sistema' debe estar previamente inicializado.
     //pos: Inicializa el programa, mostrando el menu y llamando a las funciones correspondiente del programa
     void inicializar_sistema(Sistema sistema);
 
@@ -76,7 +78,8 @@ public:
     //pos: Rescata un animal, preguntandole al usuario un nombre, edad, especie, personalidad y tamanio con su validacion correspondiente
     void rescatar_animal(Lista *lista_animales);
 
-
+    //pre: -
+    //pos: buscará el animal solicitado por el usuario las veces que lo desee.
     void buscar_animal(Lista *lista_animales);
 
     //pre:-
@@ -91,19 +94,26 @@ public:
     //pos: Sube la hiigiene de todos los animales de la lista al 100%.
     void baniar_animales(Lista *lista_animales);
 
+    //pre:-
+    //pos: solicita al usuario el espacio en metros cuadrados donde vivirá el animal a adoptar y le mostrará las opciones disponibles. Luego, llamará al procedimiento correspondiente para finalizar el proceso de adopción.
     void adoptar_animal(Lista *lista_animales);
     
+    //pre: -
+    //pos: cargará toda la información que se encuentre en la lista de animales en el archivo animales.csv.
     void guardar_y_salir(Lista *lista_animales);
 
 private:
+
     //pre: Los párametros nombre, edad, especie, tamanio y personalidad, que serán los atributos del animal, deben estar inicializados.
     //pos: Agrega el animal ingresado a la lista de animales.
     void agregar_animal(Lista *lista_animales, string nombre, int edad, string tamanio, string especie, string personalidad);
 
-    //pre:-
+    //pre: '*lista_animales' debe apuntar al atributo de la clase Sistema el cuál debe estar previamente inicializado.
     //pos: Llenará la lista con los animales que encuentre en el archivo. En caso de no haber archivo, creará uno.
     void llenar_lista (Lista *lista_animales);
-        
+    
+    //pre: 'espacio' debe estar previamente inicializado y debe contener un número entero mayor a 0.
+    //post: mostrará por pantalla todos los animales que pueden habitar en el espacio indicado.
     void mostrar_animales_disponibles(int espacio, Lista *lista_animales);
 
 };

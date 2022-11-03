@@ -4,30 +4,34 @@
 
 using namespace std;
 
-Lista::Lista (){
+Lista::Lista () {
     primero = 0;
     cantidad = 0;
 }
 
-Nodo* Lista::encontrar_nodo(int pos){
+Nodo* Lista::encontrar_nodo(int pos) {
+
     int contador = POSICION_INICIAL;
     Nodo* nodo = primero;
-    while (contador != pos){
+    while (contador != pos) {
         nodo = nodo->obtener_siguiente();
         contador++;
     }
     return nodo;
 }
 
-void Lista::alta (Animal* animal, int pos){
+void Lista::alta (Animal* animal, int pos) {
+
     Nodo* nuevo = new Nodo(animal);
-    if (pos == POSICION_INICIAL){
+    if (pos == POSICION_INICIAL) {
         nuevo->asignar_siguiente(primero);
         primero = nuevo;
-    }else if (pos == cantidad + 1){
+
+    } else if (pos == cantidad + 1) {
         Nodo* ultimo = encontrar_nodo(pos - 1);
-        ultimo->asignar_siguiente(nuevo);        
-    }else {
+        ultimo->asignar_siguiente(nuevo);  
+
+    } else {
         Nodo* nodo = encontrar_nodo(pos);
         Nodo* anterior = encontrar_nodo(pos - 1);
         nuevo->asignar_siguiente(nodo);
@@ -36,16 +40,19 @@ void Lista::alta (Animal* animal, int pos){
     cantidad++;
 }
 
-void Lista::baja (int pos){
+void Lista::baja (int pos) {
+
     Nodo* auxiliar;
-    if (pos == POSICION_INICIAL){
+    if (pos == POSICION_INICIAL) {
         auxiliar = primero;
         primero = primero->obtener_siguiente();
-    }else if (pos == cantidad){
+
+    } else if (pos == cantidad) {
         auxiliar = encontrar_nodo(pos);
         Nodo* anteultimo = encontrar_nodo(pos - 1);
         anteultimo->asignar_siguiente(0);
-    }else {
+
+    } else {
         auxiliar = encontrar_nodo(pos);
         Nodo* anterior = encontrar_nodo(pos - 1);
         anterior->asignar_siguiente(auxiliar->obtener_siguiente());
@@ -54,21 +61,21 @@ void Lista::baja (int pos){
     delete auxiliar;
 }
 
-int Lista::obtener_cantidad (){
+int Lista::obtener_cantidad () {
     return cantidad;
 }
 
-Animal* Lista::consulta (int pos){
+Animal* Lista::consulta (int pos) {
     Nodo* nodo_buscado = encontrar_nodo(pos);
     return nodo_buscado->obtener_animal();
 }
 
-bool Lista::vacia (){
+bool Lista::vacia () {
     return (cantidad == 0);
 }
 
-Lista::~Lista (){
-    while (!vacia()){
+Lista::~Lista () {
+    while (!vacia()) {
         baja(1); 
     }
 }
