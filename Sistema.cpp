@@ -120,6 +120,7 @@ void Sistema::rescatar_animal(Lista *lista_animales) {
     bool ir_a_menu = false;
     cout << "\nIngrese el nombre del animal a rescatar: " << "\nNombre: ";
     getline(cin >> ws, nombre);
+    validar_nombre_animal(nombre);
 
     while (!ir_a_menu) {
 

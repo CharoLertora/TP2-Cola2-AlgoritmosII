@@ -6,7 +6,6 @@
 #include "Lista.hpp"
 #include "Animal.hpp"
 
-
 using namespace std;
 
 const string ARCHIVO_ANIMALES = "animales.csv";
@@ -43,6 +42,7 @@ const char ULTIMO_NUMERO_ASCII = '9';
 const int BANIAR_ANIMAL = 1;
 const int ALIMENTAR_ANIMAL = 2;
 const int SALTEAR_ANIMAL = 3;
+
 
 
 class Sistema {

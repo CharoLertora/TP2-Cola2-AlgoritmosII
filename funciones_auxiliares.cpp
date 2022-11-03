@@ -128,7 +128,7 @@ void validar_personalidad(string &personalidad) {
     while (!es_personalidad_valida(personalidad)){
 
         cout << "\nPersonalidad no válida, acuérdese que las personalidades válidas son: " << endl
-             << "\n-Dormilón \n-Juguetón \n-Sociable \n-Travieso\n" << endl << "\nPersonalidad: ";
+             << "\n-Dormilon \n-Jugueton \n-Sociable \n-Travieso\n" << endl << "\nPersonalidad: ";
         getline(cin >> ws, personalidad);
     }
 }
@@ -163,7 +163,24 @@ bool hay_letras(string palabra) {
     return hay_letras;
 }
 
+bool es_nombre_valido(string palabra){
+    
+    bool es_nombre_valido = true;
+    for (int i = 0; i < int(palabra.length()); i++){
+        if ((palabra[i] < 'a' || palabra[i] > 'z') && (palabra[i] < 'A' || palabra[i] > 'Z')){
+            es_nombre_valido = false;
+        }
+    }
+    return es_nombre_valido;
+}
 
+void validar_nombre_animal(string &nombre){
+    while(!es_nombre_valido(nombre)){
+        cout << "\nEl nombre ingresado no es válida, acuérdese que no puede contener numeros o caracteres del tipo @-() etc" << endl;
+        cout << "\nNombre: ";
+        getline(cin, nombre);
+    }
+}
 void validar_edad(string &edad) {
 
     while (hay_letras(edad)){
@@ -172,6 +189,7 @@ void validar_edad(string &edad) {
         getline(cin, edad);
     }
 }
+
 
 void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad, Lista* lista_animales) {
 

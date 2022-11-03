@@ -68,6 +68,14 @@ void validar_especie(string &especie);
 bool hay_letras(string edad);
 
 //pre: -
+//pos: Devuelve true si el nombre es valido, un nombre es valido solo cuando esta compuesto de letras minusculas o mayusculas o ambas, sino false.
+bool es_nombre_valido(string palabra);
+
+//pre: -
+//pos: Valida que el nombre solo tenga letras minusculas o mayusculas o ambas, sino te pide que vuelvas a ingresar otro nombre
+void validar_nombre_animal(string &nombre);
+
+//pre: -
 //pos: Validará que la edad no contenga letras.
 void validar_edad(string &edad);
 
