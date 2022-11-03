@@ -276,7 +276,7 @@ void realizar_cuidado(int opcion, Animal* animal) {
     }else if (opcion == ALIMENTAR_ANIMAL){
         animal->alimentar();
         cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido alimentado/a!" << endl << endl;
-        cout << endl << '\t' << "¡" << animal->obtener_comida() << " fue su alimeto/a!" << endl << endl;
+        cout << endl << '\t' << "¡" << animal->obtener_comida() << " fue su alimento/a!" << endl << endl;
     }
 }
 
