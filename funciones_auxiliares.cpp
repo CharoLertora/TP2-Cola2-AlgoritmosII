@@ -22,6 +22,7 @@ bool es_respuesta_valida(string respuesta) {
 
 
 string especie_a_inicial(string especie) {
+    
     string inicial_especie;
     if(especie == INICIAL_PERRO || especie == ESPECIE_PERRO){
         inicial_especie = INICIAL_PERRO;
@@ -103,9 +104,13 @@ void validar_nombre(Lista *lista, string &nombre) {
     }
 }
 
+bool es_tamanio_valido(string tamanio) {
+    return (tamanio == TAMANIO_DIMINUTO || tamanio == TAMANIO_PEQUENIO || tamanio == TAMANIO_MEDIANO || tamanio == TAMANIO_GRANDE || tamanio == TAMANIO_GIGANTE);
+}
+
 void validar_tamanio(string &tamanio) {
 
-    while (!(tamanio == TAMANIO_DIMINUTO || tamanio == TAMANIO_PEQUENIO || tamanio == TAMANIO_MEDIANO || tamanio == TAMANIO_GRANDE || tamanio == TAMANIO_GIGANTE)){
+    while (!es_tamanio_valido(tamanio)){
 
         cout << "\nEl tamaño ingresado no es correcto, ingrese un tamaño válido" << endl
              << "Acuérdese que los tamaños válidos son: " << endl
@@ -114,10 +119,13 @@ void validar_tamanio(string &tamanio) {
     }
 }
 
+bool es_personalidad_valida(string personalidad) {
+    return (personalidad == PERSONALIDAD_DORMILON || personalidad == PERSONALIDAD_JUEGUETON || personalidad == PERSONALIDAD_SOCIABLE || personalidad == PERSONALIDAD_TRAVIESO);
+}
 
 void validar_personalidad(string &personalidad) {
 
-    while (!(personalidad == PERSONALIDAD_DORMILON || personalidad == PERSONALIDAD_JUEGUETON || personalidad == PERSONALIDAD_SOCIABLE || personalidad == PERSONALIDAD_TRAVIESO)){
+    while (!es_personalidad_valida(personalidad)){
 
         cout << "\nPersonalidad no válida, acuérdese que las personalidades válidas son: " << endl
              << "\n-Dormilón \n-Juguetón \n-Sociable \n-Travieso\n" << endl << "\nPersonalidad: ";
@@ -125,12 +133,15 @@ void validar_personalidad(string &personalidad) {
     }
 }
 
+bool es_especie_valida(string especie) {
+    return (especie == INICIAL_PERRO || especie == ESPECIE_PERRO || especie == INICIAL_GATO || especie == ESPECIE_GATO
+    || especie == INICIAL_CABALLO || especie == ESPECIE_CABALLO || especie == INICIAL_ROEDOR || especie == ESPECIE_ROEDOR || especie == INICIAL_CONEJO || especie == ESPECIE_CONEJO 
+    || especie == INICIAL_ERIZO || especie == ESPECIE_ERIZO || especie == INICIAL_LAGARTIJA || especie == ESPECIE_LAGARTIJA);
+}
 
 void validar_especie(string &especie) {
 
-    while (!(especie == INICIAL_PERRO || especie == ESPECIE_PERRO || especie == INICIAL_GATO || especie == ESPECIE_GATO
-    || especie == INICIAL_CABALLO || especie == ESPECIE_CABALLO || especie == INICIAL_ROEDOR || especie == ESPECIE_ROEDOR || especie == INICIAL_CONEJO || especie == ESPECIE_CONEJO 
-    || especie == INICIAL_ERIZO || especie == ESPECIE_ERIZO || especie == INICIAL_LAGARTIJA || especie == ESPECIE_LAGARTIJA)){
+    while (!es_especie_valida(especie)){
 
         cout << "\nEspecie no válida, ingrese una especie válida, acuérdese que puede poner la incial en mayúscula o"
                 "la especie completa con la inicial en mayúscula"
@@ -194,14 +205,12 @@ void revisar_lista_animales(Lista *lista, string &nombre_buscado, int &posicion_
     cin >> nombre_buscado;
 
     if (lista->vacia()) {
-
         cout << endl << "\t -- Lo sentimos, no hay animales en esta lista, no tenemos nada que buscar. --" << endl;
 
     } else if(!es_nombre_existente(nombre_buscado, lista, posicion_buscado)) {
-
         cout << endl << "-- El nombre que ingresó no se encuentra en nuestra lista de animales :( --" << endl;
+    
     } else {
-
         cout << endl << "\t -- ¡Animalito encontrado! Sus datos son: --" << endl;
         mostrar_datos_animal(lista->consulta(posicion_buscado));
     }

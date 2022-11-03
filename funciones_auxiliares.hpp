@@ -40,15 +40,27 @@ bool quiere_ingresar_otro_nombre();
 void validar_nombre(Lista *lista, string &nombre);
 
 //pre: -
-//pos: Valida que 'tamanio' esté dentro de las opciones permitidas.
+//pos: devolverá true en el caso de que 'tamanio' se encuentre dentro de las opciones permitidas, y false en caso contrario.
+bool es_tamanio_valido(string tamanio);
+
+//pre: -
+//pos: verificará que 'tamanio' sea válida y, en caso de no cumplirse, se le solicitará al usuario que ingrese el valor nuevamente.
 void validar_tamanio(string &tamanio);
 
 //pre: -
-//pos: Valida que 'personalidad' esté dentro de las opciones permitidas.
+//pos: devolverá true en el caso de que 'personalidad' se encuentre dentro de las opciones permitidas, y false en caso contrario.
+bool es_personalidad_valida(string personalidad);
+
+//pre: -
+//pos: verificará que 'personalidad' sea válida y, en caso de no cumplirse, se le solicitará al usuario que ingrese el valor nuevamente.
 void validar_personalidad(string &personalidad);
 
 //pre: -
-//pos: Valida que 'especie' esté dentro de las opciones permitidas.
+//pos: devolverá true en el caso de que 'especie' se encuentre dentro de las opciones permitidas, y false en caso contrario.
+bool es_especie_valida(string especie);
+
+//pre: -
+//pos: verificará que la especie sea válida y, en caso de no cumplirse, se le solicitará al usuario que ingrese el valor nuevamente.
 void validar_especie(string &especie);
 
 //pre: -
