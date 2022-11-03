@@ -11,13 +11,27 @@ private:
     Nodo* siguiente;
 
     //Métodos
-
 public:
+    //Constructor
+    //pre:-
+    //pos: Crea un nodo y guarda el animal ingresado.
     Nodo(Animal* animal);
+
+    //pre:-
+    //pos: Devuelve la dirección del animal guardado en el nodo.
     Animal* obtener_animal();
+
+    //pre:-
+    //pos: Devuelve la dirección al siguiente nodo.
     Nodo* obtener_siguiente();
-    void asignar_animal(Animal* animalito);
+
+    //pre:-
+    //pos: Asigna el siguiente nodo.
     void asignar_siguiente(Nodo* s);
+
+    //Destructor
+    //pre: - 
+    //pos: Libera el espacio de memoria ocupado por el nodo.
     ~Nodo();
 };
 

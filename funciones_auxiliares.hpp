@@ -48,7 +48,7 @@ void validar_especie(string &especie);
 bool hay_letras_en_string(string edad);
 
 //pre:
-//pos: Valida la edad hasta que sea valida
+//pos: Valida la edad hasta que sea válida.
 void validar_edad(string &edad);
 
 //pre:
@@ -59,8 +59,12 @@ void revisar_lista_animales(Lista *lista, string &nombre_buscado, int &posicion_
 
 void realizar_adopcion(Lista *lista);
 
+//pre:
+//pos: Le pregunta al usuario si desea cuidar al animal o saltearlo y una vez que su respuesta es vàlida, la guarda.
 void pedir_respuesta(int &opcion);
 
+//pre:
+//pos: Dependiendo la opción seleccionada, baña o alimenta al animal ingresado.
 void realizar_cuidado(int opcion, Animal* animal);
 
 void validar_espacio(string &espacio);

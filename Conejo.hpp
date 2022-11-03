@@ -10,6 +10,9 @@ class Conejo: public Animal{
 
     //Métodos
 public:
+    //Constructor con parámetros
+    //pre: - 
+    //pos: Construye un objeto conejo con su respectivo nombre, edad, tamanio, especie y personalidad.
     Conejo(string nombre, int edad, string tamanio, string especie, string personalidad);
 };
 

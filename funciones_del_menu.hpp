@@ -50,11 +50,11 @@ void mostrar_submenu();
 void validar_opcion_submenu(int &opcion);
 
 //Precondciones:
-//Postcondiciones: Dependiendo de la opcion, se accede a distinas funcionalidades del programa
+//Postcondiciones: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
 void procesar_opcion(Sistema sistema, int opcion);
 
 //Precondciones:
-//Postcondiciones: Dependiendo de la opcion, se accede a distinas funcionalidades del programa
+//Postcondiciones: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
 void procesar_opcion_submenu(Sistema sistema, int opcion);
 
 //Precondciones:

@@ -10,6 +10,9 @@ class Lagartija: public Animal{
 
     //Métodos
 public:
+    //Constructor con parámetros
+    //pre: - 
+    //pos: Construye un objeto lagartija con su respectivo nombre, edad, tamanio, especie y personalidad.
     Lagartija(string nombre, int edad, string tamanio, string especie, string personalidad);
 };
 

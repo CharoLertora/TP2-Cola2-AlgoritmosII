@@ -10,6 +10,9 @@ class Roedor: public Animal{
 
     //Métodos
 public:
+    //Constructor con parámetros
+    //pre: - 
+    //pos: Construye un objeto roedor con su respectivo nombre, edad, tamanio, especie y personalidad.
     Roedor(string nombre, int edad, string tamanio, string especie, string personalidad);
 };
 

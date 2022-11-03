@@ -37,27 +37,6 @@ void Animal::baniar(){
     higiene = HIGIENE_MAXIMA;
 }
 
-void Animal::asignar_edad(int edad){
-    this->edad = edad;
-}
-
-void Animal::asignar_nombre(string nombre){
-    this->nombre = nombre;
-}
-
-void Animal::asignar_especie(string especie){
-    this->especie = especie;
-}
-
-void Animal::asignar_tamanio(string tamanio){
-    this->tamanio = tamanio;
-}
-
-
-void Animal::asignar_personalidad(string personalidad){
-    this->personalidad = personalidad;
-}
-
 string Animal::obtener_nombre(){
     return nombre;
 }

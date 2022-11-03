@@ -10,6 +10,9 @@ class Caballo: public Animal{
 
     //Métodos
 public:
+    //Constructor con parámetros
+    //pre: - 
+    //pos: Construye un objeto caballo con su respectivo nombre, edad, tamanio, especie y personalidad.
     Caballo(string nombre, int edad, string tamanio, string especie, string personalidad);
 };
 

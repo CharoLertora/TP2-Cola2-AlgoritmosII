@@ -78,14 +78,30 @@ public:
 
 
     void buscar_animal(Lista *lista_animales);
+
+    //pre:-
+    //pos: Le muestra al usuario cada animal de la lista y le pregunta si desea cuidarlo o saltearlo.
     void elegir_individualmente(Lista *lista_animales);
+
+    //pre:-
+    //pos: Baja el hambre de todos los animales de la lista a 0%.
     void alimentar_animales(Lista *lista_animales);
+
+    //pre:-
+    //pos: Sube la hiigiene de todos los animales de la lista al 100%.
     void baniar_animales(Lista *lista_animales);
+
     void adoptar_animal(Lista *lista_animales);
+    
     void guardar_y_salir(Lista *lista_animales);
 
 private:
+    //pre: Los párametros nombre, edad, especie, tamanio y personalidad, que serán los atributos del animal, deben estar inicializados.
+    //pos: Agrega el animal ingresado a la lista de animales.
     void agregar_animal(Lista *lista_animales, string nombre, int edad, string tamanio, string especie, string personalidad);
+
+    //pre:-
+    //pos: Llenará la lista con los animales que encuentre en el archivo. En caso de no haber archivo, creará uno.
     void llenar_lista (Lista *lista_animales);
         
     void mostrar_animales_disponibles(int espacio, Lista *lista_animales);
