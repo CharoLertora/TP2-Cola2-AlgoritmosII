@@ -1,14 +1,14 @@
 #include <iostream>
-#include "Sistema.hpp"
-#include "Perro.hpp"
-#include "Gato.hpp"
-#include "Caballo.hpp"
-#include "Roedor.hpp"
-#include "Conejo.hpp"
-#include "Erizo.hpp"
-#include "Lagartija.hpp"
-#include "funciones_auxiliares.hpp"
-#include "funciones_del_menu.hpp"
+#include "../include/Sistema.hpp"
+#include "../include/Perro.hpp"
+#include "../include/Gato.hpp"
+#include "../include/Caballo.hpp"
+#include "../include/Roedor.hpp"
+#include "../include/Conejo.hpp"
+#include "../include/Erizo.hpp"
+#include "../include/Lagartija.hpp"
+#include "../include/funciones_auxiliares.hpp"
+#include "../include/funciones_del_menu.hpp"
 
 Sistema::Sistema() {
 

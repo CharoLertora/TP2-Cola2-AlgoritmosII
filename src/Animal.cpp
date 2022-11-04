@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
+#include "../include/Animal.hpp"
 
 using namespace std;
 
@@ -30,71 +30,78 @@ Animal::Animal(string nombre, int edad, string tamanio, string especie, string p
     higiene = HIGIENE_MAXIMA;
 }
 
-void Animal::alimentar(){
+void Animal::alimentar() {
     hambre = HAMBRE_MINIMA;
 }
 
-void Animal::baniar(){
+void Animal::baniar() {
     higiene = HIGIENE_MAXIMA;
 }
 
-string Animal::obtener_nombre(){
+string Animal::obtener_nombre() {
     return nombre;
 }
 
-int Animal::obtener_edad(){
+int Animal::obtener_edad() {
     return edad;
 }
 
-int Animal::obtener_higiene(){
+int Animal::obtener_higiene() {
     return higiene;
 }
 
-int Animal::obtener_hambre(){
+int Animal::obtener_hambre() {
     return hambre;
 }
 
-string Animal::obtener_especie(){
+string Animal::obtener_especie() {
     return especie;
 }
 
-string Animal::obtener_tamanio(){
+string Animal::obtener_tamanio() {
     return tamanio;
 }
 
-string Animal::obtener_personalidad(){
+string Animal::obtener_personalidad() {
     return personalidad;
 }
 
-void Animal::aumentar_hambre(){
-    if(hambre < HAMBRE_MAXIMA){
+void Animal::aumentar_hambre() {
+
+    if (hambre < HAMBRE_MAXIMA) {
+
         if (obtener_personalidad() == PERSONALIDAD_DORMILONA){
             hambre = hambre + (AUMENTO_HAMBRE / 2);
-    }else if (obtener_personalidad() == PERSONALIDAD_JUGUETONA){
+
+        } else if (obtener_personalidad() == PERSONALIDAD_JUGUETONA){
             hambre = hambre + (AUMENTO_HAMBRE * 2);
-    }else {
+
+        } else {
             hambre = hambre + AUMENTO_HAMBRE;
+        }
     }
 }
-    }
    
 
-void Animal::reducir_higiene(){
-    if (requiere_ducha && higiene > HIGIENE_MINIMA){
-        if (obtener_personalidad() == PERSONALIDAD_SOCIABLE){
+void Animal::reducir_higiene() {
+
+    if (requiere_ducha && higiene > HIGIENE_MINIMA) {
+        if (obtener_personalidad() == PERSONALIDAD_SOCIABLE) {
             higiene = higiene - (REDUCCION_HIGIENE / 2);
-        }else if (obtener_personalidad() == PERSONALIDAD_TRAVIESA){
+
+        } else if (obtener_personalidad() == PERSONALIDAD_TRAVIESA) {
             higiene = higiene - (REDUCCION_HIGIENE * 2);
-        }else {
+
+        } else {
             higiene = higiene - REDUCCION_HIGIENE;
         }
     }
 }
 
-string Animal::obtener_comida(){
+string Animal::obtener_comida() {
     return comida;
 }
 
-bool Animal::obtener_requiere_ducha(){
+bool Animal::obtener_requiere_ducha() {
     return requiere_ducha;
 }

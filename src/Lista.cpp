@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Lista.hpp"
-#include "Nodo.hpp"
+#include "../include/Lista.hpp"
+#include "../include/Nodo.hpp"
 
 using namespace std;
 

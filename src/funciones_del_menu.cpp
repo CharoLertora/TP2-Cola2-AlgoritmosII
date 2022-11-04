@@ -1,5 +1,5 @@
-#include "funciones_del_menu.hpp"
-#include "Sistema.hpp"
+#include "../include/funciones_del_menu.hpp"
+#include "../include/Sistema.hpp"
 #include <fstream>
 #include <sstream>
 

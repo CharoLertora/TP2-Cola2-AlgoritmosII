@@ -1,4 +1,4 @@
-#include "funciones_auxiliares.hpp"
+#include "../include/funciones_auxiliares.hpp"
 
 bool es_nombre_existente(string nombre_buscado, Lista *lista, int &posicion_buscado) {
     

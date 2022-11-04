@@ -1,0 +1,11 @@
+g++ *.cpp src/*.cpp  -o tp -Wall -Werror -Wconversion
+
+#PARA EJECUTAR:
+./tp
+
+-----------------------------------------------
+#CON VALGRIND:
+g++ *.cpp src/*.cpp  -o tp -Wall -Werror -Wconversion
+
+#PARA EJECUTAR:
+valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./tp
