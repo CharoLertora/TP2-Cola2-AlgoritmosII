@@ -1,38 +1,31 @@
-#ifndef _NODO_HPP_
-#define _NODO_HPP_
+#ifndef NODO
+#define NODO
+#include <iostream>
 #include "Animal.hpp"
+const int LLAVES_MAX_CANT = 3;
 
 
-class Nodo {
+class Nodo_arbol_B{
 
-    //Atributos
-private:
-    Animal* animal;
-    Nodo* siguiente;
-
-    //Métodos
 public:
-    //Constructor
-    //pre:-
-    //pos: Crea un nodo y guarda el animal ingresado.
-    Nodo(Animal* animal);
+    string *claves;  // claves//llaves
+    Animal **animales;
+	int grado;      // grado del arbol, supongo q para el tp3 es 3
+	Nodo_arbol_B **hijos; // hijos
+	int cant_claves;     
+	bool es_hoja; 
+	Nodo_arbol_B(int grado, bool es_hoja);   // Constructor
 
-    //pre:-
-    //pos: Devuelve la dirección del animal guardado en el nodo.
-    Animal* obtener_animal();
+	void insertar_cuando_no_este_lleno(Animal* animal_a_insertar);
 
-    //pre:-
-    //pos: Devuelve la dirección al siguiente nodo.
-    Nodo* obtener_siguiente();
+	//funcion separar. el hijo debe estar completo caudno se llame
+	void dividir_nodo(int i, Nodo_arbol_B *nodo_b);
 
-    //pre:-
-    //pos: Asigna el siguiente nodo.
-    void asignar_siguiente(Nodo* s);
+	void imprimir();
 
-    //Destructor
-    //pre: - 
-    //pos: Libera el espacio de memoria ocupado por el nodo.
-    ~Nodo();
+	Nodo_arbol_B* buscar(string nombre); //devuelve null si no esta
+
+	
 };
 
 #endif
