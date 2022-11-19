@@ -110,3 +110,11 @@ string Animal::obtener_comida() {
 bool Animal::obtener_requiere_ducha() {
     return requiere_ducha;
 }
+
+bool Animal::esta_eliminado(){
+    return eliminado;
+}
+
+bool Animal::eliminar(){
+    eliminado = true;
+}

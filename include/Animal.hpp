@@ -84,6 +84,10 @@ public:
     //pre: -
     //pos: Devuelve el atributo comida del animal.
     string obtener_comida();
+
+    bool esta_eliminado();
+
+    bool eliminar();
 };
 
 #endif
