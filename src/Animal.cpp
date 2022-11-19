@@ -115,6 +115,6 @@ bool Animal::esta_eliminado(){
     return eliminado;
 }
 
-bool Animal::eliminar(){
+void Animal::eliminar(){
     eliminado = true;
 }

@@ -23,7 +23,13 @@ public:
 
 	void imprimir();
 
-	Nodo_arbol_B* buscar(string nombre); //devuelve null si no esta
+	void imprimir_animal(int &i);
+
+	void imprimir_segun_espacio(int espacio);
+
+	void cuidar_animales();
+
+	Nodo_arbol_B* buscar(string nombre, int &i); //devuelve null si no esta
 
 	void actualizar_hambre_higiene();
 };

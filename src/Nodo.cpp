@@ -1,4 +1,5 @@
 #include "../include/Nodo.hpp"
+#include "../include/funciones_auxiliares.hpp"
 #include <iostream>
 using namespace std;
 
@@ -14,6 +15,19 @@ Nodo_arbol_B::Nodo_arbol_B(int grado, bool es_hoja){
 	cant_claves = 0;
 }
 
+void Nodo_arbol_B::imprimir_animal(int &i){
+	if (!animales[i]->esta_eliminado()){
+		cout << "================================" << endl;
+		cout << "Nombre: " << animales[i]->obtener_nombre() << endl;
+		cout << "Edad: " << animales[i]->obtener_edad() << endl;
+		cout << "Especie: " << animales[i]->obtener_especie() << endl;
+		cout << "Personalidad: " << animales[i]->obtener_personalidad() << endl;
+		cout << "Tamaño: " << animales[i]->obtener_tamanio() << endl;
+		cout << "Higiene: " << animales[i]->obtener_higiene() << "%" << endl; 
+		cout << "Hambre: " << animales[i]->obtener_hambre() << "%" << endl; 
+		cout << "================================" << endl << endl;
+	}	
+}
 
 void Nodo_arbol_B::imprimir(){
 
@@ -22,15 +36,7 @@ void Nodo_arbol_B::imprimir(){
 		//si no es hoja va a los hijos antes d imprimir claves
 		if (!es_hoja)
 			hijos[i]->imprimir();
-		if (!animales[i]->esta_eliminado()){
-			cout << "================================" << endl;
-			cout << "Nombre: " << claves[i] << endl;
-			cout << "Edad: " << animales[i]->obtener_edad() << endl;
-			cout << "Especie: " << animales[i]->obtener_especie() << endl;
-			cout << "Personalidad: " << animales[i]->obtener_personalidad() << endl;
-			cout << "Tamaño: " << animales[i]->obtener_tamanio() << endl;
-			cout << "================================" << endl << endl;
-		}		
+		imprimir_animal(i);
 	}
 
 
@@ -40,22 +46,28 @@ void Nodo_arbol_B::imprimir(){
 }
 
 
-Nodo_arbol_B *Nodo_arbol_B::buscar(string nombre){
+Nodo_arbol_B *Nodo_arbol_B::buscar(string nombre, int &indice){
 	int i = 0;
 	while (i < cant_claves && nombre > claves[i]){
 		i++;
 	}
 	// devuelve el nodo si el valor buscado es igual a clave[i]
 	if (claves[i] == nombre){
-		return this;
+		if (animales[i]->esta_eliminado()){
+			return NULL;
+		}else {
+			indice = i;
+			return this;
+		}
 	}
 
 	// si es hoja, devolver null
 	if (es_hoja){
 		return NULL;
 	}
+
 	// mueve hacia el hijo apropiado
-	return hijos[i]->buscar(nombre);
+	return hijos[i]->buscar(nombre, indice);
 }
 
 
@@ -154,5 +166,52 @@ void Nodo_arbol_B::actualizar_hambre_higiene(){
 	
 	if (!es_hoja){
 		hijos[i]->actualizar_hambre_higiene();
+	}
+}
+
+void Nodo_arbol_B::cuidar_animales(){
+
+	int i;
+	int opcion = 0;
+	for (i = 0; i < cant_claves; i++){
+		if (!es_hoja && opcion != VOLVER_INICIO){ 
+			hijos[i]->cuidar_animales();
+			imprimir_animal(i);
+			pedir_respuesta(opcion);
+			if (opcion != SALTEAR_ANIMAL && opcion != VOLVER_INICIO){
+				realizar_cuidado(opcion, animales[i]);
+			}
+		}
+	}
+	
+	if (!es_hoja && opcion != VOLVER_INICIO){
+		hijos[i]->cuidar_animales();
+	}
+}
+
+
+void Nodo_arbol_B::imprimir_segun_espacio(int espacio){
+
+	int i;
+	for (i = 0; i < cant_claves; i++){
+		if (!es_hoja)
+			hijos[i]->imprimir_segun_espacio(espacio);
+		if (animales[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20) {
+            imprimir_animal(i);
+
+        } else if (animales[i]->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= 10) {
+            imprimir_animal(i);
+
+        } else if (animales[i]->obtener_tamanio() == TAMANIO_PEQUENIO && espacio > 2) {
+            imprimir_animal(i);
+
+        } else if (animales[i]->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > 0) {
+            imprimir_animal(i);
+        } 		
+	}
+
+
+	if (!es_hoja){
+		hijos[i]->imprimir_segun_espacio(espacio);
 	}
 }

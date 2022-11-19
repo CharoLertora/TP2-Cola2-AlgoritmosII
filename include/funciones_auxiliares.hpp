@@ -1,19 +1,15 @@
 #ifndef _FUNCIONES_AUXILIARES_
 #define _FUNCIONES_AUXILIARES_
-#include "Lista.hpp"
 #include <string>
 #include <iostream>
 #include "Sistema.hpp"
 
 using namespace std;
 
-/*
- * pre: 
-    + El parámetro 'posicion_buscado' debe estar inicializado en 1.
 
- * pos: devolverá true en caso de que 'nombre_buscado' sea igual a alguno de los nombres de la lista de animales, o false en caso contrario.
-*/
-bool es_nombre_existente(string nombre_buscado, Lista *lista, int &posicion_buscado);
+// pre: -
+// pos: devolverá true en caso de que 'nombre_buscado' sea igual a alguno de los nombres no eliminados de la lista de animales, o false en caso contrario.
+bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol);
 
 //pre: -
 //pos: va a devolver true en caso de que la respuesta coincida con si/Si, y false en cualquier otro caso.
@@ -29,7 +25,7 @@ void mostrar_datos_animal(Animal *animal);
 
 //pre: 'nombre' debe estar previamente inicializado y contener algún valor.
 //pos: devolverá true si el animal ya existe en la reserva, sino false.
-bool existe_en_la_reserva(Lista *lista, string nombre);
+bool existe_en_la_reserva(Arbol_B *arbol, string nombre);
 
 //pre: -
 //pos: devolverá true si el usuario quiere ingresar otro nombre, sino false.
@@ -37,7 +33,7 @@ bool quiere_ingresar_otro_nombre();
 
 //pre: -
 //pos: Valida que 'nombre' no este en la lista de animalesn y pedirá uno nuevo hasta si es encontrado.
-void validar_nombre(Lista *lista, string &nombre);
+void validar_nombre(Arbol_B *arbol, string &nombre);
 
 //pre: -
 //pos: devolverá true en el caso de que 'tamanio' se encuentre dentro de las opciones permitidas, y false en caso contrario.
@@ -81,12 +77,11 @@ void validar_edad(string &edad);
 
 //pre: los parámetros edad, tamanio, especie y personalidad deben estar previamente inicializados y ser pasados por referencia.
 //pos: Pregunta al usuario los datos del animal y valida que sean correctos.
-void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad,Lista* lista_animales);
+void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad);
 
 /*
  * pre: 
     + 'nombre_buscado' debe estar previamente inicializado.
-    + 'posicion_buscado' debe estar inicializado en 1.
 
  * pos:
     + Va a recorrer la lista de animales y devolverá un msj. por pantalla al usuario según cada caso:
@@ -94,11 +89,11 @@ void preguntar_datos_animal(string &edad, string &tamanio, string &especie, stri
         - Avisará en el caso de que el nombre no se encuentre en la lista.
         - Avisará y mostrará los datos del animal en caso de que haya sido encontrado en la lista.
 */
-void revisar_lista_animales(Lista *lista, string &nombre_buscado, int &posicion_buscado);
+void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado);
 
 //pre: -
 //pos: Solicitará el nombre del animal a adoptar y, en el caso de que el usuario desee adoptarlo, se eleminará de la lista de animales.
-void realizar_adopcion(Lista *lista);
+void realizar_adopcion(Arbol_B *arbol);
 
 //pre: 'opcion' debe estar previamente inicializado y ser pasado por referencia.
 //pos: Le pregunta al usuario si desea cuidar al animal o saltearlo y una vez que su respuesta es vàlida, la guarda.

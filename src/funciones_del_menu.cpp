@@ -14,7 +14,8 @@ void mostrar_menu() {
     << '\t' << "3. Buscar animal" << endl
     << '\t' << "4. Cuidar animal" << endl
     << '\t' << "5. Adoptar animal" << endl
-    << '\t' << "6. Guardar y salir" << endl;
+    << '\t' << "6. Cargar combustible" << endl
+    << '\t' << "7. Guardar y salir" << endl;
 }
 
 int pedir_opcion() {
@@ -41,9 +42,7 @@ void mostrar_submenu() {
 
     cout << endl << endl;
     cout << '\t' << "1. Elegir indivualmente a qué animales cuidar" << endl
-    << '\t' << "2. Alimentar a todos los animales" << endl
-    << '\t' << "3. Bañar a todos los animales" << endl
-    << '\t' << "4. Regresar al inicio" << endl;
+    << '\t' << "2. Regresar al inicio" << endl;
 }
 
 void validar_opcion_submenu(int &opcion) {
@@ -60,19 +59,8 @@ void validar_opcion_submenu(int &opcion) {
 
 void procesar_opcion_submenu(Sistema sistema, int opcion) {
 
-    switch(opcion) {
-
-        case ELEGIR_INDIVIDUALMENTE:
-            sistema.elegir_individualmente(sistema.obtener_lista_animales());
-            break;
-
-        case ALIMENTAR_TODOS:
-            sistema.alimentar_animales(sistema.obtener_lista_animales());
-            break;
-
-        case BANIAR_TODOS:
-            sistema.baniar_animales(sistema.obtener_lista_animales());
-            break;
+    if (opcion == ELEGIR_INDIVIDUALMENTE){
+        sistema.elegir_individualmente(sistema.obtener_arbol_animales());
     }
 }
 
@@ -93,20 +81,20 @@ void abrir_submenu(Sistema sistema) {
 
 void procesar_opcion(Sistema sistema, int opcion) {
 
-    sistema.cambiar_hambre_higiene(sistema.obtener_lista_animales());
+    sistema.cambiar_hambre_higiene(sistema.obtener_arbol_animales());
 
     switch(opcion){
 
         case LISTAR_ANIMALES:
-            sistema.listar_animales(sistema.obtener_lista_animales());
+            sistema.listar_animales(sistema.obtener_arbol_animales());
             break;
 
         case RESCATAR_ANIMAL:
-            sistema.rescatar_animal(sistema.obtener_lista_animales());
+            sistema.rescatar_animal(sistema.obtener_arbol_animales());
             break;
 
         case BUSCAR_ANIMAL:
-            sistema.buscar_animal(sistema.obtener_lista_animales());
+            sistema.buscar_animal(sistema.obtener_arbol_animales());
             break;
 
         case CUIDAR_ANIMALES:
@@ -114,7 +102,11 @@ void procesar_opcion(Sistema sistema, int opcion) {
             break;
             
         case ADOPTAR_ANIMAL:
-            sistema.adoptar_animal(sistema.obtener_lista_animales());
+            sistema.adoptar_animal(sistema.obtener_arbol_animales());
+            break;
+
+        case CARGAR_COMBUSTIBLE:
+            //sistema.cargar_combustible();
             break;
     }
 }

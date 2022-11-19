@@ -12,8 +12,8 @@
 
 Sistema::Sistema() {
 
-    arbol_animales = new Arbol_B; 
-    llenar_lista(arbol_animales);
+    arbol_animales = new Arbol_B(3); 
+    llenar_arbol(arbol_animales);
 }
 
 void Sistema::inicializar_sistema(Sistema sistema) {
@@ -29,7 +29,7 @@ void Sistema::inicializar_sistema(Sistema sistema) {
         validar_opcion(opcion);
     }
 
-    guardar_y_salir(sistema.obtener_arbol_animales());
+    //guardar_y_salir(sistema.obtener_arbol_animales());
     delete sistema.obtener_arbol_animales();
 }
 
@@ -76,7 +76,7 @@ void Sistema::agregar_animal(Arbol_B *arbol_animales, string nombre, int edad, s
     }
 }
 
-void Sistema::llenar_arbol (Arbol_B *arbol_animales) {
+void Sistema::llenar_arbol(Arbol_B *arbol_animales) {
 
     ifstream archivo_animales(ARCHIVO_ANIMALES);
     
@@ -124,13 +124,14 @@ void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
 
         if (!existe_en_la_reserva(arbol_animales, nombre)) {
             ir_a_menu = true;
-            preguntar_datos_animal(edad, tamanio, especie, personalidad, arbol_animales);
+            preguntar_datos_animal(edad, tamanio, especie, personalidad);
             agregar_animal(arbol_animales, nombre, stoi(edad), tamanio, especie_a_inicial(especie), personalidad);
+            cout << "\n¡ANIMAL RESCATADO CON ÉXITO!" << endl;
 
-        } else if (existe_en_la_reserva(arbol_animales, nombre) && !quiere_ingresar_otro_nombre()) {
+        }else if (existe_en_la_reserva(arbol_animales, nombre) && !quiere_ingresar_otro_nombre()) {
             ir_a_menu = true;
 
-        } else {
+        }else {
             cout << "\nIngrese el nombre del animal a rescatar: " << "\nNombre: ";
             getline(cin >> ws, nombre);
         }
@@ -141,10 +142,9 @@ void Sistema::buscar_animal(Arbol_B *arbol_animales) {
 
     string respuesta;
     string nombre_buscado;
-    int posicion_buscado;
 
     do {
-        revisar_arbol_animales(arbol_animales, nombre_buscado, posicion_buscado);
+        revisar_arbol_animales(arbol_animales, nombre_buscado);
 
         cout << "\t ¿Desea buscar otro animal? (Rta: Si/No):" << endl;
         cin >> respuesta;
@@ -158,26 +158,11 @@ void Sistema::mostrar_animales_disponibles(int espacio, Arbol_B *arbol_animales)
     if (espacio >= 50) {
         listar_animales(arbol_animales);
 
-    } else {
-        
-        for (int i = POSICION_INICIAL; i <= arbol_animales->obtener_cantidad(); i++) {
-            
-            if ((arbol_animales->consulta(i)->obtener_tamanio() == TAMANIO_GRANDE) && (espacio >= 20)) {
-                mostrar_datos_animal(arbol_animales->consulta(i));
-
-            } else if ((arbol_animales->consulta(i)->obtener_tamanio() == TAMANIO_MEDIANO) && (espacio >= 10)) {
-                mostrar_datos_animal(arbol_animales->consulta(i));
-
-            } else if ((arbol_animales->consulta(i)->obtener_tamanio() == TAMANIO_PEQUENIO) && (espacio > 2)) {
-                mostrar_datos_animal(arbol_animales->consulta(i));
-
-            } else if ((arbol_animales->consulta(i)->obtener_tamanio() == TAMANIO_DIMINUTO) && (espacio > 0)) {
-                mostrar_datos_animal(arbol_animales->consulta(i));
-            } 
-
-        }
+    }else {
+        arbol_animales->imprimir_segun_espacio(espacio);
     }
 }
+
 
 void Sistema::adoptar_animal(Arbol_B *arbol_animales) {
     string espacio;
@@ -210,18 +195,10 @@ void Sistema::cambiar_hambre_higiene(Arbol_B *arbol_animales) {
 
 void Sistema::elegir_individualmente(Arbol_B *arbol_animales) {
 
-    int opcion = 0;    
-    for (int i = POSICION_INICIAL; i < arbol_animales->obtener_cantidad(); i++) {
-        mostrar_datos_animal(arbol_animales->consulta(i));
-        pedir_respuesta(opcion);
-
-        if (opcion != SALTEAR_ANIMAL) {
-            realizar_cuidado(opcion, arbol_animales->consulta(i));
-        }
-    }
-    cout << endl << '\t' << "----HAS LLEGADO AL FINAL DE LA LISTA----" << endl << endl;
+    arbol_animales->cuidar_animales();
 }
 
+/*
 void Sistema::guardar_y_salir(Arbol_B *arbol) {
 
     ofstream archivo_animales(ARCHIVO_ANIMALES);
@@ -240,4 +217,5 @@ void Sistema::guardar_y_salir(Arbol_B *arbol) {
     arbol->baja(POSICION_INICIAL);
     arbol = nullptr;
 }
+*/
 

@@ -1,7 +1,6 @@
 #ifndef _MENU_HPP_
 #define _MENU_HPP_
 #include <iostream>
-#include "Lista.hpp"
 #include "Sistema.hpp"
 #include "Perro.hpp"
 #include "Gato.hpp"
@@ -17,14 +16,13 @@ enum Opcion_menu {
     BUSCAR_ANIMAL,
     CUIDAR_ANIMALES,
     ADOPTAR_ANIMAL,
+    CARGAR_COMBUSTIBLE,
     GUARDAR_Y_SALIR,
     CANTIDAD_DE_OPCIONES
 };
 
 enum Opcion_submenu {
     ELEGIR_INDIVIDUALMENTE = 1,
-    ALIMENTAR_TODOS,
-    BANIAR_TODOS,
     REGRESAR_INICIO,
     CANTIDAD_DE_OPCIONES_SUBMENU
 };

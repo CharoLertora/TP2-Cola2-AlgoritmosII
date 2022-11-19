@@ -87,7 +87,7 @@ public:
 
     bool esta_eliminado();
 
-    bool eliminar();
+    void eliminar();
 };
 
 #endif

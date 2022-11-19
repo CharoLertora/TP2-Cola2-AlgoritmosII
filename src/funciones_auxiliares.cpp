@@ -1,18 +1,16 @@
 #include "../include/funciones_auxiliares.hpp"
+#include "../include/Arbol_b.hpp"
 
-bool es_nombre_existente(string nombre_buscado, Lista *lista, int &posicion_buscado) {
+
+bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol){
     
+    int indice = 0;
     bool encontrado = false;
-    
-    while(!encontrado && posicion_buscado <= lista->obtener_cantidad()) {
-
-        if (lista->consulta(posicion_buscado)->obtener_nombre() == nombre_buscado) {
+    Nodo_arbol_B* nodo_encontrado = arbol->buscar_en_el_arbol(nombre_buscado, indice);
+        if (nodo_encontrado != NULL){
             encontrado = true;
-            
-        } else {
-            posicion_buscado++;
         }
-    }
+
     return encontrado;
 }
 
@@ -65,20 +63,17 @@ void mostrar_datos_animal(Animal *animal) {
 }
 
 
-bool existe_en_la_reserva(Lista *lista, string nombre) {
+bool existe_en_la_reserva(Arbol_B *arbol, string nombre) {
     
     bool existe_en_reserva = false;
-    int i = 1;
+    int i = 0;
 
-    while(!existe_en_reserva && i <= lista->obtener_cantidad()){
-
-        if(lista->consulta(i)->obtener_nombre() == nombre){
-            existe_en_reserva = true;
-        }
-        i++;
+    if (arbol->buscar_en_el_arbol(nombre, i) != NULL){
+        existe_en_reserva = true;
     }
     return existe_en_reserva;
 }
+
 
 bool quiere_ingresar_otro_nombre() {
 
@@ -95,14 +90,16 @@ bool quiere_ingresar_otro_nombre() {
     return quiere_ingresar_otro;
 }
 
-void validar_nombre(Lista *lista, string &nombre) {
 
-    while (existe_en_la_reserva(lista, nombre)){
+void validar_nombre(Arbol_B *arbol, string &nombre) {
+
+    while (existe_en_la_reserva(arbol, nombre)){
 
         cout << "Ya existe ese animal en el refugio, ingresa otro nombre: ";
         getline(cin >> ws, nombre);
     }
 }
+
 
 bool es_tamanio_valido(string tamanio) {
     return (tamanio == TAMANIO_DIMINUTO || tamanio == TAMANIO_PEQUENIO || tamanio == TAMANIO_MEDIANO || tamanio == TAMANIO_GRANDE || tamanio == TAMANIO_GIGANTE);
@@ -191,7 +188,7 @@ void validar_edad(string &edad) {
 }
 
 
-void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad, Lista* lista_animales) {
+void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad) {
 
     cout << "\nIngrese la edad: " << "\nEdad: ";
     getline(cin, edad);
@@ -216,25 +213,25 @@ void preguntar_datos_animal(string &edad, string &tamanio, string &especie, stri
     validar_especie(especie);
 }
 
-void revisar_lista_animales(Lista *lista, string &nombre_buscado, int &posicion_buscado) {
+void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado) {
     
-    posicion_buscado = POSICION_INICIAL;
     cout << endl << "Ingrese el nombre del animal que desea buscar por favor: " << endl;
     cin >> nombre_buscado;
 
-    if (lista->vacia()) {
+    if (arbol->vacio()) {
         cout << endl << "\t -- Lo sentimos, no hay animales en esta lista, no tenemos nada que buscar. --" << endl;
 
-    } else if(!es_nombre_existente(nombre_buscado, lista, posicion_buscado)) {
+    } else if(!es_nombre_existente(nombre_buscado, arbol)) {
         cout << endl << "-- El nombre que ingresó no se encuentra en nuestra lista de animales :( --" << endl;
     
     } else {
+        int indice = 0;
         cout << endl << "\t -- ¡Animalito encontrado! Sus datos son: --" << endl;
-        mostrar_datos_animal(lista->consulta(posicion_buscado));
+        arbol->buscar_en_el_arbol(nombre_buscado, indice)->imprimir_animal(indice);
     }
 }
 
-void realizar_adopcion(Lista *lista) {
+void realizar_adopcion(Arbol_B *arbol) {
             
     string nombre_adoptado;
     int posicion = POSICION_INICIAL;
@@ -242,22 +239,24 @@ void realizar_adopcion(Lista *lista) {
     cout << "\t Genial! :D Ingrese el nombre del animalito que le gustaría adoptar: " << endl << endl;
     cin >> nombre_adoptado;
 
-    if (es_nombre_existente(nombre_adoptado, lista, posicion)) {
-        mostrar_datos_animal(lista->consulta(posicion));
+    if (es_nombre_existente(nombre_adoptado, arbol)) {
+        arbol->buscar_en_el_arbol(nombre_adoptado, posicion)->imprimir_animal(posicion);
         cout << "\t ¡HA SIDO ADOPTADO CON ÉXITO! Esperamos que sean muy felices." << endl;
-        lista->baja(posicion);
+        arbol->eliminar(nombre_adoptado);
     }
 }
 
 void pedir_respuesta(int &opcion) {
     
-    cout << endl << '\t' << "¿Qué desea hacer con este animal?" << endl
-    << '\t' << "1. Bañarlo." << endl
-    << '\t' << "2. Alimentarlo." << endl
-    << '\t' << "3. Saltearlo." << endl << endl;
+    cout << endl << '\t' << "¿Qué desea hacer?" << endl
+    << '\t' << "1. Bañar a este animal." << endl
+    << '\t' << "2. Alimentar a este animal." << endl
+    << '\t' << "3. Saltear a este animal." << endl
+    << '\t' << "4. Volver al inicio." << endl << endl;
+
 
     cin >> opcion;
-    while (opcion < BANIAR_ANIMAL || opcion > SALTEAR_ANIMAL){
+    while (opcion < BANIAR_ANIMAL || opcion > VOLVER_INICIO){
         cout << endl << '\t' << "Esa no es una de las opciones válidas, intente de nuevo: ";
         cin >> opcion;
     }
@@ -270,13 +269,13 @@ void realizar_cuidado(int opcion, Animal* animal) {
             animal->baniar();
             cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido bañado/a!" << endl << endl;
         }else{
-            cout << endl << '\t' << "¡" << animal->obtener_nombre() << " No requiere ducha" << endl << endl;
+            cout << endl << '\t' << "¡" << animal->obtener_nombre() << " no requiere ducha" << endl << endl;
         }
 
     }else if (opcion == ALIMENTAR_ANIMAL){
         animal->alimentar();
         cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido alimentado/a!" << endl << endl;
-        cout << endl << '\t' << "¡" << animal->obtener_comida() << " fue su alimento/a!" << endl << endl;
+        cout << endl << '\t' << "¡" << animal->obtener_comida() << " fue su alimento!" << endl << endl;
     }
 }
 
