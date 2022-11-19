@@ -269,13 +269,13 @@ void realizar_cuidado(int opcion, Animal* animal) {
             animal->baniar();
             cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido bañado/a!" << endl << endl;
         }else{
-            cout << endl << '\t' << "¡" << animal->obtener_nombre() << " no requiere ducha" << endl << endl;
+            cout << endl << '\t' << "¡" << animal->obtener_nombre() << " no requiere ducha!" << endl << endl;
         }
 
     }else if (opcion == ALIMENTAR_ANIMAL){
         animal->alimentar();
-        cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido alimentado/a!" << endl << endl;
-        cout << endl << '\t' << "¡" << animal->obtener_comida() << " fue su alimento!" << endl << endl;
+        cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido alimentado/a!" << endl;
+        cout << '\t' << "¡" << animal->obtener_comida() << " fue su alimento!" << endl << endl;
     }
 }
 
