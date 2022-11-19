@@ -15,6 +15,7 @@ protected:
     string personalidad;
     string comida;
     bool requiere_ducha;
+    bool eliminado;
     int edad;
     int hambre;
     int higiene;
@@ -22,9 +23,14 @@ protected:
     // Métodos:
 public:
 
+    //Constructor sin parametros
+    //pre: - 
+    //pos: Construye un objeto animal con el hambre en 0, la higiene en 100 y ocupado en false.
+    Animal();
+
     //Constructor con parametros
     //pre: - 
-    //pos: Construye un objeto animal con su respectivo nombre, edad, tamanio, especie y personalidad.
+    //pos: Construye un objeto animal con su respectivo nombre, edad, tamanio, especie y personalidad, con el hambre en 0, la higiene en 100 y ocupado en false.
     Animal(string nombre, int edad, string tamanio, string especie, string personalidad);
 
     //pre: -
