@@ -3,7 +3,7 @@
 
 #include <fstream>
 #include <cstring>
-#include "Lista.hpp"
+#include "Arbol_b.hpp"
 #include "Animal.hpp"
 
 using namespace std;
@@ -49,7 +49,7 @@ class Sistema {
 
     //Atributos
 private:
-    Lista* lista_animales;
+    Arbol_B* arbol_animales;
     
     //Métodos
 public:
@@ -64,57 +64,49 @@ public:
 
     //pre:-
     //pos: Devuelve la lista de animales.
-    Lista* obtener_lista_animales();
+    Arbol_b* obtener_arbol_animales();
 
     //pre:-
-    //pos: Aumenta el hambre y reduce la higiene de todos los animales de la lista_animales
-    void cambiar_hambre_higiene(Lista *lista_animales);
+    //pos: Aumenta el hambre y reduce la higiene de todos los animales de la arbol_animales
+    void cambiar_hambre_higiene(Arbol_b *arbol_animales);
 
     //pre:-
-    //pos: Muestra por pantalla todos los animales de la lista_animales, si esta vacia muestra un mensaje.
-    void listar_animales(Lista *lista_animales);
+    //pos: Muestra por pantalla todos los animales de la arbol_animales, si esta vacia muestra un mensaje.
+    void listar_animales(Arbol_b *arbol_animales);
 
     //pre:-
     //pos: Rescata un animal, preguntandole al usuario un nombre, edad, especie, personalidad y tamanio con su validacion correspondiente
-    void rescatar_animal(Lista *lista_animales);
+    void rescatar_animal(Arbol_b *arbol_animales);
 
     //pre: -
     //pos: buscará el animal solicitado por el usuario las veces que lo desee.
-    void buscar_animal(Lista *lista_animales);
+    void buscar_animal(Arbol_b *arbol_animales);
 
     //pre:-
     //pos: Le muestra al usuario cada animal de la lista y le pregunta si desea cuidarlo o saltearlo.
-    void elegir_individualmente(Lista *lista_animales);
-
-    //pre:-
-    //pos: Baja el hambre de todos los animales de la lista a 0%.
-    void alimentar_animales(Lista *lista_animales);
-
-    //pre:-
-    //pos: Sube la hiigiene de todos los animales de la lista al 100%.
-    void baniar_animales(Lista *lista_animales);
+    void elegir_individualmente(Arbol_b *arbol_animales);
 
     //pre:-
     //pos: solicita al usuario el espacio en metros cuadrados donde vivirá el animal a adoptar y le mostrará las opciones disponibles. Luego, llamará al procedimiento correspondiente para finalizar el proceso de adopción.
-    void adoptar_animal(Lista *lista_animales);
+    void adoptar_animal(Arbol_b *arbol_animales);
     
     //pre: -
     //pos: cargará toda la información que se encuentre en la lista de animales en el archivo animales.csv.
-    void guardar_y_salir(Lista *lista_animales);
+    void guardar_y_salir(Arbol_b *arbol_animales);
 
 private:
 
     //pre: Los párametros nombre, edad, especie, tamanio y personalidad, que serán los atributos del animal, deben estar inicializados.
     //pos: Agrega el animal ingresado a la lista de animales.
-    void agregar_animal(Lista *lista_animales, string nombre, int edad, string tamanio, string especie, string personalidad);
+    void agregar_animal(Arbol_b *arbol_animales, string nombre, int edad, string tamanio, string especie, string personalidad);
 
-    //pre: '*lista_animales' debe apuntar al atributo de la clase Sistema el cuál debe estar previamente inicializado.
+    //pre: '*arbol_animales' debe apuntar al atributo de la clase Sistema el cuál debe estar previamente inicializado.
     //pos: Llenará la lista con los animales que encuentre en el archivo. En caso de no haber archivo, creará uno.
-    void llenar_lista (Lista *lista_animales);
+    void llenar_lista(Arbol_b *arbol_animales);
     
     //pre: 'espacio' debe estar previamente inicializado y debe contener un número entero mayor a 0.
     //post: mostrará por pantalla todos los animales que pueden habitar en el espacio indicado.
-    void mostrar_animales_disponibles(int espacio, Lista *lista_animales);
+    void mostrar_animales_disponibles(int espacio, Arbol_b *arbol_animales);
 
 };
 

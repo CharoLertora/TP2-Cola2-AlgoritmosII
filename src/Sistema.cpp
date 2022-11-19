@@ -12,8 +12,8 @@
 
 Sistema::Sistema() {
 
-    lista_animales = new Lista; 
-    llenar_lista(lista_animales);
+    arbol_animales = new Arbol_B; 
+    llenar_lista(arbol_animales);
 }
 
 void Sistema::inicializar_sistema(Sistema sistema) {
@@ -29,54 +29,54 @@ void Sistema::inicializar_sistema(Sistema sistema) {
         validar_opcion(opcion);
     }
 
-    guardar_y_salir(sistema.obtener_lista_animales());
-    delete sistema.obtener_lista_animales();
+    guardar_y_salir(sistema.obtener_arbol_animales());
+    delete sistema.obtener_arbol_animales();
 }
 
-Lista* Sistema::obtener_lista_animales() {
-    return this->lista_animales;
+Arbol_B* Sistema::obtener_arbol_animales() {
+    return this->arbol_animales;
 }
 
-void Sistema::agregar_animal(Lista *lista, string nombre, int edad, string tamanio, string especie, string personalidad) {
+void Sistema::agregar_animal(Arbol_B *arbol_animales, string nombre, int edad, string tamanio, string especie, string personalidad) {
    
     if (especie == INICIAL_PERRO){
         especie = ESPECIE_PERRO;
         Perro* perro = new Perro(nombre, edad, tamanio, especie, personalidad);
-        lista->alta(perro, POSICION_INICIAL);
+        arbol_animales->insertar(perro);
 
     }else if (especie == INICIAL_GATO){
         especie = ESPECIE_GATO;
         Gato* gato = new Gato(nombre, edad, tamanio, especie, personalidad);
-        lista->alta(gato, POSICION_INICIAL);
+        arbol_animales->insertar(gato);
 
     }else if (especie == INICIAL_CABALLO){
         especie = ESPECIE_CABALLO;
         Caballo* caballo = new Caballo(nombre, edad, tamanio, especie, personalidad);
-        lista->alta(caballo, POSICION_INICIAL);
+        arbol_animales->insertar(caballo);
 
     }else if (especie == INICIAL_ROEDOR){
         especie = ESPECIE_ROEDOR;
         Roedor* roedor = new Roedor(nombre, edad, tamanio, especie, personalidad);
-        lista->alta(roedor, POSICION_INICIAL);
+        arbol_animales->insertar(roedor);
 
     }else if (especie == INICIAL_CONEJO){
         especie = ESPECIE_CONEJO;
         Conejo* conejo = new Conejo(nombre, edad, tamanio, especie, personalidad);
-        lista->alta(conejo, POSICION_INICIAL);
+        arbol_animales->insertar(conejo);
 
     }else if (especie == INICIAL_ERIZO){
         especie = ESPECIE_ERIZO;
         Erizo* erizo = new Erizo(nombre, edad, tamanio, especie, personalidad);
-        lista->alta(erizo, POSICION_INICIAL);
+        arbol_animales->insertar(erizo);
 
     }else {
         especie = ESPECIE_LAGARTIJA;
         Lagartija* lagartija = new Lagartija(nombre, edad, tamanio, especie, personalidad);
-        lista->alta(lagartija, POSICION_INICIAL);
+        arbol_animales->insertar(lagartija);
     }
 }
 
-void Sistema::llenar_lista (Lista *lista) {
+void Sistema::llenar_arbol (Arbol_B *arbol_animales) {
 
     ifstream archivo_animales(ARCHIVO_ANIMALES);
     
@@ -96,25 +96,23 @@ void Sistema::llenar_lista (Lista *lista) {
         getline (archivo_animales, especie, ',');
         getline (archivo_animales, personalidad);
         num_edad = stoi(edad);
-        agregar_animal(lista, nombre, num_edad, tamanio, especie, personalidad);
+        agregar_animal(arbol_animales, nombre, num_edad, tamanio, especie, personalidad);
     }
     archivo_animales.close();
 }
 
-void Sistema::listar_animales(Lista *lista_animales) {
+void Sistema::listar_animales(Arbol_B *arbol_animales) {
 
-    if (lista_animales->vacia()) {
-        cout << "LISTA VACIA, AGREGUE UN ANIMAL POR FAVOR <3" << endl;
+    if (arbol_animales->vacio()) {
+        cout << "NUESTRO ÁRBOL DE ANIMALES ESTÁ VACIO, AGREGUE UN ANIMAL POR FAVOR <3" << endl;
 
     } else {
         cout <<  '\t' <<  "***********ANIMALES***********" << '\n' << endl;
-        for (int i = 1; i < lista_animales->obtener_cantidad() + 1; i++){
-            mostrar_datos_animal(lista_animales->consulta(i));
-        }
+        arbol_animales->imprimir();
     }
 }
 
-void Sistema::rescatar_animal(Lista *lista_animales) {
+void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
 
     string nombre, edad, tamanio, especie, personalidad;
     bool ir_a_menu = false;
@@ -124,12 +122,12 @@ void Sistema::rescatar_animal(Lista *lista_animales) {
 
     while (!ir_a_menu) {
 
-        if (!existe_en_la_reserva(lista_animales, nombre)) {
+        if (!existe_en_la_reserva(arbol_animales, nombre)) {
             ir_a_menu = true;
-            preguntar_datos_animal(edad, tamanio, especie, personalidad, lista_animales);
-            agregar_animal(lista_animales, nombre, stoi(edad), tamanio, especie_a_inicial(especie), personalidad);
+            preguntar_datos_animal(edad, tamanio, especie, personalidad, arbol_animales);
+            agregar_animal(arbol_animales, nombre, stoi(edad), tamanio, especie_a_inicial(especie), personalidad);
 
-        } else if (existe_en_la_reserva(lista_animales, nombre) && !quiere_ingresar_otro_nombre()) {
+        } else if (existe_en_la_reserva(arbol_animales, nombre) && !quiere_ingresar_otro_nombre()) {
             ir_a_menu = true;
 
         } else {
@@ -139,14 +137,14 @@ void Sistema::rescatar_animal(Lista *lista_animales) {
     }
 }
 
-void Sistema::buscar_animal(Lista *lista_animales) {
+void Sistema::buscar_animal(Arbol_B *arbol_animales) {
 
     string respuesta;
     string nombre_buscado;
     int posicion_buscado;
 
     do {
-        revisar_lista_animales(lista_animales, nombre_buscado, posicion_buscado);
+        revisar_arbol_animales(arbol_animales, nombre_buscado, posicion_buscado);
 
         cout << "\t ¿Desea buscar otro animal? (Rta: Si/No):" << endl;
         cin >> respuesta;
@@ -155,33 +153,33 @@ void Sistema::buscar_animal(Lista *lista_animales) {
 }
 
 
-void Sistema::mostrar_animales_disponibles(int espacio, Lista *lista_animales) {
+void Sistema::mostrar_animales_disponibles(int espacio, Arbol_B *arbol_animales) {
     
     if (espacio >= 50) {
-        listar_animales(lista_animales);
+        listar_animales(arbol_animales);
 
     } else {
         
-        for (int i = POSICION_INICIAL; i <= lista_animales->obtener_cantidad(); i++) {
+        for (int i = POSICION_INICIAL; i <= arbol_animales->obtener_cantidad(); i++) {
             
-            if ((lista_animales->consulta(i)->obtener_tamanio() == TAMANIO_GRANDE) && (espacio >= 20)) {
-                mostrar_datos_animal(lista_animales->consulta(i));
+            if ((arbol_animales->consulta(i)->obtener_tamanio() == TAMANIO_GRANDE) && (espacio >= 20)) {
+                mostrar_datos_animal(arbol_animales->consulta(i));
 
-            } else if ((lista_animales->consulta(i)->obtener_tamanio() == TAMANIO_MEDIANO) && (espacio >= 10)) {
-                mostrar_datos_animal(lista_animales->consulta(i));
+            } else if ((arbol_animales->consulta(i)->obtener_tamanio() == TAMANIO_MEDIANO) && (espacio >= 10)) {
+                mostrar_datos_animal(arbol_animales->consulta(i));
 
-            } else if ((lista_animales->consulta(i)->obtener_tamanio() == TAMANIO_PEQUENIO) && (espacio > 2)) {
-                mostrar_datos_animal(lista_animales->consulta(i));
+            } else if ((arbol_animales->consulta(i)->obtener_tamanio() == TAMANIO_PEQUENIO) && (espacio > 2)) {
+                mostrar_datos_animal(arbol_animales->consulta(i));
 
-            } else if ((lista_animales->consulta(i)->obtener_tamanio() == TAMANIO_DIMINUTO) && (espacio > 0)) {
-                mostrar_datos_animal(lista_animales->consulta(i));
+            } else if ((arbol_animales->consulta(i)->obtener_tamanio() == TAMANIO_DIMINUTO) && (espacio > 0)) {
+                mostrar_datos_animal(arbol_animales->consulta(i));
             } 
 
         }
     }
 }
 
-void Sistema::adoptar_animal(Lista *lista_animales) {
+void Sistema::adoptar_animal(Arbol_B *arbol_animales) {
     string espacio;
     string respuesta;
 
@@ -190,13 +188,13 @@ void Sistema::adoptar_animal(Lista *lista_animales) {
  
     getline(cin >> ws, espacio);
     validar_espacio(espacio);
-    mostrar_animales_disponibles(stoi(espacio), lista_animales);
+    mostrar_animales_disponibles(stoi(espacio), arbol_animales);
    
     cout << "\t ¿Desea adoptar a alguno de estos animalitos? (Rta: si/no):" << endl;
     cin >> respuesta;
 
     if (es_respuesta_valida(respuesta)) {
-        realizar_adopcion(lista_animales);
+        realizar_adopcion(arbol_animales);
 
     } else {
         cout << "\t Lamentamos que no quiera adoptar ninguno de nuestros animalitos :( " << endl
@@ -205,60 +203,41 @@ void Sistema::adoptar_animal(Lista *lista_animales) {
 
 }
 
-void Sistema::cambiar_hambre_higiene(Lista *lista_animales) {
+void Sistema::cambiar_hambre_higiene(Arbol_B *arbol_animales) {
 
-    for (int i = 1; i < lista_animales->obtener_cantidad() + 1; i++) {
-        lista_animales->consulta(i)->aumentar_hambre();
-        lista_animales->consulta(i)->reducir_higiene();
-   }
+    arbol_animales->actualizar_hambre_higiene();
 }
 
-void Sistema::elegir_individualmente(Lista *lista_animales) {
+void Sistema::elegir_individualmente(Arbol_B *arbol_animales) {
 
     int opcion = 0;    
-    for (int i = POSICION_INICIAL; i < lista_animales->obtener_cantidad(); i++) {
-        mostrar_datos_animal(lista_animales->consulta(i));
+    for (int i = POSICION_INICIAL; i < arbol_animales->obtener_cantidad(); i++) {
+        mostrar_datos_animal(arbol_animales->consulta(i));
         pedir_respuesta(opcion);
 
         if (opcion != SALTEAR_ANIMAL) {
-            realizar_cuidado(opcion, lista_animales->consulta(i));
+            realizar_cuidado(opcion, arbol_animales->consulta(i));
         }
     }
     cout << endl << '\t' << "----HAS LLEGADO AL FINAL DE LA LISTA----" << endl << endl;
 }
 
-void Sistema::alimentar_animales(Lista *lista_animales) {
-
-    for (int i = POSICION_INICIAL; i <= lista_animales->obtener_cantidad(); i++) {
-        lista_animales->consulta(i)->alimentar();
-    }
-    cout << endl << '\t' << "¡Todos los animales han sido alimentados! :)" << endl << endl;
-}
-
-void Sistema::baniar_animales(Lista *lista) {
-
-    for (int i = POSICION_INICIAL; i < lista->obtener_cantidad(); i++) {
-        lista->consulta(i)->baniar();
-    }
-    cout << endl << '\t' << "¡Todos los animales que necesitaban bañarse han sido higienizados! :)" << endl << endl;
-}
-
-void Sistema::guardar_y_salir(Lista *lista) {
+void Sistema::guardar_y_salir(Arbol_B *arbol) {
 
     ofstream archivo_animales(ARCHIVO_ANIMALES);
     string inicial_especie;
 
-    for (int i = POSICION_INICIAL; i <= lista->obtener_cantidad(); i++) {
-        inicial_especie = especie_a_inicial(lista->consulta(i)->obtener_especie());
+    for (int i = POSICION_INICIAL; i <= arbol->obtener_cantidad(); i++) {
+        inicial_especie = especie_a_inicial(arbol->consulta(i)->obtener_especie());
         
-        archivo_animales << lista->consulta(i)->obtener_nombre() << ",";
-        archivo_animales << lista->consulta(i)->obtener_edad() << ",";
-        archivo_animales << lista->consulta(i)->obtener_tamanio() << ",";
+        archivo_animales << arbol->consulta(i)->obtener_nombre() << ",";
+        archivo_animales << arbol->consulta(i)->obtener_edad() << ",";
+        archivo_animales << arbol->consulta(i)->obtener_tamanio() << ",";
         archivo_animales << inicial_especie << ",";
-        archivo_animales << lista->consulta(i)->obtener_personalidad() << "\n";
+        archivo_animales << arbol->consulta(i)->obtener_personalidad() << "\n";
     }
     
-    lista->baja(POSICION_INICIAL);
-    lista = nullptr;
+    arbol->baja(POSICION_INICIAL);
+    arbol = nullptr;
 }
 

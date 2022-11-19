@@ -20,7 +20,7 @@ void Arbol_B::imprimir(){
 	}
 }
 
-Nodo_arbol_B* Arbol_B::buscar_en_el_arbol(string nombre){
+Animal* Arbol_B::buscar_en_el_arbol(string nombre){
 
 	if(raiz != NULL){
 		return raiz->buscar(nombre);
@@ -77,9 +77,19 @@ void Arbol_B::eliminar(string nombre){
 			nodo_encontrado->animales[i]->eliminar();
 			cout << "¡¡Animal adoptado con éxito!!" << endl;
 			cout << "Sean muy felices juntos :)" << endl << endl;
+			nodo_encontrado->cant_claves--;
 		}
 		
 	}else {
 		cout << "¡Ese animal no forma parte de nuestra reserva!" << endl;
 	}
+}
+
+
+bool Arbol_B::vacio(){
+	return (raiz == NULL);
+}
+
+void Arbol_B::actualizar_hambre_higiene(){
+	raiz->actualizar_hambre_higiene(); 
 }

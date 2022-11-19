@@ -25,7 +25,7 @@ public:
 
 	Nodo_arbol_B* buscar(string nombre); //devuelve null si no esta
 
-	
+	void actualizar_hambre_higiene();
 };
 
 #endif

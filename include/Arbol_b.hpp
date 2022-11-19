@@ -1,5 +1,5 @@
-#ifndef arbol_b
-#define arbol_b
+#ifndef _ARBOL_B_
+#define _ARBOL_B_
 
 #include "../include/Nodo.hpp"
 
@@ -19,6 +19,10 @@ public:
 	void insertar(Animal* animal_a_insertar);
 
 	void eliminar(string nombre_animal);
+
+	bool vacio();
+
+	void actualizar_hambre_higiene();
 };
 
 #endif

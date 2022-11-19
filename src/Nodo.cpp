@@ -60,8 +60,6 @@ Nodo_arbol_B *Nodo_arbol_B::buscar(string nombre){
 
 
 
-
-
 void Nodo_arbol_B::insertar_cuando_no_este_lleno(Animal* animal_a_insertar){
 	int i = cant_claves - 1;
 
@@ -140,4 +138,21 @@ void Nodo_arbol_B::dividir_nodo(int i, Nodo_arbol_B *nodo_b)
 
 
 	cant_claves++;
+}
+
+void Nodo_arbol_B::actualizar_hambre_higiene(){
+
+	int i;
+	for (i = 0; i < cant_claves; i++){
+		if (!es_hoja)
+			hijos[i]->actualizar_hambre_higiene();
+		if (!animales[i]->esta_eliminado()){
+			animales[i]->aumentar_hambre();
+			animales[i]->reducir_higiene();	
+		}		
+	}
+	
+	if (!es_hoja){
+		hijos[i]->actualizar_hambre_higiene();
+	}
 }
