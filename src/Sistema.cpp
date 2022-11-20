@@ -9,6 +9,7 @@
 #include "../include/Lagartija.hpp"
 #include "../include/funciones_auxiliares.hpp"
 #include "../include/funciones_del_menu.hpp"
+#include "../include/Mapa.hpp"
 
 Sistema::Sistema() {
     partida_terminada = false;
@@ -111,6 +112,11 @@ void Sistema::listar_animales(Arbol_B *arbol_animales) {
 }
 
 void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
+    
+    Mapa mapa_juego;
+    
+    mapa_juego.mostrar_mapa();
+    /*
     string nombre, edad, tamanio, especie, personalidad;
     bool ir_a_menu = false;
     cout << "\nIngrese el nombre del animal a rescatar: " << "\nNombre: ";
@@ -132,6 +138,7 @@ void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
             getline(cin >> ws, nombre);
         }
     }
+    */
 }
 
 void Sistema::buscar_animal(Arbol_B *arbol_animales) {
