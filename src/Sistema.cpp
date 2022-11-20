@@ -39,7 +39,6 @@ Arbol_B* Sistema::obtener_arbol_animales() {
 }
 
 void Sistema::agregar_animal(Arbol_B *arbol_animales, string nombre, int edad, string tamanio, string especie, string personalidad) {
-   
     if (especie == INICIAL_PERRO){
         especie = ESPECIE_PERRO;
         Perro* perro = new Perro(nombre, edad, tamanio, especie, personalidad);
@@ -78,7 +77,6 @@ void Sistema::agregar_animal(Arbol_B *arbol_animales, string nombre, int edad, s
 }
 
 void Sistema::llenar_arbol(Arbol_B *arbol_animales) {
-
     ifstream archivo_animales(ARCHIVO_ANIMALES);
     
     if (!archivo_animales.is_open()){
@@ -103,18 +101,16 @@ void Sistema::llenar_arbol(Arbol_B *arbol_animales) {
 }
 
 void Sistema::listar_animales(Arbol_B *arbol_animales) {
-
     if (arbol_animales->vacio()) {
         cout << "NUESTRO ÁRBOL DE ANIMALES ESTÁ VACIO, AGREGUE UN ANIMAL POR FAVOR <3" << endl;
 
-    } else {
+    }else {
         cout <<  '\t' <<  "***********ANIMALES***********" << '\n' << endl;
         arbol_animales->imprimir();
     }
 }
 
 void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
-
     string nombre, edad, tamanio, especie, personalidad;
     bool ir_a_menu = false;
     cout << "\nIngrese el nombre del animal a rescatar: " << "\nNombre: ";
@@ -122,7 +118,6 @@ void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
     validar_nombre_animal(nombre);
 
     while (!ir_a_menu) {
-
         if (!existe_en_la_reserva(arbol_animales, nombre)) {
             ir_a_menu = true;
             preguntar_datos_animal(edad, tamanio, especie, personalidad);
@@ -140,7 +135,6 @@ void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
 }
 
 void Sistema::buscar_animal(Arbol_B *arbol_animales) {
-
     string respuesta;
     string nombre_buscado;
 
@@ -153,9 +147,7 @@ void Sistema::buscar_animal(Arbol_B *arbol_animales) {
     } while(es_respuesta_valida(respuesta)); 
 }
 
-
-void Sistema::mostrar_animales_disponibles(int espacio, Arbol_B *arbol_animales) {
-    
+void Sistema::mostrar_animales_disponibles(int espacio, Arbol_B *arbol_animales) {   
     if (espacio >= 50) {
         listar_animales(arbol_animales);
 
@@ -163,7 +155,6 @@ void Sistema::mostrar_animales_disponibles(int espacio, Arbol_B *arbol_animales)
         arbol_animales->imprimir_segun_espacio(espacio);
     }
 }
-
 
 void Sistema::adoptar_animal(Arbol_B *arbol_animales) {
     string espacio;
@@ -181,21 +172,18 @@ void Sistema::adoptar_animal(Arbol_B *arbol_animales) {
 
     if (es_respuesta_valida(respuesta)) {
         realizar_adopcion(arbol_animales);
-
-    } else {
+        
+    }else {
         cout << "\t Lamentamos que no quiera adoptar ninguno de nuestros animalitos :( " << endl
             << "\t ¡Te esperamos nuevamente!" << endl;
     }
-
 }
 
 void Sistema::cambiar_hambre_higiene(Arbol_B *arbol_animales) {
-
     arbol_animales->actualizar_hambre_higiene();
 }
 
 void Sistema::elegir_individualmente(Arbol_B *arbol_animales) {
-
     arbol_animales->cuidar_animales();
 }
 

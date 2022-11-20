@@ -1,9 +1,7 @@
 #include "../include/funciones_auxiliares.hpp"
 #include "../include/Arbol_b.hpp"
 
-
-bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol){
-    
+bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol){   
     int indice = 0;
     bool encontrado = false;
     Nodo_arbol_B* nodo_encontrado = arbol->buscar_en_el_arbol(nombre_buscado, indice);
@@ -18,9 +16,7 @@ bool es_respuesta_valida(string respuesta) {
     return (respuesta == "si") || (respuesta == "Si");
 }
 
-
-string especie_a_inicial(string especie) {
-    
+string especie_a_inicial(string especie) {   
     string inicial_especie;
     if(especie == INICIAL_PERRO || especie == ESPECIE_PERRO){
         inicial_especie = INICIAL_PERRO;
@@ -46,11 +42,8 @@ string especie_a_inicial(string especie) {
     return inicial_especie;
 }
 
-
 void mostrar_datos_animal(Animal *animal) {
-
     cout << '\t' <<  "******************************" << endl
-         
          << '\t' << "* Nombre: " << animal->obtener_nombre()  <<  endl
          << '\t' << "* Edad: " << animal->obtener_edad() << endl
          << '\t' << "* Tamaño: " << animal->obtener_tamanio() << endl
@@ -62,21 +55,18 @@ void mostrar_datos_animal(Animal *animal) {
          << '\n' << endl;
 }
 
-
 bool existe_en_la_reserva(Arbol_B *arbol, string nombre) {
-    
     bool existe_en_reserva = false;
     int i = 0;
 
     if (arbol->buscar_en_el_arbol(nombre, i) != NULL){
         existe_en_reserva = true;
     }
+
     return existe_en_reserva;
 }
 
-
 bool quiere_ingresar_otro_nombre() {
-
     bool quiere_ingresar_otro = false;
     string ingreso;
 
@@ -87,14 +77,12 @@ bool quiere_ingresar_otro_nombre() {
     if(es_respuesta_valida(ingreso)){
         quiere_ingresar_otro = true;
     }
+
     return quiere_ingresar_otro;
 }
 
-
 void validar_nombre(Arbol_B *arbol, string &nombre) {
-
     while (existe_en_la_reserva(arbol, nombre)){
-
         cout << "Ya existe ese animal en el refugio, ingresa otro nombre: ";
         getline(cin >> ws, nombre);
     }
@@ -106,7 +94,6 @@ bool es_tamanio_valido(string tamanio) {
 }
 
 void validar_tamanio(string &tamanio) {
-
     while (!es_tamanio_valido(tamanio)){
 
         cout << "\nEl tamaño ingresado no es correcto, ingrese un tamaño válido" << endl
@@ -121,7 +108,6 @@ bool es_personalidad_valida(string personalidad) {
 }
 
 void validar_personalidad(string &personalidad) {
-
     while (!es_personalidad_valida(personalidad)){
 
         cout << "\nPersonalidad no válida, acuérdese que las personalidades válidas son: " << endl
@@ -137,7 +123,6 @@ bool es_especie_valida(string especie) {
 }
 
 void validar_especie(string &especie) {
-
     while (!es_especie_valida(especie)){
 
         cout << "\nEspecie no válida, ingrese una especie válida, acuérdese que puede poner la incial en mayúscula o"
@@ -148,20 +133,18 @@ void validar_especie(string &especie) {
     }
 }
 
-
 bool hay_letras(string palabra) {
-
     bool hay_letras = false;
     for (int i = 0; i < int(palabra.length()); i++){
         if (palabra[i] < PRIMER_NUMERO_ASCII || palabra[i] > ULTIMO_NUMERO_ASCII){
             hay_letras = true;
         }
     }
+
     return hay_letras;
 }
 
 bool es_nombre_valido(string palabra){
-    
     bool es_nombre_valido = true;
     for (int i = 0; i < int(palabra.length()); i++){
         if ((palabra[i] < 'a' || palabra[i] > 'z') && (palabra[i] < 'A' || palabra[i] > 'Z')){
@@ -178,8 +161,8 @@ void validar_nombre_animal(string &nombre){
         getline(cin, nombre);
     }
 }
-void validar_edad(string &edad) {
 
+void validar_edad(string &edad) {
     while (hay_letras(edad)){
         cout << "\nLa edad ingresada no válida, acuérdese que la edad es sólo con números" << endl;
         cout << "\nEdad: ";
@@ -189,7 +172,6 @@ void validar_edad(string &edad) {
 
 
 void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad) {
-
     cout << "\nIngrese la edad: " << "\nEdad: ";
     getline(cin, edad);
     validar_edad(edad);
@@ -214,7 +196,6 @@ void preguntar_datos_animal(string &edad, string &tamanio, string &especie, stri
 }
 
 void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado) {
-    
     cout << endl << "Ingrese el nombre del animal que desea buscar por favor: " << endl;
     cin >> nombre_buscado;
 
@@ -232,7 +213,6 @@ void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado) {
 }
 
 void realizar_adopcion(Arbol_B *arbol) {
-            
     string nombre_adoptado;
     int posicion = POSICION_INICIAL;
 
@@ -246,14 +226,12 @@ void realizar_adopcion(Arbol_B *arbol) {
     }
 }
 
-void pedir_respuesta(int &opcion) {
-    
+void pedir_respuesta(int &opcion) {    
     cout << endl << '\t' << "¿Qué desea hacer?" << endl
     << '\t' << "1. Bañar a este animal." << endl
     << '\t' << "2. Alimentar a este animal." << endl
     << '\t' << "3. Saltear a este animal." << endl
     << '\t' << "4. Volver al inicio." << endl << endl;
-
 
     cin >> opcion;
     while (opcion < BANIAR_ANIMAL || opcion > VOLVER_INICIO){
@@ -263,7 +241,6 @@ void pedir_respuesta(int &opcion) {
 }
 
 void realizar_cuidado(int opcion, Animal* animal) {
-
     if (opcion == BANIAR_ANIMAL){
         if(animal->obtener_requiere_ducha()){
             animal->baniar();
@@ -280,13 +257,11 @@ void realizar_cuidado(int opcion, Animal* animal) {
 }
 
 void validar_espacio(string &espacio) {
-
     while(hay_letras(espacio)){
         cout << "Espacio no valido, utlice numeros positivos por favor. Gracias!!" << endl;
         getline(cin, espacio);
     }
 }
-
 
 void avisar_usuario_escapes(Animal *animal){
     cout << "¡OH NO! " << animal->obtener_nombre() << " ha escapado de la reserva porque ";

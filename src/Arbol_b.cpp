@@ -15,7 +15,6 @@ Arbol_B::Arbol_B(int grado){
 
 void Arbol_B::imprimir(){
 	if (raiz != NULL){
-		cout << endl << "--LISTADO DE ANIMALITOS--" << endl << endl;
 		raiz->imprimir();
 	}
 }
