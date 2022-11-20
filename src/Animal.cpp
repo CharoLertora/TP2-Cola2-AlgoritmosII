@@ -13,6 +13,7 @@ Animal::Animal(){
     hambre = HAMBRE_MINIMA;
     higiene = HIGIENE_MAXIMA;
     eliminado = false;
+    adoptado = false;
 }
 
 Animal::Animal(string nombre, int edad, string tamanio, string especie, string personalidad) {
@@ -108,6 +109,14 @@ bool Animal::esta_eliminado(){
     return eliminado;
 }
 
+bool Animal::esta_adoptado() {
+    return adoptado;
+}
+
 void Animal::eliminar(){
     eliminado = true;
+}
+
+void Animal::adoptar() {
+    adoptado = true;
 }

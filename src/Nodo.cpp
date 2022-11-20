@@ -22,6 +22,7 @@ void Nodo_arbol_B::imprimir_animal(int &i){
 }
 
 void Nodo_arbol_B::imprimir(){
+	
 	int i;
 	for (i = 0; i < cant_claves; i++){
 		//si no es hoja va a los hijos antes d imprimir claves

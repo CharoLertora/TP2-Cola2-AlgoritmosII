@@ -22,6 +22,8 @@ public:
 
 	void eliminar(string nombre_animal);
 
+	void adoptar(string nombre_animal);
+
 	bool vacio();
 
 	void actualizar_hambre_higiene();

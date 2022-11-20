@@ -23,6 +23,7 @@ protected:
     string comida;
     bool requiere_ducha;
     bool eliminado;
+    bool adoptado;
     int edad;
     int hambre;
     int higiene;
@@ -94,7 +95,11 @@ public:
 
     bool esta_eliminado();
 
+    bool esta_adoptado();
+
     void eliminar();
+
+    void adoptar();
 };
 
 #endif

@@ -47,6 +47,9 @@ const int ALIMENTAR_ANIMAL = 2;
 const int SALTEAR_ANIMAL = 3;
 const int VOLVER_INICIO = 4;
 
+const string ADOPTADO = "Está adoptado";
+const string NO_ADOPTADO = "No está adoptado";
+
 
 class Sistema {
 
