@@ -1,19 +1,28 @@
 #ifndef _MAPA_HPP_
 #define _MAPA_HPP_
+#include "Animal.hpp"
+
 
 using namespace std;
 
 const int MAX_TERRENO = 8;
+const int MAX_ANIMALES = 5;
+
+const string ARCHIVO_ANIMALES_A_RESCATAR = "animales_a_rescatar.csv";
+
 const char TIERRA = 'T'; 
 const char CAMINO = 'C';
 const char MONTANIA = 'M';
 const char PRECIPICIO = 'P';
+const char AUTO = 'A';
+
 
 class Mapa {
 
     //Atributos:
     private:
         char terreno[MAX_TERRENO][MAX_TERRENO];
+        Animal* animales_a_rescatar[MAX_ANIMALES];
 
     //Métodos:
     public:
