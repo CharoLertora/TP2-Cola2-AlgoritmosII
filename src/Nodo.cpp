@@ -215,3 +215,25 @@ void Nodo_arbol_B::imprimir_segun_espacio(int espacio){
 		hijos[i]->imprimir_segun_espacio(espacio);
 	}
 }
+
+void Nodo_arbol_B::revisar_hambre_higiene(int &cantidad_de_escapes){
+
+	int i;
+	for (i = 0; i < cant_claves; i++){
+		if (!es_hoja){ 
+			hijos[i]->revisar_hambre_higiene(cantidad_de_escapes);
+		}
+		if (animales[i]->obtener_higiene() == HIGIENE_MINIMA || animales[i]->obtener_hambre() == HAMBRE_MAXIMA){
+			animales[i]->eliminar();
+			avisar_usuario_escapes(animales[i]);
+			if (CANT_MAXIMA_ESCAPES - cantidad_de_escapes > 0){
+				cout << "Si " << (CANT_MAXIMA_ESCAPES - cantidad_de_escapes) << " animal(es) más escapa/n, la reserva será clausurada." << endl << endl;
+			}
+			cantidad_de_escapes++;
+		}
+	}
+	
+	if (!es_hoja){
+		hijos[i]->revisar_hambre_higiene(cantidad_de_escapes);
+	}
+}

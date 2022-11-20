@@ -286,3 +286,15 @@ void validar_espacio(string &espacio) {
         getline(cin, espacio);
     }
 }
+
+
+void avisar_usuario_escapes(Animal *animal){
+    cout << "¡OH NO! " << animal->obtener_nombre() << " ha escapado de la reserva porque ";
+    if (animal->obtener_hambre() == HAMBRE_MAXIMA && animal->obtener_higiene() == HIGIENE_MINIMA){
+		cout << "tenía mucha hambre y necesitaba bañarse." << endl;
+	}else if (animal->obtener_hambre() == HAMBRE_MAXIMA){
+		cout << "necesitaba alimentarse." << endl;
+	}else {
+		cout << "no aguantaba más sin bañarse." << endl;
+	}
+}

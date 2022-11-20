@@ -32,6 +32,8 @@ public:
 	Nodo_arbol_B* buscar(string nombre, int &i); //devuelve null si no esta
 
 	void actualizar_hambre_higiene();
+
+	void revisar_hambre_higiene(int &cantidad_de_escapes);
 };
 
 #endif

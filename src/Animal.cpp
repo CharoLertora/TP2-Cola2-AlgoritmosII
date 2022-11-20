@@ -9,13 +9,6 @@ const string PERSONALIDAD_JUGUETONA = "jugueton";
 const string PERSONALIDAD_SOCIABLE = "sociable";
 const string PERSONALIDAD_TRAVIESA = "travieso";
 
-const int HAMBRE_MINIMA = 0;
-const int HAMBRE_MAXIMA = 100;
-const int HIGIENE_MINIMA = 0;
-const int HIGIENE_MAXIMA = 100;
-const int AUMENTO_HAMBRE = 10;
-const int REDUCCION_HIGIENE = 10;
-
 Animal::Animal(){
     hambre = HAMBRE_MINIMA;
     higiene = HIGIENE_MAXIMA;

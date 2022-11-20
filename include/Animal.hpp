@@ -3,6 +3,13 @@
 
 #include <string>
 
+const int HAMBRE_MINIMA = 0;
+const int HAMBRE_MAXIMA = 100;
+const int HIGIENE_MINIMA = 0;
+const int HIGIENE_MAXIMA = 100;
+const int AUMENTO_HAMBRE = 10;
+const int REDUCCION_HIGIENE = 10;
+
 using namespace std;
 
 class Animal {

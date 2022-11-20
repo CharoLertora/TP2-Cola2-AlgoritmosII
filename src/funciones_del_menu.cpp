@@ -71,12 +71,17 @@ void abrir_submenu(Sistema sistema) {
     validar_opcion_submenu(opcion);
 
     while(opcion != REGRESAR_INICIO){
-
         procesar_opcion_submenu(sistema, opcion);
         mostrar_submenu();
         opcion = pedir_opcion();
         validar_opcion_submenu(opcion);
     }
+}
+
+void imprimir_msje_partida_perdida(){
+    
+    cout << '\t' << "Se han escapado demasiados animales de la reserva" << endl;
+    cout << '\t' << '\t' << "Tristemente será CLAUSURADA :(" << endl << endl;
 }
 
 void procesar_opcion(Sistema sistema, int opcion) {

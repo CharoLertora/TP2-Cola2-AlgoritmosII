@@ -53,6 +53,7 @@ class Sistema {
     //Atributos
 private:
     Arbol_B* arbol_animales;
+    bool partida_terminada;
     
     //Métodos
 public:
@@ -72,6 +73,8 @@ public:
     //pre:-
     //pos: Aumenta el hambre y reduce la higiene de todos los animales de la arbol_animales
     void cambiar_hambre_higiene(Arbol_B *arbol_animales);
+
+    void verificar_si_partida_continua(Arbol_B *arbol_animales);
 
     //pre:-
     //pos: Muestra por pantalla todos los animales de la arbol_animales, si esta vacia muestra un mensaje.

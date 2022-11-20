@@ -3,10 +3,12 @@
 
 #include "../include/Nodo.hpp"
 
+const int CANT_MAXIMA_ESCAPES = 3;
 
 class Arbol_B{
 	Nodo_arbol_B *raiz; 
 	int grado;  //grado del arbol, creo que para nuestro TP tiene que ser 3
+	int cantidad_de_escapes;
 
 public:
 	// Constructor 
@@ -27,6 +29,10 @@ public:
 	void cuidar_animales();
 
 	void imprimir_segun_espacio(int espacio);
+
+	void revisar_hambre_higiene();
+
+	int obtener_cantidad_de_escapes();
 };
 
 #endif

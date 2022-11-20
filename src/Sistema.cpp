@@ -11,7 +11,7 @@
 #include "../include/funciones_del_menu.hpp"
 
 Sistema::Sistema() {
-
+    partida_terminada = false;
     arbol_animales = new Arbol_B(3); 
     llenar_arbol(arbol_animales);
 }
@@ -22,11 +22,12 @@ void Sistema::inicializar_sistema(Sistema sistema) {
     int opcion = pedir_opcion();
     validar_opcion(opcion);
 
-    while(opcion != GUARDAR_Y_SALIR){
+    while(opcion != GUARDAR_Y_SALIR && !partida_terminada){
         procesar_opcion(sistema, opcion);
         mostrar_menu();
         opcion = pedir_opcion();
-        validar_opcion(opcion);
+        validar_opcion(opcion);   
+        verificar_si_partida_continua(arbol_animales); 
     }
 
     //guardar_y_salir(sistema.obtener_arbol_animales());
@@ -218,4 +219,13 @@ void Sistema::guardar_y_salir(Arbol_B *arbol) {
     arbol = nullptr;
 }
 */
+
+void Sistema::verificar_si_partida_continua(Arbol_B *arbol_animales){
+    arbol_animales->revisar_hambre_higiene();
+    int cant_escapes = arbol_animales->obtener_cantidad_de_escapes();
+    if (cant_escapes >= CANT_MAXIMA_ESCAPES){
+        partida_terminada = true;
+        imprimir_msje_partida_perdida();
+    }
+}
 

@@ -59,4 +59,6 @@ void procesar_opcion_submenu(Sistema sistema, int opcion);
 //Post: Lleva al usuario al submenu y procesará las diferentes respuestas mientras no vuelva al inicio
 void abrir_submenu(Sistema sistema);
 
+void imprimir_msje_partida_perdida();
+
 #endif //_MENU_HPP_

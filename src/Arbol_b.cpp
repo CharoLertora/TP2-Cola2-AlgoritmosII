@@ -10,10 +10,10 @@ using namespace std;
 Arbol_B::Arbol_B(int grado){
 	raiz = NULL;  
 	this->grado = grado;
+	cantidad_de_escapes = 0;
 }
 
 void Arbol_B::imprimir(){
-
 	if (raiz != NULL){
 		cout << endl << "--LISTADO DE ANIMALITOS--" << endl << endl;
 		raiz->imprimir();
@@ -21,7 +21,6 @@ void Arbol_B::imprimir(){
 }
 
 Nodo_arbol_B* Arbol_B::buscar_en_el_arbol(string nombre, int &i){
-
 	if(raiz != NULL){
 		return raiz->buscar(nombre, i);
 	}
@@ -30,7 +29,6 @@ Nodo_arbol_B* Arbol_B::buscar_en_el_arbol(string nombre, int &i){
 
 
 void Arbol_B::insertar(Animal *animal_a_insertar){
-
 	if (raiz == NULL){
 		
 		raiz = new Nodo_arbol_B(grado, true);
@@ -95,4 +93,12 @@ void Arbol_B::cuidar_animales(){
 
 void Arbol_B::imprimir_segun_espacio(int espacio){
 	raiz->imprimir_segun_espacio(espacio);
+}
+
+void Arbol_B::revisar_hambre_higiene(){
+	raiz->revisar_hambre_higiene(cantidad_de_escapes);
+}
+
+int Arbol_B::obtener_cantidad_de_escapes(){
+	return cantidad_de_escapes;
 }
