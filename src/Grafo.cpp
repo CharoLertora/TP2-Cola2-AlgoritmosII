@@ -22,7 +22,7 @@ Vertice* Grafo::encontrar_vertice(int fila, int columna){
     int i = 0;
     bool encontrado = false; 
     while (!encontrado && i < cant_vertices){
-        if (vertices->consulta(i)->obtener_fila() == fila && vertices->consulta(i)->obtener_columna() == columna){
+        if ((vertices->consulta(i + 1)->obtener_fila() == fila) && (vertices->consulta(i + 1)->obtener_columna() == columna)){
             encontrado = true;
         }else {
             i++;
@@ -30,7 +30,7 @@ Vertice* Grafo::encontrar_vertice(int fila, int columna){
     }
     
     if (encontrado){
-        return vertices->consulta(i);
+        return vertices->consulta(i + 1);
     }else{
         return NULL;
     }

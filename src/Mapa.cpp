@@ -159,7 +159,7 @@ void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Gra
         terreno[fila][columna] = IMAGEN_LAGARTIJA;
     } 
 
-    //copiar_animales(grafo, animal, fila, columna);
+    copiar_animales(grafo, animal, fila, columna);
 }
 
 void Mapa::ubicar_animales(){
@@ -213,7 +213,7 @@ Mapa::Mapa() {
     llenar_sexta_fila(terreno);
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
-    //copiar_en_grafo();
+    copiar_en_grafo();
     ubicar_auto();
     ubicar_animales();
 }
