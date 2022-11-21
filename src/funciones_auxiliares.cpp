@@ -1,5 +1,6 @@
 #include "../include/funciones_auxiliares.hpp"
 #include "../include/Arbol_b.hpp"
+#include "../include/quicksort.hpp"
 
 bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol){   
     int indice = 0;
@@ -283,4 +284,41 @@ void avisar_usuario_escapes(Animal *animal){
 	}else {
 		cout << "no aguantaba más sin bañarse." << endl;
 	}
+}
+
+
+void reajustar(Animal** vector, int& max_vector){
+    int cantidad_maxima_animales = max_vector * 2;
+    Animal** nuevo_vector_animales = new Animal*[cantidad_maxima_animales];
+
+    for (int i = 0; i < max_vector; i++){
+        nuevo_vector_animales[i] = vector[i];
+    }
+
+    if(max_vector != 0){
+        delete[] vector;
+    }
+    vector  = nuevo_vector_animales;
+    max_vector = cantidad_maxima_animales; 
+    
+}
+
+void imprimir_por_edad(Arbol_B* arbol){
+    int tope = arbol->obtener_cantidad_animales();
+    Animal** vector = new Animal*[tope];
+    int indice = 0;
+
+    arbol->agregar_elementos_al_vector(vector, indice);
+    // for (int i = 0; i < tope; i++){
+    //   cout <<  vector[i]->obtener_nombre() << endl;
+    // }
+    //vector[tope]->obtener_nombre();
+    
+    QuickSort ordenamiento;
+    ordenamiento.sort(vector, tope);
+    for (int i = 0; i < tope; i++){
+        mostrar_datos_animal(vector[i]);
+    }
+    
+
 }

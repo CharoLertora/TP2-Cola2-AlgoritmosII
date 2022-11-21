@@ -109,4 +109,6 @@ void validar_espacio(string &espacio);
 
 void avisar_usuario_escapes(Animal *animal);
 
+
+void imprimir_por_edad(Arbol_B* arbol);
 #endif //_FUNCIONES_AUXILIARES_HPP_

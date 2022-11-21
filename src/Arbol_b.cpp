@@ -11,6 +11,7 @@ Arbol_B::Arbol_B(int grado){
 	raiz = NULL;  
 	this->grado = grado;
 	cantidad_de_escapes = 0;
+	cantidad_de_animales = 0;
 }
 
 void Arbol_B::imprimir(){
@@ -34,6 +35,7 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 		raiz->claves[0] = animal_a_insertar->obtener_nombre();
 		raiz->animales[0] = animal_a_insertar; 
 		raiz->cant_claves++;  
+		cantidad_de_animales++;
 	}else{
 		
 		if (raiz->cant_claves == 2 * grado - 1){
@@ -52,11 +54,15 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 			if (nuevo_nodo->claves[0] < animal_a_insertar->obtener_nombre())
 				i++;
 			nuevo_nodo->hijos[i]->insertar_cuando_no_este_lleno(animal_a_insertar);
+			cantidad_de_animales++;
+
 
 			// cambio raiz raiz
 			raiz = nuevo_nodo;
 		}else{  //si la raiz no esta llena, llamo a insertar etc para la raiz
 			raiz->insertar_cuando_no_este_lleno(animal_a_insertar);
+			cantidad_de_animales++;
+
 		}
 	}
 }
@@ -118,4 +124,14 @@ void Arbol_B::guardar(fstream& archivo){
 	if(raiz != NULL){
 		raiz->guardar(archivo);
 	}
+}
+
+void Arbol_B::agregar_elementos_al_vector(Animal** vector, int& tope){
+	if(raiz != NULL){
+		raiz->agregar_elementos_al_vector(vector, tope);
+	}
+}
+
+int Arbol_B::obtener_cantidad_animales(){
+	return cantidad_de_animales;
 }

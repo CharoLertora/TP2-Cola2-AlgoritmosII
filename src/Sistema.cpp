@@ -10,7 +10,7 @@
 #include "../include/funciones_auxiliares.hpp"
 #include "../include/funciones_del_menu.hpp"
 #include "../include/Mapa.hpp"
-
+#include "../include/quicksort.hpp"
 Sistema::Sistema() {
     partida_terminada = false;
     arbol_animales = new Arbol_B(3); 
@@ -172,7 +172,7 @@ void Sistema::adoptar_animal(Arbol_B *arbol_animales) {
  
     getline(cin >> ws, espacio);
     validar_espacio(espacio);
-    mostrar_animales_disponibles(stoi(espacio), arbol_animales);
+    imprimir_por_edad(arbol_animales);
    
     cout << "\t ¿Desea adoptar a alguno de estos animalitos? (Rta: si/no):" << endl;
     cin >> respuesta;
@@ -199,7 +199,7 @@ void Sistema::guardar_y_salir(Arbol_B *arbol) {
 
     fstream archivo_animales(ARCHIVO_ANIMALES);
     string inicial_especie;
-    //agregar_animal(arbol, "valen", 10, TAMANIO_GRANDE, "P", "travieso");
+    agregar_animal(arbol, "agus", 15, TAMANIO_GRANDE, "P", "travieso");
     arbol->guardar(archivo_animales);
     archivo_animales.close();
 }
