@@ -121,9 +121,10 @@ int numero_random(int rango, int minimo){
     return numero; 
 }
 
-void ubicar_auto(string terreno[MAX_TERRENO][MAX_TERRENO]){
+void Mapa::ubicar_auto(){
 
     terreno[0][0] = AUTO;
+    vehiculo = new Auto(grafo->encontrar_vertice(0,0));
 }
 
 void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
@@ -160,10 +161,10 @@ void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Gra
         terreno[fila][columna] = IMAGEN_LAGARTIJA;
     } 
 
-    //copiar_animales(grafo, animal, fila, columna);
+    copiar_animales(grafo, animal, fila, columna);
 }
 
-void ubicar_animales(string terreno[MAX_TERRENO][MAX_TERRENO], Animal* animales_a_rescatar[MAX_ANIMALES], Grafo* grafo){
+void Mapa::ubicar_animales(){
     
     for (int i = 0; i < MAX_ANIMALES; i++){
         ubicar_animal(animales_a_rescatar[i], terreno, grafo);
@@ -213,6 +214,35 @@ string personalidad_random() {
     }
 }
 
+string especie_random() {
+    
+    int numero = numero_random(7, 1);
+
+    switch (numero){
+    case 1:
+        return ESPECIE_PERRO;
+        break;
+    case 2:
+        return ESPECIE_GATO;
+        break;
+    case 3:
+        return ESPECIE_CABALLO;
+        break;
+    case 4:
+        return ESPECIE_ROEDOR;
+        break;
+    case 5:
+        return ESPECIE_CONEJO;
+        break;
+    case 6:
+        return ESPECIE_ERIZO;
+        break;
+    default:
+        return ESPECIE_LAGARTIJA;
+        break;
+    }
+}
+
 void cargar_animal(Animal* animal_random, string nombre, string tamanio, string personalidad, int edad) {
 
     string especie;
@@ -220,55 +250,49 @@ void cargar_animal(Animal* animal_random, string nombre, string tamanio, string 
 
     if (numero == 1) {
         especie = ESPECIE_PERRO;
-        Perro* perro = new Perro(nombre, edad, tamanio, especie, personalidad);
-        animal_random = perro;
+        animal_random = new Perro(nombre, edad, tamanio, especie, personalidad);
 
     } else if (numero == 2) {
         especie = ESPECIE_GATO;
-        Gato* gato = new Gato(nombre, edad, tamanio, especie, personalidad);
-        animal_random = gato;
+        animal_random = new Gato(nombre, edad, tamanio, especie, personalidad);
 
     } else if (numero == 3) {
         especie = ESPECIE_CABALLO;
-        Caballo* caballo = new Caballo(nombre, edad, tamanio, especie, personalidad);
-        animal_random = caballo;
+        animal_random = new Caballo(nombre, edad, tamanio, especie, personalidad);
 
     } else if (numero == 4) {
         especie = ESPECIE_ROEDOR;
-        Roedor* roedor = new Roedor(nombre, edad, tamanio, especie, personalidad);
-        animal_random = roedor;
+        animal_random = new Roedor(nombre, edad, tamanio, especie, personalidad);
 
     } else if (numero == 5) {
         especie = ESPECIE_CONEJO;
-        Conejo* conejo = new Conejo(nombre, edad, tamanio, especie, personalidad);
-        animal_random = conejo;
+        animal_random = new Conejo(nombre, edad, tamanio, especie, personalidad);
 
     } else if (numero == 6) {
         especie = ESPECIE_ERIZO;
-        Erizo* erizo = new Erizo(nombre, edad, tamanio, especie, personalidad);
-        animal_random = erizo;
+        animal_random = new Erizo(nombre, edad, tamanio, especie, personalidad);
 
     } else {
         especie = ESPECIE_LAGARTIJA;
-        Lagartija* lagartija = new Lagartija(nombre, edad, tamanio, especie, personalidad);
-        animal_random = lagartija;
+        animal_random= new Lagartija(nombre, edad, tamanio, especie, personalidad);
     }
 }
 
-void generar_animal_random(Animal* animal_random) {
-    
-    string nombre = NOMBRE_RESCATADO;
-    string tamanio = tamanio_random();
-    string personalidad = personalidad_random();
-    int edad = numero_random(40, 0);
-    
-    cargar_animal(animal_random, nombre, tamanio, personalidad, edad);
-}
+void Mapa::llenar_vector() {
 
-void llenar_vector(Animal* animales_a_rescatar[MAX_ANIMALES]) {
+    string nombre;
+    string tamanio;
+    string personalidad;
+    int edad;
 
     for (int i = 0; i < MAX_ANIMALES; i++) {
-        generar_animal_random(animales_a_rescatar[i]);
+
+        nombre = NOMBRE_RESCATADO;
+        tamanio = tamanio_random();
+        personalidad = personalidad_random();
+        edad = numero_random(40, 0);
+
+        cargar_animal(animales_a_rescatar[i], nombre, tamanio, personalidad, edad);
     }
 /*
     animales_a_rescatar[0] = new Gato("Firulais", 2, "Gigante", "Gato", "Sociable");
@@ -282,7 +306,7 @@ void llenar_vector(Animal* animales_a_rescatar[MAX_ANIMALES]) {
 Mapa::Mapa() {
 
     grafo = new Grafo();
-    llenar_vector(animales_a_rescatar);
+    llenar_vector();
     llenar_primera_fila(terreno);
     llenar_segunda_fila(terreno);
     llenar_tercera_fila(terreno);
@@ -291,12 +315,9 @@ Mapa::Mapa() {
     llenar_sexta_fila(terreno);
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
-    //copiar_en_grafo(grafo);
-    cout << "Especie: " << animales_a_rescatar[0]->obtener_especie() <<endl;
-    /*
-    ubicar_auto(terreno);
-    ubicar_animales(terreno, animales_a_rescatar, grafo);
-    */
+    copiar_en_grafo();
+    ubicar_auto();
+    ubicar_animales();
 }
 
 void Mapa::mostrar_mapa() {
@@ -309,7 +330,7 @@ void Mapa::mostrar_mapa() {
     }
 }
 
-void Mapa::copiar_en_grafo(Grafo *grafo){
+void Mapa::copiar_en_grafo(){
     
     for (int i = 0; i < MAX_TERRENO; i++) {
         for (int j = 0; j < MAX_TERRENO; j++) {

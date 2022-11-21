@@ -35,6 +35,8 @@ public:
 	void revisar_hambre_higiene();
 
 	int obtener_cantidad_de_escapes();
+
+	void guardar(fstream& archivo);
 };
 
 #endif

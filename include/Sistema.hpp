@@ -99,7 +99,7 @@ public:
     
     //pre: -
     //pos: cargará toda la información que se encuentre en la lista de animales en el archivo animales.csv.
-    //void guardar_y_salir(Arbol_B *arbol_animales);
+    void guardar_y_salir(Arbol_B *arbol_animales);
 
 private:
 
