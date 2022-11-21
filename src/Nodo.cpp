@@ -214,3 +214,31 @@ void Nodo_arbol_B::revisar_hambre_higiene(int &cantidad_de_escapes){
 		hijos[i]->revisar_hambre_higiene(cantidad_de_escapes);
 	}
 }
+
+void Nodo_arbol_B::guardar(fstream& archivo){
+	string nombre, edad, tamanio, especie, personalidad;
+	int i;
+	for (i = 0; i < cant_claves; i++){
+	//si no es hoja va a los hijos antes d imprimir claves
+		if (!es_hoja){
+			hijos[i]->guardar(archivo);
+		}
+		nombre = animales[i]->obtener_nombre();
+		edad = to_string(animales[i]->obtener_edad());
+		tamanio = animales[i]->obtener_tamanio();
+		especie = especie_a_inicial(animales[i]->obtener_especie());
+		personalidad = animales[i]->obtener_personalidad();
+		archivo << nombre << ",";
+		archivo << edad << ",";
+		archivo << tamanio << ",";
+		archivo << especie << ",";
+		archivo << personalidad << "\n";
+	}
+	if (!es_hoja){
+		hijos[i]->guardar(archivo);
+	}
+}
+// if(cant_claves == 0){
+// return NULL;
+// }
+

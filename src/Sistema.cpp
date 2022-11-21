@@ -31,7 +31,7 @@ void Sistema::inicializar_sistema(Sistema sistema) {
         verificar_si_partida_continua(arbol_animales); 
     }
 
-    //guardar_y_salir(sistema.obtener_arbol_animales());
+    guardar_y_salir(sistema.obtener_arbol_animales());
     delete sistema.obtener_arbol_animales();
 }
 
@@ -194,26 +194,16 @@ void Sistema::elegir_individualmente(Arbol_B *arbol_animales) {
     arbol_animales->cuidar_animales();
 }
 
-/*
+
 void Sistema::guardar_y_salir(Arbol_B *arbol) {
 
-    ofstream archivo_animales(ARCHIVO_ANIMALES);
+    fstream archivo_animales(ARCHIVO_ANIMALES);
     string inicial_especie;
+    //agregar_animal(arbol, "valen", 10, TAMANIO_GRANDE, "P", "travieso");
+    arbol->guardar(archivo_animales);
 
-    for (int i = POSICION_INICIAL; i <= arbol->obtener_cantidad(); i++) {
-        inicial_especie = especie_a_inicial(arbol->consulta(i)->obtener_especie());
-        
-        archivo_animales << arbol->consulta(i)->obtener_nombre() << ",";
-        archivo_animales << arbol->consulta(i)->obtener_edad() << ",";
-        archivo_animales << arbol->consulta(i)->obtener_tamanio() << ",";
-        archivo_animales << inicial_especie << ",";
-        archivo_animales << arbol->consulta(i)->obtener_personalidad() << "\n";
-    }
-    
-    arbol->baja(POSICION_INICIAL);
-    arbol = nullptr;
 }
-*/
+
 
 void Sistema::verificar_si_partida_continua(Arbol_B *arbol_animales){
     arbol_animales->revisar_hambre_higiene();

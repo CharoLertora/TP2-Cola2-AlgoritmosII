@@ -113,3 +113,9 @@ void Arbol_B::revisar_hambre_higiene(){
 int Arbol_B::obtener_cantidad_de_escapes(){
 	return cantidad_de_escapes;
 }
+
+void Arbol_B::guardar(fstream& archivo){
+	if(raiz != NULL){
+		raiz->guardar(archivo);
+	}
+}

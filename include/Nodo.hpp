@@ -34,6 +34,7 @@ public:
 	void actualizar_hambre_higiene();
 
 	void revisar_hambre_higiene(int &cantidad_de_escapes);
+	void guardar(fstream& archivo);
 };
 
 #endif
