@@ -40,7 +40,7 @@ class Mapa {
 
         //Pre: -
         //Post: construirá el mapa de juego disponible.
-        Mapa();
+        Mapa(Auto *vehiculo);
 
         //Pre: el mapa debe estar previamente cargado.
         //Post: mostrara el mapa disponible por pantalla.
