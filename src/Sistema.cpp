@@ -14,6 +14,7 @@
 Sistema::Sistema() {
     partida_terminada = false;
     arbol_animales = new Arbol_B(3); 
+    vehiculo = new Auto();
     llenar_arbol(arbol_animales);
 }
 
@@ -113,8 +114,8 @@ void Sistema::listar_animales(Arbol_B *arbol_animales) {
 
 void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
     
-    Mapa mapa_juego;
-    
+    Mapa mapa_juego(vehiculo);
+
     mapa_juego.mostrar_mapa();
     /*
     string nombre, edad, tamanio, especie, personalidad;
@@ -212,4 +213,12 @@ void Sistema::verificar_si_partida_continua(Arbol_B *arbol_animales){
         partida_terminada = true;
         imprimir_msje_partida_perdida();
     }
+}
+
+void Sistema::cargar_combustible(){
+    vehiculo->cargar_combustible();
+}
+
+Auto* Sistema::obtener_auto(){
+    return vehiculo;
 }

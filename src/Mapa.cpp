@@ -124,7 +124,7 @@ int numero_random(int rango, int minimo){
 void Mapa::ubicar_auto(){
 
     terreno[0][0] = AUTO;
-    vehiculo = new Auto(grafo->encontrar_vertice(0,0));
+    vehiculo->asignar_posicion(grafo->encontrar_vertice(0,0));
 }
 
 void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
@@ -303,8 +303,9 @@ void Mapa::llenar_vector() {
 */
 }
 
-Mapa::Mapa() {
+Mapa::Mapa(Auto* vehiculo) {
 
+    this->vehiculo = vehiculo;
     grafo = new Grafo();
     llenar_vector();
     llenar_primera_fila(terreno);
