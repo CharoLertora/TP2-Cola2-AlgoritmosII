@@ -115,13 +115,14 @@ bool hay_animal(string terreno[MAX_TERRENO][MAX_TERRENO], int fila, int columna)
 int numero_random(){
     
     srand ((unsigned)time(NULL));
-    int numero = rand() % 9;
+    int numero = rand() % 8;
     return numero; 
 }
 
-void ubicar_auto(string terreno[MAX_TERRENO][MAX_TERRENO]){
+void Mapa::ubicar_auto(){
 
     terreno[0][0] = AUTO;
+    vehiculo = new Auto(grafo->encontrar_vertice(0,0));
 }
 
 void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
@@ -161,7 +162,7 @@ void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Gra
     //copiar_animales(grafo, animal, fila, columna);
 }
 
-void ubicar_animales(string terreno[MAX_TERRENO][MAX_TERRENO], Animal* animales_a_rescatar[MAX_ANIMALES], Grafo *grafo){
+void Mapa::ubicar_animales(){
     
     for (int i = 0; i < MAX_ANIMALES; i++){
         ubicar_animal(animales_a_rescatar[i], terreno, grafo);
@@ -212,9 +213,9 @@ Mapa::Mapa() {
     llenar_sexta_fila(terreno);
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
-    copiar_en_grafo(grafo);
-    ubicar_auto(terreno);
-    ubicar_animales(terreno, animales_a_rescatar, grafo);
+    //copiar_en_grafo();
+    ubicar_auto();
+    ubicar_animales();
 }
 
 void Mapa::mostrar_mapa() {
@@ -227,7 +228,7 @@ void Mapa::mostrar_mapa() {
     }
 }
 
-void Mapa::copiar_en_grafo(Grafo *grafo){
+void Mapa::copiar_en_grafo(){
     
     for (int i = 0; i < MAX_TERRENO; i++) {
         for (int j = 0; j < MAX_TERRENO; j++) {
