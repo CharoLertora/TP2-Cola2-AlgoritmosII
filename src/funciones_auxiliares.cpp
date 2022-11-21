@@ -42,7 +42,17 @@ string especie_a_inicial(string especie) {
     return inicial_especie;
 }
 
+string obtener_estado_adopcion(bool esta_adoptado) {
+    
+    if (esta_adoptado) {
+        return ADOPTADO;
+    }
+    return NO_ADOPTADO;
+}
+
 void mostrar_datos_animal(Animal *animal) {
+    
+    string  estado_adopcion = obtener_estado_adopcion(animal->esta_adoptado());
     cout << '\t' <<  "******************************" << endl
          << '\t' << "* Nombre: " << animal->obtener_nombre()  <<  endl
          << '\t' << "* Edad: " << animal->obtener_edad() << endl
@@ -51,6 +61,7 @@ void mostrar_datos_animal(Animal *animal) {
          << '\t' << "* Personalidad: " << animal->obtener_personalidad() << endl
          << '\t' << "* Hambre: " << animal->obtener_hambre() << "%" << endl
          << '\t' << "* Higiene: " << animal->obtener_higiene() << "%" << endl
+         << '\t' << "* Estado de adopción: " << estado_adopcion << endl
          << '\t' <<"******************************" << "\n" << endl
          << '\n' << endl;
 }
@@ -222,7 +233,7 @@ void realizar_adopcion(Arbol_B *arbol) {
     if (es_nombre_existente(nombre_adoptado, arbol)) {
         arbol->buscar_en_el_arbol(nombre_adoptado, posicion)->imprimir_animal(posicion);
         cout << "\t ¡HA SIDO ADOPTADO CON ÉXITO! Esperamos que sean muy felices." << endl;
-        arbol->eliminar(nombre_adoptado);
+        arbol->adoptar(nombre_adoptado);
     }
 }
 

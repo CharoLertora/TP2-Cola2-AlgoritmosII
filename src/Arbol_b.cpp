@@ -61,12 +61,24 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 	}
 }
 
+
+void Arbol_B::adoptar(string nombre) {
+	int indice = 0;
+	Nodo_arbol_B* nodo_encontrado = buscar_en_el_arbol(nombre, indice);
+
+	if(!(nodo_encontrado->animales[indice]->esta_adoptado())) {
+		nodo_encontrado->animales[indice]->adoptar();
+	} else {
+		cout << endl << "\tEste animalito ya fue adoptado, por favor inténtelo de nuevo :)" << endl;
+	}
+}
+
 void Arbol_B::eliminar(string nombre){
 	int indice = 0;
 	Nodo_arbol_B* nodo_encontrado = buscar_en_el_arbol(nombre, indice);
 	if (nodo_encontrado != NULL){
 		if (nodo_encontrado->animales[indice]->esta_eliminado()){
-			cout << "Este animal ya no es parte de nuestra reserva, ya fue adoptado :)" << endl;
+			cout << "Este animal ya no es parte de nuestra reserva." << endl;
 		}else {
 			nodo_encontrado->animales[indice]->eliminar();
 			nodo_encontrado->cant_claves--;
