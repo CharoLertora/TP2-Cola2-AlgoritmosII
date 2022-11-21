@@ -2,6 +2,7 @@
 #define _MAPA_HPP_
 #include "Animal.hpp"
 #include "Grafo.hpp"
+#include "Auto.hpp"
 
 using namespace std;
 
@@ -32,13 +33,14 @@ class Mapa {
         string terreno[MAX_TERRENO][MAX_TERRENO];
         Animal *animales_a_rescatar[MAX_ANIMALES];
         Grafo *grafo;
+        Auto *vehiculo;
 
     //Métodos:
     public:
 
         //Pre: -
         //Post: construirá el mapa de juego disponible.
-        Mapa();
+        Mapa(Auto *vehiculo);
 
         //Pre: el mapa debe estar previamente cargado.
         //Post: mostrara el mapa disponible por pantalla.
@@ -48,8 +50,15 @@ class Mapa {
         //Post: Devolverá el tipo de terreno que representa la casilla en la que se encuentra.
         char obtener_tipo_terreno();
 
-        void copiar_en_grafo(Grafo *grafo);    
+        Animal* obtener_vector_animales();
 
+        void llenar_vector();
+
+        void copiar_en_grafo();    
+
+        void ubicar_auto();
+
+        void ubicar_animales();
 };  
 
 #endif //_MAPA_HPP

@@ -87,6 +87,7 @@ void imprimir_msje_partida_perdida(){
 void procesar_opcion(Sistema sistema, int opcion) {
 
     sistema.cambiar_hambre_higiene(sistema.obtener_arbol_animales());
+    sistema.obtener_auto()->reducir_combustible();
 
     switch(opcion){
 
@@ -111,7 +112,7 @@ void procesar_opcion(Sistema sistema, int opcion) {
             break;
 
         case CARGAR_COMBUSTIBLE:
-            //sistema.cargar_combustible();
+            sistema.cargar_combustible();
             break;
     }
 }

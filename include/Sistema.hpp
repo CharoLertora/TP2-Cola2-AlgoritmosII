@@ -5,6 +5,7 @@
 #include <cstring>
 #include "Arbol_b.hpp"
 #include "Animal.hpp"
+#include "Auto.hpp"
 
 using namespace std;
 
@@ -54,6 +55,7 @@ class Sistema {
     //Atributos
 private:
     Arbol_B* arbol_animales;
+    Auto *vehiculo;
     bool partida_terminada;
     
     //Métodos
@@ -96,10 +98,16 @@ public:
     //pre:-
     //pos: solicita al usuario el espacio en metros cuadrados donde vivirá el animal a adoptar y le mostrará las opciones disponibles. Luego, llamará al procedimiento correspondiente para finalizar el proceso de adopción.
     void adoptar_animal(Arbol_B *arbol_animales);
+
+    //pre:-
+    //pos: solicita al usuario la cantidad de combustible que desea cargar y luego, cargara el tanque con dicha cantidad.
+    void cargar_combustible();
     
     //pre: -
     //pos: cargará toda la información que se encuentre en la lista de animales en el archivo animales.csv.
     void guardar_y_salir(Arbol_B *arbol_animales);
+
+    Auto* obtener_auto();
 
 private:
 
