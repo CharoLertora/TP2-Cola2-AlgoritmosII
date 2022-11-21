@@ -223,4 +223,3 @@ void Sistema::verificar_si_partida_continua(Arbol_B *arbol_animales){
         imprimir_msje_partida_perdida();
     }
 }
-

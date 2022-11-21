@@ -3,13 +3,13 @@
 
 using namespace std;
 
-Nodo::Nodo(Animal* animal) {
-    this->animal = animal;
+Nodo::Nodo(Vertice* vertice) {
+    this->vertice = vertice;
     siguiente = 0;
 }
 
-Animal* Nodo::obtener_animal() {
-    return animal;
+Vertice* Nodo::obtener_vertice() {
+    return vertice;
 }
 
 Nodo* Nodo::obtener_siguiente() {
@@ -21,5 +21,5 @@ void Nodo::asignar_siguiente(Nodo* s) {
 }
 
 Nodo::~Nodo () {
-    delete animal;
+    delete vertice;
 }

@@ -1,6 +1,6 @@
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
 #include "../include/Mapa.hpp"
 #include "../include/Perro.hpp"
 #include "../include/Gato.hpp"
@@ -10,8 +10,9 @@
 #include "../include/Erizo.hpp"
 #include "../include/Lagartija.hpp"
 #include "../include/funciones_auxiliares.hpp"
+#include "../include/Grafo.hpp"
 
-void llenar_primera_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
+void llenar_primera_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[0][0] = CAMINO;
     terreno[0][1] = PRECIPICIO;
@@ -23,7 +24,7 @@ void llenar_primera_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
     terreno[0][7] = TIERRA;
 }
 
-void llenar_segunda_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
+void llenar_segunda_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[1][0] = CAMINO;
     terreno[1][1] = TIERRA;
@@ -35,7 +36,7 @@ void llenar_segunda_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
     terreno[1][7] = PRECIPICIO;
 }
 
-void llenar_tercera_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
+void llenar_tercera_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[2][0] = CAMINO;
     terreno[2][1] = CAMINO;
@@ -47,7 +48,7 @@ void llenar_tercera_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
     terreno[2][7] = MONTANIA;
 }
 
-void llenar_cuarta_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
+void llenar_cuarta_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[3][0] = TIERRA;
     terreno[3][1] = TIERRA;
@@ -59,7 +60,7 @@ void llenar_cuarta_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
     terreno[3][7] = MONTANIA;
 }
 
-void llenar_quinta_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
+void llenar_quinta_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[4][0] = MONTANIA;
     terreno[4][1] = MONTANIA;
@@ -71,7 +72,7 @@ void llenar_quinta_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
     terreno[4][7] = MONTANIA;
 }
 
-void llenar_sexta_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
+void llenar_sexta_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[5][0] = TIERRA;
     terreno[5][1] = TIERRA;
@@ -83,7 +84,7 @@ void llenar_sexta_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
     terreno[5][7] = MONTANIA;
 }
 
-void llenar_septima_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
+void llenar_septima_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[6][0] = TIERRA;
     terreno[6][1] = PRECIPICIO;
@@ -95,7 +96,7 @@ void llenar_septima_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
     terreno[6][7] = MONTANIA;
 }
 
-void llenar_octava_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
+void llenar_octava_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[7][0] = TIERRA;
     terreno[7][1] = TIERRA;
@@ -107,6 +108,10 @@ void llenar_octava_fila(char terreno[MAX_TERRENO][MAX_TERRENO]) {
     terreno[7][7] = CAMINO;
 }
 
+bool hay_animal(string terreno[MAX_TERRENO][MAX_TERRENO], int fila, int columna){
+    return (terreno[fila][columna] == IMAGEN_PERRO || terreno[fila][columna] == IMAGEN_GATO || terreno[fila][columna] == IMAGEN_CABALLO || terreno[fila][columna] == IMAGEN_CONEJO || terreno[fila][columna] == IMAGEN_ROEDOR || terreno[fila][columna] == IMAGEN_ERIZO || terreno[fila][columna] == IMAGEN_LAGARTIJA);
+}
+
 int numero_random(){
     
     srand ((unsigned)time(NULL));
@@ -114,20 +119,52 @@ int numero_random(){
     return numero; 
 }
 
-void ubicar_auto(char terreno[MAX_TERRENO][MAX_TERRENO]){
+void ubicar_auto(string terreno[MAX_TERRENO][MAX_TERRENO]){
 
     terreno[0][0] = AUTO;
 }
 
-void ubicar_animal(Animal* animal, char terreno [MAX_TERRENO][MAX_TERRENO]){
+void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
 
-    terreno[numero_random()][numero_random()] = especie_a_inicial(animal->obtener_especie())[1];
+    Vertice *vertice = grafo->encontrar_vertice(fila, columna);
+    if (vertice != NULL){
+        vertice->asignar_animal(animal); 
+    }
 }
 
-void ubicar_animales(char terreno[MAX_TERRENO][MAX_TERRENO], Animal* animales_a_rescatar[MAX_ANIMALES]){
+void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Grafo *grafo){
+
+    int fila = 0;
+    int columna = 0;
+    
+    do {
+        fila = numero_random();
+        columna = numero_random();
+    }while(hay_animal(terreno, fila, columna) || terreno[fila][columna] == AUTO);
+
+    if (animal->obtener_especie() == ESPECIE_PERRO){
+        terreno[fila][columna] = IMAGEN_PERRO;
+    }else if (animal->obtener_especie() == ESPECIE_GATO){
+        terreno[fila][columna] = IMAGEN_GATO;
+    }else if (animal->obtener_especie() == ESPECIE_CABALLO){
+        terreno[fila][columna] = IMAGEN_CABALLO;
+    }else if (animal->obtener_especie() == ESPECIE_CONEJO){
+        terreno[fila][columna] = IMAGEN_CONEJO;
+    }else if (animal->obtener_especie() == ESPECIE_ROEDOR){
+        terreno[fila][columna] = IMAGEN_ROEDOR;
+    }else if (animal->obtener_especie() == ESPECIE_ERIZO){
+        terreno[fila][columna] = IMAGEN_ERIZO;
+    }else {
+        terreno[fila][columna] = IMAGEN_LAGARTIJA;
+    } 
+
+    //copiar_animales(grafo, animal, fila, columna);
+}
+
+void ubicar_animales(string terreno[MAX_TERRENO][MAX_TERRENO], Animal* animales_a_rescatar[MAX_ANIMALES], Grafo *grafo){
     
     for (int i = 0; i < MAX_ANIMALES; i++){
-        ubicar_animal(animales_a_rescatar[i], terreno);
+        ubicar_animal(animales_a_rescatar[i], terreno, grafo);
     }
 }
 
@@ -165,6 +202,7 @@ void llenar_vector(Animal* animales_a_rescatar[MAX_ANIMALES]) {
 
 Mapa::Mapa() {
 
+    grafo = new Grafo();
     llenar_vector(animales_a_rescatar);
     llenar_primera_fila(terreno);
     llenar_segunda_fila(terreno);
@@ -174,8 +212,9 @@ Mapa::Mapa() {
     llenar_sexta_fila(terreno);
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
+    copiar_en_grafo(grafo);
     ubicar_auto(terreno);
-    //ubicar_animales(terreno, animales_a_rescatar);
+    ubicar_animales(terreno, animales_a_rescatar, grafo);
 }
 
 void Mapa::mostrar_mapa() {
@@ -187,3 +226,13 @@ void Mapa::mostrar_mapa() {
         cout << endl;
     }
 }
+
+void Mapa::copiar_en_grafo(Grafo *grafo){
+    
+    for (int i = 0; i < MAX_TERRENO; i++) {
+        for (int j = 0; j < MAX_TERRENO; j++) {
+            grafo->agregar_vertice(i, j, terreno [i][j]);
+        }
+    }    
+}
+

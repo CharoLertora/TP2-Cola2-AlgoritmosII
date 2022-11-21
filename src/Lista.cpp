@@ -20,9 +20,9 @@ Nodo* Lista::encontrar_nodo(int pos) {
     return nodo;
 }
 
-void Lista::alta (Animal* animal, int pos) {
+void Lista::alta(Vertice* vertice, int pos) {
 
-    Nodo* nuevo = new Nodo(animal);
+    Nodo* nuevo = new Nodo(vertice);
     if (pos == POSICION_INICIAL) {
         nuevo->asignar_siguiente(primero);
         primero = nuevo;
@@ -65,9 +65,9 @@ int Lista::obtener_cantidad () {
     return cantidad;
 }
 
-Animal* Lista::consulta (int pos) {
+Vertice* Lista::consulta (int pos) {
     Nodo* nodo_buscado = encontrar_nodo(pos);
-    return nodo_buscado->obtener_animal();
+    return nodo_buscado->obtener_vertice();
 }
 
 bool Lista::vacia () {

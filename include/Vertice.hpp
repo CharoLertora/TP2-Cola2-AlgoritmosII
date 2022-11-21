@@ -20,16 +20,19 @@ private:
     Vertice* derecha;
     Vertice* izquierda;
     int gasto_combustible;
-    char tipo_terreno;
+    string tipo_terreno;
 
     //Métodos:
 public:
-    Vertice(int fila, int columna, char tipo_terreno);
+    Vertice(int fila, int columna, string tipo_terreno);
 
     void asignar_animal(Animal* animal);
 
     int costo_viaje(Vertice* destino);
 
+    int obtener_fila();
+
+    int obtener_columna();
 };
 
 #endif

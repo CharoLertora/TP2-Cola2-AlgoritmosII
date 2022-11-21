@@ -40,8 +40,6 @@ const string PERSONALIDAD_TRAVIESO = "Travieso";
 const char PRIMER_NUMERO_ASCII = '0';
 const char ULTIMO_NUMERO_ASCII = '9';
 
-const int POSICION_INICIAL = 0;
-
 const int BANIAR_ANIMAL = 1;
 const int ALIMENTAR_ANIMAL = 2;
 const int SALTEAR_ANIMAL = 3;

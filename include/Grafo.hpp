@@ -1,9 +1,23 @@
 #ifndef _GRAFO_HPP_
 #define _GRAFO_HPP_
-#include "../include/Vertice.hpp"
+#include "Vertice.hpp"
+#include "Lista.hpp"
 
-class Grafo{
+class Grafo {
     //Atributos:
+private:
+    Lista *vertices; 
+    int cant_vertices;
+
+    //Métodos:
+public:
+    Grafo();
+
+    void agregar_vertice(int fila, int columna, string tipo_terreno);
+
+    Lista* obtener_vertices();
+    
+    Vertice* encontrar_vertice(int fila, int columna);
 
 };
 

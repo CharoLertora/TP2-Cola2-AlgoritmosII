@@ -214,7 +214,7 @@ void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado) {
 
 void realizar_adopcion(Arbol_B *arbol) {
     string nombre_adoptado;
-    int posicion = POSICION_INICIAL;
+    int posicion = 0;
 
     cout << "\t Genial! :D Ingrese el nombre del animalito que le gustaría adoptar: " << endl << endl;
     cin >> nombre_adoptado;

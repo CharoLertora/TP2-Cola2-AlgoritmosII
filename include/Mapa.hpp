@@ -1,7 +1,7 @@
 #ifndef _MAPA_HPP_
 #define _MAPA_HPP_
 #include "Animal.hpp"
-
+#include "Grafo.hpp"
 
 using namespace std;
 
@@ -10,19 +10,28 @@ const int MAX_ANIMALES = 5;
 
 const string ARCHIVO_ANIMALES_A_RESCATAR = "animales_a_rescatar.csv";
 
-const char TIERRA = 'T'; 
-const char CAMINO = 'C';
-const char MONTANIA = 'M';
-const char PRECIPICIO = 'P';
-const char AUTO = 'A';
+const string TIERRA = "🌳"; 
+const string CAMINO = "🟨";
+const string MONTANIA = "⛰️ ";
+const string PRECIPICIO = "🕳 ";
+const string AUTO = "🚘";
+
+const string IMAGEN_PERRO = "🐶";
+const string IMAGEN_GATO = "🐱";
+const string IMAGEN_CABALLO = "🐎";
+const string IMAGEN_CONEJO = "🐰";
+const string IMAGEN_ERIZO = "🦔";
+const string IMAGEN_ROEDOR = "🐭";
+const string IMAGEN_LAGARTIJA = "🦎";
 
 
 class Mapa {
 
     //Atributos:
     private:
-        char terreno[MAX_TERRENO][MAX_TERRENO];
-        Animal* animales_a_rescatar[MAX_ANIMALES];
+        string terreno[MAX_TERRENO][MAX_TERRENO];
+        Animal *animales_a_rescatar[MAX_ANIMALES];
+        Grafo *grafo;
 
     //Métodos:
     public:
@@ -38,7 +47,9 @@ class Mapa {
         //Pre: La matriz debe estar inicializada y cargada con toda la información necesaria previamente.
         //Post: Devolverá el tipo de terreno que representa la casilla en la que se encuentra.
         char obtener_tipo_terreno();
-    
+
+        void copiar_en_grafo(Grafo *grafo);    
+
 };  
 
 #endif //_MAPA_HPP
