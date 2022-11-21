@@ -201,7 +201,7 @@ void Sistema::guardar_y_salir(Arbol_B *arbol) {
     string inicial_especie;
     //agregar_animal(arbol, "valen", 10, TAMANIO_GRANDE, "P", "travieso");
     arbol->guardar(archivo_animales);
-
+    archivo_animales.close();
 }
 
 
