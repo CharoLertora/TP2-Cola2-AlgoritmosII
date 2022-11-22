@@ -9,6 +9,7 @@ class Arbol_B{
 	Nodo_arbol_B *raiz; 
 	int grado;  //grado del arbol, creo que para nuestro TP tiene que ser 3
 	int cantidad_de_escapes;
+	int cantidad_de_animales;
 
 public:
 	// Constructor 
@@ -35,6 +36,10 @@ public:
 	void revisar_hambre_higiene();
 
 	int obtener_cantidad_de_escapes();
+
+	void agregar_elementos_al_vector(Animal** vector, int& tope);
+
+	int obtener_cantidad_animales();
 
 	void guardar(fstream& archivo);
 };

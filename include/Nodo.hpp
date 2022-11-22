@@ -33,7 +33,10 @@ public:
 
 	void actualizar_hambre_higiene();
 
+	void agregar_elementos_al_vector(Animal** vector, int& indice);
+
 	void revisar_hambre_higiene(int &cantidad_de_escapes);
+
 	void guardar(fstream& archivo);
 };
 

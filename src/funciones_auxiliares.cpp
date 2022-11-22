@@ -1,5 +1,6 @@
 #include "../include/funciones_auxiliares.hpp"
 #include "../include/Arbol_b.hpp"
+#include "../include/quicksort.hpp"
 
 bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol){   
     int indice = 0;
@@ -283,4 +284,48 @@ void avisar_usuario_escapes(Animal *animal){
 	}else {
 		cout << "no aguantaba más sin bañarse." << endl;
 	}
+}
+
+
+void reajustar(Animal** vector, int& max_vector){
+    int cantidad_maxima_animales = max_vector * 2;
+    Animal** nuevo_vector_animales = new Animal*[cantidad_maxima_animales];
+
+    for (int i = 0; i < max_vector; i++){
+        nuevo_vector_animales[i] = vector[i];
+    }
+
+    if(max_vector != 0){
+        delete[] vector;
+    }
+    vector  = nuevo_vector_animales;
+    max_vector = cantidad_maxima_animales; 
+    
+}
+
+
+
+void imprimir_por_espacio_y_edad(Arbol_B* arbol, int espacio){
+    int tope = arbol->obtener_cantidad_animales();
+    Animal** vector = new Animal*[tope];
+    int indice = 0;
+    arbol->agregar_elementos_al_vector(vector, indice);
+    QuickSort ordenamiento;
+    ordenamiento.sort(vector, tope);
+    for (int i = 0; i < tope; i++){
+        if (vector[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20) {
+            mostrar_datos_animal(vector[i]);
+
+        }else if (vector[i]->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= 10) {
+            mostrar_datos_animal(vector[i]);
+
+        }else if (vector[i]->obtener_tamanio() == TAMANIO_PEQUENIO && espacio > 2) {
+            mostrar_datos_animal(vector[i]);
+
+        }else if (vector[i]->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > 0) {
+            mostrar_datos_animal(vector[i]);
+        } 
+    }
+    delete[] vector;
+    
 }

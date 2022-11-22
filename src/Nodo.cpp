@@ -238,7 +238,23 @@ void Nodo_arbol_B::guardar(fstream& archivo){
 		hijos[i]->guardar(archivo);
 	}
 }
-// if(cant_claves == 0){
-// return NULL;
-// }
 
+void Nodo_arbol_B::agregar_elementos_al_vector(Animal** vector, int& indice){
+	int i;
+	for (i = 0; i < cant_claves; i++){
+		if (!es_hoja){
+			hijos[i]->agregar_elementos_al_vector(vector, indice);
+		}
+
+	
+		vector[indice] = animales[i];
+		indice++;
+	}
+		
+	if (!es_hoja){
+		hijos[i]->agregar_elementos_al_vector(vector, indice);
+	}
+
+
+	//cout << vector[i]->obtener_nombre() << endl;
+}
