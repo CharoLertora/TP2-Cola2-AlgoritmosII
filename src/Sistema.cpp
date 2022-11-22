@@ -173,7 +173,7 @@ void Sistema::adoptar_animal(Arbol_B *arbol_animales) {
  
     getline(cin >> ws, espacio);
     validar_espacio(espacio);
-    imprimir_por_edad(arbol_animales);
+    imprimir_por_espacio_y_edad(arbol_animales, stoi(espacio));
    
     cout << "\t ¿Desea adoptar a alguno de estos animalitos? (Rta: si/no):" << endl;
     cin >> respuesta;
@@ -200,7 +200,6 @@ void Sistema::guardar_y_salir(Arbol_B *arbol) {
 
     fstream archivo_animales(ARCHIVO_ANIMALES);
     string inicial_especie;
-    agregar_animal(arbol, "agus", 15, TAMANIO_GRANDE, "P", "travieso");
     arbol->guardar(archivo_animales);
     archivo_animales.close();
 }

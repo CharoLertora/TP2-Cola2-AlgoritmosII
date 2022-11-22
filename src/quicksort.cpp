@@ -25,7 +25,7 @@ int QuickSort::partition(Animal** &animal_vector, int low, int high)
  
     for (int j = low; j <= high - 1; j++){
         // Si el elemento actual es mas chico que el pivote
-        if (animal_vector[j]->obtener_edad() < pivot){
+        if (animal_vector[j]->obtener_edad() > pivot){
             // Entonces intercambio el elemento actual por el que esta a la derecha
             // de la posicion actual del pivote
             // (paso el elemento a la mitad izquierda)
