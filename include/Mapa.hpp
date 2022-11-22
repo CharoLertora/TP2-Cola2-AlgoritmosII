@@ -59,6 +59,8 @@ class Mapa {
         void ubicar_auto();
 
         void ubicar_animales();
+
+        ~Mapa();
 };  
 
 #endif //_MAPA_HPP
