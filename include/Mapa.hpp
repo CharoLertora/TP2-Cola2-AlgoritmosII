@@ -26,6 +26,11 @@ const string IMAGEN_ROEDOR = "🐭";
 const string IMAGEN_LAGARTIJA = "🦎";
 
 
+typedef struct coordenada {
+    int fil;
+    int col;
+};
+
 class Mapa {
 
     //Atributos:

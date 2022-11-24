@@ -2,6 +2,7 @@
 #define _NODO_HPP_
 #include "Animal.hpp"
 #include "Vertice.hpp"
+#include "Mapa.hpp"
 
 
 class Nodo {
@@ -13,11 +14,14 @@ private:
 
     //Métodos
 public:
+
+    Nodo(int numero, string tipo_terreno);
+/*
     //Constructor
     //pre:-
     //pos: Crea un nodo y guarda el vertice ingresado.
     Nodo(Vertice* vertice);
-
+*/
     //pre:-
     //pos: Devuelve la dirección del vertice guardado en el nodo.
     Vertice* obtener_vertice();

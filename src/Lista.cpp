@@ -6,6 +6,7 @@ using namespace std;
 
 Lista::Lista () {
     primero = 0;
+    ultimo = 0;
     cantidad = 0;
 }
 
@@ -20,25 +21,20 @@ Nodo* Lista::encontrar_nodo(int pos) {
     return nodo;
 }
 
-void Lista::alta(Vertice* vertice, int pos) {
+void Lista::agregar(int numero, string tipo_terreno) {
 
-    Nodo* nuevo = new Nodo(vertice);
-    if (pos == POSICION_INICIAL) {
-        nuevo->asignar_siguiente(primero);
-        primero = nuevo;
+    Nodo* nuevo_nodo = new Nodo(numero, tipo_terreno);
 
-    } else if (pos == cantidad + 1) {
-        Nodo* ultimo = encontrar_nodo(pos - 1);
-        ultimo->asignar_siguiente(nuevo);  
-
+    if (primero == nullptr) {
+        primero = nuevo_nodo;
+        ultimo = primero;
     } else {
-        Nodo* nodo = encontrar_nodo(pos);
-        Nodo* anterior = encontrar_nodo(pos - 1);
-        nuevo->asignar_siguiente(nodo);
-        anterior->asignar_siguiente(nuevo);
+        ultimo->asignar_siguiente(nuevo_nodo);
+        ultimo = nuevo_nodo;
     }
     cantidad++;
 }
+
 
 void Lista::baja (int pos) {
 

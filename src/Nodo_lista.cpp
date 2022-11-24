@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Nodo::Nodo(Vertice* vertice) {
-    this->vertice = vertice;
+Nodo::Nodo(int numero, string tipo_tierra) {
+    this->vertice = new Vertice(numero, tipo_tierra);
     siguiente = 0;
 }
 

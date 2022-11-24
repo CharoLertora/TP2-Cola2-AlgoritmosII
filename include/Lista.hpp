@@ -11,6 +11,7 @@ class Lista {
     //Atributos
 private:
     Nodo* primero;
+    Nodo* ultimo;
     int cantidad;
 
     //Métodos
@@ -20,10 +21,15 @@ public:
     //pos: Construye una lista con cantidad en 0 y primero null.
     Lista();
 
+    //Pre: -
+    //Post: agrega un nuevo elemento a la lista.
+    void agregar(int numero, string tipo_terreno);
+    
+    /*
     //pre: La posiciòn ingresada debe ser válida, es decir, no puede ser menor a uno ni mayor a la "cantidad actual de vertices + 1".
     //pos: Agrega un nuevo nodo a la lista en la posiciòn ingresada y guarda "dentro" un vertice.
     void alta(Vertice* vertice, int pos);
-
+    */
     //pre: Debe haber un nodo en la posición ingresada.
     //pos: Elimina el nodo que se encuentra en la posición ingresada.
     void baja(int pos);

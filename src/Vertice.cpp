@@ -16,28 +16,20 @@ int combustible(string tipo_terreno){
     }
 }
 
-Vertice::Vertice(int fila, int columna, string tipo_terreno){
-    
-    this->fila = fila;
-    this->columna = columna;
+Vertice::Vertice(int numero, string tipo_terreno){
+    this->numero = numero;
     this->tipo_terreno = tipo_terreno;
-    this->hay_animal = false;
-    this->gasto_combustible = combustible(tipo_terreno);
-    arriba = NULL;
-    abajo = NULL;
-    derecha = NULL;
-    izquierda = NULL;
 }
 
-void Vertice::asignar_animal(Animal* animal){
-    this->animal = animal;
-    this->hay_animal = true;
+int Vertice::obtener_numero() {
+    return numero;
 }
 
-int Vertice::obtener_fila(){
-    return fila;
+string Vertice::obtener_terreno() {
+    return tipo_terreno;
 }
 
-int Vertice::obtener_columna(){
-    return columna;
+
+Vertice::~Vertice() {
+    
 }
