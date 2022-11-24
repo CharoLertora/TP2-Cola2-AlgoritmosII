@@ -200,52 +200,47 @@ void Nodo_arbol_B::actualizar_hambre_higiene()
 	}
 }
 
-void Nodo_arbol_B::cuidar_animales()
-{
-	int i = 0;
-	int opcion = 0;
-	for (i = 0; i < cant_claves; i++)
-	{
-		if (!es_hoja && opcion != VOLVER_INICIO)
-		{
-			hijos[i]->cuidar_animales();
+void Nodo_arbol_B::cuidar_animales(int &opcion){
+	
+	int i;
+	for (i = 0; i < cant_claves; i++){
+		if (!es_hoja){ 
+			hijos[i]->cuidar_animales(opcion);
+		}
+		if (opcion != VOLVER_INICIO && !animales[i]->esta_adoptado()){
 			mostrar_datos_animal(animales[i]);
 			pedir_respuesta(opcion);
-			if (opcion != SALTEAR_ANIMAL && opcion != VOLVER_INICIO)
-			{
-				realizar_cuidado(opcion, animales[i]);
-			}
 		}
-	}
-
-	if (!es_hoja && opcion != VOLVER_INICIO)
-	{
-		hijos[i]->cuidar_animales();
+			
+		if (opcion != SALTEAR_ANIMAL && opcion != VOLVER_INICIO){
+			realizar_cuidado(opcion, animales[i]);
+		}			
+	}	
+	
+	if (!es_hoja && opcion != VOLVER_INICIO){
+		hijos[i]->cuidar_animales(opcion);
 	}
 }
 
-void Nodo_arbol_B::imprimir_segun_espacio(int espacio)
-{
-	int i = 0;
-	for (i = 0; i < cant_claves; i++)
-	{
-		if (!es_hoja)
+void Nodo_arbol_B::imprimir_segun_espacio(int espacio){
+	int i;
+	for (i = 0; i < cant_claves; i++){
+		if (!es_hoja){
 			hijos[i]->imprimir_segun_espacio(espacio);
-		if (animales[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20){
-			mostrar_datos_animal(animales[i]);
 		}
-		else if (animales[i]->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= 10)
-		{
-			mostrar_datos_animal(animales[i]);
-		}
-		else if (animales[i]->obtener_tamanio() == TAMANIO_PEQUENIO && espacio > 2)
-		{
-			mostrar_datos_animal(animales[i]);
-		}
-		else if (animales[i]->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > 0)
-		{
-			mostrar_datos_animal(animales[i]);
-		}
+			
+		if (animales[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20) {
+            mostrar_datos_animal(animales[i]);
+
+        }else if (animales[i]->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= 10) {
+            mostrar_datos_animal(animales[i]);
+
+        }else if (animales[i]->obtener_tamanio() == TAMANIO_PEQUENIO && espacio > 2) {
+            mostrar_datos_animal(animales[i]);
+
+        }else if (animales[i]->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > 0) {
+            mostrar_datos_animal(animales[i]);
+        } 		
 	}
 
 	if (!es_hoja)
@@ -301,6 +296,7 @@ void Nodo_arbol_B::guardar(fstream &archivo)
 		archivo << especie << ",";
 		archivo << personalidad << "\n";
 	}
+
 	if (!es_hoja){
 		hijos[i]->guardar(archivo);
 	}

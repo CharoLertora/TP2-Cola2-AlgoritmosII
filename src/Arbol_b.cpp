@@ -6,8 +6,8 @@
 
 using namespace std;
 
-//constructor 
 Arbol_B::Arbol_B(int grado){
+
 	raiz = NULL;  
 	this->grado = grado;
 	cantidad_de_escapes = 0;
@@ -15,27 +15,29 @@ Arbol_B::Arbol_B(int grado){
 }
 
 void Arbol_B::imprimir(){
+
 	if (raiz != NULL){
 		raiz->imprimir();
 	}
 }
 
 Nodo_arbol_B* Arbol_B::buscar_en_el_arbol(string nombre, int &i){
+
 	if(raiz != NULL){
 		return raiz->buscar(nombre, i);
 	}
 	return NULL;
 }
 
-
 void Arbol_B::insertar(Animal *animal_a_insertar){
+
 	if (raiz == NULL){
 		raiz = new Nodo_arbol_B(grado, true);
 		raiz->obtener_claves()[0] = animal_a_insertar->obtener_nombre();
 		raiz->obtener_animales()[0] = animal_a_insertar; 
 		raiz->aumentar_claves();
 		cantidad_de_animales++;
-	}else{
+	}else {
 		
 		if (raiz->obtener_cantidad() == 2 * grado - 1){
 	
@@ -58,7 +60,7 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 
 			// cambio raiz raiz
 			raiz = nuevo_nodo;
-		}else{  //si la raiz no esta llena, llamo a insertar etc para la raiz
+		}else {  //si la raiz no esta llena, llamo a insertar etc para la raiz
 			raiz->insertar_cuando_no_este_lleno(animal_a_insertar);
 			cantidad_de_animales++;
 
@@ -66,8 +68,8 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 	}
 }
 
-
 void Arbol_B::adoptar(string nombre) {
+
 	int indice = 0;
 	Nodo_arbol_B* nodo_encontrado = buscar_en_el_arbol(nombre, indice);
 
@@ -79,6 +81,7 @@ void Arbol_B::adoptar(string nombre) {
 }
 
 void Arbol_B::eliminar(string nombre){
+	
 	int indice = 0;
 	Nodo_arbol_B* nodo_encontrado = buscar_en_el_arbol(nombre, indice);
 	if (nodo_encontrado != NULL){
@@ -94,7 +97,6 @@ void Arbol_B::eliminar(string nombre){
 	}
 }
 
-
 bool Arbol_B::vacio(){
 	return (raiz == NULL);
 }
@@ -104,7 +106,8 @@ void Arbol_B::actualizar_hambre_higiene(){
 }
 
 void Arbol_B::cuidar_animales(){
-	raiz->cuidar_animales();
+	int opcion = 0;
+	raiz->cuidar_animales(opcion);
 }
 
 void Arbol_B::imprimir_segun_espacio(int espacio){
@@ -120,13 +123,15 @@ int Arbol_B::obtener_cantidad_de_escapes(){
 }
 
 void Arbol_B::guardar(fstream& archivo){
-	if(raiz != NULL){
+
+	if (raiz != NULL){
 		raiz->guardar(archivo);
 	}
 }
 
 void Arbol_B::agregar_elementos_al_vector(Animal** vector, int& tope){
-	if(raiz != NULL){
+	
+	if (raiz != NULL){
 		raiz->agregar_elementos_al_vector(vector, tope);
 	}
 }
