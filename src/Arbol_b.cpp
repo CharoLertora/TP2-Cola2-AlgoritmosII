@@ -33,8 +33,8 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 
 	if (raiz == NULL){
 		raiz = new Nodo_arbol_B(grado, true);
-		raiz->obtener_claves()[0] = animal_a_insertar->obtener_nombre();
-		raiz->obtener_animales()[0] = animal_a_insertar; 
+		raiz->asignar_clave(0, animal_a_insertar->obtener_nombre());
+		raiz->asignar_animal(0, animal_a_insertar);
 		raiz->aumentar_claves();
 		cantidad_de_animales++;
 	}else {
@@ -44,7 +44,7 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 			Nodo_arbol_B *nuevo_nodo = new Nodo_arbol_B(grado, false);
 
 			//hago q la raiz sea hija
-			nuevo_nodo->obtener_hijos()[0] = raiz;
+			nuevo_nodo->asignar_hijo(0, raiz);
 
 			//separo
 			nuevo_nodo->dividir_nodo(0, raiz);
@@ -52,9 +52,9 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 			// nueva raiz tiene 2 hijos  decido cual de los hijos
 			// va a tener una llave/clave nueva
 			int i = 0;
-			if (nuevo_nodo->obtener_claves()[0] < animal_a_insertar->obtener_nombre())
+			if (nuevo_nodo->obtener_clave(0) < animal_a_insertar->obtener_nombre())
 				i++;
-			nuevo_nodo->obtener_hijos()[i]->insertar_cuando_no_este_lleno(animal_a_insertar);
+			nuevo_nodo->obtener_hijo(i)->insertar_cuando_no_este_lleno(animal_a_insertar);
 			cantidad_de_animales++;
 
 
@@ -73,8 +73,8 @@ void Arbol_B::adoptar(string nombre) {
 	int indice = 0;
 	Nodo_arbol_B* nodo_encontrado = buscar_en_el_arbol(nombre, indice);
 
-	if(!(nodo_encontrado->obtener_animales()[indice]->esta_adoptado())) {
-		nodo_encontrado->obtener_animales()[indice]->adoptar();
+	if(!nodo_encontrado->obtener_animal(indice)->esta_adoptado()) {
+		nodo_encontrado->obtener_animal(indice)->adoptar();
 	} else {
 		cout << endl << "\tEste animalito ya fue adoptado, por favor inténtelo de nuevo :)" << endl;
 	}
@@ -85,10 +85,10 @@ void Arbol_B::eliminar(string nombre){
 	int indice = 0;
 	Nodo_arbol_B* nodo_encontrado = buscar_en_el_arbol(nombre, indice);
 	if (nodo_encontrado != NULL){
-		if (nodo_encontrado->obtener_animales()[indice]->esta_eliminado()){
+		if (nodo_encontrado->obtener_animal(indice)->esta_eliminado()){
 			cout << "Este animal ya no es parte de nuestra reserva." << endl;
 		}else {
-			nodo_encontrado->obtener_animales()[indice]->eliminar();
+			nodo_encontrado->obtener_animal(indice)->eliminar();
 			nodo_encontrado->reducir_claves();
 		}
 		

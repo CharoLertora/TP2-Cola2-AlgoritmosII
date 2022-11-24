@@ -13,22 +13,37 @@ protected:
 	Nodo_arbol_B **hijos; // hijos
 	int cant_claves;     
 	bool es_hoja; 
-public:
 
+public:
 	
 	Nodo_arbol_B(int grado, bool es_hoja);   // Constructor
 
 	int obtener_grado();
+	
 	int obtener_cantidad();
-	Nodo_arbol_B** obtener_hijos();
+	
+	Nodo_arbol_B* obtener_hijo(int indice);
+
+	void asignar_hijo(int indice, Nodo_arbol_B *nodo);
+	
 	bool obtener_es_hoja();
-	Animal** obtener_animales();
-	string* obtener_claves();
+	
+	Animal* obtener_animal(int indice);
+
+	void asignar_animal(int indice, Animal *animal);
+
+	void asignar_clave(int indice, string clave);
+	
+	string obtener_clave(int indice);
+	
 	void aumentar_claves();
+	
 	void reducir_claves();
+	
 	void insertar_cuando_no_este_lleno(Animal* animal_a_insertar);
 
 	//funcion separar. el hijo debe estar completo caudno se llame
+	
 	void dividir_nodo(int i, Nodo_arbol_B *nodo_b);
 
 	void imprimir();

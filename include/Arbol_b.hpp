@@ -42,6 +42,7 @@ public:
 	int obtener_cantidad_animales();
 
 	void guardar(fstream& archivo);
+	
 	~Arbol_B();
 };
 

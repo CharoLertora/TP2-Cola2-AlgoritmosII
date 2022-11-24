@@ -2,17 +2,6 @@
 #include "../include/Arbol_b.hpp"
 #include "../include/quicksort.hpp"
 
-bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol){   
-    int indice = 0;
-    bool encontrado = false;
-    Nodo_arbol_B* nodo_encontrado = arbol->buscar_en_el_arbol(nombre_buscado, indice);
-        if (nodo_encontrado != NULL){
-            encontrado = true;
-        }
-
-    return encontrado;
-}
-
 bool es_respuesta_valida(string respuesta) {
     return (respuesta == "si") || (respuesta == "Si");
 }
@@ -214,7 +203,7 @@ void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado) {
     if (arbol->vacio()) {
         cout << endl << "\t -- Lo sentimos, no hay animales en esta lista, no tenemos nada que buscar. --" << endl;
 
-    } else if(!es_nombre_existente(nombre_buscado, arbol)) {
+    } else if(!existe_en_la_reserva(arbol, nombre_buscado)) {
         cout << endl << "-- El nombre que ingresó no se encuentra en nuestra lista de animales :( --" << endl;
     
     } else {
@@ -231,7 +220,7 @@ void realizar_adopcion(Arbol_B *arbol) {
     cout << "\t Genial! :D Ingrese el nombre del animalito que le gustaría adoptar: " << endl << endl;
     cin >> nombre_adoptado;
 
-    if (es_nombre_existente(nombre_adoptado, arbol)) {
+    if (existe_en_la_reserva(arbol, nombre_adoptado)) {
         arbol->buscar_en_el_arbol(nombre_adoptado, posicion)->imprimir_animal(posicion);
         cout << "\t ¡HA SIDO ADOPTADO CON ÉXITO! Esperamos que sean muy felices." << endl;
         arbol->adoptar(nombre_adoptado);

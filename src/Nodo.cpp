@@ -16,16 +16,28 @@ Nodo_arbol_B::Nodo_arbol_B(int grado, bool es_hoja)
 	cant_claves = 0;
 }
 
-Animal** Nodo_arbol_B::obtener_animales(){
-	return animales;
+Animal* Nodo_arbol_B::obtener_animal(int indice){
+	return animales[indice];
 }
 
-string* Nodo_arbol_B::obtener_claves(){
-	return claves;
+string Nodo_arbol_B::obtener_clave(int indice){
+	return claves[indice];
 }
 
-Nodo_arbol_B** Nodo_arbol_B::obtener_hijos(){
-	return hijos;
+Nodo_arbol_B* Nodo_arbol_B::obtener_hijo(int indice){
+	return hijos[indice];
+}
+
+void Nodo_arbol_B::asignar_hijo(int indice, Nodo_arbol_B *nodo){
+	hijos[indice] = nodo;
+}
+
+void Nodo_arbol_B::asignar_animal(int indice, Animal *animal){
+	animales[indice] = animal;
+}
+
+void Nodo_arbol_B::asignar_clave(int indice, string  clave){
+	claves[indice] = clave;
 }
 
 int Nodo_arbol_B::obtener_grado(){
@@ -35,6 +47,7 @@ int Nodo_arbol_B::obtener_grado(){
 int Nodo_arbol_B::obtener_cantidad(){
 	return cant_claves;
 }
+
 bool Nodo_arbol_B::obtener_es_hoja(){
 	return es_hoja;
 }
@@ -42,11 +55,13 @@ bool Nodo_arbol_B::obtener_es_hoja(){
 void Nodo_arbol_B::aumentar_claves(){
 	cant_claves++;
 }
+
 void Nodo_arbol_B::reducir_claves(){
 	cant_claves--;
 }
-void Nodo_arbol_B::imprimir_animal(int &i)
-{
+
+void Nodo_arbol_B::imprimir_animal(int &i){
+	
 	if (!animales[i]->esta_eliminado()){
 		mostrar_datos_animal(animales[i]);
 	}
@@ -56,9 +71,13 @@ void Nodo_arbol_B::imprimir(){
 	int i;
 	for (i = 0; i < cant_claves; i++){
 		//si no es hoja va a los hijos antes d imprimir claves
-		if (!es_hoja)
+		if (!es_hoja){
 			hijos[i]->imprimir();
-		mostrar_datos_animal(animales[i]);
+		}
+			
+		if (!animales[i]->esta_eliminado()){
+			mostrar_datos_animal(animales[i]);
+		}		
 	}
 
 	if (!es_hoja){
@@ -72,23 +91,19 @@ Nodo_arbol_B *Nodo_arbol_B::buscar(string nombre, int &indice){
 		i++;
 	}
 
-	// devuelve el nodo si el valor buscado es igual a clave[i]
-	if (claves[i] == nombre)
-	{
-		if (animales[i]->esta_eliminado())
-		{
+	// devuelve el nodo si el valor buscado es igual a claves[i]
+	if (claves[i] == nombre){
+		if (animales[i]->esta_eliminado()){
 			return NULL;
 		}
-		else
-		{
+		else{
 			indice = i;
 			return this;
 		}
 	}
 
 	// si es hoja, devolver null
-	if (es_hoja)
-	{
+	if (es_hoja){
 		return NULL;
 	}
 
@@ -102,8 +117,7 @@ void Nodo_arbol_B::insertar_cuando_no_este_lleno(Animal *animal_a_insertar)
 	if (es_hoja)
 	{
 		// encuentra la pos de la nueva clave para insertar y mueve todas las clave en +1
-		while (i >= 0 && claves[i] > animal_a_insertar->obtener_nombre())
-		{
+		while (i >= 0 && claves[i] > animal_a_insertar->obtener_nombre()){
 			claves[i + 1] = claves[i];
 			animales[i + 1] = animales[i];
 			i--;
