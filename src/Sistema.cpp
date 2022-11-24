@@ -33,7 +33,10 @@ void Sistema::inicializar_sistema(Sistema sistema) {
     }
 
     guardar_y_salir(sistema.obtener_arbol_animales());
+    sistema.arbol_animales->~Arbol_B();
+    delete sistema.obtener_auto();
     delete sistema.obtener_arbol_animales();
+
 }
 
 Arbol_B* Sistema::obtener_arbol_animales() {
@@ -197,7 +200,6 @@ void Sistema::elegir_individualmente(Arbol_B *arbol_animales) {
 
 
 void Sistema::guardar_y_salir(Arbol_B *arbol) {
-
     fstream archivo_animales(ARCHIVO_ANIMALES);
     string inicial_especie;
     arbol->guardar(archivo_animales);

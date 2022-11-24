@@ -30,20 +30,19 @@ Nodo_arbol_B* Arbol_B::buscar_en_el_arbol(string nombre, int &i){
 
 void Arbol_B::insertar(Animal *animal_a_insertar){
 	if (raiz == NULL){
-		
 		raiz = new Nodo_arbol_B(grado, true);
-		raiz->claves[0] = animal_a_insertar->obtener_nombre();
-		raiz->animales[0] = animal_a_insertar; 
-		raiz->cant_claves++;  
+		raiz->obtener_claves()[0] = animal_a_insertar->obtener_nombre();
+		raiz->obtener_animales()[0] = animal_a_insertar; 
+		raiz->aumentar_claves();
 		cantidad_de_animales++;
 	}else{
 		
-		if (raiz->cant_claves == 2 * grado - 1){
+		if (raiz->obtener_cantidad() == 2 * grado - 1){
 	
 			Nodo_arbol_B *nuevo_nodo = new Nodo_arbol_B(grado, false);
 
 			//hago q la raiz sea hija
-			nuevo_nodo->hijos[0] = raiz;
+			nuevo_nodo->obtener_hijos()[0] = raiz;
 
 			//separo
 			nuevo_nodo->dividir_nodo(0, raiz);
@@ -51,9 +50,9 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 			// nueva raiz tiene 2 hijos  decido cual de los hijos
 			// va a tener una llave/clave nueva
 			int i = 0;
-			if (nuevo_nodo->claves[0] < animal_a_insertar->obtener_nombre())
+			if (nuevo_nodo->obtener_claves()[0] < animal_a_insertar->obtener_nombre())
 				i++;
-			nuevo_nodo->hijos[i]->insertar_cuando_no_este_lleno(animal_a_insertar);
+			nuevo_nodo->obtener_hijos()[i]->insertar_cuando_no_este_lleno(animal_a_insertar);
 			cantidad_de_animales++;
 
 
@@ -72,8 +71,8 @@ void Arbol_B::adoptar(string nombre) {
 	int indice = 0;
 	Nodo_arbol_B* nodo_encontrado = buscar_en_el_arbol(nombre, indice);
 
-	if(!(nodo_encontrado->animales[indice]->esta_adoptado())) {
-		nodo_encontrado->animales[indice]->adoptar();
+	if(!(nodo_encontrado->obtener_animales()[indice]->esta_adoptado())) {
+		nodo_encontrado->obtener_animales()[indice]->adoptar();
 	} else {
 		cout << endl << "\tEste animalito ya fue adoptado, por favor inténtelo de nuevo :)" << endl;
 	}
@@ -83,11 +82,11 @@ void Arbol_B::eliminar(string nombre){
 	int indice = 0;
 	Nodo_arbol_B* nodo_encontrado = buscar_en_el_arbol(nombre, indice);
 	if (nodo_encontrado != NULL){
-		if (nodo_encontrado->animales[indice]->esta_eliminado()){
+		if (nodo_encontrado->obtener_animales()[indice]->esta_eliminado()){
 			cout << "Este animal ya no es parte de nuestra reserva." << endl;
 		}else {
-			nodo_encontrado->animales[indice]->eliminar();
-			nodo_encontrado->cant_claves--;
+			nodo_encontrado->obtener_animales()[indice]->eliminar();
+			nodo_encontrado->reducir_claves();
 		}
 		
 	}else {
@@ -134,4 +133,12 @@ void Arbol_B::agregar_elementos_al_vector(Animal** vector, int& tope){
 
 int Arbol_B::obtener_cantidad_animales(){
 	return cantidad_de_animales;
+}
+
+Arbol_B::~Arbol_B(){
+	if(raiz != NULL){
+		raiz->~Nodo_arbol_B();
+	}
+	//delete raiz;
+
 }

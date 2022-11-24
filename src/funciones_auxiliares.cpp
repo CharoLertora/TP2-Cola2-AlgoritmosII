@@ -287,21 +287,6 @@ void avisar_usuario_escapes(Animal *animal){
 }
 
 
-void reajustar(Animal** vector, int& max_vector){
-    int cantidad_maxima_animales = max_vector * 2;
-    Animal** nuevo_vector_animales = new Animal*[cantidad_maxima_animales];
-
-    for (int i = 0; i < max_vector; i++){
-        nuevo_vector_animales[i] = vector[i];
-    }
-
-    if(max_vector != 0){
-        delete[] vector;
-    }
-    vector  = nuevo_vector_animales;
-    max_vector = cantidad_maxima_animales; 
-    
-}
 
 
 
@@ -311,7 +296,7 @@ void imprimir_por_espacio_y_edad(Arbol_B* arbol, int espacio){
     int indice = 0;
     arbol->agregar_elementos_al_vector(vector, indice);
     QuickSort ordenamiento;
-    ordenamiento.sort(vector, tope);
+    ordenamiento.ordenar(vector, tope);
     for (int i = 0; i < tope; i++){
         if (vector[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20) {
             mostrar_datos_animal(vector[i]);
@@ -325,6 +310,9 @@ void imprimir_por_espacio_y_edad(Arbol_B* arbol, int espacio){
         }else if (vector[i]->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > 0) {
             mostrar_datos_animal(vector[i]);
         } 
+    }
+    for (int i = 0; i < tope; i++){
+        delete vector[i];
     }
     delete[] vector;
     

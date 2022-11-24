@@ -2,21 +2,21 @@
 
 #include <iostream>
 
-void QuickSort::sort(Animal** &animal_vector, int tope) {
+void QuickSort::ordenar(Animal** &animal_vector, int tope) {
     quickSort(animal_vector, 0, (tope - 1));
 }
 
 void QuickSort::quickSort(Animal** &animal_vector, int low, int high){
     if (low < high){
         // pi: Indice de particion (cuando el pivote esta en su lugar)
-        int pi = partition(animal_vector, low, high);
+        int pi = particionar(animal_vector, low, high);
  
         quickSort(animal_vector, low, pi - 1);
         quickSort(animal_vector, pi + 1, high);
     }
 }
 
-int QuickSort::partition(Animal** &animal_vector, int low, int high)
+int QuickSort::particionar(Animal** &animal_vector, int low, int high)
 {
     int pivot = animal_vector[high]->obtener_edad();
 
@@ -30,14 +30,14 @@ int QuickSort::partition(Animal** &animal_vector, int low, int high)
             // de la posicion actual del pivote
             // (paso el elemento a la mitad izquierda)
             i++;
-            swapElements(animal_vector[i], animal_vector[j]);
+            intercambiar_elementos(animal_vector[i], animal_vector[j]);
         }
     }
-    swapElements(animal_vector[i + 1], animal_vector[high]);
+    intercambiar_elementos(animal_vector[i + 1], animal_vector[high]);
     return (i + 1);
 }
 
-void QuickSort::swapElements(Animal* &A, Animal* &B) {
+void QuickSort::intercambiar_elementos(Animal* &A, Animal* &B) {
     Animal* aux = A;
     A = B;
     B = aux;
