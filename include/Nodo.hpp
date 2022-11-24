@@ -27,7 +27,7 @@ public:
 
 	void imprimir_segun_espacio(int espacio);
 
-	void cuidar_animales();
+	void cuidar_animales(int &opcion);
 
 	Nodo_arbol_B* buscar(string nombre, int &i); //devuelve null si no esta
 

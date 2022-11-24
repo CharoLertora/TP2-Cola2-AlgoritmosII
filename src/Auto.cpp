@@ -10,6 +10,23 @@ void Auto::asignar_posicion(Vertice *pos_actual){
     this->pos_actual = pos_actual;
 }
 
+void Auto::validar_cantidad(int &cantidad){
+
+    while(cantidad < 0 || cantidad > TANQUE_LLENO){
+        cout << endl << "Esa no es una cantidad de combustible válida" << endl;
+        cout << "Su respueste debe estar entre 0 y " << TANQUE_LLENO << "." << endl;
+        cout << "Vuelva a intentarlo: ";
+        cin >> cantidad;
+    }
+
+    while(cantidad + combustible > TANQUE_LLENO){
+        cout << endl << "¡No se puede cargar tanta cantidad!" << endl;
+        cout << "Lo máximo que se puede cargar para llenar el tanque es: " << (TANQUE_LLENO - combustible) << endl << endl;
+        cout << "Intentá de nuevo: ";
+        cin >> cantidad;
+    }
+}
+
 void Auto::pedir_cantidad(int &cantidad){
 
     cout << "Tu tanque actualmente tiene " << combustible << " de combustible" << endl;
@@ -17,12 +34,7 @@ void Auto::pedir_cantidad(int &cantidad){
     cout << "Ingrese la cantidad de combustible que desea cargar: ";
     cin >> cantidad;
 
-    while(cantidad < 0 || cantidad > TANQUE_LLENO){
-        cout << "Esa no es una cantidad de combustible válida" << endl;
-        cout << "Recuerde que el tanque puede tener como máximo " << TANQUE_LLENO << " de combustible." << endl;
-        cout << "Vuelva a intentarlo: ";
-        cin >> cantidad;
-    }
+    validar_cantidad(cantidad);
 }
 
 void Auto::cargar_combustible(){
@@ -32,15 +44,9 @@ void Auto::cargar_combustible(){
         cout << "¡No se puede cargar combustible ya que tanque está lleno!" << endl;
     }else {
         pedir_cantidad(cantidad);
-        if (combustible + cantidad <= TANQUE_LLENO){
-            combustible = combustible + cantidad;
-            cout << endl << '\t' << "¡Se ha cargado el tanque con éxito!" << endl;
-            cout << '\t' << "Ahora el tanque tiene " << combustible << " de combustible." << endl << endl;
-        }else {
-            cout << endl << "¡No se puede cargar esa cantidad!" << endl;
-            cout << "Lo máximo que se puede cargar para llenar el tanque es: " << (TANQUE_LLENO - combustible) << endl << endl;
-            cargar_combustible();
-        }
+        combustible = combustible + cantidad;
+        cout << endl << '\t' << "¡Se ha cargado el tanque con éxito!" << endl;
+        cout << '\t' << "Ahora el tanque tiene " << combustible << " de combustible." << endl << endl;
     }
 }
 

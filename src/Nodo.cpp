@@ -151,30 +151,35 @@ void Nodo_arbol_B::actualizar_hambre_higiene(){
 	}
 }
 
-void Nodo_arbol_B::cuidar_animales(){
+void Nodo_arbol_B::cuidar_animales(int &opcion){
+	
 	int i;
-	int opcion = 0;
 	for (i = 0; i < cant_claves; i++){
-		if (!es_hoja && opcion != VOLVER_INICIO){ 
-			hijos[i]->cuidar_animales();
+		if (!es_hoja){ 
+			hijos[i]->cuidar_animales(opcion);
+		}
+		if (opcion != VOLVER_INICIO){
 			mostrar_datos_animal(animales[i]);
 			pedir_respuesta(opcion);
-			if (opcion != SALTEAR_ANIMAL && opcion != VOLVER_INICIO){
-				realizar_cuidado(opcion, animales[i]);
-			}
 		}
+			
+		if (opcion != SALTEAR_ANIMAL && opcion != VOLVER_INICIO){
+			realizar_cuidado(opcion, animales[i]);
+		}			
 	}	
 	
 	if (!es_hoja && opcion != VOLVER_INICIO){
-		hijos[i]->cuidar_animales();
+		hijos[i]->cuidar_animales(opcion);
 	}
 }
 
 void Nodo_arbol_B::imprimir_segun_espacio(int espacio){
 	int i;
 	for (i = 0; i < cant_claves; i++){
-		if (!es_hoja)
+		if (!es_hoja){
 			hijos[i]->imprimir_segun_espacio(espacio);
+		}
+			
 		if (animales[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20) {
             mostrar_datos_animal(animales[i]);
 
@@ -200,6 +205,7 @@ void Nodo_arbol_B::revisar_hambre_higiene(int &cantidad_de_escapes){
 		if (!es_hoja){ 
 			hijos[i]->revisar_hambre_higiene(cantidad_de_escapes);
 		}
+
 		if (animales[i]->obtener_higiene() == HIGIENE_MINIMA || animales[i]->obtener_hambre() == HAMBRE_MAXIMA){
 			animales[i]->eliminar();
 			avisar_usuario_escapes(animales[i]);
@@ -219,7 +225,6 @@ void Nodo_arbol_B::guardar(fstream& archivo){
 	string nombre, edad, tamanio, especie, personalidad;
 	int i;
 	for (i = 0; i < cant_claves; i++){
-	//si no es hoja va a los hijos antes d imprimir claves
 		if (!es_hoja){
 			hijos[i]->guardar(archivo);
 		}
@@ -234,6 +239,7 @@ void Nodo_arbol_B::guardar(fstream& archivo){
 		archivo << especie << ",";
 		archivo << personalidad << "\n";
 	}
+
 	if (!es_hoja){
 		hijos[i]->guardar(archivo);
 	}
@@ -244,9 +250,7 @@ void Nodo_arbol_B::agregar_elementos_al_vector(Animal** vector, int& indice){
 	for (i = 0; i < cant_claves; i++){
 		if (!es_hoja){
 			hijos[i]->agregar_elementos_al_vector(vector, indice);
-		}
-
-	
+		}	
 		vector[indice] = animales[i];
 		indice++;
 	}
@@ -254,7 +258,6 @@ void Nodo_arbol_B::agregar_elementos_al_vector(Animal** vector, int& indice){
 	if (!es_hoja){
 		hijos[i]->agregar_elementos_al_vector(vector, indice);
 	}
-
 
 	//cout << vector[i]->obtener_nombre() << endl;
 }
