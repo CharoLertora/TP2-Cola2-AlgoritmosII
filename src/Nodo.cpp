@@ -158,7 +158,7 @@ void Nodo_arbol_B::cuidar_animales(int &opcion){
 		if (!es_hoja){ 
 			hijos[i]->cuidar_animales(opcion);
 		}
-		if (opcion != VOLVER_INICIO){
+		if (opcion != VOLVER_INICIO && !animales[i]->esta_adoptado()){
 			mostrar_datos_animal(animales[i]);
 			pedir_respuesta(opcion);
 		}
