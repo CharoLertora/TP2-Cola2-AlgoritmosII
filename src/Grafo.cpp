@@ -35,3 +35,7 @@ Vertice* Grafo::encontrar_vertice(int fila, int columna){
         return NULL;
     }
 }
+
+Grafo::~Grafo(){
+    delete vertices;
+}

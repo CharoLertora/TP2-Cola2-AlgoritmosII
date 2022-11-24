@@ -58,9 +58,9 @@ void Arbol_B::insertar(Animal *animal_a_insertar){
 			nuevo_nodo->hijos[i]->insertar_cuando_no_este_lleno(animal_a_insertar);
 			cantidad_de_animales++;
 
-
-			// cambio raiz raiz
+			// cambio raiz
 			raiz = nuevo_nodo;
+
 		}else {  //si la raiz no esta llena, llamo a insertar etc para la raiz
 			raiz->insertar_cuando_no_este_lleno(animal_a_insertar);
 			cantidad_de_animales++;
@@ -107,6 +107,7 @@ void Arbol_B::actualizar_hambre_higiene(){
 }
 
 void Arbol_B::cuidar_animales(){
+	
 	int opcion = 0;
 	raiz->cuidar_animales(opcion);
 }
@@ -139,4 +140,8 @@ void Arbol_B::agregar_elementos_al_vector(Animal** vector, int& tope){
 
 int Arbol_B::obtener_cantidad_animales(){
 	return cantidad_de_animales;
+}
+
+Arbol_B::~Arbol_B(){
+	delete raiz;
 }

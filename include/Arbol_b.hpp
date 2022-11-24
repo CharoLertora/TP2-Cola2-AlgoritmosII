@@ -7,15 +7,15 @@ const int CANT_MAXIMA_ESCAPES = 3;
 
 class Arbol_B{
 	Nodo_arbol_B *raiz; 
-	int grado;  //grado del arbol, creo que para nuestro TP tiene que ser 3
+	int grado;  
 	int cantidad_de_escapes;
 	int cantidad_de_animales;
 
 public:
-	// Constructor 
+
 	Arbol_B(int grado);
 
-	void imprimir(); //imprime, no se si anda bien
+	void imprimir();
 
 	Nodo_arbol_B* buscar_en_el_arbol(string nombre, int &i);
 
@@ -45,7 +45,7 @@ public:
 
 	void eliminar(Nodo_arbol_B *nodo);
 
-	//~Arbol_B();
+	~Arbol_B();
 };
 
 #endif

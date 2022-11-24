@@ -3,6 +3,8 @@
 #include "Vertice.hpp"
 #include "Lista.hpp"
 
+const int VACIO = 0;
+
 class Grafo {
     //Atributos:
 private:
@@ -19,6 +21,7 @@ public:
     
     Vertice* encontrar_vertice(int fila, int columna);
 
+    ~Grafo();
 };
 
 
