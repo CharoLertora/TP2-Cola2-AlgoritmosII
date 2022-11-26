@@ -6,14 +6,17 @@ const int LLAVES_MAX_CANT = 3;
 
 
 class Nodo_arbol_B{
-
-public:
-    string *claves;  // claves//llaves
-    Animal **animales;
-	int grado;      // grado del arbol, supongo q para el tp3 es 3
-	Nodo_arbol_B **hijos; // hijos
+	//Atributos:
+private:
+    string *claves; 
+    Animal **animales; 
+	Nodo_arbol_B **hijos; 
+	int grado;   
 	int cant_claves;     
 	bool es_hoja; 
+
+	//Métodos:
+public:
 	Nodo_arbol_B(int grado, bool es_hoja);   // Constructor
 
 	void insertar_cuando_no_este_lleno(Animal* animal_a_insertar);
@@ -38,6 +41,24 @@ public:
 	void revisar_hambre_higiene(int &cantidad_de_escapes);
 
 	void guardar(fstream& archivo);
+
+	int obtener_cant_claves();
+
+	string obtener_clave(int indice);
+
+	Animal* obtener_animal(int indice);
+
+	Nodo_arbol_B* obtener_hijo(int indice);
+
+	void asignar_clave(int indice, string nombre);
+
+	void asignar_animal(int indice, Animal *animal);
+
+	void asignar_hijo(int indice, Nodo_arbol_B *nodo);
+
+	void aumentar_cant_claves();
+
+	void disminuir_cant_claves();
 };
 
 #endif

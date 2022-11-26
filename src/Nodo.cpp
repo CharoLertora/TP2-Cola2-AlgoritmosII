@@ -261,3 +261,39 @@ void Nodo_arbol_B::agregar_elementos_al_vector(Animal** vector, int& indice){
 
 	//cout << vector[i]->obtener_nombre() << endl;
 }
+
+int Nodo_arbol_B::obtener_cant_claves(){
+	return cant_claves;
+}
+
+string Nodo_arbol_B::obtener_clave(int indice){
+	return claves[indice];
+}
+
+Animal* Nodo_arbol_B::obtener_animal(int indice){
+	return animales[indice];
+}
+
+Nodo_arbol_B* Nodo_arbol_B::obtener_hijo(int indice){
+	return hijos[indice];
+}
+
+void Nodo_arbol_B::asignar_clave(int indice, string nombre){
+	claves[indice] = nombre;
+}
+
+void Nodo_arbol_B::asignar_animal(int indice, Animal *animal){
+	animales[indice] = animal;
+}
+
+void Nodo_arbol_B::asignar_hijo(int indice, Nodo_arbol_B *nodo){
+	hijos[indice] = nodo;
+}
+
+void Nodo_arbol_B::aumentar_cant_claves(){
+	cant_claves++;
+}
+
+void Nodo_arbol_B::disminuir_cant_claves(){
+	cant_claves--;
+}
