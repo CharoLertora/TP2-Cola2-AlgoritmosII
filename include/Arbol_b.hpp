@@ -5,6 +5,14 @@
 
 const int CANT_MAXIMA_ESCAPES = 3;
 
+enum acciones {
+    LISTAR = 1,
+    ACTUALIZAR_HAMBRE_HIGIENE,
+	REVISAR_HAMBRE_HIGIENE,
+    IMPRIMIR_SEGUN_ESPACIO,
+	CUIDAR
+};
+
 class Arbol_B{
 	Nodo_arbol_B *raiz; 
 	int grado;  
@@ -31,6 +39,8 @@ public:
 
 	void cuidar_animales();
 
+	void mostrar_segun_espacio(Nodo_arbol_B *nodo, int espacio);
+
 	void imprimir_segun_espacio(int espacio);
 
 	void revisar_hambre_higiene();
@@ -44,6 +54,12 @@ public:
 	void guardar(fstream& archivo);
 
 	void eliminar(Nodo_arbol_B *nodo);
+
+	void recorrer_arbol(Nodo_arbol_B *nodo, int accion_a_realizar);
+
+	void realizar_accion(Animal *animal, int accion_a_realizar);
+
+	void cuidar_individualmente(Nodo_arbol_B *nodo, int &opcion);
 
 	~Arbol_B();
 };

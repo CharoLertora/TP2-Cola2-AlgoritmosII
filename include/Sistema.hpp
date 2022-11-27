@@ -46,6 +46,13 @@ const int ALIMENTAR_ANIMAL = 2;
 const int SALTEAR_ANIMAL = 3;
 const int VOLVER_INICIO = 4;
 
+const int ESPACIO_MAXIMO = 50;
+const int ESPACIO_GRANDE = 20;
+const int ESPACIO_MEDIANO = 10;
+const int ESPACIO_PEQUENIO = 2;
+const int ESPACIO_DIMINUTO = 0;
+
+
 const string ADOPTADO = "Está adoptado";
 const string NO_ADOPTADO = "No está adoptado";
 
@@ -118,10 +125,6 @@ private:
     //pre: '*arbol_animales' debe apuntar al atributo de la clase Sistema el cuál debe estar previamente inicializado.
     //pos: Llenará la lista con los animales que encuentre en el archivo. En caso de no haber archivo, creará uno.
     void llenar_arbol(Arbol_B *arbol_animales);
-    
-    //pre: 'espacio' debe estar previamente inicializado y debe contener un número entero mayor a 0.
-    //post: mostrará por pantalla todos los animales que pueden habitar en el espacio indicado.
-    void mostrar_animales_disponibles(int espacio, Arbol_B *arbol_animales);
 
 };
 

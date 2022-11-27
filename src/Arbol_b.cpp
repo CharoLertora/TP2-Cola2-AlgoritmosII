@@ -1,4 +1,5 @@
 #include "../include/Arbol_b.hpp"
+#include "../include/funciones_auxiliares.hpp"
 
 #include <stdio.h>
 #include <string.h>
@@ -12,13 +13,6 @@ Arbol_B::Arbol_B(int grado){
 	this->grado = grado;
 	cantidad_de_escapes = 0;
 	cantidad_de_animales = 0;
-}
-
-void Arbol_B::imprimir(){
-
-	if (raiz != NULL){
-		raiz->imprimir();
-	}
 }
 
 Nodo_arbol_B* Arbol_B::buscar_en_el_arbol(string nombre, int &i){
@@ -103,21 +97,71 @@ bool Arbol_B::vacio(){
 }
 
 void Arbol_B::actualizar_hambre_higiene(){
-	raiz->actualizar_hambre_higiene(); 
+	recorrer_arbol(raiz, ACTUALIZAR_HAMBRE_HIGIENE); 
+}
+
+void Arbol_B::cuidar_individualmente(Nodo_arbol_B *nodo, int &opcion){
+
+	int i;
+	for (i = 0; i < nodo->obtener_cant_claves(); i++){
+		if (!nodo->es_nodo_hoja()){ 
+			cuidar_individualmente(nodo->obtener_hijo(i), opcion);
+		}
+
+		if (opcion != VOLVER_INICIO && !nodo->obtener_animal(i)->esta_adoptado()){
+			mostrar_datos_animal(nodo->obtener_animal(i));
+			pedir_respuesta(opcion);
+		}
+			
+		if (opcion != SALTEAR_ANIMAL && opcion != VOLVER_INICIO){
+			realizar_cuidado(opcion, nodo->obtener_animal(i));
+		}	
+	}
+
+	if (!nodo->es_nodo_hoja() && opcion != VOLVER_INICIO){
+		cuidar_individualmente(nodo->obtener_hijo(i), opcion);
+	}
 }
 
 void Arbol_B::cuidar_animales(){
 	
 	int opcion = 0;
-	raiz->cuidar_animales(opcion);
+	cuidar_individualmente(raiz, opcion);
+}
+
+
+void Arbol_B::mostrar_segun_espacio(Nodo_arbol_B *nodo, int espacio){
+	
+	int i;
+	for (i = 0; i < nodo->obtener_cant_claves(); i++){
+		if (!nodo->es_nodo_hoja()){ 
+			mostrar_segun_espacio(nodo->obtener_hijo(i), espacio);
+		}
+		if (nodo->obtener_animal(i)->obtener_tamanio() == TAMANIO_GRANDE && espacio >= ESPACIO_GRANDE) {
+            mostrar_datos_animal(nodo->obtener_animal(i));
+
+        }else if (nodo->obtener_animal(i)->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= ESPACIO_MEDIANO) {
+            mostrar_datos_animal(nodo->obtener_animal(i));
+
+        }else if (nodo->obtener_animal(i)->obtener_tamanio() == TAMANIO_PEQUENIO && espacio > ESPACIO_PEQUENIO) {
+            mostrar_datos_animal(nodo->obtener_animal(i));
+
+        }else if (nodo->obtener_animal(i)->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > ESPACIO_DIMINUTO) {
+            mostrar_datos_animal(nodo->obtener_animal(i));
+        } 
+	}	
+
+	if (!nodo->es_nodo_hoja()){
+		mostrar_segun_espacio(nodo->obtener_hijo(i), espacio);
+	}
 }
 
 void Arbol_B::imprimir_segun_espacio(int espacio){
-	raiz->imprimir_segun_espacio(espacio);
+	mostrar_segun_espacio(raiz, espacio);
 }
 
 void Arbol_B::revisar_hambre_higiene(){
-	raiz->revisar_hambre_higiene(cantidad_de_escapes);
+	recorrer_arbol(raiz, REVISAR_HAMBRE_HIGIENE);
 }
 
 int Arbol_B::obtener_cantidad_de_escapes(){
@@ -144,4 +188,48 @@ int Arbol_B::obtener_cantidad_animales(){
 
 Arbol_B::~Arbol_B(){
 	delete raiz;
+}
+
+void Arbol_B::imprimir(){
+	recorrer_arbol(raiz, LISTAR);
+}
+
+void Arbol_B::realizar_accion(Animal *animal, int accion_a_realizar){
+
+    switch(accion_a_realizar){
+
+        case LISTAR:
+			mostrar_datos_animal(animal);
+            break;
+
+        case ACTUALIZAR_HAMBRE_HIGIENE:
+            if (!animal->esta_eliminado()){
+			animal->aumentar_hambre();
+			animal->reducir_higiene();	
+			}
+            break;
+
+        case REVISAR_HAMBRE_HIGIENE:
+			if (animal->obtener_higiene() == HIGIENE_MINIMA || animal->obtener_hambre() == HAMBRE_MAXIMA){
+				animal->eliminar();
+				avisar_usuario_escapes(animal, cantidad_de_escapes);
+				cantidad_de_escapes++;
+			}
+            break;
+    }
+}
+
+void Arbol_B::recorrer_arbol(Nodo_arbol_B *nodo, int accion_a_realizar){
+	
+	int i;
+	for (i = 0; i < nodo->obtener_cant_claves(); i++){
+		if (!nodo->es_nodo_hoja()){ 
+			recorrer_arbol(nodo->obtener_hijo(i), accion_a_realizar);
+		}
+		realizar_accion(nodo->obtener_animal(i), accion_a_realizar);
+	}	
+
+	if (!nodo->es_nodo_hoja()){
+		recorrer_arbol(nodo->obtener_hijo(i), accion_a_realizar);
+	}
 }

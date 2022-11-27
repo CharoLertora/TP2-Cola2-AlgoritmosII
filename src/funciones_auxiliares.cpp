@@ -275,7 +275,7 @@ void validar_espacio(string &espacio) {
     }
 }
 
-void avisar_usuario_escapes(Animal *animal){
+void avisar_usuario_escapes(Animal *animal, int cantidad_de_escapes){
     cout << "¡OH NO! " << animal->obtener_nombre() << " ha escapado de la reserva porque ";
     if (animal->obtener_hambre() == HAMBRE_MAXIMA && animal->obtener_higiene() == HIGIENE_MINIMA){
 		cout << "tenía mucha hambre y necesitaba bañarse." << endl;
@@ -283,6 +283,10 @@ void avisar_usuario_escapes(Animal *animal){
 		cout << "necesitaba alimentarse." << endl;
 	}else {
 		cout << "no aguantaba más sin bañarse." << endl;
+	}
+
+    if (CANT_MAXIMA_ESCAPES - cantidad_de_escapes > 0){
+		cout << "Si " << (CANT_MAXIMA_ESCAPES - cantidad_de_escapes) << " animal(es) más escapa/n, la reserva será clausurada." << endl << endl;
 	}
 }
 
@@ -303,17 +307,21 @@ void reajustar(Animal** vector, int& max_vector){
     
 }
 
-
-
 void imprimir_por_espacio_y_edad(Arbol_B* arbol, int espacio){
+   
     int tope = arbol->obtener_cantidad_animales();
     Animal** vector = new Animal*[tope];
     int indice = 0;
     arbol->agregar_elementos_al_vector(vector, indice);
     QuickSort ordenamiento;
     ordenamiento.sort(vector, tope);
+    
     for (int i = 0; i < tope; i++){
-        if (vector[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20) {
+
+        if (espacio >= ESPACIO_MAXIMO) {
+            mostrar_datos_animal(vector[i]);
+
+        }else if (vector[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20) {
             mostrar_datos_animal(vector[i]);
 
         }else if (vector[i]->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= 10) {

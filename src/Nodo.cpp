@@ -15,27 +15,6 @@ Nodo_arbol_B::Nodo_arbol_B(int grado, bool es_hoja){
 	cant_claves = 0;
 }
 
-void Nodo_arbol_B::imprimir_animal(int &i){
-	if (!animales[i]->esta_eliminado()){
-		mostrar_datos_animal(animales[i]);
-	}	
-}
-
-void Nodo_arbol_B::imprimir(){
-	
-	int i;
-	for (i = 0; i < cant_claves; i++){
-		//si no es hoja va a los hijos antes d imprimir claves
-		if (!es_hoja)
-			hijos[i]->imprimir();
-		mostrar_datos_animal(animales[i]);
-	}
-
-	if (!es_hoja){
-		hijos[i]->imprimir();
-	}
-}
-
 Nodo_arbol_B *Nodo_arbol_B::buscar(string nombre, int &indice){
 	int i = 0;
 	while (i < cant_claves && nombre > claves[i]){
@@ -134,64 +113,13 @@ void Nodo_arbol_B::dividir_nodo(int i, Nodo_arbol_B *nodo_b){
 	cant_claves++;
 }
 
-void Nodo_arbol_B::actualizar_hambre_higiene(){
-
-	int i;
-	for (i = 0; i < cant_claves; i++){
-		if (!es_hoja)
-			hijos[i]->actualizar_hambre_higiene();
-		if (!animales[i]->esta_eliminado()){
-			animales[i]->aumentar_hambre();
-			animales[i]->reducir_higiene();	
-		}		
-	}
-	
-	if (!es_hoja){
-		hijos[i]->actualizar_hambre_higiene();
-	}
-}
-
-void Nodo_arbol_B::cuidar_animales(int &opcion){
-	
-	int i;
-	for (i = 0; i < cant_claves; i++){
-		if (!es_hoja){ 
-			hijos[i]->cuidar_animales(opcion);
-		}
-		if (opcion != VOLVER_INICIO && !animales[i]->esta_adoptado()){
-			mostrar_datos_animal(animales[i]);
-			pedir_respuesta(opcion);
-		}
-			
-		if (opcion != SALTEAR_ANIMAL && opcion != VOLVER_INICIO){
-			realizar_cuidado(opcion, animales[i]);
-		}			
-	}	
-	
-	if (!es_hoja && opcion != VOLVER_INICIO){
-		hijos[i]->cuidar_animales(opcion);
-	}
-}
-
 void Nodo_arbol_B::imprimir_segun_espacio(int espacio){
 	int i;
 	for (i = 0; i < cant_claves; i++){
 		if (!es_hoja){
 			hijos[i]->imprimir_segun_espacio(espacio);
 		}
-			
-		if (animales[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20) {
-            mostrar_datos_animal(animales[i]);
-
-        }else if (animales[i]->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= 10) {
-            mostrar_datos_animal(animales[i]);
-
-        }else if (animales[i]->obtener_tamanio() == TAMANIO_PEQUENIO && espacio > 2) {
-            mostrar_datos_animal(animales[i]);
-
-        }else if (animales[i]->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > 0) {
-            mostrar_datos_animal(animales[i]);
-        } 		
+					
 	}
 
 	if (!es_hoja){
@@ -199,26 +127,8 @@ void Nodo_arbol_B::imprimir_segun_espacio(int espacio){
 	}
 }
 
-void Nodo_arbol_B::revisar_hambre_higiene(int &cantidad_de_escapes){
-	int i;
-	for (i = 0; i < cant_claves; i++){
-		if (!es_hoja){ 
-			hijos[i]->revisar_hambre_higiene(cantidad_de_escapes);
-		}
-
-		if (animales[i]->obtener_higiene() == HIGIENE_MINIMA || animales[i]->obtener_hambre() == HAMBRE_MAXIMA){
-			animales[i]->eliminar();
-			avisar_usuario_escapes(animales[i]);
-			if (CANT_MAXIMA_ESCAPES - cantidad_de_escapes > 0){
-				cout << "Si " << (CANT_MAXIMA_ESCAPES - cantidad_de_escapes) << " animal(es) más escapa/n, la reserva será clausurada." << endl << endl;
-			}
-			cantidad_de_escapes++;
-		}
-	}	
-
-	if (!es_hoja){
-		hijos[i]->revisar_hambre_higiene(cantidad_de_escapes);
-	}
+void Nodo_arbol_B::imprimir_animal(int indice){
+	mostrar_datos_animal(animales[indice]);
 }
 
 void Nodo_arbol_B::guardar(fstream& archivo){
@@ -296,4 +206,8 @@ void Nodo_arbol_B::aumentar_cant_claves(){
 
 void Nodo_arbol_B::disminuir_cant_claves(){
 	cant_claves--;
+}
+
+bool Nodo_arbol_B::es_nodo_hoja(){
+	return es_hoja;
 }

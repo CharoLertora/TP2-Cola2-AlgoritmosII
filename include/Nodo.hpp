@@ -24,21 +24,15 @@ public:
 	//funcion separar. el hijo debe estar completo caudno se llame
 	void dividir_nodo(int i, Nodo_arbol_B *nodo_b);
 
-	void imprimir();
-
-	void imprimir_animal(int &i);
-
 	void imprimir_segun_espacio(int espacio);
 
 	void cuidar_animales(int &opcion);
 
 	Nodo_arbol_B* buscar(string nombre, int &i); //devuelve null si no esta
 
-	void actualizar_hambre_higiene();
-
 	void agregar_elementos_al_vector(Animal** vector, int& indice);
 
-	void revisar_hambre_higiene(int &cantidad_de_escapes);
+	void imprimir_animal(int indice);
 
 	void guardar(fstream& archivo);
 
@@ -59,6 +53,8 @@ public:
 	void aumentar_cant_claves();
 
 	void disminuir_cant_claves();
+
+	bool es_nodo_hoja();
 };
 
 #endif

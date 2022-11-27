@@ -107,7 +107,7 @@ void realizar_cuidado(int opcion, Animal* animal);
 //pos: se encarga de verificar que el espacio ingresado por el usuario no contenga letras ni números negativos.
 void validar_espacio(string &espacio);
 
-void avisar_usuario_escapes(Animal *animal);
+void avisar_usuario_escapes(Animal *animal, int cantidad_de_escapes);
 
 void imprimir_por_espacio_y_edad(Arbol_B* arbol, int espacio);
 
