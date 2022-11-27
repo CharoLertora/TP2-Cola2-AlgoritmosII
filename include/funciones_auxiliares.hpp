@@ -15,14 +15,6 @@ bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol);
 //pos: va a devolver true en caso de que la respuesta coincida con si/Si, y false en cualquier otro caso.
 bool es_respuesta_valida(string respuesta);
 
-//pre: el parámetro 'especie' debe estar previamente inicializado y debe contener valores válidos.
-//pos: Devuelve un string con la inicial del animal correspondiente
-string especie_a_inicial(string especie);
-
-//Pre: el parámetro '*animal' debe apuntar a una variable previamente inicializada y debe contener valores válidos.
-//Pos: Muestra por pantalla el animal con sus datos.
-void mostrar_datos_animal(Animal *animal);
-
 //pre: 'nombre' debe estar previamente inicializado y contener algún valor.
 //pos: devolverá true si el animal ya existe en la reserva, sino false.
 bool existe_en_la_reserva(Arbol_B *arbol, string nombre);
@@ -63,17 +55,13 @@ void validar_especie(string &especie);
 //pos: Devuelve true si hay caracteres que no son numericos, sino false.
 bool hay_letras(string edad);
 
-//pre: -
-//pos: Devuelve true si el nombre es valido, un nombre es valido solo cuando esta compuesto de letras minusculas o mayusculas o ambas, sino false.
-bool es_nombre_valido(string palabra);
+//pre: el parámetro "esta_adoptado" debe estar inicializado
+//pos: devuelve un mensaje expresando el estado de adopción del animal.
+string obtener_estado_adopcion(bool esta_adoptado);
 
-//pre: -
-//pos: Valida que el nombre solo tenga letras minusculas o mayusculas o ambas, sino te pide que vuelvas a ingresar otro nombre
-void validar_nombre_animal(string &nombre);
-
-//pre: -
-//pos: Validará que la edad no contenga letras.
-void validar_edad(string &edad);
+//Pre: el parámetro '*animal' debe apuntar a una variable previamente inicializada y debe contener valores válidos.
+//Pos: Muestra por pantalla el animal con sus datos.
+void mostrar_datos_animal(Animal *animal);
 
 //pre: los parámetros edad, tamanio, especie y personalidad deben estar previamente inicializados y ser pasados por referencia.
 //pos: Pregunta al usuario los datos del animal y valida que sean correctos.
@@ -89,19 +77,6 @@ void preguntar_datos_animal(string &edad, string &tamanio, string &especie, stri
         - Avisará en el caso de que el nombre no se encuentre en la lista.
         - Avisará y mostrará los datos del animal en caso de que haya sido encontrado en la lista.
 */
-void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado);
-
-//pre: -
-//pos: Solicitará el nombre del animal a adoptar y, en el caso de que el usuario desee adoptarlo, se eleminará de la lista de animales.
-void realizar_adopcion(Arbol_B *arbol);
-
-//pre: 'opcion' debe estar previamente inicializado y ser pasado por referencia.
-//pos: Le pregunta al usuario si desea cuidar al animal o saltearlo y una vez que su respuesta es vàlida, la guarda.
-void pedir_respuesta(int &opcion);
-
-//pre: los parámetros 'opcion' y 'animal' deben estar previamente inicializados y contener valores válidos.
-//pos: Dependiendo la opción seleccionada, baña o alimenta al animal ingresado.
-void realizar_cuidado(int opcion, Animal* animal);
 
 //pre: 'espacio' debe estar previamente inicializado y ser pasado por referencia.
 //pos: se encarga de verificar que el espacio ingresado por el usuario no contenga letras ni números negativos.
@@ -109,7 +84,6 @@ void validar_espacio(string &espacio);
 
 void avisar_usuario_escapes(Animal *animal, int cantidad_de_escapes);
 
-void imprimir_por_espacio_y_edad(Arbol_B* arbol, int espacio);
-
 void imprimir_por_edad(Arbol_B* arbol);
+
 #endif //_FUNCIONES_AUXILIARES_HPP_

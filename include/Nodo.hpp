@@ -55,6 +55,10 @@ public:
 	void disminuir_cant_claves();
 
 	bool es_nodo_hoja();
+
+	//pre: el parámetro 'especie' debe estar previamente inicializado y debe contener valores válidos.
+    //pos: Devuelve un string con la inicial de la especie correspondiente.
+    string especie_a_inicial(string especie);
 };
 
 #endif

@@ -17,55 +17,6 @@ bool es_respuesta_valida(string respuesta) {
     return (respuesta == "si") || (respuesta == "Si");
 }
 
-string especie_a_inicial(string especie) {   
-    string inicial_especie;
-    if(especie == INICIAL_PERRO || especie == ESPECIE_PERRO){
-        inicial_especie = INICIAL_PERRO;
-
-    }else if(especie == INICIAL_GATO || especie == ESPECIE_GATO){
-        inicial_especie = INICIAL_GATO;
-
-    }else if(especie == INICIAL_CABALLO || especie == ESPECIE_CABALLO){
-        inicial_especie = INICIAL_CABALLO;
-
-    }else if(especie == INICIAL_ROEDOR || especie == ESPECIE_ROEDOR){
-        inicial_especie = INICIAL_ROEDOR;
-
-    }else if(especie == INICIAL_CONEJO || especie == ESPECIE_CONEJO){
-        inicial_especie = INICIAL_CONEJO;
-
-    }else if(especie == INICIAL_ERIZO || especie == ESPECIE_ERIZO){
-        inicial_especie = INICIAL_ERIZO;
-
-    }else if(especie == INICIAL_LAGARTIJA || especie == ESPECIE_LAGARTIJA){
-        inicial_especie = INICIAL_LAGARTIJA;
-    }
-    return inicial_especie;
-}
-
-string obtener_estado_adopcion(bool esta_adoptado) {
-    
-    if (esta_adoptado) {
-        return ADOPTADO;
-    }
-    return NO_ADOPTADO;
-}
-
-void mostrar_datos_animal(Animal *animal) {
-    
-    string  estado_adopcion = obtener_estado_adopcion(animal->esta_adoptado());
-    cout << '\t' <<  "******************************" << endl
-         << '\t' << "* Nombre: " << animal->obtener_nombre()  <<  endl
-         << '\t' << "* Edad: " << animal->obtener_edad() << endl
-         << '\t' << "* Tamaño: " << animal->obtener_tamanio() << endl
-         << '\t' << "* Especie: " << animal->obtener_especie() << endl
-         << '\t' << "* Personalidad: " << animal->obtener_personalidad() << endl
-         << '\t' << "* Hambre: " << animal->obtener_hambre() << "%" << endl
-         << '\t' << "* Higiene: " << animal->obtener_higiene() << "%" << endl
-         << '\t' << "* Estado de adopción: " << estado_adopcion << endl
-         << '\t' <<"******************************" << "\n" << endl
-         << '\n' << endl;
-}
 
 bool existe_en_la_reserva(Arbol_B *arbol, string nombre) {
     bool existe_en_reserva = false;
@@ -156,33 +107,32 @@ bool hay_letras(string palabra) {
     return hay_letras;
 }
 
-bool es_nombre_valido(string palabra){
-    bool es_nombre_valido = true;
-    for (int i = 0; i < int(palabra.length()); i++){
-        if ((palabra[i] < 'a' || palabra[i] > 'z') && (palabra[i] < 'A' || palabra[i] > 'Z')){
-            es_nombre_valido = false;
-        }
+
+string obtener_estado_adopcion(bool esta_adoptado) {
+    
+    if (esta_adoptado) {
+        return ADOPTADO;
     }
-    return es_nombre_valido;
+    return NO_ADOPTADO;
 }
 
-void validar_nombre_animal(string &nombre){
-    while(!es_nombre_valido(nombre)){
-        cout << "\nEl nombre ingresado no es válida, acuérdese que no puede contener numeros o caracteres del tipo @-() etc" << endl;
-        cout << "\nNombre: ";
-        getline(cin, nombre);
-    }
+void mostrar_datos_animal(Animal* animal){
+    
+    string  estado_adopcion = obtener_estado_adopcion(animal->esta_adoptado());
+    cout << '\t' <<  "******************************" << endl
+         << '\t' << "* Nombre: " << animal->obtener_nombre()  <<  endl
+         << '\t' << "* Edad: " << animal->obtener_edad() << endl
+         << '\t' << "* Tamaño: " << animal->obtener_tamanio() << endl
+         << '\t' << "* Especie: " << animal->obtener_especie() << endl
+         << '\t' << "* Personalidad: " << animal->obtener_personalidad() << endl
+         << '\t' << "* Hambre: " << animal->obtener_hambre() << "%" << endl
+         << '\t' << "* Higiene: " << animal->obtener_higiene() << "%" << endl
+         << '\t' << "* Estado de adopción: " << estado_adopcion << endl
+         << '\t' <<"******************************" << "\n" << endl
+         << '\n' << endl;
 }
 
-void validar_edad(string &edad) {
-    while (hay_letras(edad)){
-        cout << "\nLa edad ingresada no válida, acuérdese que la edad es sólo con números" << endl;
-        cout << "\nEdad: ";
-        getline(cin, edad);
-    }
-}
-
-
+/*
 void preguntar_datos_animal(string &edad, string &tamanio, string &especie, string &personalidad) {
     cout << "\nIngrese la edad: " << "\nEdad: ";
     getline(cin, edad);
@@ -205,72 +155,11 @@ void preguntar_datos_animal(string &edad, string &tamanio, string &especie, stri
          << "\n-Perro \n-Gato \n-Caballo \n-Roedor \n-Conejo \n-Erizo \n-Lagartija\n" << endl << "\nEspecie: ";
     getline(cin >> ws, especie);
     validar_especie(especie);
-}
-
-void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado) {
-    cout << endl << "Ingrese el nombre del animal que desea buscar por favor: " << endl;
-    cin >> nombre_buscado;
-
-    if (arbol->vacio()) {
-        cout << endl << "\t -- Lo sentimos, no hay animales en esta lista, no tenemos nada que buscar. --" << endl;
-
-    } else if(!es_nombre_existente(nombre_buscado, arbol)) {
-        cout << endl << "-- El nombre que ingresó no se encuentra en nuestra lista de animales :( --" << endl;
-    
-    } else {
-        int indice = 0;
-        cout << endl << "\t -- ¡Animalito encontrado! Sus datos son: --" << endl;
-        arbol->buscar_en_el_arbol(nombre_buscado, indice)->imprimir_animal(indice);
-    }
-}
-
-void realizar_adopcion(Arbol_B *arbol) {
-    string nombre_adoptado;
-    int posicion = 0;
-
-    cout << "\t Genial! :D Ingrese el nombre del animalito que le gustaría adoptar: " << endl << endl;
-    cin >> nombre_adoptado;
-
-    if (es_nombre_existente(nombre_adoptado, arbol)) {
-        arbol->buscar_en_el_arbol(nombre_adoptado, posicion)->imprimir_animal(posicion);
-        cout << "\t ¡HA SIDO ADOPTADO CON ÉXITO! Esperamos que sean muy felices." << endl;
-        arbol->adoptar(nombre_adoptado);
-    }
-}
-
-void pedir_respuesta(int &opcion) {    
-    cout << endl << '\t' << "¿Qué desea hacer?" << endl
-    << '\t' << "1. Bañar a este animal." << endl
-    << '\t' << "2. Alimentar a este animal." << endl
-    << '\t' << "3. Saltear a este animal." << endl
-    << '\t' << "4. Volver al inicio." << endl << endl;
-
-    cin >> opcion;
-    while (opcion < BANIAR_ANIMAL || opcion > VOLVER_INICIO){
-        cout << endl << '\t' << "Esa no es una de las opciones válidas, intente de nuevo: ";
-        cin >> opcion;
-    }
-}
-
-void realizar_cuidado(int opcion, Animal* animal) {
-    if (opcion == BANIAR_ANIMAL){
-        if(animal->obtener_requiere_ducha()){
-            animal->baniar();
-            cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido bañado/a!" << endl << endl;
-        }else{
-            cout << endl << '\t' << "¡" << animal->obtener_nombre() << " no requiere ducha!" << endl << endl;
-        }
-
-    }else if (opcion == ALIMENTAR_ANIMAL){
-        animal->alimentar();
-        cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido alimentado/a!" << endl;
-        cout << '\t' << "¡" << animal->obtener_comida() << " fue su alimento!" << endl << endl;
-    }
-}
+}*/
 
 void validar_espacio(string &espacio) {
     while(hay_letras(espacio)){
-        cout << "Espacio no valido, utlice numeros positivos por favor. Gracias!!" << endl;
+        cout << "Espacio no válido, utlice números positivos, por favor!" << endl;
         getline(cin, espacio);
     }
 }
@@ -288,52 +177,4 @@ void avisar_usuario_escapes(Animal *animal, int cantidad_de_escapes){
     if (CANT_MAXIMA_ESCAPES - cantidad_de_escapes > 0){
 		cout << "Si " << (CANT_MAXIMA_ESCAPES - cantidad_de_escapes) << " animal(es) más escapa/n, la reserva será clausurada." << endl << endl;
 	}
-}
-
-
-void reajustar(Animal** vector, int& max_vector){
-    int cantidad_maxima_animales = max_vector * 2;
-    Animal** nuevo_vector_animales = new Animal*[cantidad_maxima_animales];
-
-    for (int i = 0; i < max_vector; i++){
-        nuevo_vector_animales[i] = vector[i];
-    }
-
-    if(max_vector != 0){
-        delete[] vector;
-    }
-    vector  = nuevo_vector_animales;
-    max_vector = cantidad_maxima_animales; 
-    
-}
-
-void imprimir_por_espacio_y_edad(Arbol_B* arbol, int espacio){
-   
-    int tope = arbol->obtener_cantidad_animales();
-    Animal** vector = new Animal*[tope];
-    int indice = 0;
-    arbol->agregar_elementos_al_vector(vector, indice);
-    QuickSort ordenamiento;
-    ordenamiento.sort(vector, tope);
-    
-    for (int i = 0; i < tope; i++){
-
-        if (espacio >= ESPACIO_MAXIMO) {
-            mostrar_datos_animal(vector[i]);
-
-        }else if (vector[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= 20) {
-            mostrar_datos_animal(vector[i]);
-
-        }else if (vector[i]->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= 10) {
-            mostrar_datos_animal(vector[i]);
-
-        }else if (vector[i]->obtener_tamanio() == TAMANIO_PEQUENIO && espacio > 2) {
-            mostrar_datos_animal(vector[i]);
-
-        }else if (vector[i]->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > 0) {
-            mostrar_datos_animal(vector[i]);
-        } 
-    }
-    delete[] vector;
-    
 }

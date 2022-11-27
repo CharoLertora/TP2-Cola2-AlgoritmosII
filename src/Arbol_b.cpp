@@ -1,5 +1,7 @@
 #include "../include/Arbol_b.hpp"
 #include "../include/funciones_auxiliares.hpp"
+#include "../include/Sistema.hpp"
+#include "../include/quicksort.hpp"
 
 #include <stdio.h>
 #include <string.h>
@@ -100,6 +102,36 @@ void Arbol_B::actualizar_hambre_higiene(){
 	recorrer_arbol(raiz, ACTUALIZAR_HAMBRE_HIGIENE); 
 }
 
+void Arbol_B::realizar_cuidado(int opcion, Animal* animal) {
+    if (opcion == BANIAR_ANIMAL){
+        if(animal->obtener_requiere_ducha()){
+            animal->baniar();
+            cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido bañado/a!" << endl << endl;
+        }else{
+            cout << endl << '\t' << "¡" << animal->obtener_nombre() << " no requiere ducha!" << endl << endl;
+        }
+
+    }else if (opcion == ALIMENTAR_ANIMAL){
+        animal->alimentar();
+        cout << endl << '\t' << "¡" << animal->obtener_nombre() << " ha sido alimentado/a!" << endl;
+        cout << '\t' << "¡" << animal->obtener_comida() << " fue su alimento!" << endl << endl;
+    }
+}
+
+void Arbol_B::pedir_respuesta(int &opcion) {    
+    cout << endl << '\t' << "¿Qué desea hacer?" << endl
+    << '\t' << "1. Bañar a este animal." << endl
+    << '\t' << "2. Alimentar a este animal." << endl
+    << '\t' << "3. Saltear a este animal." << endl
+    << '\t' << "4. Volver al inicio." << endl << endl;
+
+    cin >> opcion;
+    while (opcion < BANIAR_ANIMAL || opcion > VOLVER_INICIO){
+        cout << endl << '\t' << "Esa no es una de las opciones válidas, intente de nuevo: ";
+        cin >> opcion;
+    }
+}
+
 void Arbol_B::cuidar_individualmente(Nodo_arbol_B *nodo, int &opcion){
 
 	int i;
@@ -109,7 +141,7 @@ void Arbol_B::cuidar_individualmente(Nodo_arbol_B *nodo, int &opcion){
 		}
 
 		if (opcion != VOLVER_INICIO && !nodo->obtener_animal(i)->esta_adoptado()){
-			mostrar_datos_animal(nodo->obtener_animal(i));
+			nodo->imprimir_animal(i);
 			pedir_respuesta(opcion);
 		}
 			
@@ -130,34 +162,39 @@ void Arbol_B::cuidar_animales(){
 }
 
 
-void Arbol_B::mostrar_segun_espacio(Nodo_arbol_B *nodo, int espacio){
-	
-	int i;
-	for (i = 0; i < nodo->obtener_cant_claves(); i++){
-		if (!nodo->es_nodo_hoja()){ 
-			mostrar_segun_espacio(nodo->obtener_hijo(i), espacio);
-		}
-		if (nodo->obtener_animal(i)->obtener_tamanio() == TAMANIO_GRANDE && espacio >= ESPACIO_GRANDE) {
-            mostrar_datos_animal(nodo->obtener_animal(i));
+void Arbol_B::imprimir_por_espacio_y_edad(int espacio){
+   
+    int tope = obtener_cantidad_animales();
+    Animal** vector = new Animal*[tope];
+    int indice = 0;
+    agregar_elementos_al_vector(vector, indice);
+    QuickSort ordenamiento;
+    ordenamiento.sort(vector, tope);
+    
+    for (int i = 0; i < tope; i++){
 
-        }else if (nodo->obtener_animal(i)->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= ESPACIO_MEDIANO) {
-            mostrar_datos_animal(nodo->obtener_animal(i));
+        if (espacio >= ESPACIO_MAXIMO) {
+            mostrar_datos_animal(vector[i]);
 
-        }else if (nodo->obtener_animal(i)->obtener_tamanio() == TAMANIO_PEQUENIO && espacio > ESPACIO_PEQUENIO) {
-            mostrar_datos_animal(nodo->obtener_animal(i));
+        }else if (vector[i]->obtener_tamanio() == TAMANIO_GRANDE && espacio >= ESPACIO_GRANDE) {
+            mostrar_datos_animal(vector[i]);
 
-        }else if (nodo->obtener_animal(i)->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > ESPACIO_DIMINUTO) {
-            mostrar_datos_animal(nodo->obtener_animal(i));
+        }else if (vector[i]->obtener_tamanio() == TAMANIO_MEDIANO && espacio >= ESPACIO_MEDIANO) {
+            mostrar_datos_animal(vector[i]);
+
+        }else if (vector[i]->obtener_tamanio() == TAMANIO_PEQUENIO && espacio > ESPACIO_PEQUENIO) {
+            mostrar_datos_animal(vector[i]);
+
+        }else if (vector[i]->obtener_tamanio() == TAMANIO_DIMINUTO && espacio > ESPACIO_DIMINUTO) {
+            mostrar_datos_animal(vector[i]);
         } 
-	}	
-
-	if (!nodo->es_nodo_hoja()){
-		mostrar_segun_espacio(nodo->obtener_hijo(i), espacio);
-	}
+    }
+    delete[] vector;
+    
 }
 
 void Arbol_B::imprimir_segun_espacio(int espacio){
-	mostrar_segun_espacio(raiz, espacio);
+	imprimir_por_espacio_y_edad(espacio);
 }
 
 void Arbol_B::revisar_hambre_higiene(){

@@ -59,7 +59,17 @@ public:
 
 	void realizar_accion(Animal *animal, int accion_a_realizar);
 
+    //pre: los parámetros 'opcion' y 'animal' deben estar previamente inicializados y contener valores válidos.
+    //pos: Dependiendo la opción seleccionada, baña o alimenta al animal ingresado.
+    void realizar_cuidado(int opcion, Animal* animal);
+
+	//pre: 'opcion' debe estar previamente inicializado y ser pasado por referencia.
+    //pos: Le pregunta al usuario si desea cuidar al animal o saltearlo y una vez que su respuesta es vàlida, la guarda.
+    void pedir_respuesta(int &opcion);
+
 	void cuidar_individualmente(Nodo_arbol_B *nodo, int &opcion);
+
+	void imprimir_por_espacio_y_edad(int espacio);
 
 	~Arbol_B();
 };
