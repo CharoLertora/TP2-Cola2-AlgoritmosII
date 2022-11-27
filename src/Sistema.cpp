@@ -148,16 +148,17 @@ void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
 }
 
 void Sistema::revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado){
+
     cout << endl << "Ingrese el nombre del animal que desea buscar por favor: " << endl;
     cin >> nombre_buscado;
 
     if (arbol->vacio()) {
         cout << endl << "\t -- Lo sentimos, no hay animales en esta lista, no tenemos nada que buscar. --" << endl;
 
-    } else if(!es_nombre_existente(nombre_buscado, arbol)) {
+    }else if (!es_nombre_existente(nombre_buscado, arbol)) {
         cout << endl << "-- El nombre que ingresó no se encuentra en nuestra lista de animales :( --" << endl;
     
-    } else {
+    }else {
         int indice = 0;
         cout << endl << "\t -- ¡Animalito encontrado! Sus datos son: --" << endl;
         arbol->buscar_en_el_arbol(nombre_buscado, indice)->imprimir_animal(indice);
@@ -165,6 +166,7 @@ void Sistema::revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado){
 }
 
 bool Sistema::es_nombre_valido(string palabra){
+    
     bool es_nombre_valido = true;
     for (int i = 0; i < int(palabra.length()); i++){
         if ((palabra[i] < 'a' || palabra[i] > 'z') && (palabra[i] < 'A' || palabra[i] > 'Z')){
@@ -175,6 +177,7 @@ bool Sistema::es_nombre_valido(string palabra){
 }
 
 void Sistema::validar_nombre_animal(string &nombre){
+    
     while(!es_nombre_valido(nombre)){
         cout << "\nEl nombre ingresado no es válida, acuérdese que no puede contener numeros o caracteres del tipo @-() etc" << endl;
         cout << "\nNombre: ";
@@ -183,6 +186,7 @@ void Sistema::validar_nombre_animal(string &nombre){
 }
 
 void Sistema::validar_edad(string &edad) {
+    
     while (hay_letras(edad)){
         cout << "\nLa edad ingresada no válida, acuérdese que la edad es sólo con números" << endl;
         cout << "\nEdad: ";
@@ -201,7 +205,7 @@ void Sistema::buscar_animal(Arbol_B *arbol_animales){
         cout << "\t ¿Desea buscar otro animal? (Rta: Si/No):" << endl;
         cin >> respuesta;
 
-    } while(es_respuesta_valida(respuesta)); 
+    }while (es_respuesta_valida(respuesta)); 
 }
 
 
@@ -213,15 +217,15 @@ void Sistema::reajustar(Animal** vector, int& max_vector){
         nuevo_vector_animales[i] = vector[i];
     }
 
-    if(max_vector != 0){
+    if (max_vector != 0){
         delete[] vector;
     }
     vector  = nuevo_vector_animales;
     max_vector = cantidad_maxima_animales; 
-    
 }
 
 void Sistema::realizar_adopcion(Arbol_B *arbol){
+    
     string nombre_adoptado;
     int posicion = 0;
 
@@ -236,6 +240,7 @@ void Sistema::realizar_adopcion(Arbol_B *arbol){
 }
 
 void Sistema::adoptar_animal(Arbol_B *arbol_animales) {
+    
     string espacio;
     string respuesta;
 
@@ -266,7 +271,6 @@ void Sistema::elegir_individualmente(Arbol_B *arbol_animales) {
     arbol_animales->cuidar_animales();
 }
 
-
 void Sistema::guardar_y_salir(Arbol_B *arbol) {
 
     fstream archivo_animales(ARCHIVO_ANIMALES);
@@ -275,8 +279,8 @@ void Sistema::guardar_y_salir(Arbol_B *arbol) {
     archivo_animales.close();
 }
 
-
 void Sistema::verificar_si_partida_continua(Arbol_B *arbol_animales){
+ 
     arbol_animales->revisar_hambre_higiene();
     int cant_escapes = arbol_animales->obtener_cantidad_de_escapes();
     if (cant_escapes >= CANT_MAXIMA_ESCAPES){

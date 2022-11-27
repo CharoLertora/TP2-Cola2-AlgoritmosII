@@ -114,6 +114,7 @@ void Nodo_arbol_B::dividir_nodo(int i, Nodo_arbol_B *nodo_b){
 }
 
 void Nodo_arbol_B::imprimir_segun_espacio(int espacio){
+	
 	int i;
 	for (i = 0; i < cant_claves; i++){
 		if (!es_hoja){
@@ -133,32 +134,34 @@ void Nodo_arbol_B::imprimir_animal(int indice){
 
 
 string Nodo_arbol_B::especie_a_inicial(string especie) {   
-    string inicial_especie;
-    if(especie == INICIAL_PERRO || especie == ESPECIE_PERRO){
+    
+	string inicial_especie;
+    if (especie == INICIAL_PERRO || especie == ESPECIE_PERRO){
         inicial_especie = INICIAL_PERRO;
 
-    }else if(especie == INICIAL_GATO || especie == ESPECIE_GATO){
+    }else if (especie == INICIAL_GATO || especie == ESPECIE_GATO){
         inicial_especie = INICIAL_GATO;
 
-    }else if(especie == INICIAL_CABALLO || especie == ESPECIE_CABALLO){
+    }else if (especie == INICIAL_CABALLO || especie == ESPECIE_CABALLO){
         inicial_especie = INICIAL_CABALLO;
 
-    }else if(especie == INICIAL_ROEDOR || especie == ESPECIE_ROEDOR){
+    }else if (especie == INICIAL_ROEDOR || especie == ESPECIE_ROEDOR){
         inicial_especie = INICIAL_ROEDOR;
 
-    }else if(especie == INICIAL_CONEJO || especie == ESPECIE_CONEJO){
+    }else if (especie == INICIAL_CONEJO || especie == ESPECIE_CONEJO){
         inicial_especie = INICIAL_CONEJO;
 
-    }else if(especie == INICIAL_ERIZO || especie == ESPECIE_ERIZO){
+    }else if (especie == INICIAL_ERIZO || especie == ESPECIE_ERIZO){
         inicial_especie = INICIAL_ERIZO;
 
-    }else if(especie == INICIAL_LAGARTIJA || especie == ESPECIE_LAGARTIJA){
+    }else if (especie == INICIAL_LAGARTIJA || especie == ESPECIE_LAGARTIJA){
         inicial_especie = INICIAL_LAGARTIJA;
     }
     return inicial_especie;
 }
 
 void Nodo_arbol_B::guardar(fstream& archivo){
+	
 	string nombre, edad, tamanio, especie, personalidad;
 	int i;
 	for (i = 0; i < cant_claves; i++){
@@ -183,6 +186,7 @@ void Nodo_arbol_B::guardar(fstream& archivo){
 }
 
 void Nodo_arbol_B::agregar_elementos_al_vector(Animal** vector, int& indice){
+	
 	int i;
 	for (i = 0; i < cant_claves; i++){
 		if (!es_hoja){

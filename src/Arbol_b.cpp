@@ -103,6 +103,7 @@ void Arbol_B::actualizar_hambre_higiene(){
 }
 
 void Arbol_B::realizar_cuidado(int opcion, Animal* animal) {
+  
     if (opcion == BANIAR_ANIMAL){
         if(animal->obtener_requiere_ducha()){
             animal->baniar();
@@ -119,6 +120,7 @@ void Arbol_B::realizar_cuidado(int opcion, Animal* animal) {
 }
 
 void Arbol_B::pedir_respuesta(int &opcion) {    
+   
     cout << endl << '\t' << "¿Qué desea hacer?" << endl
     << '\t' << "1. Bañar a este animal." << endl
     << '\t' << "2. Alimentar a este animal." << endl

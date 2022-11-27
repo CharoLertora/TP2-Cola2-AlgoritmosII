@@ -3,6 +3,7 @@
 #include "../include/quicksort.hpp"
 
 bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol){   
+    
     int indice = 0;
     bool encontrado = false;
     Nodo_arbol_B* nodo_encontrado = arbol->buscar_en_el_arbol(nombre_buscado, indice);
@@ -17,8 +18,8 @@ bool es_respuesta_valida(string respuesta) {
     return (respuesta == "si") || (respuesta == "Si");
 }
 
-
 bool existe_en_la_reserva(Arbol_B *arbol, string nombre) {
+    
     bool existe_en_reserva = false;
     int i = 0;
 
@@ -30,6 +31,7 @@ bool existe_en_la_reserva(Arbol_B *arbol, string nombre) {
 }
 
 bool quiere_ingresar_otro_nombre() {
+   
     bool quiere_ingresar_otro = false;
     string ingreso;
 
@@ -45,6 +47,7 @@ bool quiere_ingresar_otro_nombre() {
 }
 
 void validar_nombre(Arbol_B *arbol, string &nombre) {
+   
     while (existe_en_la_reserva(arbol, nombre)){
         cout << "Ya existe ese animal en el refugio, ingresa otro nombre: ";
         getline(cin >> ws, nombre);
@@ -57,8 +60,8 @@ bool es_tamanio_valido(string tamanio) {
 }
 
 void validar_tamanio(string &tamanio) {
+   
     while (!es_tamanio_valido(tamanio)){
-
         cout << "\nEl tamaño ingresado no es correcto, ingrese un tamaño válido" << endl
              << "Acuérdese que los tamaños válidos son: " << endl
              << "\n-Diminuto \n-Pequeño \n-Mediano \n-Grande \n-Gigante\n" << endl << "\nTamaño: ";
@@ -71,8 +74,8 @@ bool es_personalidad_valida(string personalidad) {
 }
 
 void validar_personalidad(string &personalidad) {
-    while (!es_personalidad_valida(personalidad)){
 
+    while (!es_personalidad_valida(personalidad)){
         cout << "\nPersonalidad no válida, acuérdese que las personalidades válidas son: " << endl
              << "\n-Dormilon \n-Jugueton \n-Sociable \n-Travieso\n" << endl << "\nPersonalidad: ";
         getline(cin >> ws, personalidad);
@@ -86,8 +89,8 @@ bool es_especie_valida(string especie) {
 }
 
 void validar_especie(string &especie) {
+    
     while (!es_especie_valida(especie)){
-
         cout << "\nEspecie no válida, ingrese una especie válida, acuérdese que puede poner la incial en mayúscula o"
                 "la especie completa con la inicial en mayúscula"
              << endl
@@ -97,13 +100,13 @@ void validar_especie(string &especie) {
 }
 
 bool hay_letras(string palabra) {
+
     bool hay_letras = false;
     for (int i = 0; i < int(palabra.length()); i++){
         if (palabra[i] < PRIMER_NUMERO_ASCII || palabra[i] > ULTIMO_NUMERO_ASCII){
             hay_letras = true;
         }
     }
-
     return hay_letras;
 }
 
@@ -158,6 +161,7 @@ void preguntar_datos_animal(string &edad, string &tamanio, string &especie, stri
 }*/
 
 void validar_espacio(string &espacio) {
+    
     while(hay_letras(espacio)){
         cout << "Espacio no válido, utlice números positivos, por favor!" << endl;
         getline(cin, espacio);
@@ -165,6 +169,7 @@ void validar_espacio(string &espacio) {
 }
 
 void avisar_usuario_escapes(Animal *animal, int cantidad_de_escapes){
+    
     cout << "¡OH NO! " << animal->obtener_nombre() << " ha escapado de la reserva porque ";
     if (animal->obtener_hambre() == HAMBRE_MAXIMA && animal->obtener_higiene() == HIGIENE_MINIMA){
 		cout << "tenía mucha hambre y necesitaba bañarse." << endl;
