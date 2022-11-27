@@ -251,8 +251,8 @@ void Arbol_B::realizar_accion(Animal *animal, int accion_a_realizar){
         case REVISAR_HAMBRE_HIGIENE:
 			if (animal->obtener_higiene() == HIGIENE_MINIMA || animal->obtener_hambre() == HAMBRE_MAXIMA){
 				animal->eliminar();
-				avisar_usuario_escapes(animal, cantidad_de_escapes);
 				cantidad_de_escapes++;
+				avisar_usuario_escapes(animal, cantidad_de_escapes);
 			}
             break;
     }

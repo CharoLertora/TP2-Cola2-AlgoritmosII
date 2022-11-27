@@ -6,6 +6,7 @@
 #include "Arbol_b.hpp"
 #include "Animal.hpp"
 #include "Auto.hpp"
+#include "../include/menu.hpp"
 
 using namespace std;
 
@@ -64,6 +65,7 @@ private:
     Arbol_B* arbol_animales;
     Auto *vehiculo;
     bool partida_terminada;
+    Menu menu;
     
     //Métodos
 public:
@@ -86,18 +88,6 @@ public:
 
     void verificar_si_partida_continua(Arbol_B *arbol_animales);
 
-    //pre:-
-    //pos: Muestra por pantalla todos los animales de la arbol_animales, si esta vacia muestra un mensaje.
-    void listar_animales(Arbol_B *arbol_animales);
-
-    //pre:-
-    //pos: Rescata un animal, preguntandole al usuario un nombre, edad, especie, personalidad y tamanio con su validacion correspondiente
-    void rescatar_animal(Arbol_B *arbol_animales);
-
-    //pre: -
-    //pos: Verificará si el nombre ingresado se encuentra en el árbol. Si eso ocurre le mostrará al usuario los datos del animal correspondiente, de lo contrario, también le notificará al usuario.
-    void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado);
-
     //pre: -
     //pos: Devuelve true si el nombre es valido, un nombre es valido solo cuando esta compuesto de letras minusculas o mayusculas o ambas, sino false.
     bool es_nombre_valido(string palabra);
@@ -110,33 +100,17 @@ public:
     //pos: Validará que la edad no contenga letras.
     void validar_edad(string &edad);
 
-    //pre: -
-    //pos: buscará el animal solicitado por el usuario las veces que lo desee.
-    void buscar_animal(Arbol_B *arbol_animales);
-
-    //pre:-
-    //pos: Le muestra al usuario cada animal de la lista y le pregunta si desea cuidarlo o saltearlo.
-    void elegir_individualmente(Arbol_B *arbol_animales);
-
     void reajustar(Animal** vector, int& max_vector);
 
     void imprimir_por_espacio_y_edad(Arbol_B* arbol, int espacio);
-
-    //pre: -
-    ///pos: Le pregunta al usuario el nombre del animal que desea adoptar y en caso de que sea un nombre válido, marca ese animal como "adoptado" y le notifica al usuario.
-    void realizar_adopcion(Arbol_B *arbol);
-
-    //pre:-
-    //pos: solicita al usuario el espacio en metros cuadrados donde vivirá el animal a adoptar y le mostrará las opciones disponibles. Luego, llamará al procedimiento correspondiente para finalizar el proceso de adopción.
-    void adoptar_animal(Arbol_B *arbol_animales);
-
-    //pre:-
-    //pos: solicita al usuario la cantidad de combustible que desea cargar y luego, cargara el tanque con dicha cantidad.
-    void cargar_combustible();
     
     //pre: -
     //pos: cargará toda la información que se encuentre en la lista de animales en el archivo animales.csv.
     void guardar_y_salir(Arbol_B *arbol_animales);
+
+    //Pre: -
+    //Post: Le notifica al usuario que ha perdido la partida.
+    void imprimir_msje_partida_perdida();
 
     Auto* obtener_auto();
 

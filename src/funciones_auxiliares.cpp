@@ -2,22 +2,6 @@
 #include "../include/Arbol_b.hpp"
 #include "../include/quicksort.hpp"
 
-bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol){   
-    
-    int indice = 0;
-    bool encontrado = false;
-    Nodo_arbol_B* nodo_encontrado = arbol->buscar_en_el_arbol(nombre_buscado, indice);
-        if (nodo_encontrado != NULL){
-            encontrado = true;
-        }
-
-    return encontrado;
-}
-
-bool es_respuesta_valida(string respuesta) {
-    return (respuesta == "si") || (respuesta == "Si");
-}
-
 bool existe_en_la_reserva(Arbol_B *arbol, string nombre) {
     
     bool existe_en_reserva = false;
@@ -30,6 +14,7 @@ bool existe_en_la_reserva(Arbol_B *arbol, string nombre) {
     return existe_en_reserva;
 }
 
+/*
 bool quiere_ingresar_otro_nombre() {
    
     bool quiere_ingresar_otro = false;
@@ -97,19 +82,7 @@ void validar_especie(string &especie) {
              << "\n-Perro \n-Gato \n-Caballo \n-Roedor \n-Conejo \n-Erizo \n-Lagartija\n" << endl << "\nEspecie: ";
         getline(cin >> ws, especie);
     }
-}
-
-bool hay_letras(string palabra) {
-
-    bool hay_letras = false;
-    for (int i = 0; i < int(palabra.length()); i++){
-        if (palabra[i] < PRIMER_NUMERO_ASCII || palabra[i] > ULTIMO_NUMERO_ASCII){
-            hay_letras = true;
-        }
-    }
-    return hay_letras;
-}
-
+}*/
 
 string obtener_estado_adopcion(bool esta_adoptado) {
     
@@ -120,19 +93,21 @@ string obtener_estado_adopcion(bool esta_adoptado) {
 }
 
 void mostrar_datos_animal(Animal* animal){
-    
-    string  estado_adopcion = obtener_estado_adopcion(animal->esta_adoptado());
-    cout << '\t' <<  "******************************" << endl
-         << '\t' << "* Nombre: " << animal->obtener_nombre()  <<  endl
-         << '\t' << "* Edad: " << animal->obtener_edad() << endl
-         << '\t' << "* Tamaño: " << animal->obtener_tamanio() << endl
-         << '\t' << "* Especie: " << animal->obtener_especie() << endl
-         << '\t' << "* Personalidad: " << animal->obtener_personalidad() << endl
-         << '\t' << "* Hambre: " << animal->obtener_hambre() << "%" << endl
-         << '\t' << "* Higiene: " << animal->obtener_higiene() << "%" << endl
-         << '\t' << "* Estado de adopción: " << estado_adopcion << endl
-         << '\t' <<"******************************" << "\n" << endl
-         << '\n' << endl;
+
+    if (!animal->esta_eliminado()){
+        string  estado_adopcion = obtener_estado_adopcion(animal->esta_adoptado());
+        cout << '\t' <<  "******************************" << endl
+            << '\t' << "* Nombre: " << animal->obtener_nombre()  <<  endl
+            << '\t' << "* Edad: " << animal->obtener_edad() << endl
+            << '\t' << "* Tamaño: " << animal->obtener_tamanio() << endl
+            << '\t' << "* Especie: " << animal->obtener_especie() << endl
+            << '\t' << "* Personalidad: " << animal->obtener_personalidad() << endl
+            << '\t' << "* Hambre: " << animal->obtener_hambre() << "%" << endl
+            << '\t' << "* Higiene: " << animal->obtener_higiene() << "%" << endl
+            << '\t' << "* Estado de adopción: " << estado_adopcion << endl
+            << '\t' <<"******************************" << "\n" << endl
+            << '\n' << endl;        
+    }    
 }
 
 /*
@@ -159,14 +134,6 @@ void preguntar_datos_animal(string &edad, string &tamanio, string &especie, stri
     getline(cin >> ws, especie);
     validar_especie(especie);
 }*/
-
-void validar_espacio(string &espacio) {
-    
-    while(hay_letras(espacio)){
-        cout << "Espacio no válido, utlice números positivos, por favor!" << endl;
-        getline(cin, espacio);
-    }
-}
 
 void avisar_usuario_escapes(Animal *animal, int cantidad_de_escapes){
     

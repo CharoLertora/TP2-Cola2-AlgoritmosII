@@ -6,15 +6,6 @@
 
 using namespace std;
 
-
-// pre: -
-// pos: devolverá true en caso de que 'nombre_buscado' sea igual a alguno de los nombres no eliminados de la lista de animales, o false en caso contrario.
-bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol);
-
-//pre: -
-//pos: va a devolver true en caso de que la respuesta coincida con si/Si, y false en cualquier otro caso.
-bool es_respuesta_valida(string respuesta);
-
 //pre: 'nombre' debe estar previamente inicializado y contener algún valor.
 //pos: devolverá true si el animal ya existe en la reserva, sino false.
 bool existe_en_la_reserva(Arbol_B *arbol, string nombre);
@@ -51,10 +42,6 @@ bool es_especie_valida(string especie);
 //pos: verificará que la especie sea válida y, en caso de no cumplirse, se le solicitará al usuario que ingrese el valor nuevamente.
 void validar_especie(string &especie);
 
-//pre: -
-//pos: Devuelve true si hay caracteres que no son numericos, sino false.
-bool hay_letras(string edad);
-
 //pre: el parámetro "esta_adoptado" debe estar inicializado
 //pos: devuelve un mensaje expresando el estado de adopción del animal.
 string obtener_estado_adopcion(bool esta_adoptado);
@@ -77,10 +64,6 @@ void preguntar_datos_animal(string &edad, string &tamanio, string &especie, stri
         - Avisará en el caso de que el nombre no se encuentre en la lista.
         - Avisará y mostrará los datos del animal en caso de que haya sido encontrado en la lista.
 */
-
-//pre: 'espacio' debe estar previamente inicializado y ser pasado por referencia.
-//pos: se encarga de verificar que el espacio ingresado por el usuario no contenga letras ni números negativos.
-void validar_espacio(string &espacio);
 
 void avisar_usuario_escapes(Animal *animal, int cantidad_de_escapes);
 

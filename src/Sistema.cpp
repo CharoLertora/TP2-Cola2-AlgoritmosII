@@ -8,7 +8,6 @@
 #include "../include/Erizo.hpp"
 #include "../include/Lagartija.hpp"
 #include "../include/funciones_auxiliares.hpp"
-#include "../include/funciones_del_menu.hpp"
 #include "../include/Mapa.hpp"
 #include "../include/quicksort.hpp"
 
@@ -22,15 +21,17 @@ Sistema::Sistema() {
 
 void Sistema::inicializar_sistema(Sistema sistema) {
 
-    mostrar_menu();
-    int opcion = pedir_opcion();
-    validar_opcion(opcion);
+    menu.mostrar_menu();
+    int opcion = menu.pedir_opcion();
+    menu.validar_opcion(opcion);
 
     while(opcion != GUARDAR_Y_SALIR && !partida_terminada){
-        procesar_opcion(sistema, opcion);
-        mostrar_menu();
-        opcion = pedir_opcion();
-        validar_opcion(opcion);   
+        cambiar_hambre_higiene(arbol_animales);
+        vehiculo->reducir_combustible();
+        menu.procesar_opcion(arbol_animales, opcion, vehiculo);
+        menu.mostrar_menu();
+        opcion = menu.pedir_opcion();
+        menu.validar_opcion(opcion);   
         verificar_si_partida_continua(arbol_animales); 
     }
 
@@ -106,65 +107,6 @@ void Sistema::llenar_arbol(Arbol_B *arbol_animales) {
     archivo_animales.close();
 }
 
-void Sistema::listar_animales(Arbol_B *arbol_animales) {
-  
-    if (arbol_animales->vacio()) {
-        cout << "NUESTRO ÁRBOL DE ANIMALES ESTÁ VACIO, AGREGUE UN ANIMAL POR FAVOR <3" << endl;
-
-    }else {
-        cout <<  '\t' <<  "***********ANIMALES***********" << '\n' << endl;
-        arbol_animales->imprimir();
-    }
-}
-
-void Sistema::rescatar_animal(Arbol_B *arbol_animales) {
-    
-    Mapa mapa_juego(vehiculo);
-    mapa_juego.mostrar_mapa();
-
-    /*
-    string nombre, edad, tamanio, especie, personalidad;
-    bool ir_a_menu = false;
-    cout << "\nIngrese el nombre del animal a rescatar: " << "\nNombre: ";
-    getline(cin >> ws, nombre);
-    validar_nombre_animal(nombre);
-
-    while (!ir_a_menu) {
-        if (!existe_en_la_reserva(arbol_animales, nombre)) {
-            ir_a_menu = true;
-            preguntar_datos_animal(edad, tamanio, especie, personalidad);
-            agregar_animal(arbol_animales, nombre, stoi(edad), tamanio, especie_a_inicial(especie), personalidad);
-            cout << "\n¡ANIMAL RESCATADO CON ÉXITO!" << endl;
-
-        }else if (existe_en_la_reserva(arbol_animales, nombre) && !quiere_ingresar_otro_nombre()) {
-            ir_a_menu = true;
-
-        }else {
-            cout << "\nIngrese el nombre del animal a rescatar: " << "\nNombre: ";
-            getline(cin >> ws, nombre);
-        }
-    }
-    */
-}
-
-void Sistema::revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado){
-
-    cout << endl << "Ingrese el nombre del animal que desea buscar por favor: " << endl;
-    cin >> nombre_buscado;
-
-    if (arbol->vacio()) {
-        cout << endl << "\t -- Lo sentimos, no hay animales en esta lista, no tenemos nada que buscar. --" << endl;
-
-    }else if (!es_nombre_existente(nombre_buscado, arbol)) {
-        cout << endl << "-- El nombre que ingresó no se encuentra en nuestra lista de animales :( --" << endl;
-    
-    }else {
-        int indice = 0;
-        cout << endl << "\t -- ¡Animalito encontrado! Sus datos son: --" << endl;
-        arbol->buscar_en_el_arbol(nombre_buscado, indice)->imprimir_animal(indice);
-    }
-}
-
 bool Sistema::es_nombre_valido(string palabra){
     
     bool es_nombre_valido = true;
@@ -185,6 +127,7 @@ void Sistema::validar_nombre_animal(string &nombre){
     }
 }
 
+/*
 void Sistema::validar_edad(string &edad) {
     
     while (hay_letras(edad)){
@@ -192,22 +135,7 @@ void Sistema::validar_edad(string &edad) {
         cout << "\nEdad: ";
         getline(cin, edad);
     }
-}
-
-void Sistema::buscar_animal(Arbol_B *arbol_animales){
- 
-    string respuesta;
-    string nombre_buscado;
-
-    do {
-        revisar_arbol_animales(arbol_animales, nombre_buscado);
-
-        cout << "\t ¿Desea buscar otro animal? (Rta: Si/No):" << endl;
-        cin >> respuesta;
-
-    }while (es_respuesta_valida(respuesta)); 
-}
-
+}*/
 
 void Sistema::reajustar(Animal** vector, int& max_vector){
     int cantidad_maxima_animales = max_vector * 2;
@@ -224,51 +152,8 @@ void Sistema::reajustar(Animal** vector, int& max_vector){
     max_vector = cantidad_maxima_animales; 
 }
 
-void Sistema::realizar_adopcion(Arbol_B *arbol){
-    
-    string nombre_adoptado;
-    int posicion = 0;
-
-    cout << "\t Genial! :D Ingrese el nombre del animalito que le gustaría adoptar: " << endl << endl;
-    cin >> nombre_adoptado;
-
-    if (es_nombre_existente(nombre_adoptado, arbol)){
-        arbol->adoptar(nombre_adoptado);
-        cout << "\t ¡HA SIDO ADOPTADO CON ÉXITO! Esperamos que sean muy felices." << endl << endl;
-        arbol->buscar_en_el_arbol(nombre_adoptado, posicion)->imprimir_animal(posicion);
-    }
-}
-
-void Sistema::adoptar_animal(Arbol_B *arbol_animales) {
-    
-    string espacio;
-    string respuesta;
-
-    cout << "\t Ingrese el espacio en metros cuadrados del cual dispondrá el animalito para vivir" << endl;
-    cout << "\t (NO INGRESAR NÚMEROS MENORES A 0): " << endl;
- 
-    getline(cin >> ws, espacio);
-    validar_espacio(espacio);
-    arbol_animales->imprimir_por_espacio_y_edad(stoi(espacio));
-   
-    cout << "\t ¿Desea adoptar a alguno de estos animalitos? (Rta: si/no):" << endl;
-    cin >> respuesta;
-
-    if (es_respuesta_valida(respuesta)) {
-        realizar_adopcion(arbol_animales);
-        
-    }else {
-        cout << "\t Lamentamos que no quiera adoptar ninguno de nuestros animalitos :( " << endl
-            << "\t ¡Te esperamos nuevamente!" << endl;
-    }
-}
-
 void Sistema::cambiar_hambre_higiene(Arbol_B *arbol_animales) {
     arbol_animales->actualizar_hambre_higiene();
-}
-
-void Sistema::elegir_individualmente(Arbol_B *arbol_animales) {
-    arbol_animales->cuidar_animales();
 }
 
 void Sistema::guardar_y_salir(Arbol_B *arbol) {
@@ -289,8 +174,10 @@ void Sistema::verificar_si_partida_continua(Arbol_B *arbol_animales){
     }
 }
 
-void Sistema::cargar_combustible(){
-    vehiculo->cargar_combustible();
+void Sistema::imprimir_msje_partida_perdida(){
+    
+    cout << '\t' << "Se han escapado demasiados animales de la reserva" << endl;
+    cout << '\t' << '\t' << "Tristemente será CLAUSURADA :(" << endl << endl;
 }
 
 Auto* Sistema::obtener_auto(){
