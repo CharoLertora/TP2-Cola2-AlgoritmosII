@@ -114,6 +114,8 @@ public:
 
     Auto* obtener_auto();
 
+    //~Sistema();
+
 private:
 
     //pre: Los párametros nombre, edad, especie, tamanio y personalidad, que serán los atributos del animal, deben estar inicializados.

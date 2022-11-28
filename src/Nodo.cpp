@@ -242,3 +242,25 @@ void Nodo_arbol_B::disminuir_cant_claves(){
 bool Nodo_arbol_B::es_nodo_hoja(){
 	return es_hoja;
 }
+
+
+Nodo_arbol_B::~Nodo_arbol_B(){
+
+	if (!this->es_hoja){
+		for (int i = 0; i < MAX_HIJOS; i++){
+			if (hijos[i] !=  nullptr){
+				delete hijos[i];	
+			}		
+		}
+	}
+
+	for (int i = 0; i < cant_claves; i++){
+		if (animales[i] !=  nullptr){
+			delete animales[i];	
+		}
+	}
+
+	delete[] claves;
+	delete[] animales;
+	delete[] hijos;
+}

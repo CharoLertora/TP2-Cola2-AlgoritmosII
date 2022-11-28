@@ -2,8 +2,9 @@
 #define NODO
 #include <iostream>
 #include "Animal.hpp"
-const int LLAVES_MAX_CANT = 3;
 
+const int LLAVES_MAX_CANT = 3;
+const int MAX_HIJOS = 3;
 
 class Nodo_arbol_B{
 	//Atributos:
@@ -18,6 +19,8 @@ private:
 	//Métodos:
 public:
 	Nodo_arbol_B(int grado, bool es_hoja);   // Constructor
+
+	void inicializar_vectores();
 
 	void insertar_cuando_no_este_lleno(Animal* animal_a_insertar);
 
@@ -59,6 +62,8 @@ public:
 	//pre: el parámetro 'especie' debe estar previamente inicializado y debe contener valores válidos.
     //pos: Devuelve un string con la inicial de la especie correspondiente.
     string especie_a_inicial(string especie);
+
+	~Nodo_arbol_B();
 };
 
 #endif

@@ -71,6 +71,8 @@ public:
 
 	void imprimir_por_espacio_y_edad(int espacio);
 
+	void eliminar_nodos(Nodo_arbol_B *nodo);
+
 	~Arbol_B();
 };
 

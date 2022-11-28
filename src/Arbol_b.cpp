@@ -225,10 +225,6 @@ int Arbol_B::obtener_cantidad_animales(){
 	return cantidad_de_animales;
 }
 
-Arbol_B::~Arbol_B(){
-	delete raiz;
-}
-
 void Arbol_B::imprimir(){
 	recorrer_arbol(raiz, LISTAR);
 }
@@ -271,4 +267,19 @@ void Arbol_B::recorrer_arbol(Nodo_arbol_B *nodo, int accion_a_realizar){
 	if (!nodo->es_nodo_hoja()){
 		recorrer_arbol(nodo->obtener_hijo(i), accion_a_realizar);
 	}
+}
+
+/*
+void Arbol_B::eliminar_nodos(Nodo_arbol_B *nodo){
+
+	if (nodo != nullptr){
+		eliminar_nodos(nodo->obtener_hijo(0));
+		eliminar_nodos(nodo->obtener_hijo(1));
+		eliminar_nodos(nodo->obtener_hijo(2));
+		delete nodo;
+	}
+}*/
+
+Arbol_B::~Arbol_B(){
+	delete raiz;
 }
