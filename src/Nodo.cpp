@@ -77,12 +77,12 @@ void Nodo_arbol_B::insertar_cuando_no_este_lleno(Animal* animal_a_insertar){
 void Nodo_arbol_B::dividir_nodo(int i, Nodo_arbol_B *nodo_b){
 	//crea nodo nodo_c con grado- 1 claves
 	Nodo_arbol_B *nodo_c = new Nodo_arbol_B(nodo_b->grado, nodo_b->es_hoja);
-	nodo_c->cant_claves = grado - 1;
 
 	// copia de b a c las claves
 	for (int j = 0; j < grado - 1; j++){
         nodo_c->claves[j] = nodo_b->claves[j + grado];
         nodo_c->animales[j] = nodo_b->animales[j + grado];
+		nodo_c->cant_claves += 1;
     }
 
 	// copia hijos de b a c
@@ -247,10 +247,10 @@ bool Nodo_arbol_B::es_nodo_hoja(){
 Nodo_arbol_B::~Nodo_arbol_B(){
 
 	if (!this->es_hoja){
-		for (int i = 0; i < MAX_HIJOS; i++){
-			if (hijos[i] !=  nullptr){
-				delete hijos[i];	
-			}		
+		int i = 0;
+		while (i < cant_claves + 1){
+			delete hijos[i];
+			i++;
 		}
 	}
 

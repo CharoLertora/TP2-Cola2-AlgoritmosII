@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Animal.hpp"
 
-const int LLAVES_MAX_CANT = 3;
+const int MAX_CLAVES  = 2;
 const int MAX_HIJOS = 3;
 
 class Nodo_arbol_B{
