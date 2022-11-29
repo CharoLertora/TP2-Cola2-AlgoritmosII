@@ -3,6 +3,7 @@
 #include "Nodo_lista.hpp"
 
 const int POSICION_INICIAL = 1;
+const int POSICION_NO_ENCONTRADA = -1;
 
 using namespace std;
 
@@ -23,13 +24,20 @@ public:
 
     //Pre: -
     //Post: agrega un nuevo elemento a la lista.
-    void agregar(int numero, string tipo_terreno);
+    void agregar(int numero);
+
+    //Pre: el peso debe estar previamente calculado.
+    //Post: agrega un nuevo elemento a lista pero de forma ordenada según el peso menor.
+    void agregar(int numero, int peso);
     
-    /*
-    //pre: La posiciòn ingresada debe ser válida, es decir, no puede ser menor a uno ni mayor a la "cantidad actual de vertices + 1".
-    //pos: Agrega un nuevo nodo a la lista en la posiciòn ingresada y guarda "dentro" un vertice.
-    void alta(Vertice* vertice, int pos);
-    */
+    //Pre: -
+    //Post: devuelve el nodo inicial de la lista.
+    Nodo* obtener_primero();
+
+    //Pre: -
+    //Post: devolverá la posición en la que se encuentra el número recibido o -1 si no lo
+    int obtener_posicion(int numero);
+
     //pre: Debe haber un nodo en la posición ingresada.
     //pos: Elimina el nodo que se encuentra en la posición ingresada.
     void baja(int pos);
@@ -37,10 +45,6 @@ public:
     //pre: - 
     //pos: Devuelve la cantidad de vertices que hay en la lista.
     int obtener_cantidad();
-
-    //pre: Debe haber un nodo en la posición ingresada.
-    //pos: Devuelve la dirección del vertice que se encuentra en el nodo en la posición ingresada.
-    Vertice* consulta(int pos);
 
     //pre: - 
     //pos: Devuelve true si la lista está vacía y false en caso contrario.
@@ -55,6 +59,7 @@ private:
     //pre: Debe haber un nodo en la posición ingresada.
     //pos: Devuelve la dirección del nodo que se encuentra en la posición ingresada.
     Nodo* encontrar_nodo(int pos);
+
 };
 
 #endif

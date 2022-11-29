@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 Lista::Lista () {
     primero = 0;
     ultimo = 0;
@@ -21,21 +22,68 @@ Nodo* Lista::encontrar_nodo(int pos) {
     return nodo;
 }
 
-void Lista::agregar(int numero, string tipo_terreno) {
+void Lista::agregar(int numero) {
 
-    Nodo* nuevo_nodo = new Nodo(numero, tipo_terreno);
+    Nodo* nuevo_nodo = new Nodo(numero);
 
     if (primero == nullptr) {
         primero = nuevo_nodo;
         ultimo = primero;
+        
     } else {
         ultimo->asignar_siguiente(nuevo_nodo);
         ultimo = nuevo_nodo;
     }
     cantidad++;
 }
+/*
+void Lista::agregar(int numero, int peso) {
+    
+    Nodo* nuevo_nodo = new Nodo(numero);
 
+    if (primero == nullptr) {
+        primero = nuevo_nodo;
+        ultimo = primero;
+        primero->asignar_peso(peso);
+    } else {
+        if (nuevo_nodo->obtener_peso() < ultimo->obtener_peso()) {
+            
+            Nodo* aux = ultimo;
+            ultimo = nuevo_nodo;
+            ultimo->asignar_siguiente(aux);
+        } else {
+            ultimo->asignar_siguiente(nuevo_nodo);
+            ultimo = nuevo_nodo;
+        }
+    }
+    cantidad++;
+}
+*/
+int Lista::obtener_posicion(int numero) {
+    
+    bool encontrado = false;
+    int i = 0;
+    Nodo* auxiliar = primero;
+    
+    while (!encontrado && i < cantidad) {
+        if (auxiliar->obtener_numero() == numero) {
+            encontrado = true;
+        }
+        i++;
+        auxiliar = auxiliar->obtener_siguiente();
+    }
 
+    if (!encontrado) {
+        return POSICION_NO_ENCONTRADA;
+    }
+    return i - 1;
+}
+
+Nodo* Lista::obtener_primero() {
+    return this->primero;
+}
+
+//Ver si se puede modificar o borrar.
 void Lista::baja (int pos) {
 
     Nodo* auxiliar;
@@ -61,17 +109,17 @@ int Lista::obtener_cantidad () {
     return cantidad;
 }
 
-Vertice* Lista::consulta (int pos) {
-    Nodo* nodo_buscado = encontrar_nodo(pos);
-    return nodo_buscado->obtener_vertice();
-}
 
 bool Lista::vacia () {
     return (cantidad == 0);
 }
 
 Lista::~Lista () {
-    while (!vacia()) {
-        baja(1); 
+    
+    Nodo* siguiente;
+    while (primero != nullptr) {
+        siguiente = primero->obtener_siguiente();
+        delete primero;
+        primero = siguiente;
     }
 }

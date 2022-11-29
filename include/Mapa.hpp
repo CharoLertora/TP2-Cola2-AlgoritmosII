@@ -9,8 +9,6 @@ using namespace std;
 const int MAX_TERRENO = 8;
 const int MAX_ANIMALES = 5;
 
-const string ARCHIVO_ANIMALES_A_RESCATAR = "animales_a_rescatar.csv";
-
 const string TIERRA = "🌳"; 
 const string CAMINO = "🟨";
 const string MONTANIA = "⛰️ ";
@@ -25,6 +23,10 @@ const string IMAGEN_ERIZO = "🦔";
 const string IMAGEN_ROEDOR = "🐭";
 const string IMAGEN_LAGARTIJA = "🦎";
 
+const int COSTO_MONTANIA = 5;
+const int COSTO_PRECIPICIO = 40;
+const int COSTO_CAMINO = 1;
+const int COSTO_TIERRA = 2;
 
 typedef struct coordenada {
     int fil;

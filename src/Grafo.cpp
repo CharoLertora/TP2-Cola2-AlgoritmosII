@@ -9,10 +9,19 @@ Grafo::Grafo(){
     algoritmo = nullptr;
 }
 
-void Grafo::agregar_vertice(int numero, string tipo_terreno){
+Grafo::Grafo(int actual, int destino, int peso) {
+
+    for (int i = 0; i < vertices->obtener_cantidad(); i++) {
+        matriz_adyacencia[vertices->obtener_cantidad()][i] = INFINITO;
+        matriz_adyacencia[i][vertices->obtener_cantidad()] = INFINITO;
+    }
+    
+}
+
+void Grafo::agregar_vertice(int numero){
 
     agrandar_matriz_adyacencia();
-    vertices->agregar(numero, tipo_terreno);
+    vertices->agregar(numero);
 
 }
 
@@ -58,8 +67,37 @@ void Grafo::liberar_matriz_adyacente() {
     delete[] matriz_adyacencia;
 }
 
-void Grafo::agregar_camino(int origen, int destino, int peso) {
-    
+void Grafo::agregar_camino(int numero_origen, int numero_destino, int peso) {
+
+    int posicion_origen = vertices->obtener_posicion(numero_origen);
+    int posicion_destino = vertices->obtener_posicion(numero_destino);
+
+    if (posicion_origen == POSICION_NO_ENCONTRADA) {
+        cout << endl << "El vértice " << numero_origen << " no existe en el grafo." << endl;
+    }
+    if (posicion_destino == POSICION_NO_ENCONTRADA) {
+        cout << endl << "El vértice " << numero_destino << " no existe en el grafo." << endl;
+    }
+
+    if (!(posicion_destino == POSICION_NO_ENCONTRADA || posicion_destino == POSICION_NO_ENCONTRADA)) {
+        matriz_adyacencia[posicion_origen][posicion_destino] = peso;
+        matriz_adyacencia[posicion_destino][posicion_origen] = peso;
+    }
+}
+
+void Grafo::crear_algoritmo_camino() {
+    delete algoritmo;
+    algoritmo = new Camino_minimo(vertices, matriz_adyacencia);
+}
+
+void Grafo::camino_minimo(int numero_origen, int numero_destino) {
+
+    int posicion_origen = vertices->obtener_posicion(numero_origen);
+    int posicion_destino = vertices->obtener_posicion(numero_destino);
+
+    if (!(posicion_destino == POSICION_NO_ENCONTRADA || posicion_origen == POSICION_NO_ENCONTRADA)) {
+        algoritmo->camino_minimo(numero_origen, numero_destino);
+    }
 }
 
 Grafo::~Grafo() {

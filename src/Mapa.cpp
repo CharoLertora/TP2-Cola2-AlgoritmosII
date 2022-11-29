@@ -14,6 +14,13 @@
 
 const string NOMBRE_RESCATADO = "SIN NOMBRE";
 
+
+/*CAMBIAR ESTOS MÉTODOS Y HARDCODEAR EL MAPA COMO
+INT MAPA[MAX][MAX] = {
+    {c, P, T, T},
+    {C, C, C, C}.
+    ....
+};*/
 void llenar_primera_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[0][0] = CAMINO;
@@ -124,16 +131,8 @@ int numero_random(int rango, int minimo){
 void Mapa::ubicar_auto(){
 
     terreno[0][0] = AUTO;
-    vehiculo->asignar_posicion(grafo->encontrar_vertice(0,0));
 }
 
-void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
-
-    Vertice *vertice = grafo->encontrar_vertice(fila, columna);
-    if (vertice != NULL){
-        vertice->asignar_animal(animal); 
-    }
-}
 
 void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Grafo* grafo){
 
@@ -161,7 +160,6 @@ void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Gra
         terreno[fila][columna] = IMAGEN_LAGARTIJA;
     } 
 
-    copiar_animales(grafo, animal, fila, columna);
 }
 
 void Mapa::ubicar_animales(){
@@ -296,11 +294,13 @@ void Mapa::llenar_vector() {
     }
 }
 
+
 Mapa::Mapa(Auto* vehiculo) {
 
     this->vehiculo = vehiculo;
     grafo = new Grafo();
     llenar_vector();
+    
     llenar_primera_fila(terreno);
     llenar_segunda_fila(terreno);
     llenar_tercera_fila(terreno);
@@ -309,6 +309,8 @@ Mapa::Mapa(Auto* vehiculo) {
     llenar_sexta_fila(terreno);
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
+    
+
     copiar_en_grafo();
     ubicar_auto();
     ubicar_animales();
@@ -324,11 +326,27 @@ void Mapa::mostrar_mapa() {
     }
 }
 
+int calcular_peso(string tipo_terreno) {
+
+    if (tipo_terreno == MONTANIA){
+        return COSTO_MONTANIA;
+    }else if (tipo_terreno == PRECIPICIO){
+        return COSTO_PRECIPICIO;
+    }else if (tipo_terreno == CAMINO){
+        return COSTO_CAMINO;
+    }else {
+        return COSTO_TIERRA;
+    }
+}
+
 void Mapa::copiar_en_grafo(){
     
+    int contador = 1;
+
     for (int i = 0; i < MAX_TERRENO; i++) {
         for (int j = 0; j < MAX_TERRENO; j++) {
-            grafo->agregar_vertice(i, j, terreno [i][j]);
+            grafo->agregar_vertice(contador);
+            contador++;
         }
     }    
 }
