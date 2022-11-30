@@ -62,38 +62,69 @@ public:
     //Post: Devolverá el tipo de terreno que representa la casilla en la que se encuentra.
     char obtener_tipo_terreno();
 
+    //Pre: -
+    //Post: Devuelve el vector "animales" del Mapa.
     Animal* obtener_vector_animales(); 
 
-    void ubicar_auto();
-
+    //Destructor
+    //Pre: -
+    //Post: Libera la memoria ocupada por el Mapa y sus atributos.  
     ~Mapa();
 
 private:
 
+    //Pre: -
+    //Post: Llena el vector de animales con diferentes animales generados de manera random.
     void llenar_vector();
 
+    //Pre: -
+    //Post: Copia los datos del terreno en el grafo.
     void copiar_en_grafo();   
 
+    //Pre: - 
+    //Post: Le asigna cada animal del vector "animales" una posicion en el terreno.
     void ubicar_animales();
 
+    //Pre: -
+    //Post: Le asigna una posición en el terreno al vehiculo.
+    void ubicar_auto();
+
+    //Pre: -
+    //Post: Crea un animal de la especie correspondiente a la generada de manera random, guardandolo en el vector "animales".
     void cargar_animal(int numero, Animal* &animal_random, string nombre, string tamanio, string personalidad, int edad);
 
+    //Pre: "especies" debe estar inicializado, al igual que "numero".
+    //Post: Genera especies de manera random hasta llegar a una que no se encuentre repetida.
     void validar_especie(int especies[MAX_ANIMALES], int &numero, int numero_animal);
 
+    //Pre: "especies" debe estar inicializado, al igual que "numero".
+    //Post: Verifica que el numero ingresado no se repita, para que las especies de los animales sean diferentes.
     bool ya_salio(int especies[MAX_ANIMALES], int numero);
 
+    //Pre: -
+    //Post: Ubica de manera random cada animal en una posición del terreno, corroborando que no se encuentre en la misma posición que el auto u otro animal. 
     void ubicar_animal(Animal* animal, Grafo* grafo);
 
     void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna);
 
+    //Pre: Tanto "rango" como "minimo" deben estar inicializados.
+    //Post: Genera un numero random respetando el rango y el minimo ingresado. 
     int numero_random(int rango, int minimo);
 
+    //Pre: -
+    //Post: Corrobora que en el espacio del terreno correspondiente a la fila y columna ingresada no se encuentre ningún animal.
     bool hay_animal(int fila, int columna);
 
+    //Pre: -
+    //Post: Genera una especie random entre las posibles.
     string especie_random();
 
+    //Pre: -
+    //Post: Genera una personalidad random entre las posibles.
     string personalidad_random();
 
+    //Pre: -
+    //Post: Genera un tamaño random entre los posibles.
     string tamanio_random();
 };  
 
