@@ -17,8 +17,9 @@ const int COSTO_PRECIPICIO = 40;
 const int COSTO_CAMINO = 1;
 const int COSTO_TIERRA = 2;
 
-const int MAX = 8;
-const int INFINITO = 999999;
+const int MAX_TERRENO = 8;
+const int MAX_MATRIZ = MAX_TERRENO * MAX_TERRENO;
+const int INFINITO = 99;
 class Grafo {
     //Atributos:
 private:
@@ -30,13 +31,17 @@ private:
 public:
     Grafo();
 
-    Grafo(string terreno[MAX][MAX]);
+    Grafo(string terreno[MAX_TERRENO][MAX_TERRENO]);
 
-    
-
-    void calcular_adyacentes(int** matriz_adyacencia, int fila, int col, string terreno[MAX][MAX]);
+    void calcular_adyacentes(int** matriz_adyacencia, int fila, int col, string terreno[MAX_TERRENO][MAX_TERRENO]);
     
     void mostrar_matriz_adyacencia(int** matriz_adyacencia);
+
+    void inicializar_matriz_adyacencia();
+
+    void cargar_matriz();
+
+    int calcular_vertice(int fila, int columna);
 /*
     void agregar_vertice(int numero);
 

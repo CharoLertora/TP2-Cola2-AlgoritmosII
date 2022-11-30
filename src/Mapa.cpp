@@ -316,10 +316,25 @@ Mapa::Mapa(Auto* vehiculo) {
     //ubicar_auto();
     //ubicar_animales();
 }
+
+
+void Mapa::inicializar_mapa() {
+
+    this->terreno[MAX_TERRENO][MAX_TERRENO] = {
+        {CAMINO, PRECIPICIO, TIERRA, TIERRA, TIERRA, TIERRA, TIERRA, TIERRA},
+        {CAMINO, TIERRA, TIERRA, TIERRA, PRECIPICIO, PRECIPICIO, PRECIPICIO, PRECIPICIO},
+        {CAMINO, CAMINO, CAMINO, CAMINO, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {MONTANIA, MONTANIA, MONTANIA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, CAMINO, CAMINO, CAMINO},
+    };
+}
 */
 Mapa::Mapa() {
     llenar_vector();
-    
+    //inicializar_mapa();
     llenar_primera_fila(terreno);
     llenar_segunda_fila(terreno);
     llenar_tercera_fila(terreno);

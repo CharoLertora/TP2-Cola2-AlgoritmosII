@@ -6,7 +6,6 @@
 
 using namespace std;
 
-const int MAX_TERRENO = 8;
 const int MAX_ANIMALES = 5;
 
 const string IMAGEN_PERRO = "🐶";
@@ -35,6 +34,8 @@ class Mapa {
         //Mapa(Auto *vehiculo);
 
         Mapa();
+
+        //void inicializar_mapa();
 
         //Pre: el mapa debe estar previamente cargado.
         //Post: mostrara el mapa disponible por pantalla.
