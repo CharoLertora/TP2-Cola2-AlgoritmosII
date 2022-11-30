@@ -67,59 +67,62 @@ private:
     
     //Métodos
 public:
+
     //Constructor
-    //pre:-
-    //pos: Construye un objeto sistema
+    //Pre:-
+    //Post: Construye un objeto sistema
     Sistema();
 
-    //pre: 'sistema' debe estar previamente inicializado.
-    //pos: Inicializa el programa, mostrando el menu y llamando a las funciones correspondiente del programa
+    //Pre: 'sistema' debe estar previamente inicializado.
+    //Post: Inicializa el programa, mostrando el menu y llamando a las funciones correspondiente del programa
     void inicializar_sistema(Sistema sistema);
 
-    //pre:-
-    //pos: Devuelve la lista de animales.
+    //Pre:-
+    //Post: Devuelve la lista de animales.
     Arbol_B* obtener_arbol_animales();
 
-    //pre:-
-    //pos: Aumenta el hambre y reduce la higiene de todos los animales de la arbol_animales
+    //Pre:-
+    //Post: Aumenta el hambre y reduce la higiene de todos los animales de la arbol_animales
     void cambiar_hambre_higiene(Arbol_B *arbol_animales);
 
+    //Pre: El árbol debe encontrarse inicializado.
+    //Post: Verifica si la cantidad de animales que escaparon es menor a la permitida. En caso de no ser así, le notifica al usuario y se termina el programa.
     void verificar_si_partida_continua(Arbol_B *arbol_animales);
 
-    //pre: -
-    //pos: Devuelve true si el nombre es valido, un nombre es valido solo cuando esta compuesto de letras minusculas o mayusculas o ambas, sino false.
+    //Pre: -
+    //Post: Devuelve true si el nombre es valido, un nombre es valido solo cuando esta compuesto de letras minusculas o mayusculas o ambas, sino false.
     bool es_nombre_valido(string palabra);
 
-    //pre: -
-    //pos: Valida que el nombre solo tenga letras minusculas o mayusculas o ambas, sino te pide que vuelvas a ingresar otro nombre
+    //Pre: -
+    //Post: Valida que el nombre solo tenga letras minusculas o mayusculas o ambas, sino te pide que vuelvas a ingresar otro nombre
     void validar_nombre_animal(string &nombre);
 
-    //pre: -
-    //pos: Validará que la edad no contenga letras.
+    //Pre: -
+    //Post: Validará que la edad no contenga letras.
     void validar_edad(string &edad);
 
     void reajustar(Animal** vector, int& max_vector);
-
-    void imprimir_por_espacio_y_edad(Arbol_B* arbol, int espacio);
     
-    //pre: -
-    //pos: cargará toda la información que se encuentre en la lista de animales en el archivo animales.csv.
+    //Pre: -
+    //Post: cargará toda la información que se encuentre en la lista de animales en el archivo animales.csv.
     void guardar_y_salir(Arbol_B *arbol_animales);
 
     //Pre: -
-    //Post: Le notifica al usuario que ha perdido la partida.
+    //Postt: Le notifica al usuario que ha perdido la partida.
     void imprimir_msje_partida_perdida();
 
+    //Pre:-
+    //Post: Devuelve el atributo "vehiculo" del sistema.
     Auto* obtener_auto();
 
 private:
 
-    //pre: Los párametros nombre, edad, especie, tamanio y personalidad, que serán los atributos del animal, deben estar inicializados.
-    //pos: Agrega el animal ingresado a la lista de animales.
+    //Pre: Los párametros nombre, edad, especie, tamanio y personalidad, que serán los atributos del animal, deben estar inicializados.
+    //Post: Agrega el animal ingresado a la lista de animales.
     void agregar_animal(Arbol_B *arbol_animales, string nombre, int edad, string tamanio, string especie, string personalidad);
 
-    //pre: '*arbol_animales' debe apuntar al atributo de la clase Sistema el cuál debe estar previamente inicializado.
-    //pos: Llenará la lista con los animales que encuentre en el archivo. En caso de no haber archivo, creará uno.
+    //Pre: '*arbol_animales' debe apuntar al atributo de la clase Sistema el cuál debe estar previamente inicializado.
+    //Post: Llenará la lista con los animales que encuentre en el archivo. En caso de no haber archivo, creará uno.
     void llenar_arbol(Arbol_B *arbol_animales);
 };
 

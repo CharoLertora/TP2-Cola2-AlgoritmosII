@@ -13,6 +13,7 @@ private:
 
     //Métodos
 public:
+
     //Constructor
     //pre:-
     //pos: Crea un nodo y guarda el vertice ingresado.

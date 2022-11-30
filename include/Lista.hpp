@@ -15,6 +15,7 @@ private:
 
     //Métodos
 public:
+
     //Constructor 
     //pre: - 
     //pos: Construye una lista con cantidad en 0 y primero null.
@@ -46,6 +47,7 @@ public:
     ~Lista();
 
 private:
+
     //pre: Debe haber un nodo en la posición ingresada.
     //pos: Devuelve la dirección del nodo que se encuentra en la posición ingresada.
     Nodo* encontrar_nodo(int pos);

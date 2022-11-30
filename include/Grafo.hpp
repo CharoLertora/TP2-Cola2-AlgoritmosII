@@ -13,6 +13,7 @@ private:
 
     //Métodos:
 public:
+
     Grafo();
 
     void agregar_vertice(int fila, int columna, string tipo_terreno);
