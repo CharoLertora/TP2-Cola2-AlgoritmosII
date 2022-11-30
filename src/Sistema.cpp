@@ -37,6 +37,8 @@ void Sistema::inicializar_sistema(Sistema sistema) {
 
     guardar_y_salir(sistema.obtener_arbol_animales());
     cout << endl << "¡Hasta la próxima!" << endl << endl;
+    delete arbol_animales;
+    delete vehiculo;
 }
 
 Arbol_B* Sistema::obtener_arbol_animales() {
@@ -182,9 +184,4 @@ void Sistema::imprimir_msje_partida_perdida(){
 
 Auto* Sistema::obtener_auto(){
     return vehiculo;
-}
-
-Sistema::~Sistema(){
-    delete arbol_animales;
-    delete vehiculo;
 }
