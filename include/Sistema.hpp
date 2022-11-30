@@ -5,7 +5,7 @@
 #include <cstring>
 #include "Arbol_b.hpp"
 #include "Animal.hpp"
-#include "Auto.hpp"
+//#include "Auto.hpp"
 
 using namespace std;
 
@@ -55,7 +55,7 @@ class Sistema {
     //Atributos
 private:
     Arbol_B* arbol_animales;
-    Auto *vehiculo;
+    //Auto *vehiculo;
     bool partida_terminada;
     
     //Métodos
@@ -107,7 +107,7 @@ public:
     //pos: cargará toda la información que se encuentre en la lista de animales en el archivo animales.csv.
     void guardar_y_salir(Arbol_B *arbol_animales);
 
-    Auto* obtener_auto();
+    //Auto* obtener_auto();
 
 private:
 

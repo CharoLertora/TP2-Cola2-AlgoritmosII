@@ -2,18 +2,12 @@
 #define _MAPA_HPP_
 #include "Animal.hpp"
 #include "Grafo.hpp"
-#include "Auto.hpp"
+//#include "Auto.hpp"
 
 using namespace std;
 
 const int MAX_TERRENO = 8;
 const int MAX_ANIMALES = 5;
-
-const string TIERRA = "🌳"; 
-const string CAMINO = "🟨";
-const string MONTANIA = "⛰️ ";
-const string PRECIPICIO = "🕳 ";
-const string AUTO = "🚘";
 
 const string IMAGEN_PERRO = "🐶";
 const string IMAGEN_GATO = "🐱";
@@ -23,15 +17,6 @@ const string IMAGEN_ERIZO = "🦔";
 const string IMAGEN_ROEDOR = "🐭";
 const string IMAGEN_LAGARTIJA = "🦎";
 
-const int COSTO_MONTANIA = 5;
-const int COSTO_PRECIPICIO = 40;
-const int COSTO_CAMINO = 1;
-const int COSTO_TIERRA = 2;
-
-typedef struct coordenada {
-    int fil;
-    int col;
-};
 
 class Mapa {
 
@@ -40,14 +25,16 @@ class Mapa {
         string terreno[MAX_TERRENO][MAX_TERRENO];
         Animal *animales_a_rescatar[MAX_ANIMALES];
         Grafo *grafo;
-        Auto *vehiculo;
+        //Auto *vehiculo;
 
     //Métodos:
     public:
 
         //Pre: -
         //Post: construirá el mapa de juego disponible.
-        Mapa(Auto *vehiculo);
+        //Mapa(Auto *vehiculo);
+
+        Mapa();
 
         //Pre: el mapa debe estar previamente cargado.
         //Post: mostrara el mapa disponible por pantalla.

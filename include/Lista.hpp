@@ -26,10 +26,11 @@ public:
     //Post: agrega un nuevo elemento a la lista.
     void agregar(int numero);
 
+/*
     //Pre: el peso debe estar previamente calculado.
     //Post: agrega un nuevo elemento a lista pero de forma ordenada según el peso menor.
     void agregar(int numero, int peso);
-    
+*/    
     //Pre: -
     //Post: devuelve el nodo inicial de la lista.
     Nodo* obtener_primero();

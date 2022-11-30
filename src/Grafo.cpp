@@ -1,23 +1,102 @@
 #include <iostream>
 #include "../include/Grafo.hpp"
 
-
+/*
 Grafo::Grafo(){
 
     matriz_adyacencia = nullptr;
     vertices = new Lista();
     algoritmo = nullptr;
 }
+*/
 
-Grafo::Grafo(int actual, int destino, int peso) {
+int calcular_peso(string tipo_terreno) {
 
-    for (int i = 0; i < vertices->obtener_cantidad(); i++) {
-        matriz_adyacencia[vertices->obtener_cantidad()][i] = INFINITO;
-        matriz_adyacencia[i][vertices->obtener_cantidad()] = INFINITO;
+    if (tipo_terreno == MONTANIA){
+        return COSTO_MONTANIA;
+    }else if (tipo_terreno == PRECIPICIO){
+        return COSTO_PRECIPICIO;
+    }else if (tipo_terreno == CAMINO){
+        return COSTO_CAMINO;
+    }else {
+        return COSTO_TIERRA;
     }
-    
 }
 
+void Grafo::calcular_adyacentes(int** matriz_adyacencia, int fila, int columna, string terreno[MAX][MAX]) {
+cout << "hola3" << endl;
+    if (fila == 0 && columna == 0) {
+        matriz_adyacencia[fila][columna+1] = calcular_peso(terreno[fila][columna+1]);
+        matriz_adyacencia[fila+1][columna] = calcular_peso(terreno[fila+1][columna]);
+        cout << "acá1" << endl;
+    } else if (fila == 7 && columna == 0) {
+        matriz_adyacencia[fila][columna+1] = calcular_peso(terreno[fila][columna+1]);
+        matriz_adyacencia[fila-1][columna] = calcular_peso(terreno[fila-1][columna]);
+        cout << "acá2" << endl;
+    } else if (fila == 0 && columna == 7) {
+        matriz_adyacencia[fila][columna-1] = calcular_peso(terreno[fila][columna-1]);
+        matriz_adyacencia[fila+1][columna] = calcular_peso(terreno[fila+1][columna]);
+        cout << "acá3" << endl;
+    } else if (fila == 7 && fila == 7) {
+        matriz_adyacencia[fila][columna-1] = calcular_peso(terreno[fila][columna-1]);
+        matriz_adyacencia[fila-1][columna] = calcular_peso(terreno[fila-1][columna]);
+        cout << "acá4" << endl;
+    } else if (fila == 0) {
+        matriz_adyacencia[fila][columna+1] = calcular_peso(terreno[fila][columna+1]);
+        matriz_adyacencia[fila+1][columna] = calcular_peso(terreno[fila+1][columna]);
+        matriz_adyacencia[fila][columna-1] = calcular_peso(terreno[fila][columna-1]);
+        cout << "acá5" << endl;
+    } else if (columna == 0) {
+        matriz_adyacencia[fila][columna+1] = calcular_peso(terreno[fila][columna+1]);
+        matriz_adyacencia[fila+1][columna] = calcular_peso(terreno[fila+1][columna]);
+        matriz_adyacencia[fila-1][columna] = calcular_peso(terreno[fila-1][columna]);
+        cout << "acá6" << endl;
+    } else if (fila == 7) {
+        matriz_adyacencia[fila][columna+1] = calcular_peso(terreno[fila][columna+1]);
+        matriz_adyacencia[fila-1][columna] = calcular_peso(terreno[fila-1][columna]);
+        matriz_adyacencia[fila][columna-1] = calcular_peso(terreno[fila][columna-1]);
+        cout << "acá7" << endl;
+    } else if (columna == 7) {
+        matriz_adyacencia[fila][columna-1] = calcular_peso(terreno[fila][columna-1]);
+        matriz_adyacencia[fila+1][columna] = calcular_peso(terreno[fila+1][columna]);
+        matriz_adyacencia[fila-1][columna] = calcular_peso(terreno[fila-1][columna]);
+        cout << "acá8" << endl;
+    } else {
+        matriz_adyacencia[fila][columna-1] = calcular_peso(terreno[fila][columna-1]);
+        matriz_adyacencia[fila+1][columna] = calcular_peso(terreno[fila+1][columna]);
+        matriz_adyacencia[fila-1][columna] = calcular_peso(terreno[fila-1][columna]);
+        matriz_adyacencia[fila][columna+1] = calcular_peso(terreno[fila][columna+1]);
+        cout << "acá9" << endl;
+    }
+    cout << "acá10" << endl;
+}
+
+Grafo::Grafo(string terreno[MAX][MAX]) {
+
+    cout << "hola1" << endl;
+    for (int i = 0; i < MAX; i++) {
+        for (int j = 0; j < MAX; j++) {
+            cout << "hola" << i << endl;
+            cout << "hola" << j << endl;
+            matriz_adyacencia[i][j] = INFINITO;
+            calcular_adyacentes(matriz_adyacencia, i, j, terreno);
+        }
+    }
+
+    mostrar_matriz_adyacencia(matriz_adyacencia);
+}
+
+void Grafo::mostrar_matriz_adyacencia(int** matriz_adyacencia) {
+
+    for(int i = 0; i < MAX; i++) {
+        for(int j = 0; j < MAX; j++) {
+            cout << matriz_adyacencia[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+/*
 void Grafo::agregar_vertice(int numero){
 
     agrandar_matriz_adyacencia();
@@ -107,7 +186,7 @@ Grafo::~Grafo() {
     delete vertices;
     delete algoritmo;
 }
-
+*/
 
 /*
 void Grafo::agregar_vertice(int fila, int columna, string tipo_terreno){

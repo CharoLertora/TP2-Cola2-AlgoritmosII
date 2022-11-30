@@ -41,9 +41,9 @@ void Camino_minimo::camino_minimo(int numero_origen, int numero_destino) {
     inicializar_distancias(numero_origen);
     inicializar_recorrido();
 
-    Lista* cola_de_prioridad;
-    cola_de_prioridad->agregar(numero_origen, "camino", 0);
-
+    //Lista* cola_de_prioridad;
+    //cola_de_prioridad->agregar(numero_origen, "camino", 0);
+/*
     int actual;
     int adyacente;
     int peso;
@@ -59,4 +59,5 @@ void Camino_minimo::camino_minimo(int numero_origen, int numero_destino) {
             adyacente = matriz_adyacencia[actual][i];
         }
     }
+    */
 }

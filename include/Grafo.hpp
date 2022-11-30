@@ -1,25 +1,45 @@
 #ifndef _GRAFO_HPP_
 #define _GRAFO_HPP_
-#include "Vertice.hpp"
-#include "Lista.hpp"
-#include "Camino_minimo.hpp"
+//#include "Vertice.hpp"
+//#include "Lista.hpp"
+//#include "Camino_minimo.hpp"
+//#include "Mapa.hpp"
 
+using namespace std;
+
+const string TIERRA = "🌳"; 
+const string CAMINO = "🟨";
+const string MONTANIA = "⛰️ ";
+const string PRECIPICIO = "🕳 ";
+const string AUTO = "🚘";
+const int COSTO_MONTANIA = 5;
+const int COSTO_PRECIPICIO = 40;
+const int COSTO_CAMINO = 1;
+const int COSTO_TIERRA = 2;
+
+const int MAX = 8;
 const int INFINITO = 999999;
 class Grafo {
     //Atributos:
 private:
-    Lista *vertices; 
+    //Lista *vertices; 
     int** matriz_adyacencia;
-    Camino_minimo* algoritmo;
+    //Camino_minimo* algoritmo;
 
     //Métodos:
 public:
     Grafo();
 
-    Grafo(int actual, int destino, int peso);
+    Grafo(string terreno[MAX][MAX]);
 
-    void agregar_vertice(int numero);
     
+
+    void calcular_adyacentes(int** matriz_adyacencia, int fila, int col, string terreno[MAX][MAX]);
+    
+    void mostrar_matriz_adyacencia(int** matriz_adyacencia);
+/*
+    void agregar_vertice(int numero);
+
     //Pre: -
     //Post: agranda dinámicamente la matriz de adyacencia.
     void agrandar_matriz_adyacencia();
@@ -40,18 +60,18 @@ public:
     //Post: Ajusta la matriz de adyacencia con el peso ingresado.
     void agregar_camino(int numero_origen, int numero_destino, int peso);
 
-    /*
+    
      *Pre: 
         + Se debe tener un algoritmo para calcular el camino mínimo previamente elegido.
         + Tienen que existir tanto el origen como el destino.
      *Post: muestra el camino mínimo desde un origen a un destino.
-    */
+    
     void camino_minimo(int numero_origen, int numero_destino);
     
     //Pre: -
     //Post: utilizará el algoritmos de Dijkstra para que crear el camino mínimo entre vértices.
     void crear_algoritmo_camino();
-
+*/
 
     ~Grafo();
 

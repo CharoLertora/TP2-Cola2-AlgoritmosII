@@ -294,11 +294,11 @@ void Mapa::llenar_vector() {
     }
 }
 
-
+/*
 Mapa::Mapa(Auto* vehiculo) {
 
     this->vehiculo = vehiculo;
-    grafo = new Grafo();
+    
     llenar_vector();
     
     llenar_primera_fila(terreno);
@@ -311,9 +311,25 @@ Mapa::Mapa(Auto* vehiculo) {
     llenar_octava_fila(terreno);
     
 
-    copiar_en_grafo();
-    ubicar_auto();
-    ubicar_animales();
+    //copiar_en_grafo();
+    grafo = new Grafo(terreno);
+    //ubicar_auto();
+    //ubicar_animales();
+}
+*/
+Mapa::Mapa() {
+    llenar_vector();
+    
+    llenar_primera_fila(terreno);
+    llenar_segunda_fila(terreno);
+    llenar_tercera_fila(terreno);
+    llenar_cuarta_fila(terreno);
+    llenar_quinta_fila(terreno);
+    llenar_sexta_fila(terreno);
+    llenar_septima_fila(terreno);
+    llenar_octava_fila(terreno);
+    
+    grafo = new Grafo(terreno);
 }
 
 void Mapa::mostrar_mapa() {
@@ -326,19 +342,7 @@ void Mapa::mostrar_mapa() {
     }
 }
 
-int calcular_peso(string tipo_terreno) {
-
-    if (tipo_terreno == MONTANIA){
-        return COSTO_MONTANIA;
-    }else if (tipo_terreno == PRECIPICIO){
-        return COSTO_PRECIPICIO;
-    }else if (tipo_terreno == CAMINO){
-        return COSTO_CAMINO;
-    }else {
-        return COSTO_TIERRA;
-    }
-}
-
+/*
 void Mapa::copiar_en_grafo(){
     
     int contador = 1;
@@ -350,7 +354,7 @@ void Mapa::copiar_en_grafo(){
         }
     }    
 }
-
+*/
 Mapa::~Mapa() {
 
     for (int i = 0; i < MAX_ANIMALES; i++) {
