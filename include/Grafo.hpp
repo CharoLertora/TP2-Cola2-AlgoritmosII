@@ -24,6 +24,4 @@ public:
     ~Grafo();
 };
 
-
-
-#endif
+#endif //_GRAFO_HPP_

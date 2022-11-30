@@ -1,5 +1,5 @@
-#ifndef NODO
-#define NODO
+#ifndef _NODO_HPP_
+#define _NODO_HPP_
 #include <iostream>
 #include "Animal.hpp"
 
@@ -7,7 +7,7 @@ const int MAX_CLAVES  = 2;
 const int MAX_HIJOS = 3;
 
 class Nodo_arbol_B{
-	
+
 	//Atributos:
 private:
     string *claves; 
@@ -109,4 +109,4 @@ private:
     string especie_a_inicial(string especie);
 };
 
-#endif
+#endif //_NODO_HPP_

@@ -51,4 +51,4 @@ private:
     Nodo* encontrar_nodo(int pos);
 };
 
-#endif
+#endif //_LISTA_HPP_

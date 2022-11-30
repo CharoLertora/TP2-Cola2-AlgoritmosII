@@ -53,10 +53,8 @@ const int ESPACIO_MEDIANO = 10;
 const int ESPACIO_PEQUENIO = 2;
 const int ESPACIO_DIMINUTO = 0;
 
-
 const string ADOPTADO = "Está adoptado";
 const string NO_ADOPTADO = "No está adoptado";
-
 
 class Sistema {
 
@@ -123,7 +121,6 @@ private:
     //pre: '*arbol_animales' debe apuntar al atributo de la clase Sistema el cuál debe estar previamente inicializado.
     //pos: Llenará la lista con los animales que encuentre en el archivo. En caso de no haber archivo, creará uno.
     void llenar_arbol(Arbol_B *arbol_animales);
-
 };
 
 #endif //_SISTEMA_H_

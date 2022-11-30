@@ -1,5 +1,5 @@
-#ifndef _NODO_HPP_
-#define _NODO_HPP_
+#ifndef _NODO_LISTA_HPP_
+#define _NODO_LISTA_HPP_
 #include "Animal.hpp"
 #include "Vertice.hpp"
 
@@ -36,4 +36,4 @@ public:
     ~Nodo();
 };
 
-#endif
+#endif //_NODO_LISTA_HPP_
