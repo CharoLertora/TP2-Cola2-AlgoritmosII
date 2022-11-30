@@ -9,6 +9,7 @@
 #include "Caballo.hpp"
 #include "Roedor.hpp"
 #include "Conejo.hpp"
+#include "Mapa.hpp"
 
 enum Opcion_menu {
     LISTAR_ANIMALES = 1,
@@ -61,6 +62,8 @@ public:
     //pre:-
     //pos: Muestra por pantalla todos los animales de la arbol_animales, si esta vacia muestra un mensaje.
     void listar_animales(Arbol_B *arbol_animales);
+
+    void mostrar_datos_rescate(Auto *vehiculo, Mapa mapa);
 
     void rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo);
 

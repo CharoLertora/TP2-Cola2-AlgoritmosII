@@ -125,10 +125,17 @@ void Menu::listar_animales(Arbol_B *arbol_animales) {
     }
 }
 
+void Menu::mostrar_datos_rescate(Auto *vehiculo, Mapa mapa){
+
+    cout << "Combustible disponible = " << vehiculo->combustible_actual() << endl;
+    cout << "Animales a rescatar = 5" << endl << endl;
+}
+
 void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
     
     Mapa mapa_juego(vehiculo);
     mapa_juego.mostrar_mapa();
+    mostrar_datos_rescate(vehiculo, mapa_juego);
 
     /*
     string nombre, edad, tamanio, especie, personalidad;

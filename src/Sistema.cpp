@@ -14,7 +14,7 @@
 Sistema::Sistema() {
 
     partida_terminada = false;
-    arbol_animales = new Arbol_B(3); 
+    arbol_animales = new Arbol_B(2); 
     vehiculo = new Auto();
     llenar_arbol(arbol_animales);
 }
@@ -36,7 +36,7 @@ void Sistema::inicializar_sistema(Sistema sistema) {
     }
 
     guardar_y_salir(sistema.obtener_arbol_animales());
-    cout << "bye bye baby" << endl;
+    cout << endl << "¡Hasta la próxima!" << endl << endl;
     delete arbol_animales;
     delete vehiculo;
 }

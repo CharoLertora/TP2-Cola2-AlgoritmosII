@@ -110,11 +110,11 @@ void llenar_octava_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
     terreno[7][7] = CAMINO;
 }
 
-bool hay_animal(string terreno[MAX_TERRENO][MAX_TERRENO], int fila, int columna){
+bool Mapa::hay_animal(int fila, int columna){
     return (terreno[fila][columna] == IMAGEN_PERRO || terreno[fila][columna] == IMAGEN_GATO || terreno[fila][columna] == IMAGEN_CABALLO || terreno[fila][columna] == IMAGEN_CONEJO || terreno[fila][columna] == IMAGEN_ROEDOR || terreno[fila][columna] == IMAGEN_ERIZO || terreno[fila][columna] == IMAGEN_LAGARTIJA);
 }
 
-int numero_random(int rango, int minimo){
+int Mapa::numero_random(int rango, int minimo){
     
     srand ((unsigned)time(NULL));
     int numero = rand() % rango + minimo;
@@ -127,7 +127,7 @@ void Mapa::ubicar_auto(){
     vehiculo->asignar_posicion(grafo->encontrar_vertice(0,0));
 }
 
-void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
+void Mapa::copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
 
     Vertice *vertice = grafo->encontrar_vertice(fila, columna);
     if (vertice != NULL){
@@ -135,15 +135,15 @@ void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
     }
 }
 
-void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Grafo* grafo){
+void Mapa::ubicar_animal(Animal* animal, Grafo* grafo){
 
     int fila = 0;
     int columna = 0;
     
     do {
-        fila = numero_random(8, 0);
-        columna = numero_random(8, 0);
-    }while(hay_animal(terreno, fila, columna) || terreno[fila][columna] == AUTO);
+        fila = numero_random(MAX_TERRENO, 0);
+        columna = numero_random(MAX_TERRENO, 0);
+    }while(hay_animal(fila, columna) || terreno[fila][columna] == AUTO);
 
     if (animal->obtener_especie() == ESPECIE_PERRO){
         terreno[fila][columna] = IMAGEN_PERRO;
@@ -167,13 +167,13 @@ void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Gra
 void Mapa::ubicar_animales(){
     
     for (int i = 0; i < MAX_ANIMALES; i++){
-        ubicar_animal(animales_a_rescatar[i], terreno, grafo);
+        ubicar_animal(animales_a_rescatar[i], grafo);
     }
 }
 
-string tamanio_random() {
+string Mapa::tamanio_random() {
     
-    int numero = numero_random(5, 1);
+    int numero = numero_random(MAX_TAMANIOS, 1);
 
     switch (numero){
     case 1:
@@ -194,9 +194,9 @@ string tamanio_random() {
     }
 }
 
-string personalidad_random() {
+string Mapa::personalidad_random() {
     
-    int numero = numero_random(4, 1);
+    int numero = numero_random(MAX_PERSONALIDADES, 1);
 
     switch (numero){
     case 1:
@@ -214,9 +214,9 @@ string personalidad_random() {
     }
 }
 
-string especie_random() {
+string Mapa::especie_random() {
     
-    int numero = numero_random(7, 1);
+    int numero = numero_random(MAX_ESPECIES, 1);
 
     switch (numero){
     case 1:
@@ -243,32 +243,53 @@ string especie_random() {
     }
 }
 
-void cargar_animal(Animal* &animal_random, string nombre, string tamanio, string personalidad, int edad) {
+bool Mapa::ya_salio(int especies[MAX_ANIMALES], int numero){
+    bool salio = false;
+    if (especies[0] != 0){
+        for (int i = 0; i < MAX_ANIMALES; i++){
+            if (especies[i] == numero){
+                salio = true;
+            }
+        }
+    }
+    return salio;
+
+}
+
+void Mapa::validar_especie(int especies[MAX_ANIMALES], int &numero, int numero_animal){
+        
+    while (ya_salio(especies, numero)){
+        numero = numero_random(MAX_ESPECIES, 1);
+    }
+
+    especies[numero_animal] = numero;
+}
+
+void Mapa::cargar_animal(int numero, Animal* &animal_random, string nombre, string tamanio, string personalidad, int edad) {
 
     string especie;
-    int numero = numero_random(7, 1);
 
-    if (numero == 1) {
+    if (numero == INDICE_PERRO) {
         especie = ESPECIE_PERRO;
         animal_random = new Perro(nombre, edad, tamanio, especie, personalidad);
 
-    } else if (numero == 2) {
+    } else if (numero == INDICE_GATO) {
         especie = ESPECIE_GATO;
         animal_random = new Gato(nombre, edad, tamanio, especie, personalidad);
 
-    } else if (numero == 3) {
+    } else if (numero == INDICE_CABALLO) {
         especie = ESPECIE_CABALLO;
         animal_random = new Caballo(nombre, edad, tamanio, especie, personalidad);
 
-    } else if (numero == 4) {
+    } else if (numero == INDICE_ROEDOR) {
         especie = ESPECIE_ROEDOR;
         animal_random = new Roedor(nombre, edad, tamanio, especie, personalidad);
 
-    } else if (numero == 5) {
+    } else if (numero == INDICE_CONEJO) {
         especie = ESPECIE_CONEJO;
         animal_random = new Conejo(nombre, edad, tamanio, especie, personalidad);
 
-    } else if (numero == 6) {
+    } else if (numero == INDICE_ERIZO) {
         especie = ESPECIE_ERIZO;
         animal_random = new Erizo(nombre, edad, tamanio, especie, personalidad);
 
@@ -284,15 +305,20 @@ void Mapa::llenar_vector() {
     string tamanio;
     string personalidad;
     int edad;
-    string especie;
+    int especies[MAX_ANIMALES];
+    for (int i = 0; i < MAX_ANIMALES; i++){
+        especies[i] = 0;
+    }
 
     for (int i = 0; i < MAX_ANIMALES; i++) {
 
         tamanio = tamanio_random();
         personalidad = personalidad_random();
-        edad = numero_random(40, 0);
+        edad = numero_random(MAX_EDAD, 0);
+        int numero = numero_random(MAX_ESPECIES, 1);
+        validar_especie(especies, numero, i);
 
-        cargar_animal(*(&animales_a_rescatar[i]), nombre, tamanio, personalidad, edad);
+        cargar_animal(numero, *(&animales_a_rescatar[i]), nombre, tamanio, personalidad, edad);
     }
 }
 
