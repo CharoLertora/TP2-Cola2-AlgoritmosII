@@ -1,14 +1,26 @@
 #include <iostream>
 #include "../include/Grafo.hpp"
 
-/*
+
 Grafo::Grafo(){
 
     matriz_adyacencia = nullptr;
-    vertices = new Lista();
+    //vertices = new Lista();
     algoritmo = nullptr;
 }
-*/
+
+
+Grafo::Grafo(string terreno[MAX_TERRENO][MAX_TERRENO]) {
+
+    inicializar_matriz_adyacencia();
+    for (int i = 0; i < MAX_TERRENO; i++) {
+        for (int j = 0; j < MAX_TERRENO; j++) {
+            calcular_adyacentes(matriz_adyacencia, i, j, terreno);
+        }
+    }
+
+    this->algoritmo = nullptr;
+}
 
 int calcular_peso(string tipo_terreno) {
 
@@ -27,45 +39,26 @@ int Grafo::calcular_vertice(int fila, int columna) {
     return (MAX_TERRENO * fila) + columna;
 }
 
+bool Grafo::es_vertice_valido(int fila, int columna) {
+    return ((columna != -1) && (columna != MAX_TERRENO) && (fila != -1) && (fila != MAX_TERRENO));
+}
+
 void Grafo::calcular_adyacentes(int** matriz_adyacencia, int fila, int columna, string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     int origen = calcular_vertice(fila, columna);
 
-    if (fila == 0 && columna == 0) {
-        matriz_adyacencia[origen][calcular_vertice(fila, columna+1)] = calcular_peso(terreno[fila][columna+1]);
-        matriz_adyacencia[origen][calcular_vertice(fila+1, columna)] = calcular_peso(terreno[fila+1][columna]);
-    } else if (fila == 7 && columna == 0) {
-        matriz_adyacencia[origen][calcular_vertice(fila, columna+1)] = calcular_peso(terreno[fila][columna+1]);
-        matriz_adyacencia[origen][calcular_vertice(fila-1, columna)] = calcular_peso(terreno[fila-1][columna]);
-    } else if (fila == 0 && columna == 7) {
-        matriz_adyacencia[origen][calcular_vertice(fila, columna-1)] = calcular_peso(terreno[fila][columna-1]);
-        matriz_adyacencia[origen][calcular_vertice(fila+1, columna)] = calcular_peso(terreno[fila+1][columna]);
-    } else if (fila == 7 && columna == 7) {
-        matriz_adyacencia[origen][calcular_vertice(fila, columna-1)] = calcular_peso(terreno[fila][columna-1]);
-        matriz_adyacencia[origen][calcular_vertice(fila-1, columna)] = calcular_peso(terreno[fila-1][columna]);
-    } else if (fila == 0) {
-        matriz_adyacencia[origen][calcular_vertice(fila, columna+1)] = calcular_peso(terreno[fila][columna+1]);
-        matriz_adyacencia[origen][calcular_vertice(fila+1, columna)] = calcular_peso(terreno[fila+1][columna]);
-        matriz_adyacencia[origen][calcular_vertice(fila, columna-1)] = calcular_peso(terreno[fila][columna-1]);
-    } else if (columna == 0) {
-        matriz_adyacencia[origen][calcular_vertice(fila, columna+1)] = calcular_peso(terreno[fila][columna+1]);
-        matriz_adyacencia[origen][calcular_vertice(fila+1, columna)] = calcular_peso(terreno[fila+1][columna]);
-        matriz_adyacencia[origen][calcular_vertice(fila-1, columna)] = calcular_peso(terreno[fila-1][columna]);
-    } else if (fila == 7) {
-        matriz_adyacencia[origen][calcular_vertice(fila, columna+1)] = calcular_peso(terreno[fila][columna+1]);
-        matriz_adyacencia[origen][calcular_vertice(fila-1, columna)] = calcular_peso(terreno[fila-1][columna]);
-        matriz_adyacencia[origen][calcular_vertice(fila, columna-1)] = calcular_peso(terreno[fila][columna-1]);
-    } else if (columna == 7) {
-        matriz_adyacencia[origen][calcular_vertice(fila, columna-1)] = calcular_peso(terreno[fila][columna-1]);
-        matriz_adyacencia[origen][calcular_vertice(fila+1, columna)] = calcular_peso(terreno[fila+1][columna]);
-        matriz_adyacencia[origen][calcular_vertice(fila-1, columna)] = calcular_peso(terreno[fila-1][columna]);
-    } else {
-        matriz_adyacencia[origen][calcular_vertice(fila, columna-1)] = calcular_peso(terreno[fila][columna-1]);
-        matriz_adyacencia[origen][calcular_vertice(fila+1, columna)] = calcular_peso(terreno[fila+1][columna]);
-        matriz_adyacencia[origen][calcular_vertice(fila-1, columna)] = calcular_peso(terreno[fila-1][columna]);
+    if (es_vertice_valido(fila, columna+1)) {
         matriz_adyacencia[origen][calcular_vertice(fila, columna+1)] = calcular_peso(terreno[fila][columna+1]);
     }
-
+    if (es_vertice_valido(fila, columna-1)) {
+        matriz_adyacencia[origen][calcular_vertice(fila, columna-1)] = calcular_peso(terreno[fila][columna-1]);
+    }
+    if (es_vertice_valido(fila+1, columna)) {
+        matriz_adyacencia[origen][calcular_vertice(fila+1, columna)] = calcular_peso(terreno[fila+1][columna]);
+    }
+    if (es_vertice_valido(fila-1, columna)) {
+        matriz_adyacencia[origen][calcular_vertice(fila-1, columna)] = calcular_peso(terreno[fila-1][columna]);
+    }
 }
 
 void Grafo::cargar_matriz() {
@@ -90,19 +83,6 @@ void Grafo::inicializar_matriz_adyacencia() {
     cargar_matriz();
 }
 
-Grafo::Grafo(string terreno[MAX_TERRENO][MAX_TERRENO]) {
-
-    inicializar_matriz_adyacencia();
-
-    for (int i = 0; i < MAX_TERRENO; i++) {
-        for (int j = 0; j < MAX_TERRENO; j++) {
-            calcular_adyacentes(matriz_adyacencia, i, j, terreno);
-        }
-    }
-
-    mostrar_matriz_adyacencia(matriz_adyacencia);
-}
-
 void Grafo::mostrar_matriz_adyacencia(int** matriz_adyacencia) {
 
     cout << "Matriz de adyacencia:" << endl;
@@ -122,14 +102,29 @@ void Grafo::mostrar_matriz_adyacencia(int** matriz_adyacencia) {
         }
     }
     cout << endl;
-    /*
-    for(int i = 0; i < MAX_MATRIZ; i++) {
-        for(int j = 0; j < MAX_MATRIZ; j++) {
-            cout << matriz_adyacencia[i][j] << " ";
-        }
-        cout << endl;
+}
+
+void Grafo::calcular_caminos_minimos() {
+
+    delete algoritmo;
+    this->algoritmo = new Camino_minimo(matriz_adyacencia);
+    algoritmo->inicializar_matrices();
+    algoritmo->calcular_caminos_minimos();
+}
+
+void Grafo::liberar_matriz_adyacente() {
+
+    for (int i = 0; MAX_MATRIZ; i++) {
+        delete[] matriz_adyacencia[i];
     }
-    */
+    delete[] matriz_adyacencia;
+}
+
+Grafo::~Grafo() {
+
+    liberar_matriz_adyacente();
+    matriz_adyacencia = nullptr;
+    delete algoritmo;
 }
 
 /*

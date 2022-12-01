@@ -2,7 +2,7 @@
 #define _GRAFO_HPP_
 //#include "Vertice.hpp"
 //#include "Lista.hpp"
-//#include "Camino_minimo.hpp"
+#include "Camino_minimo.hpp"
 //#include "Mapa.hpp"
 
 using namespace std;
@@ -25,7 +25,7 @@ class Grafo {
 private:
     //Lista *vertices; 
     int** matriz_adyacencia;
-    //Camino_minimo* algoritmo;
+    Camino_minimo* algoritmo;
 
     //Métodos:
 public:
@@ -42,6 +42,12 @@ public:
     void cargar_matriz();
 
     int calcular_vertice(int fila, int columna);
+
+    bool es_vertice_valido(int fila, int columna);
+
+    void calcular_caminos_minimos();
+
+    void liberar_matriz_adyacente();
 /*
     void agregar_vertice(int numero);
 

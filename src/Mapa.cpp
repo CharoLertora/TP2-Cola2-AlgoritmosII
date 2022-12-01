@@ -345,6 +345,7 @@ Mapa::Mapa() {
     llenar_octava_fila(terreno);
     
     grafo = new Grafo(terreno);
+    grafo->calcular_caminos_minimos();
 }
 
 void Mapa::mostrar_mapa() {

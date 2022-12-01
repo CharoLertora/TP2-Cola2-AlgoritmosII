@@ -2,22 +2,36 @@
 #define _CAMINO_MINIMO_HPP_
 #include <iostream>
 #include <string>
-#include "Vertice.hpp"
-#include "Lista.hpp"
+//#include "Vertice.hpp"
+//#include "Lista.hpp"
+//#include "Grafo.hpp"
+
 
 class Camino_minimo {
     //Atributos
     private:
         int** matriz_adyacencia;
-        Lista* vertices;
-        int cantidad_vertices;
-        bool* vertices_visitados;
-        int* distancia;
-        int* recorrido;
+        //Lista* vertices;
+        //int cantidad_vertices;
+        //bool* vertices_visitados;
+        int** distancias;
+        int** caminos;
     
     //Métodos
     public:
 
+        Camino_minimo(int** matriz_grafo);
+
+        void inicializar_matrices();
+
+        void calcular_caminos_minimos();
+
+        void mostrar_matrices();
+
+        void liberar_matrices();
+
+        ~Camino_minimo();
+/*
         //Pre: la lista de vértices y la matriz de adyacencia deben estar previamente cargadas.
         //Post: inicializará los atributos de la clase Camino_mínimo.
         Camino_minimo(Lista* vertices, int** matriz_adyacencia);
@@ -37,8 +51,8 @@ class Camino_minimo {
         //Pre: -
         //Post: llena el vector de recorrido con -1 (posición no encontrada).
         void inicializar_recorrido();
-
-        ~Camino_minimo();
+*/
+        
 
 };
 
