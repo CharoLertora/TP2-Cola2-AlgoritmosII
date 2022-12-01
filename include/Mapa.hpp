@@ -78,10 +78,12 @@ public:
 
     int animales_sin_rescatar();
 
+    Animal* rescatar_animal(int indice);
+
     //Destructor
     //Pre: -
     //Post: Libera la memoria ocupada por el Mapa y sus atributos.  
-    ~Mapa();
+    //~Mapa();
 
 private:
 

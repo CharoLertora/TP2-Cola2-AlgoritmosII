@@ -145,11 +145,8 @@ void Mapa::mostrar_listado_animales(){
 
     if (animales_rescatados < MAX_ANIMALES){
         cout << "ANIMALES POR RESCATAR: " << endl;
-    }
-
-    for (int i = 0; i < MAX_ANIMALES; i++){
-        if (!animales_a_rescatar[i]->esta_adoptado()){
-            cout << (i + 1) << ". " << animales_a_rescatar[i]->obtener_especie() << endl;
+        for (int i = 0; i < animales_sin_rescatar(); i++){
+        cout << (i + 1) << ". " << animales_a_rescatar[i]->obtener_especie() << endl;
         }
     }
 
@@ -354,6 +351,25 @@ void Mapa::llenar_vector() {
     }
 }
 
+void Mapa::viajar(int indice){
+    
+}
+
+Animal* Mapa::rescatar_animal(int indice){
+
+    viajar(indice - 1);
+    Animal *animal_rescatado = animales_a_rescatar[indice - 1];
+    int i = indice - 1;
+    while (i < animales_sin_rescatar() - 1){
+        animales_a_rescatar[i] = animales_a_rescatar[i + 1]; 
+        i++;
+    }
+    animales_rescatados++;
+    
+
+    return animal_rescatado;
+}
+
 Mapa::Mapa(Auto* vehiculo) {
 
     this->vehiculo = vehiculo;
@@ -392,6 +408,7 @@ void Mapa::copiar_en_grafo(){
     }    
 }
 
+/*
 Mapa::~Mapa() {
 
     for (int i = 0; i < MAX_ANIMALES; i++) {
@@ -399,4 +416,4 @@ Mapa::~Mapa() {
     }
 
     delete grafo;
-}
+}*/

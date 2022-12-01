@@ -65,6 +65,10 @@ string Animal::obtener_personalidad() {
     return personalidad;
 }
 
+void Animal::asignar_nombre(string nombre){
+    this->nombre = nombre;
+}
+
 void Animal::aumentar_hambre() {
 
     if (hambre < HAMBRE_MAXIMA) {

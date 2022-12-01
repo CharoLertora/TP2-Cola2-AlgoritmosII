@@ -92,6 +92,7 @@ void Menu::procesar_opcion(Arbol_B *arbol, int opcion, Auto *vehiculo) {
             break;
 
         case RESCATAR_ANIMALES:
+            cout << "Cargando..." << endl; 
             rescatar_animal(arbol, vehiculo);
             break;
 
@@ -128,7 +129,7 @@ void Menu::listar_animales(Arbol_B *arbol_animales) {
 void Menu::mostrar_datos_rescate(Auto *vehiculo, Mapa mapa){
 
     cout << "Combustible disponible = " << vehiculo->combustible_actual() << endl;
-    cout << "Animales a rescatar = 5" << endl << endl;
+    cout << "Animales a rescatar = " << mapa.animales_sin_rescatar() << endl << endl;
 }
 
 void Menu::mostrar_opciones(Mapa mapa_juego){
@@ -148,12 +149,12 @@ void Menu::pedir_respuesta(int &respuesta){
     }
 }
 
-void Menu::elegir_animal(int animal, Mapa mapa){
+void Menu::elegir_animal(int &animal, Mapa mapa){
 
     cout << '\t' << "Ingrese el número correspondiente al animal que desea salvar: ";
     cin >> animal;
 
-    while (animal > mapa.animales_sin_rescatar() || animal < 0){
+    while (animal > mapa.animales_sin_rescatar() || animal <= 0){
         cout << '\t' << "Esa no es una respuesta válida, intentelo de nuevo: ";
         cin >> animal;
     }
@@ -168,15 +169,41 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
     mostrar_opciones(mapa_juego);
     pedir_respuesta(respuesta);
 
-    if (respuesta == RESCATAR_ANIMAL){
+    while (respuesta == RESCATAR_ANIMAL){
         int animal = 0;
         int fila = 0;
         int columna = 0;
         mapa_juego.mostrar_listado_animales();
         elegir_animal(animal, mapa_juego);
         mapa_juego.obtener_coords_animal(animal, fila, columna); //esta función ya devuelve la fila y columna correspondiente al animal :)
+        int costo_camino = 50; //funcion_camino_minimo
+        if (costo_camino > vehiculo->combustible_actual()){
+            cout << '\t' << "No hay suficiente combustible para rescatar a ese animal" << endl
+            << '\t' << "¿Quiere rescatar a otro?" << endl
+            << '\t' << "1. Si     2. No" << endl;
+            cin >> respuesta;
+        }else {
+            string nombre;
+            Animal* animal_rescatado = mapa_juego.rescatar_animal(animal);
+            cout << '\t' << "¡Ha rescatado a un animal!" << endl
+            << '\t' << "¿Qué nombre desea ponerle?" << endl;
+            cin >> nombre;
+            while (es_nombre_existente(nombre, arbol_animales)){
+                cout << '\t' << "Ese nombre ya partenece a otro de los animalitos de nuestra reserva" << endl
+                << '\t' << "Intente con otro:";
+                cin >> nombre;
+            }
+            animal_rescatado->asignar_nombre(nombre);
+            arbol_animales->insertar(animal_rescatado);
+            cout << '\t' << "¡Animal rescatado con éxito!" << endl
+            << '\t' << "Ya forma parte de nuestra reserva :)" << endl << endl
+            << '\t' << "¿Desea rescatar a otro animal?" << endl
+            << '\t' << "1. Si     2. No" << endl;
+            cin >> respuesta;
+        }
     }
-    
+
+    cout << '\t' << "Volviendo al menú..." << endl << endl;
 
     /*
     string nombre, edad, tamanio, especie, personalidad;

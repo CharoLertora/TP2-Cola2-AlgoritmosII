@@ -53,6 +53,9 @@ const int ESPACIO_MEDIANO = 10;
 const int ESPACIO_PEQUENIO = 2;
 const int ESPACIO_DIMINUTO = 0;
 
+const int SI = 1;
+const int NO = 2;
+
 const string ADOPTADO = "Está adoptado";
 const string NO_ADOPTADO = "No está adoptado";
 

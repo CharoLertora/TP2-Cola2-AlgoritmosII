@@ -72,7 +72,7 @@ public:
 
     void pedir_respuesta(int &respuesta);
 
-    void elegir_animal(int animal, Mapa mapa);
+    void elegir_animal(int &animal, Mapa mapa);
     
     void rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo);
 

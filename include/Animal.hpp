@@ -32,65 +32,69 @@ protected:
 public:
 
     //Constructor sin parametros
-    //pre: - 
-    //pos: Construye un objeto animal con el hambre en 0, la higiene en 100 y ocupado en false.
+    //Pre: - 
+    //Post: Construye un objeto animal con el hambre en 0, la higiene en 100 y ocupado en false.
     Animal();
 
     //Constructor con parametros
-    //pre: - 
-    //pos: Construye un objeto animal con su respectivo nombre, edad, tamanio, especie y personalidad, con el hambre en 0, la higiene en 100 y ocupado en false.
+    //Pre: - 
+    //Post: Construye un objeto animal con su respectivo nombre, edad, tamanio, especie y personalidad, con el hambre en 0, la higiene en 100 y ocupado en false.
     Animal(string nombre, int edad, string tamanio, string especie, string personalidad);
 
-    //pre: -
-    //pos: Atributo hambre del animal vuelve a 0%.
+    //Pre: -
+    //Post: Atributo hambre del animal vuelve a 0%.
     void alimentar();
 
-    //pre: -
-    //pos: Atributo higiene del animal vuelve a 100%.
+    //Pre: -
+    //Post: Atributo higiene del animal vuelve a 100%.
     void baniar();
 
-    //pre: -
-    //pos: Devuelve el atributo requiere_ducha del animal.
+    //Pre: -
+    //Post: Devuelve el atributo requiere_ducha del animal.
     bool obtener_requiere_ducha();
 
-    //pre: -
-    //pos: Devuelve el atributo edad del animal.
+    //Pre: -
+    //Post: Devuelve el atributo edad del animal.
     int obtener_edad();
 
-    //pre: -
-    //pos: Devuelve el atributo higiene del animal.
+    //Pre: -
+    //Post: Devuelve el atributo higiene del animal.
     int obtener_higiene();
 
-    //pre: -
-    //pos: Devuelve el atributo hambre del animal.
+    //Pre: -
+    //Post: Devuelve el atributo hambre del animal.
     int obtener_hambre();
 
-    //pre: -
-    //pos: Devuelve el atributo nombre del animal.
+    //Pre: -
+    //Post: Devuelve el atributo nombre del animal.
     string obtener_nombre();
 
-    //pre: -
-    //pos: Devuelve el especie higiene del animal.
+    //Pre: -
+    //Post: Devuelve el especie higiene del animal.
     string obtener_especie();
 
-    //pre: -
-    //pos: Devuelve el tamanio higiene del animal.
+    //Pre: -
+    //Post: Devuelve el tamanio higiene del animal.
     string obtener_tamanio();
 
-    //pre: -
-    //pos: Devuelve el atributo personalidad del animal.
+    //Pre: -
+    //Post: Devuelve el atributo personalidad del animal.
     string obtener_personalidad();
 
-    //pre: -
-    //pos: Aumenta el hambre del animal segun su personalidad.
+    //Pre: El string ingresado debe estar inicializado y ser válido.
+    //Post: Asigna el string ingresado como nombre del animal.
+    void asignar_nombre(string nombre);
+
+    //Pre: -
+    //Post: Aumenta el hambre del animal segun su personalidad.
     void aumentar_hambre();
 
-    //pre: -
-    //pos: Reduce la higiene del animal segun su personalidad.
+    //Pre: -
+    //Post: Reduce la higiene del animal segun su personalidad.
     void reducir_higiene();
 
-    //pre: -
-    //pos: Devuelve el atributo comida del animal.
+    //Pre: -
+    //Post: Devuelve el atributo comida del animal.
     string obtener_comida();
 
     bool esta_eliminado();
