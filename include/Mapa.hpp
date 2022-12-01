@@ -15,10 +15,10 @@ const int MAX_EDAD = 100;
 
 const string ARCHIVO_ANIMALES_A_RESCATAR = "animales_a_rescatar.csv";
 
-const string TIERRA = "🌳"; 
-const string CAMINO = "🟨";
-const string MONTANIA = "⛰️ ";
-const string PRECIPICIO = "🕳 ";
+const string TIERRA = "🟨"; 
+const string CAMINO = "⬜";
+const string MONTANIA = "🟫";
+const string PRECIPICIO = "⬛";
 const string AUTO = "🚘";
 
 const int INDICE_PERRO = 1;
@@ -38,6 +38,10 @@ const string IMAGEN_ERIZO = "🦔";
 const string IMAGEN_ROEDOR = "🐭";
 const string IMAGEN_LAGARTIJA = "🦎";
 
+struct coordenada {
+    int fila;
+    int columna;
+};
 
 class Mapa {
 
@@ -45,8 +49,10 @@ class Mapa {
 private:
     string terreno[MAX_TERRENO][MAX_TERRENO];
     Animal *animales_a_rescatar[MAX_ANIMALES];
+    int animales_rescatados;
     Grafo *grafo;
     Auto *vehiculo;
+    coordenada coordenadas[MAX_ANIMALES];
 
 //Métodos:
 public:
@@ -65,6 +71,12 @@ public:
     //Pre: -
     //Post: Devuelve el vector "animales" del Mapa.
     Animal* obtener_vector_animales(); 
+
+    void mostrar_listado_animales();
+
+    void obtener_coords_animal(int indice, int &fila, int &columna);
+
+    int animales_sin_rescatar();
 
     //Destructor
     //Pre: -
@@ -101,9 +113,11 @@ private:
     //Post: Verifica que el numero ingresado no se repita, para que las especies de los animales sean diferentes.
     bool ya_salio(int especies[MAX_ANIMALES], int numero);
 
+    void guardar_coordenadas(int indice, int fila, int columna);
+
     //Pre: -
     //Post: Ubica de manera random cada animal en una posición del terreno, corroborando que no se encuentre en la misma posición que el auto u otro animal. 
-    void ubicar_animal(Animal* animal, Grafo* grafo);
+    void ubicar_animal(int i, Animal* animal, Grafo* grafo);
 
     void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna);
 

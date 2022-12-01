@@ -135,7 +135,38 @@ void Mapa::copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
     }
 }
 
-void Mapa::ubicar_animal(Animal* animal, Grafo* grafo){
+void Mapa::guardar_coordenadas(int indice, int fila, int columna){
+
+    coordenadas[indice].fila = fila;
+    coordenadas[indice].columna = columna;
+}
+
+void Mapa::mostrar_listado_animales(){
+
+    if (animales_rescatados < MAX_ANIMALES){
+        cout << "ANIMALES POR RESCATAR: " << endl;
+    }
+
+    for (int i = 0; i < MAX_ANIMALES; i++){
+        if (!animales_a_rescatar[i]->esta_adoptado()){
+            cout << (i + 1) << ". " << animales_a_rescatar[i]->obtener_especie() << endl;
+        }
+    }
+
+    cout << endl << endl;
+}
+
+int Mapa::animales_sin_rescatar(){
+    return (MAX_ANIMALES - animales_rescatados);
+}
+
+void Mapa::obtener_coords_animal(int indice, int &fila, int &columna){
+
+    fila = coordenadas[indice - 1].fila;
+    columna = coordenadas[indice - 1].columna;
+}
+
+void Mapa::ubicar_animal(int indice, Animal* animal, Grafo* grafo){
 
     int fila = 0;
     int columna = 0;
@@ -161,13 +192,14 @@ void Mapa::ubicar_animal(Animal* animal, Grafo* grafo){
         terreno[fila][columna] = IMAGEN_LAGARTIJA;
     } 
 
+    guardar_coordenadas(indice, fila, columna);
     copiar_animales(grafo, animal, fila, columna);
 }
 
 void Mapa::ubicar_animales(){
     
     for (int i = 0; i < MAX_ANIMALES; i++){
-        ubicar_animal(animales_a_rescatar[i], grafo);
+        ubicar_animal(i, animales_a_rescatar[i], grafo);
     }
 }
 
@@ -326,6 +358,7 @@ Mapa::Mapa(Auto* vehiculo) {
 
     this->vehiculo = vehiculo;
     grafo = new Grafo();
+    animales_rescatados = 0;
     llenar_vector();
     llenar_primera_fila(terreno);
     llenar_segunda_fila(terreno);
@@ -362,7 +395,8 @@ void Mapa::copiar_en_grafo(){
 Mapa::~Mapa() {
 
     for (int i = 0; i < MAX_ANIMALES; i++) {
-        animales_a_rescatar[i] = nullptr;
+        delete animales_a_rescatar[i];
     }
-    delete [] *animales_a_rescatar;
+
+    delete grafo;
 }

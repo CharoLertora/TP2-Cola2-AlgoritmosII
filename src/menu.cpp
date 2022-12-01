@@ -11,9 +11,9 @@ void Menu::mostrar_menu() {
     cout << endl << endl << endl;
     cout  << "\t" <<'\t' << "MENU" << endl
     << '\t' << "1. Listar animales" << endl
-    << '\t' << "2. Rescatar animal" << endl
+    << '\t' << "2. Rescatar animales" << endl
     << '\t' << "3. Buscar animal" << endl
-    << '\t' << "4. Cuidar animal" << endl
+    << '\t' << "4. Cuidar animales" << endl
     << '\t' << "5. Adoptar animal" << endl
     << '\t' << "6. Cargar combustible" << endl
     << '\t' << "7. Guardar y salir" << endl;
@@ -91,7 +91,7 @@ void Menu::procesar_opcion(Arbol_B *arbol, int opcion, Auto *vehiculo) {
             listar_animales(arbol);
             break;
 
-        case RESCATAR_ANIMAL:
+        case RESCATAR_ANIMALES:
             rescatar_animal(arbol, vehiculo);
             break;
 
@@ -131,11 +131,52 @@ void Menu::mostrar_datos_rescate(Auto *vehiculo, Mapa mapa){
     cout << "Animales a rescatar = 5" << endl << endl;
 }
 
+void Menu::mostrar_opciones(Mapa mapa_juego){
+
+    cout << '\t' << "¿Qué desea hacer?" << endl
+    << '\t' << "1. Rescatar algún animal" << endl
+    << '\t' << "2. Volver al inicio" << endl;
+}
+
+void Menu::pedir_respuesta(int &respuesta){
+    
+    cin >> respuesta;
+
+    while (respuesta > 2 || respuesta < 1){
+        cout << '\t' << "Esa no es una respuesta válida, intentelo de nuevo: ";
+        cin >> respuesta;
+    }
+}
+
+void Menu::elegir_animal(int animal, Mapa mapa){
+
+    cout << '\t' << "Ingrese el número correspondiente al animal que desea salvar: ";
+    cin >> animal;
+
+    while (animal > mapa.animales_sin_rescatar() || animal < 0){
+        cout << '\t' << "Esa no es una respuesta válida, intentelo de nuevo: ";
+        cin >> animal;
+    }
+}
+
 void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
     
+    int respuesta = 0;
     Mapa mapa_juego(vehiculo);
     mapa_juego.mostrar_mapa();
     mostrar_datos_rescate(vehiculo, mapa_juego);
+    mostrar_opciones(mapa_juego);
+    pedir_respuesta(respuesta);
+
+    if (respuesta == RESCATAR_ANIMAL){
+        int animal = 0;
+        int fila = 0;
+        int columna = 0;
+        mapa_juego.mostrar_listado_animales();
+        elegir_animal(animal, mapa_juego);
+        mapa_juego.obtener_coords_animal(animal, fila, columna); //esta función ya devuelve la fila y columna correspondiente al animal :)
+    }
+    
 
     /*
     string nombre, edad, tamanio, especie, personalidad;

@@ -11,9 +11,12 @@
 #include "Conejo.hpp"
 #include "Mapa.hpp"
 
+const int RESCATAR_ANIMAL = 1;
+const int VOLVER_AL_INICIO = 2;
+
 enum Opcion_menu {
     LISTAR_ANIMALES = 1,
-    RESCATAR_ANIMAL,
+    RESCATAR_ANIMALES,
     BUSCAR_ANIMAL,
     CUIDAR_ANIMALES,
     ADOPTAR_ANIMAL,
@@ -65,6 +68,12 @@ public:
 
     void mostrar_datos_rescate(Auto *vehiculo, Mapa mapa);
 
+    void mostrar_opciones(Mapa mapa_juego);
+
+    void pedir_respuesta(int &respuesta);
+
+    void elegir_animal(int animal, Mapa mapa);
+    
     void rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo);
 
     // pre: -
