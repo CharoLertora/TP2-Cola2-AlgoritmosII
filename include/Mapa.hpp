@@ -35,7 +35,7 @@ class Mapa {
 
         Mapa();
 
-        //void inicializar_mapa();
+        //void inicializar_mapa(string terreno[MAX_TERRENO][MAX_TERRENO]);
 
         //Pre: el mapa debe estar previamente cargado.
         //Post: mostrara el mapa disponible por pantalla.

@@ -82,6 +82,10 @@ void Camino_minimo::mostrar_matrices() {
     cout << endl;
 }
 
+int Camino_minimo::calcular_costo(int origen, int destino) {
+    return distancias[origen][destino];
+}
+
 void Camino_minimo::liberar_matrices() {
     
     for (int i = 0; MAX_MATRIZ; i++) {

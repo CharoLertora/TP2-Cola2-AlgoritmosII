@@ -133,8 +133,7 @@ void Mapa::ubicar_auto(){
     terreno[0][0] = AUTO;
 }
 
-
-void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Grafo* grafo){
+void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO]){
 
     int fila = 0;
     int columna = 0;
@@ -164,8 +163,8 @@ void ubicar_animal(Animal* animal, string terreno[MAX_TERRENO][MAX_TERRENO], Gra
 
 void Mapa::ubicar_animales(){
     
-    for (int i = 0; i < MAX_ANIMALES; i++){
-        ubicar_animal(animales_a_rescatar[i], terreno, grafo);
+    for (int i = 0; i < MAX_ANIMALES; i++) {
+        ubicar_animal(animales_a_rescatar[i], terreno);
     }
 }
 
@@ -334,7 +333,7 @@ void Mapa::inicializar_mapa() {
 */
 Mapa::Mapa() {
     llenar_vector();
-    //inicializar_mapa();
+    //inicializar_mapa(terreno);
     llenar_primera_fila(terreno);
     llenar_segunda_fila(terreno);
     llenar_tercera_fila(terreno);
@@ -345,7 +344,9 @@ Mapa::Mapa() {
     llenar_octava_fila(terreno);
     
     grafo = new Grafo(terreno);
-    grafo->calcular_caminos_minimos();
+    int origen = 2;
+    int destino = 3;
+    int costo_camino = grafo->calcular_camino_minimo(origen, destino);
 }
 
 void Mapa::mostrar_mapa() {

@@ -30,6 +30,8 @@ class Camino_minimo {
 
         void liberar_matrices();
 
+        int calcular_costo(int origen, int destino);
+
         ~Camino_minimo();
 /*
         //Pre: la lista de vértices y la matriz de adyacencia deben estar previamente cargadas.

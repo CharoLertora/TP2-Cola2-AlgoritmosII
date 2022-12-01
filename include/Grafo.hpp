@@ -45,7 +45,7 @@ public:
 
     bool es_vertice_valido(int fila, int columna);
 
-    void calcular_caminos_minimos();
+    int calcular_camino_minimo(int origen, int destino);
 
     void liberar_matriz_adyacente();
 /*

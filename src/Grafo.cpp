@@ -104,12 +104,14 @@ void Grafo::mostrar_matriz_adyacencia(int** matriz_adyacencia) {
     cout << endl;
 }
 
-void Grafo::calcular_caminos_minimos() {
+int Grafo::calcular_camino_minimo(int origen, int destino) {
 
     delete algoritmo;
     this->algoritmo = new Camino_minimo(matriz_adyacencia);
     algoritmo->inicializar_matrices();
     algoritmo->calcular_caminos_minimos();
+    
+    return algoritmo->calcular_costo(origen, destino);
 }
 
 void Grafo::liberar_matriz_adyacente() {
