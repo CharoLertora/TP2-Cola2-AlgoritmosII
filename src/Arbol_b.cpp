@@ -77,23 +77,6 @@ void Arbol_B::adoptar(string nombre) {
 	}
 }
 
-void Arbol_B::eliminar(string nombre){
-	
-	int indice = 0;
-	Nodo_arbol_B* nodo_encontrado = buscar_en_el_arbol(nombre, indice);
-	if (nodo_encontrado != NULL){
-		if (nodo_encontrado->obtener_animal(indice)->esta_eliminado()){
-			cout << "Este animal ya no es parte de nuestra reserva." << endl;
-		}else {
-			nodo_encontrado->obtener_animal(indice)->eliminar();
-			nodo_encontrado->disminuir_cant_claves();
-		}
-		
-	}else {
-		cout << "¡Ese animal no forma parte de nuestra reserva!" << endl;
-	}
-}
-
 bool Arbol_B::vacio(){
 	return (raiz == NULL);
 }
@@ -231,27 +214,27 @@ void Arbol_B::imprimir(){
 
 void Arbol_B::realizar_accion(Animal *animal, int accion_a_realizar){
 
-    switch(accion_a_realizar){
+    if (!animal->esta_eliminado()){
+		switch(accion_a_realizar){
 
-        case LISTAR:
-			mostrar_datos_animal(animal);
-            break;
+			case LISTAR:
+				mostrar_datos_animal(animal);
+				break;
 
-        case ACTUALIZAR_HAMBRE_HIGIENE:
-            if (!animal->esta_eliminado()){
-			animal->aumentar_hambre();
-			animal->reducir_higiene();	
-			}
-            break;
+			case ACTUALIZAR_HAMBRE_HIGIENE:
+				animal->aumentar_hambre();
+				animal->reducir_higiene();	
+				break;
 
-        case REVISAR_HAMBRE_HIGIENE:
-			if (animal->obtener_higiene() == HIGIENE_MINIMA || animal->obtener_hambre() == HAMBRE_MAXIMA){
-				animal->eliminar();
-				cantidad_de_escapes++;
-				avisar_usuario_escapes(animal, cantidad_de_escapes);
-			}
-            break;
-    }
+			case REVISAR_HAMBRE_HIGIENE:
+				if (animal->obtener_higiene() == HIGIENE_MINIMA || animal->obtener_hambre() == HAMBRE_MAXIMA){
+					animal->eliminar();
+					cantidad_de_escapes++;
+					avisar_usuario_escapes(animal, cantidad_de_escapes);
+				}
+				break;
+		}
+	}
 }
 
 void Arbol_B::recorrer_arbol(Nodo_arbol_B *nodo, int accion_a_realizar){
@@ -268,17 +251,6 @@ void Arbol_B::recorrer_arbol(Nodo_arbol_B *nodo, int accion_a_realizar){
 		recorrer_arbol(nodo->obtener_hijo(i), accion_a_realizar);
 	}
 }
-
-/*
-void Arbol_B::eliminar_nodos(Nodo_arbol_B *nodo){
-
-	if (nodo != nullptr){
-		eliminar_nodos(nodo->obtener_hijo(0));
-		eliminar_nodos(nodo->obtener_hijo(1));
-		eliminar_nodos(nodo->obtener_hijo(2));
-		delete nodo;
-	}
-}*/
 
 Arbol_B::~Arbol_B(){
 	delete raiz;
