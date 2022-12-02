@@ -47,6 +47,12 @@ public:
     //Post: Valida que 'opcion' esté dentro de las opciones del menu, sino vuelve a preguntar.
     void validar_opcion(int &opcion);
 
+    //Pre: 'opcion' debe estar previamente inicializado.
+    //Post: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
+    void procesar_opcion(Arbol_B *arbol_animales, int opcion, Auto *vehiculo);
+
+private:
+
     //Pre: -
     //Post: Muestra por pantalla el submenu de la opción "Cuidar animales"
     void mostrar_submenu();
@@ -54,10 +60,6 @@ public:
     //Pre: 'opcion' debe ser pasada por referencia.
     //Post: Valida que 'opcion' esté dentro de las opciones del submenu, sino vuelve a preguntar.
     void validar_opcion_submenu(int &opcion);
-
-    //Pre: 'opcion' debe estar previamente inicializado.
-    //Post: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
-    void procesar_opcion(Arbol_B *arbol_animales, int opcion, Auto *vehiculo);
 
     //Pre:-
     //Post: Muestra por pantalla todos los animales de la arbol_animales, si esta vacia muestra un mensaje.
