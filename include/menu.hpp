@@ -39,7 +39,7 @@ class Menu {
 public:
 
     //Pre: -
-    //Pos: Imprime por pantalla el menu del programa
+    //Post: Imprime por pantalla el menu del programa
     void mostrar_menu();
 
     //Pre: -
@@ -62,38 +62,56 @@ public:
     //Post: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
     void procesar_opcion(Arbol_B *arbol_animales, int opcion, Auto *vehiculo);
 
-    //pre:-
-    //pos: Muestra por pantalla todos los animales de la arbol_animales, si esta vacia muestra un mensaje.
+    //Pre:-
+    //Post: Muestra por pantalla todos los animales de la arbol_animales, si esta vacia muestra un mensaje.
     void listar_animales(Arbol_B *arbol_animales);
 
+    //Pre: Ambos objetos deben estar inicializados.
+    //Post: Muestra por pantalla la cantidad de combustible disponible y los animales a rescatar.
     void mostrar_datos_rescate(Auto *vehiculo, Mapa mapa);
 
+    //Pre: -
+    //Post: Le muestra al usuario sus opciones.
     void mostrar_opciones(Mapa mapa_juego);
 
+    //Pre:-
+    //Post: Le pide al usuario que ingrese una respuesta válida y no dejará de hacerlo hasta que lo haga.
     void pedir_respuesta(int &respuesta);
 
+    //Pre:-
+    //Post: Le pide al usuario que ingrese el número del animal que desea rescatar y no dejará de pedirselo hasta que ingrese un valor válido.
     void elegir_animal(int &animal, Mapa mapa);
+
+    //Pre:-
+    //Post: Le notificará al usuario que el combustible es infuciente para rescatar a ese animal y lw preguntará si desea rescatar a otro.
+    void combustible_insuficiente(int &respuesta);
+
+    //Pre: Todos los parámetros deben ser previamente inicializados.
+    //Post: Llevará a cabo el rescate del animal seleccionado, llamando a las funciones necesarias para sacarlo del mapa y agregarlo al arbol de animales.
+    void realizar_rescate(Mapa &mapa_juego, Arbol_B *arbol_animales, int animal);
     
+    //Pre: Ambos parámetros deben ser previamente inicializados.
+    //Post: Le mostrará al usuario el mapa y le preguntará si desea salvar a alguno de los animales, llevando a cabo el rescate en caso de que sea posible.
     void rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo);
 
-    // pre: -
-    // pos: devolverá true en caso de que 'nombre_buscado' sea igual a alguno de los nombres no eliminados de la lista de animales, o false en caso contrario.
+    //Pre: -
+    //Post: devolverá true en caso de que 'nombre_buscado' sea igual a alguno de los nombres no eliminados de la lista de animales, o false en caso contrario.
     bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol);
 
-    //pre: -
-    //pos: Verificará si el nombre ingresado se encuentra en el árbol. Si eso ocurre le mostrará al usuario los datos del animal correspondiente, de lo contrario, también le notificará al usuario.
+    //Pre: -
+    //Post: Verificará si el nombre ingresado se encuentra en el árbol. Si eso ocurre le mostrará al usuario los datos del animal correspondiente, de lo contrario, también le notificará al usuario.
     void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado);
     
-    //pre: -
-    //pos: va a devolver true en caso de que la respuesta coincida con si/Si, y false en cualquier otro caso.
+    //Pre: -
+    //Post: va a devolver true en caso de que la respuesta coincida con si/Si, y false en cualquier otro caso.
     bool es_respuesta_valida(string respuesta);
 
-    //pre: -
-    //pos: buscará el animal solicitado por el usuario las veces que lo desee.
+    //Pre: -
+    //Post: buscará el animal solicitado por el usuario las veces que lo desee.
     void buscar_animal(Arbol_B *arbol_animales);
 
-    //pre:-
-    //pos: Le muestra al usuario cada animal de la lista y le pregunta si desea cuidarlo o saltearlo.
+    //Pre:-
+    //Post: Le muestra al usuario cada animal de la lista y le pregunta si desea cuidarlo o saltearlo.
     void elegir_individualmente(Arbol_B *arbol_animales);
 
     //Pre: 'opcion' debe estar previamente inicializado.
@@ -104,24 +122,24 @@ public:
     //Post: Lleva al usuario al submenu y procesará las diferentes respuestas mientras no vuelva al inicio
     void abrir_submenu(Arbol_B *arbol_animales);
 
-    //pre: -
-    ///pos: Le pregunta al usuario el nombre del animal que desea adoptar y en caso de que sea un nombre válido, marca ese animal como "adoptado" y le notifica al usuario.
+    //Pre: -
+    ///Post: Le pregunta al usuario el nombre del animal que desea adoptar y en caso de que sea un nombre válido, marca ese animal como "adoptado" y le notifica al usuario.
     void realizar_adopcion(Arbol_B *arbol);
 
-    //pre: -
-    //pos: Devuelve true si hay caracteres que no son numericos, sino false.
+    //Pre: -
+    //Post: Devuelve true si hay caracteres que no son numericos, sino false.
     bool hay_letras(string edad);
 
-    //pre: 'espacio' debe estar previamente inicializado y ser pasado por referencia.
-    //pos: se encarga de verificar que el espacio ingresado por el usuario no contenga letras ni números negativos.
+    //Pre: 'espacio' debe estar previamente inicializado y ser pasado por referencia.
+    //Post: se encarga de verificar que el espacio ingresado por el usuario no contenga letras ni números negativos.
     void validar_espacio(string &espacio);
 
-    //pre:-
-    //pos: solicita al usuario el espacio en metros cuadrados donde vivirá el animal a adoptar y le mostrará las opciones disponibles. Luego, llamará al procedimiento correspondiente para finalizar el proceso de adopción.
+    //Pre:-
+    //Post: solicita al usuario el espacio en metros cuadrados donde vivirá el animal a adoptar y le mostrará las opciones disponibles. Luego, llamará al procedimiento correspondiente para finalizar el proceso de adopción.
     void adoptar_animal(Arbol_B *arbol_animales);
 
-    //pre:-
-    //pos: solicita al usuario la cantidad de combustible que desea cargar y luego, cargara el tanque con dicha cantidad.
+    //Pre:-
+    //Post: solicita al usuario la cantidad de combustible que desea cargar y luego, cargara el tanque con dicha cantidad.
     void cargar_combustible(Auto *vehiculo);
 };
 

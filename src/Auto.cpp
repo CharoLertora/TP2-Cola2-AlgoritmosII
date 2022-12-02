@@ -2,12 +2,9 @@
 #include "../include/Auto.hpp"
 
 Auto::Auto(){
-    this->pos_actual = NULL;
     combustible = TANQUE_LLENO;
-}
-
-void Auto::asignar_posicion(Vertice *pos_actual){
-    this->pos_actual = pos_actual;
+    posicion.fila = POS_INICIAL;
+    posicion.columna = POS_INICIAL;
 }
 
 void Auto::validar_cantidad(int &cantidad){
@@ -56,4 +53,13 @@ int Auto::combustible_actual(){
 
 void Auto::reducir_combustible(){
     combustible = combustible - REDUCCION_COMBUSTIBLE;
+}
+
+void Auto::asignar_posicion(coordenada nueva_pos){
+    posicion.fila = nueva_pos.fila;
+    posicion.columna = nueva_pos.columna;
+}
+
+coordenada Auto::obtener_pos(){
+    return posicion;
 }

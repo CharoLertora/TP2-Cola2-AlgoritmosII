@@ -38,11 +38,6 @@ const string IMAGEN_ERIZO = "🦔";
 const string IMAGEN_ROEDOR = "🐭";
 const string IMAGEN_LAGARTIJA = "🦎";
 
-struct coordenada {
-    int fila;
-    int columna;
-};
-
 class Mapa {
 
     //Atributos:
@@ -52,7 +47,7 @@ private:
     int animales_rescatados;
     Grafo *grafo;
     Auto *vehiculo;
-    coordenada coordenadas[MAX_ANIMALES];
+    coordenada posicion_animales[MAX_ANIMALES];
 
 //Métodos:
 public:
@@ -72,12 +67,21 @@ public:
     //Post: Devuelve el vector "animales" del Mapa.
     Animal* obtener_vector_animales(); 
 
+    //Pre: -
+    //Post: Muestra en una lista los animales que deben ser rescatados.
     void mostrar_listado_animales();
 
+    //Pre: "indice" debe ser inicializado previamente.
+    //Post: Le asigna el valor correspondiente a "fila" y "columna", representando la posición en la que se encuentre el animal del vector "animales_a_rescatar" 
+    //que se encuentre en el indice ingresado.
     void obtener_coords_animal(int indice, int &fila, int &columna);
 
+    //Pre: -
+    //Post: Devuelve la cantidad de anmales que aun no han sido rescatados.
     int animales_sin_rescatar();
 
+    //Pre: "indice" debe ser inicializado previamente.
+    //Post: Se encarga de eliminar el animal rescatado de la lista de animales por rescatar y devuelve dicho animal.
     Animal* rescatar_animal(int indice);
 
     //Destructor
@@ -86,6 +90,10 @@ public:
     //~Mapa();
 
 private:
+
+    //Pre: "indice" debe ser inicializado previamente.
+    //Post: 
+    void viajar(int indice);
 
     //Pre: -
     //Post: Llena el vector de animales con diferentes animales generados de manera random.
@@ -115,13 +123,14 @@ private:
     //Post: Verifica que el numero ingresado no se repita, para que las especies de los animales sean diferentes.
     bool ya_salio(int especies[MAX_ANIMALES], int numero);
 
-    void guardar_coordenadas(int indice, int fila, int columna);
+
+    //Pre: Todos los parametros deben ser previamente inicializados.
+    //Post: Guarda la posición de cada animal en el indice del vector correspondiente-
+    void guardar_posicion_animales(int indice, int fila, int columna);
 
     //Pre: -
     //Post: Ubica de manera random cada animal en una posición del terreno, corroborando que no se encuentre en la misma posición que el auto u otro animal. 
     void ubicar_animal(int i, Animal* animal, Grafo* grafo);
-
-    void copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna);
 
     //Pre: Tanto "rango" como "minimo" deben estar inicializados.
     //Post: Genera un numero random respetando el rango y el minimo ingresado. 

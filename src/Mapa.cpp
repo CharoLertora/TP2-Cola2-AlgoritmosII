@@ -121,24 +121,17 @@ int Mapa::numero_random(int rango, int minimo){
     return numero; 
 }
 
+
 void Mapa::ubicar_auto(){
 
-    terreno[0][0] = AUTO;
-    vehiculo->asignar_posicion(grafo->encontrar_vertice(0,0));
+    terreno[vehiculo->obtener_pos().fila][vehiculo->obtener_pos().columna] = AUTO;
 }
 
-void Mapa::copiar_animales(Grafo *grafo, Animal *animal, int fila, int columna){
 
-    Vertice *vertice = grafo->encontrar_vertice(fila, columna);
-    if (vertice != NULL){
-        vertice->asignar_animal(animal); 
-    }
-}
+void Mapa::guardar_posicion_animales(int indice, int fila, int columna){
 
-void Mapa::guardar_coordenadas(int indice, int fila, int columna){
-
-    coordenadas[indice].fila = fila;
-    coordenadas[indice].columna = columna;
+    posicion_animales[indice].fila = fila;
+    posicion_animales[indice].columna = columna;
 }
 
 void Mapa::mostrar_listado_animales(){
@@ -159,8 +152,8 @@ int Mapa::animales_sin_rescatar(){
 
 void Mapa::obtener_coords_animal(int indice, int &fila, int &columna){
 
-    fila = coordenadas[indice - 1].fila;
-    columna = coordenadas[indice - 1].columna;
+    fila = posicion_animales[indice - 1].fila;
+    columna = posicion_animales[indice - 1].columna;
 }
 
 void Mapa::ubicar_animal(int indice, Animal* animal, Grafo* grafo){
@@ -189,8 +182,7 @@ void Mapa::ubicar_animal(int indice, Animal* animal, Grafo* grafo){
         terreno[fila][columna] = IMAGEN_LAGARTIJA;
     } 
 
-    guardar_coordenadas(indice, fila, columna);
-    copiar_animales(grafo, animal, fila, columna);
+    guardar_posicion_animales(indice, fila, columna);
 }
 
 void Mapa::ubicar_animales(){
@@ -282,7 +274,6 @@ bool Mapa::ya_salio(int especies[MAX_ANIMALES], int numero){
         }
     }
     return salio;
-
 }
 
 void Mapa::validar_especie(int especies[MAX_ANIMALES], int &numero, int numero_animal){
@@ -290,7 +281,6 @@ void Mapa::validar_especie(int especies[MAX_ANIMALES], int &numero, int numero_a
     while (ya_salio(especies, numero)){
         numero = numero_random(MAX_ESPECIES, 1);
     }
-
     especies[numero_animal] = numero;
 }
 
@@ -353,20 +343,22 @@ void Mapa::llenar_vector() {
 
 void Mapa::viajar(int indice){
     
+    vehiculo->asignar_posicion(posicion_animales[indice]);
+    terreno[posicion_animales[indice].fila][posicion_animales[indice].columna] = AUTO;
 }
 
 Animal* Mapa::rescatar_animal(int indice){
 
-    viajar(indice - 1);
-    Animal *animal_rescatado = animales_a_rescatar[indice - 1];
     int i = indice - 1;
+    viajar(i);
+    Animal *animal_rescatado = animales_a_rescatar[i];
+    delete animales_a_rescatar[i];
     while (i < animales_sin_rescatar() - 1){
         animales_a_rescatar[i] = animales_a_rescatar[i + 1]; 
+        posicion_animales[i] = posicion_animales[i + 1];
         i++;
     }
     animales_rescatados++;
-    
-
     return animal_rescatado;
 }
 
@@ -391,6 +383,7 @@ Mapa::Mapa(Auto* vehiculo) {
 
 void Mapa::mostrar_mapa() {
 
+    ubicar_auto();
     for (int i = 0; i < MAX_TERRENO; i++) {
         for (int j = 0; j < MAX_TERRENO; j++) {
             cout << terreno[i][j] << " ";
@@ -411,7 +404,7 @@ void Mapa::copiar_en_grafo(){
 /*
 Mapa::~Mapa() {
 
-    for (int i = 0; i < MAX_ANIMALES; i++) {
+    for (int i = 0; i < animales_sin_rescatar(); i++) {
         delete animales_a_rescatar[i];
     }
 
