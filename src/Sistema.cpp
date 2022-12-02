@@ -9,7 +9,6 @@
 #include "../include/Lagartija.hpp"
 #include "../include/funciones_auxiliares.hpp"
 #include "../include/Mapa.hpp"
-#include "../include/quicksort.hpp"
 
 Sistema::Sistema() {
 
@@ -35,14 +34,10 @@ void Sistema::inicializar_sistema(Sistema sistema) {
         verificar_si_partida_continua(arbol_animales); 
     }
 
-    guardar_y_salir(sistema.obtener_arbol_animales());
+    guardar_y_salir(arbol_animales);
     cout << endl << "¡Hasta la próxima!" << endl << endl;
     delete arbol_animales;
     delete vehiculo;
-}
-
-Arbol_B* Sistema::obtener_arbol_animales() {
-    return this->arbol_animales;
 }
 
 void Sistema::agregar_animal(Arbol_B *arbol_animales, string nombre, int edad, string tamanio, string especie, string personalidad) {
@@ -107,51 +102,6 @@ void Sistema::llenar_arbol(Arbol_B *arbol_animales) {
         agregar_animal(arbol_animales, nombre, num_edad, tamanio, especie, personalidad);
     }
     archivo_animales.close();
-}
-
-bool Sistema::es_nombre_valido(string palabra){
-    
-    bool es_nombre_valido = true;
-    for (int i = 0; i < int(palabra.length()); i++){
-        if ((palabra[i] < 'a' || palabra[i] > 'z') && (palabra[i] < 'A' || palabra[i] > 'Z')){
-            es_nombre_valido = false;
-        }
-    }
-    return es_nombre_valido;
-}
-
-void Sistema::validar_nombre_animal(string &nombre){
-    
-    while(!es_nombre_valido(nombre)){
-        cout << "\nEl nombre ingresado no es válida, acuérdese que no puede contener numeros o caracteres del tipo @-() etc" << endl;
-        cout << "\nNombre: ";
-        getline(cin, nombre);
-    }
-}
-
-/*
-void Sistema::validar_edad(string &edad) {
-    
-    while (hay_letras(edad)){
-        cout << "\nLa edad ingresada no válida, acuérdese que la edad es sólo con números" << endl;
-        cout << "\nEdad: ";
-        getline(cin, edad);
-    }
-}*/
-
-void Sistema::reajustar(Animal** vector, int& max_vector){
-    int cantidad_maxima_animales = max_vector * 2;
-    Animal** nuevo_vector_animales = new Animal*[cantidad_maxima_animales];
-
-    for (int i = 0; i < max_vector; i++){
-        nuevo_vector_animales[i] = vector[i];
-    }
-
-    if (max_vector != 0){
-        delete[] vector;
-    }
-    vector  = nuevo_vector_animales;
-    max_vector = cantidad_maxima_animales; 
 }
 
 void Sistema::cambiar_hambre_higiene(Arbol_B *arbol_animales) {

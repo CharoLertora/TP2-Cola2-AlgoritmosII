@@ -1,7 +1,7 @@
 #include "../include/Arbol_b.hpp"
 #include "../include/funciones_auxiliares.hpp"
 #include "../include/Sistema.hpp"
-#include "../include/quicksort.hpp"
+#include "../include/ordenamiento.hpp"
 
 #include <stdio.h>
 #include <string.h>
@@ -170,8 +170,8 @@ void Arbol_B::imprimir_por_espacio_y_edad(int espacio){
     Animal** vector = new Animal*[tope];
     int indice = 0;
     agregar_elementos_al_vector(vector, indice);
-    QuickSort ordenamiento;
-    ordenamiento.sort(vector, tope);
+    Ordenamiento ordenamiento;
+    ordenamiento.ordenar(vector, tope);
     
     for (int i = 0; i < tope; i++){
 

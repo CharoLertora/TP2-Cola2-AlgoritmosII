@@ -81,33 +81,15 @@ public:
     void inicializar_sistema(Sistema sistema);
 
     //Pre:-
-    //Post: Devuelve la lista de animales.
-    Arbol_B* obtener_arbol_animales();
-
-    //Pre:-
     //Post: Aumenta el hambre y reduce la higiene de todos los animales de la arbol_animales
     void cambiar_hambre_higiene(Arbol_B *arbol_animales);
 
     //Pre: El árbol debe encontrarse inicializado.
     //Post: Verifica si la cantidad de animales que escaparon es menor a la permitida. En caso de no ser así, le notifica al usuario y se termina el programa.
     void verificar_si_partida_continua(Arbol_B *arbol_animales);
-
-    //Pre: -
-    //Post: Devuelve true si el nombre es valido, un nombre es valido solo cuando esta compuesto de letras minusculas o mayusculas o ambas, sino false.
-    bool es_nombre_valido(string palabra);
-
-    //Pre: -
-    //Post: Valida que el nombre solo tenga letras minusculas o mayusculas o ambas, sino te pide que vuelvas a ingresar otro nombre
-    void validar_nombre_animal(string &nombre);
-
-    //Pre: -
-    //Post: Validará que la edad no contenga letras.
-    void validar_edad(string &edad);
-
-    void reajustar(Animal** vector, int& max_vector);
     
     //Pre: -
-    //Post: cargará toda la información que se encuentre en la lista de animales en el archivo animales.csv.
+    //Post: cargará toda la información que se encuentre en el arbol de animales en el archivo animales.csv.
     void guardar_y_salir(Arbol_B *arbol_animales);
 
     //Pre: -
@@ -121,11 +103,11 @@ public:
 private:
 
     //Pre: Los párametros nombre, edad, especie, tamanio y personalidad, que serán los atributos del animal, deben estar inicializados.
-    //Post: Agrega el animal ingresado a la lista de animales.
+    //Post: Agrega el animal ingresado al arbol de animales.
     void agregar_animal(Arbol_B *arbol_animales, string nombre, int edad, string tamanio, string especie, string personalidad);
 
     //Pre: '*arbol_animales' debe apuntar al atributo de la clase Sistema el cuál debe estar previamente inicializado.
-    //Post: Llenará la lista con los animales que encuentre en el archivo. En caso de no haber archivo, creará uno.
+    //Post: Llenará el arbol con los animales que encuentre en el archivo. En caso de no haber archivo, creará uno.
     void llenar_arbol(Arbol_B *arbol_animales);
 };
 

@@ -32,9 +32,6 @@ enum Opcion_submenu {
 };
 
 class Menu {
-    //Atributos
-
-
     //Métodos:
 public:
 
@@ -86,6 +83,14 @@ public:
     //Post: Le notificará al usuario que el combustible es infuciente para rescatar a ese animal y lw preguntará si desea rescatar a otro.
     void combustible_insuficiente(int &respuesta);
 
+    //Pre: "palabra" debe estar inicializado.
+    //Post: Devuelve true si el nombre es valido, un nombre es valido solo cuando esta compuesto de letras minusculas o mayusculas o ambas, sino false.
+    bool es_nombre_valido(string palabra);
+
+    //Pre: "nombre" debe estar inicializado.
+    //Post: Valida que el nombre solo tenga letras minusculas o mayusculas o ambas, y que no sea un nombre ya existente en la reserva, sino te pide que vuelvas a ingresar otro nombre.
+    void validar_nombre_animal(string &nombre, Arbol_B *arbol_animales);
+
     //Pre: Todos los parámetros deben ser previamente inicializados.
     //Post: Llevará a cabo el rescate del animal seleccionado, llamando a las funciones necesarias para sacarlo del mapa y agregarlo al arbol de animales.
     void realizar_rescate(Mapa &mapa_juego, Arbol_B *arbol_animales, int animal);
@@ -95,17 +100,13 @@ public:
     void rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo);
 
     //Pre: -
-    //Post: devolverá true en caso de que 'nombre_buscado' sea igual a alguno de los nombres no eliminados de la lista de animales, o false en caso contrario.
+    //Post: devolverá true en caso de que 'nombre_buscado' sea igual a alguno de los nombres no eliminados del arbol de animales, o false en caso contrario.
     bool es_nombre_existente(string nombre_buscado, Arbol_B *arbol);
 
     //Pre: -
     //Post: Verificará si el nombre ingresado se encuentra en el árbol. Si eso ocurre le mostrará al usuario los datos del animal correspondiente, de lo contrario, también le notificará al usuario.
     void revisar_arbol_animales(Arbol_B *arbol, string &nombre_buscado);
     
-    //Pre: -
-    //Post: va a devolver true en caso de que la respuesta coincida con si/Si, y false en cualquier otro caso.
-    bool es_respuesta_valida(string respuesta);
-
     //Pre: -
     //Post: buscará el animal solicitado por el usuario las veces que lo desee.
     void buscar_animal(Arbol_B *arbol_animales);

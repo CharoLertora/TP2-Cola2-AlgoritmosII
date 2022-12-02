@@ -352,7 +352,6 @@ Animal* Mapa::rescatar_animal(int indice){
     int i = indice - 1;
     viajar(i);
     Animal *animal_rescatado = animales_a_rescatar[i];
-    delete animales_a_rescatar[i];
     while (i < animales_sin_rescatar() - 1){
         animales_a_rescatar[i] = animales_a_rescatar[i + 1]; 
         posicion_animales[i] = posicion_animales[i + 1];
