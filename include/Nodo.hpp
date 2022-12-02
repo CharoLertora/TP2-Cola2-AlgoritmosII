@@ -104,8 +104,8 @@ public:
 
 private:
 
-	//pre: el parámetro 'especie' debe estar previamente inicializado y debe contener valores válidos.
-    //pos: Devuelve un string con la inicial de la especie correspondiente.
+	//Pre: el parámetro 'especie' debe estar previamente inicializado y debe contener valores válidos.
+    //Post: Devuelve un string con la inicial de la especie correspondiente.
     string especie_a_inicial(string especie);
 };
 

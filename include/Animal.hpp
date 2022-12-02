@@ -97,12 +97,20 @@ public:
     //Post: Devuelve el atributo comida del animal.
     string obtener_comida();
 
+    //Pre:
+    //Post: Devuelve el atributo "eliminado" de animal.
     bool esta_eliminado();
 
+    //Pre:
+    //Post: Devuelve el atributo "adoptado" de animal.
     bool esta_adoptado();
 
+    //Pre:
+    //Post: Marca el atributo "eliminado" como true.
     void eliminar();
 
+    //Pre:
+    //Post: Marca el atributo "adoptado" como true.
     void adoptar();
 };
 

@@ -51,6 +51,7 @@ private:
 
 //Métodos:
 public:
+
     //Pre: -
     //Post: construirá el mapa de juego disponible.
     Mapa(Auto *vehiculo);
@@ -122,7 +123,6 @@ private:
     //Pre: "especies" debe estar inicializado, al igual que "numero".
     //Post: Verifica que el numero ingresado no se repita, para que las especies de los animales sean diferentes.
     bool ya_salio(int especies[MAX_ANIMALES], int numero);
-
 
     //Pre: Todos los parametros deben ser previamente inicializados.
     //Post: Guarda la posición de cada animal en el indice del vector correspondiente-
