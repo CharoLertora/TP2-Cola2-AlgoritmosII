@@ -128,11 +128,6 @@ int Mapa::numero_random(int rango, int minimo){
     return numero; 
 }
 
-void Mapa::ubicar_auto(){
-
-    terreno[vehiculo->obtener_pos().fila][vehiculo->obtener_pos().columna] = AUTO;
-}
-
 void Mapa::guardar_posicion_animales(int indice, int fila, int columna){
 
     posicion_animales[indice].fila = fila;
@@ -167,6 +162,10 @@ int Mapa::obtener_animales_sin_rescatar(){
     return animales_sin_rescatar();
 }
 
+bool Mapa::esta_auto(int fila, int columna){
+    return (fila == vehiculo->obtener_pos().fila && columna == vehiculo->obtener_pos().columna);
+}
+
 void Mapa::ubicar_animal(int indice, Animal* animal, Grafo* grafo){
 
     int fila = 0;
@@ -175,7 +174,7 @@ void Mapa::ubicar_animal(int indice, Animal* animal, Grafo* grafo){
     do {
         fila = numero_random(MAX_TERRENO, 0);
         columna = numero_random(MAX_TERRENO, 0);
-    }while(hay_animal(fila, columna) || terreno[fila][columna] == AUTO);
+    }while(hay_animal(fila, columna) || esta_auto(fila, columna));
 
     if (animal->obtener_especie() == ESPECIE_PERRO){
         terreno[fila][columna] = IMAGEN_PERRO;
@@ -400,7 +399,6 @@ Mapa::Mapa(Auto* vehiculo) {
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
     grafo = new Grafo(terreno);
-    ubicar_auto();
     ubicar_animales();
 
 }
@@ -424,10 +422,13 @@ void Mapa::inicializar_mapa() {
 
 void Mapa::mostrar_mapa() {
 
-    ubicar_auto();
     for (int i = 0; i < MAX_TERRENO; i++) {
         for (int j = 0; j < MAX_TERRENO; j++) {
-            cout << terreno[i][j] << " ";
+            if (esta_auto(i, j)){
+                cout << AUTO << " "; 
+            }else {
+                cout << terreno[i][j] << " ";
+            }            
         }
         cout << endl;
     }

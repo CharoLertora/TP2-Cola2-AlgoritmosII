@@ -104,10 +104,6 @@ private:
     void ubicar_animales();
 
     //Pre: -
-    //Post: Le asigna una posición en el terreno al vehiculo.
-    void ubicar_auto();
-
-    //Pre: -
     //Post: Crea un animal de la especie correspondiente a la generada de manera random, guardandolo en el vector "animales".
     void cargar_animal(int numero, Animal* &animal_random, string nombre, string tamanio, string personalidad, int edad);
 
@@ -122,6 +118,8 @@ private:
     //Pre: Todos los parametros deben ser previamente inicializados.
     //Post: Guarda la posición de cada animal en el indice del vector correspondiente-
     void guardar_posicion_animales(int indice, int fila, int columna);
+
+    bool esta_auto(int fila, int columna);
 
     //Pre: -
     //Post: Ubica de manera random cada animal en una posición del terreno, corroborando que no se encuentre en la misma posición que el auto u otro animal. 
