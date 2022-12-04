@@ -375,7 +375,6 @@ Mapa::Mapa(Auto* vehiculo) {
     llenar_sexta_fila(terreno);
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
-    copiar_en_grafo();
     ubicar_auto();
     ubicar_animales();
 }
@@ -391,6 +390,7 @@ void Mapa::mostrar_mapa() {
     }
 }
 
+/*
 void Mapa::copiar_en_grafo(){
     
     for (int i = 0; i < MAX_TERRENO; i++) {
@@ -400,7 +400,7 @@ void Mapa::copiar_en_grafo(){
     }    
 }
 
-/*
+
 Mapa::~Mapa() {
 
     for (int i = 0; i < animales_sin_rescatar(); i++) {

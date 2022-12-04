@@ -6,10 +6,10 @@
 
 using namespace std;
 
-const string TIERRA = "🌳"; 
-const string CAMINO = "🟨";
-const string MONTANIA = "⛰️ ";
-const string PRECIPICIO = "🕳 ";
+const string TIERRA = "🟨"; 
+const string CAMINO = "⬜";
+const string MONTANIA = "🟫";
+const string PRECIPICIO = "⬛";
 const string AUTO = "🚘";
 const int COSTO_MONTANIA = 5;
 const int COSTO_PRECIPICIO = 40;

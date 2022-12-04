@@ -6,7 +6,6 @@
 
 using namespace std;
 
-const int MAX_TERRENO = 8;
 const int MAX_ESPECIES = 7;
 const int MAX_ANIMALES = 5;
 const int MAX_PERSONALIDADES = 4;
@@ -14,12 +13,6 @@ const int MAX_TAMANIOS = 5;
 const int MAX_EDAD = 100;
 
 const string ARCHIVO_ANIMALES_A_RESCATAR = "animales_a_rescatar.csv";
-
-const string TIERRA = "🟨"; 
-const string CAMINO = "⬜";
-const string MONTANIA = "🟫";
-const string PRECIPICIO = "⬛";
-const string AUTO = "🚘";
 
 const int INDICE_PERRO = 1;
 const int INDICE_GATO = 2;
