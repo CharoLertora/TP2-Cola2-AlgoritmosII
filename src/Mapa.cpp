@@ -345,8 +345,9 @@ Mapa::Mapa() {
     
     grafo = new Grafo(terreno);
     int origen = 2;
-    int destino = 3;
+    int destino = 16;
     int costo_camino = grafo->calcular_camino_minimo(origen, destino);
+    cout << "El costo para ir de " << origen << " a " << destino << " es de: " << costo_camino << endl;
 }
 
 void Mapa::mostrar_mapa() {
