@@ -1,4 +1,4 @@
-#include "../include/ordenamiento.hpp"
+#include "../include/quicksort.hpp"
 #include <iostream>
 
 void Ordenamiento::ordenar(Animal** &animal_vector, int tope){
