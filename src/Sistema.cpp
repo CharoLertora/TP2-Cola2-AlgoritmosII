@@ -137,6 +137,7 @@ void Sistema::imprimir_msje_partida_perdida(){
     cout << '\t' << '\t' << "Tristemente será CLAUSURADA :(" << endl << endl;
 }
 
+
 Auto* Sistema::obtener_auto(){
     return vehiculo;
 }

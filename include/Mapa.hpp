@@ -78,6 +78,8 @@ public:
     //Post: Se encarga de eliminar el animal rescatado de la lista de animales por rescatar y devuelve dicho animal.
     Animal* rescatar_animal(int indice);
 
+    int costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
+
     //Destructor
     //Pre: -
     //Post: Libera la memoria ocupada por el Mapa y sus atributos.  

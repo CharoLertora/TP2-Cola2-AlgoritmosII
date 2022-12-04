@@ -93,8 +93,8 @@ void Camino_minimo::mostrar_camino(int origen, int destino) {
         
     } else {
 
-        cout << "El camino minimo que une " << origen << " con " << destino;
-        cout << " tiene un costo de: " << distancias[origen][destino] << " y su recorrido por los vértices es el siguiente: ";
+        //cout << "El camino minimo que une " << origen << " con " << destino;
+        //cout << " tiene un costo de: " << distancias[origen][destino] << " y su recorrido por los vértices es el siguiente: ";
         
         origen = caminos[origen][destino];
         cout << origen;

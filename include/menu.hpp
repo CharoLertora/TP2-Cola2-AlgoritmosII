@@ -83,7 +83,9 @@ private:
 
     //Pre:-
     //Post: Le notificará al usuario que el combustible es infuciente para rescatar a ese animal y lw preguntará si desea rescatar a otro.
-    void combustible_insuficiente(int &respuesta);
+    void combustible_insuficiente(int &respuesta, int costo, Auto *vehiculo);
+
+    void combustible_suficiente(int &respuesta, int costo, Auto *vehiculo);
 
     //Pre: "palabra" debe estar inicializado.
     //Post: Devuelve true si el nombre es valido, un nombre es valido solo cuando esta compuesto de letras minusculas o mayusculas o ambas, sino false.

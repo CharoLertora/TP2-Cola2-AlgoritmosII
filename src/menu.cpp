@@ -162,11 +162,22 @@ void Menu::elegir_animal(int &animal, Mapa mapa){
     }
 }
 
-void Menu::combustible_insuficiente(int &respuesta){
+void Menu::combustible_insuficiente(int &respuesta, int costo, Auto *vehiculo){
 
     cout << '\t' << "No hay suficiente combustible para rescatar a ese animal" << endl
-    << '\t' << "¿Quiere rescatar a otro?" << endl
+    << '\t' << "El viaje cuesta " << costo << " de combustible, y sólo hay " << vehiculo->combustible_actual() 
+    << " en el tanque." << endl
+    << '\t' << "¿Quiere rescatar a otro animal?" << endl
     << '\t' << "1. Si     2. No" << endl;
+    pedir_respuesta(respuesta);
+}
+
+void Menu::combustible_suficiente(int &respuesta, int costo, Auto *vehiculo){
+
+    cout << '\t' << "El viaje cuesta " << costo << " de combustible. En el tanque hay " << vehiculo->combustible_actual() << "." << endl
+    << "Es decir, luego del viaje quedará " << (vehiculo->combustible_actual() - costo) << " de combustible." << endl
+    << '\t' << "¿Desea rescatar a este animal o desea rescatar a otro?" << endl
+    << '\t' << "1. Rescatar a este animal     2. Volver al menú" << endl;
     pedir_respuesta(respuesta);
 }
 
@@ -225,16 +236,19 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
         mapa_juego.mostrar_listado_animales();
         elegir_animal(animal, mapa_juego);
         mapa_juego.obtener_coords_animal(animal, fila, columna); //esta función ya devuelve la fila y columna correspondiente al animal :)
-        int costo_camino = 50; //funcion_camino_minimo
+        int costo_camino = mapa_juego.costo_viaje(vehiculo->obtener_pos().fila, vehiculo->obtener_pos().columna, fila, columna);
         if (costo_camino > vehiculo->combustible_actual()){
-            combustible_insuficiente(respuesta);
+            combustible_insuficiente(respuesta, costo_camino, vehiculo);
         }else {
-            realizar_rescate(mapa_juego, arbol_animales, animal);
-            cout << '\t' << "¡Animal rescatado con éxito!" << endl
-            << '\t' << "Ya forma parte de nuestra reserva :)" << endl << endl
-            << '\t' << "¿Desea rescatar a otro animal?" << endl
-            << '\t' << "1. Si     2. No" << endl;
-            pedir_respuesta(respuesta);
+            combustible_suficiente(respuesta, costo_camino, vehiculo);
+            if (respuesta == SI){
+                realizar_rescate(mapa_juego, arbol_animales, animal);
+                cout << '\t' << "¡Animal rescatado con éxito!" << endl
+                << '\t' << "Ya forma parte de nuestra reserva :)" << endl << endl
+                << '\t' << "¿Desea rescatar a otro animal?" << endl
+                << '\t' << "1. Si     2. No" << endl;
+                pedir_respuesta(respuesta);
+            }
         }
     }
 

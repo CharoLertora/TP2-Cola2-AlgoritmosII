@@ -14,6 +14,13 @@
 
 const string NOMBRE_RESCATADO = "SIN NOMBRE";
 
+
+/*CAMBIAR ESTOS MÉTODOS Y HARDCODEAR EL MAPA COMO
+INT MAPA[MAX][MAX] = {
+    {c, P, T, T},
+    {C, C, C, C}.
+    ....
+};*/
 void llenar_primera_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[0][0] = CAMINO;
@@ -361,12 +368,18 @@ Animal* Mapa::rescatar_animal(int indice){
     return animal_rescatado;
 }
 
+int Mapa::costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino){
+    int origen = grafo->calcular_vertice(fila_origen, columna_origen);
+    int destino = grafo->calcular_vertice(fila_destino, columna_destino);
+    return grafo->calcular_camino_minimo(origen, destino); 
+}
+
 Mapa::Mapa(Auto* vehiculo) {
 
     this->vehiculo = vehiculo;
-    grafo = new Grafo();
     animales_rescatados = 0;
     llenar_vector();
+    
     llenar_primera_fila(terreno);
     llenar_segunda_fila(terreno);
     llenar_tercera_fila(terreno);
@@ -375,9 +388,28 @@ Mapa::Mapa(Auto* vehiculo) {
     llenar_sexta_fila(terreno);
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
+    grafo = new Grafo(terreno);
     ubicar_auto();
     ubicar_animales();
+
 }
+
+/*
+void Mapa::inicializar_mapa() {
+
+    this->terreno[MAX_TERRENO][MAX_TERRENO] = {
+        {CAMINO, PRECIPICIO, TIERRA, TIERRA, TIERRA, TIERRA, TIERRA, TIERRA},
+        {CAMINO, TIERRA, TIERRA, TIERRA, PRECIPICIO, PRECIPICIO, PRECIPICIO, PRECIPICIO},
+        {CAMINO, CAMINO, CAMINO, CAMINO, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {MONTANIA, MONTANIA, MONTANIA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
+        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, CAMINO, CAMINO, CAMINO},
+    };
+}
+*/
+
 
 void Mapa::mostrar_mapa() {
 
@@ -393,9 +425,12 @@ void Mapa::mostrar_mapa() {
 /*
 void Mapa::copiar_en_grafo(){
     
+    int contador = 1;
+
     for (int i = 0; i < MAX_TERRENO; i++) {
         for (int j = 0; j < MAX_TERRENO; j++) {
-            grafo->agregar_vertice(i, j, terreno [i][j]);
+            grafo->agregar_vertice(contador);
+            contador++;
         }
     }    
 }
