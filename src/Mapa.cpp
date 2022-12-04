@@ -128,12 +128,10 @@ int Mapa::numero_random(int rango, int minimo){
     return numero; 
 }
 
-
 void Mapa::ubicar_auto(){
 
     terreno[vehiculo->obtener_pos().fila][vehiculo->obtener_pos().columna] = AUTO;
 }
-
 
 void Mapa::guardar_posicion_animales(int indice, int fila, int columna){
 
@@ -148,6 +146,8 @@ void Mapa::mostrar_listado_animales(){
         for (int i = 0; i < animales_sin_rescatar(); i++){
         cout << (i + 1) << ". " << animales_a_rescatar[i]->obtener_especie() << endl;
         }
+    }else {
+        cout << "Ya has rescatado a todos los animales :)" << endl;
     }
 
     cout << endl << endl;
@@ -161,6 +161,10 @@ void Mapa::obtener_coords_animal(int indice, int &fila, int &columna){
 
     fila = posicion_animales[indice - 1].fila;
     columna = posicion_animales[indice - 1].columna;
+}
+
+int Mapa::obtener_animales_sin_rescatar(){
+    return animales_sin_rescatar();
 }
 
 void Mapa::ubicar_animal(int indice, Animal* animal, Grafo* grafo){
@@ -373,6 +377,13 @@ int Mapa::costo_viaje(int fila_origen, int columna_origen, int fila_destino, int
     int destino = grafo->calcular_vertice(fila_destino, columna_destino);
     return grafo->calcular_camino_minimo(origen, destino); 
 }
+
+/*
+void Mapa::marcar_camino(int fila_origen, int columna_origen, int fila_destino, int columna_destino){
+    int origen = grafo->calcular_vertice(fila_origen, columna_origen);
+    int destino = grafo->calcular_vertice(fila_destino, columna_destino);
+    grafo.
+}*/
 
 Mapa::Mapa(Auto* vehiculo) {
 

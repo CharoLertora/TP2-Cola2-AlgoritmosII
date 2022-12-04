@@ -175,7 +175,7 @@ void Menu::combustible_insuficiente(int &respuesta, int costo, Auto *vehiculo){
 void Menu::combustible_suficiente(int &respuesta, int costo, Auto *vehiculo){
 
     cout << '\t' << "El viaje cuesta " << costo << " de combustible. En el tanque hay " << vehiculo->combustible_actual() << "." << endl
-    << "Es decir, luego del viaje quedará " << (vehiculo->combustible_actual() - costo) << " de combustible." << endl
+    << '\t' << "Es decir, luego del viaje quedará " << (vehiculo->combustible_actual() - costo) << " de combustible." << endl
     << '\t' << "¿Desea rescatar a este animal o desea rescatar a otro?" << endl
     << '\t' << "1. Rescatar a este animal     2. Volver al menú" << endl;
     pedir_respuesta(respuesta);
@@ -207,7 +207,7 @@ void Menu::validar_nombre_animal(string &nombre, Arbol_B *arbol_animales){
     }
 }
 
-void Menu::realizar_rescate(Mapa &mapa_juego, Arbol_B *arbol_animales, int animal){
+void Menu::realizar_rescate(Mapa &mapa_juego, Arbol_B *arbol_animales, Auto *vehiculo, int animal, int costo){
 
     string nombre;
     Animal* animal_rescatado = mapa_juego.rescatar_animal(animal);
@@ -217,6 +217,7 @@ void Menu::realizar_rescate(Mapa &mapa_juego, Arbol_B *arbol_animales, int anima
     validar_nombre_animal(nombre, arbol_animales);
     animal_rescatado->asignar_nombre(nombre);
     arbol_animales->insertar(animal_rescatado);
+    vehiculo->reducir_combustible(costo);
 }
 
 void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
@@ -228,7 +229,7 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
     mostrar_opciones(mapa_juego);
     pedir_respuesta(respuesta);
 
-    while (respuesta == RESCATAR_ANIMAL){
+    while (respuesta == RESCATAR_ANIMAL && mapa_juego.obtener_animales_sin_rescatar() != 0){
         int animal = 0;
         int fila = 0;
         int columna = 0;
@@ -242,7 +243,8 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
         }else {
             combustible_suficiente(respuesta, costo_camino, vehiculo);
             if (respuesta == SI){
-                realizar_rescate(mapa_juego, arbol_animales, animal);
+                realizar_rescate(mapa_juego, arbol_animales, vehiculo, animal, costo_camino);
+                //mapa_juego.marcar_camino(vehiculo->obtener_pos().fila, vehiculo->obtener_pos().columna, fila, columna);
                 cout << '\t' << "¡Animal rescatado con éxito!" << endl
                 << '\t' << "Ya forma parte de nuestra reserva :)" << endl << endl
                 << '\t' << "¿Desea rescatar a otro animal?" << endl
@@ -250,6 +252,11 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
                 pedir_respuesta(respuesta);
             }
         }
+    }
+
+    if (mapa_juego.obtener_animales_sin_rescatar() == 0){
+        cout << endl << '\t' << " ¡YA HAS RESCATADO A TODOS LOS ANIMALES!" << endl
+        << '\t' << "GRACIAS POR DARLES UN NUEVO HOGAR <3" << endl << endl;
     }
 
     cout << '\t' << "Volviendo al menú..." << endl << endl;

@@ -53,9 +53,7 @@ public:
     //Post: mostrara el mapa disponible por pantalla.
     void mostrar_mapa();
 
-    //Pre: La matriz debe estar inicializada y cargada con toda la información necesaria previamente.
-    //Post: Devolverá el tipo de terreno que representa la casilla en la que se encuentra.
-    char obtener_tipo_terreno();
+    int obtener_animales_sin_rescatar();
 
     //Pre: -
     //Post: Devuelve el vector "animales" del Mapa.
@@ -71,7 +69,7 @@ public:
     void obtener_coords_animal(int indice, int &fila, int &columna);
 
     //Pre: -
-    //Post: Devuelve la cantidad de anmales que aun no han sido rescatados.
+    //Post: Devuelve la cantidad de animales que aun no han sido rescatados.
     int animales_sin_rescatar();
 
     //Pre: "indice" debe ser inicializado previamente.
@@ -79,6 +77,8 @@ public:
     Animal* rescatar_animal(int indice);
 
     int costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
+
+    //void marcar_camino(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
     //Destructor
     //Pre: -

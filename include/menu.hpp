@@ -97,7 +97,7 @@ private:
 
     //Pre: Todos los parámetros deben ser previamente inicializados.
     //Post: Llevará a cabo el rescate del animal seleccionado, llamando a las funciones necesarias para sacarlo del mapa y agregarlo al arbol de animales.
-    void realizar_rescate(Mapa &mapa_juego, Arbol_B *arbol_animales, int animal);
+    void realizar_rescate(Mapa &mapa_juego, Arbol_B *arbol_animales, Auto *vehiculo, int animal, int costo);
     
     //Pre: Ambos parámetros deben ser previamente inicializados.
     //Post: Le mostrará al usuario el mapa y le preguntará si desea salvar a alguno de los animales, llevando a cabo el rescate en caso de que sea posible.

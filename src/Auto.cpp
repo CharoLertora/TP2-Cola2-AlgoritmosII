@@ -51,8 +51,8 @@ int Auto::combustible_actual(){
     return combustible;
 }
 
-void Auto::reducir_combustible(){
-    combustible = combustible - REDUCCION_COMBUSTIBLE;
+void Auto::reducir_combustible(int reduccion){
+    combustible = combustible - reduccion;
 }
 
 void Auto::asignar_posicion(coordenada nueva_pos){

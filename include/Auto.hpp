@@ -45,7 +45,7 @@ public:
 
     //Pre: -
     //Post: reduce la cantidad de combustible restandole REDUCCION_COMBUSTIBLE.
-    void reducir_combustible();
+    void reducir_combustible(int reduccion);
 
     //Pre: "nueva_pos" debe ser previamente inicializada.
     //Post: Le asigna una nueva posición al auto.
