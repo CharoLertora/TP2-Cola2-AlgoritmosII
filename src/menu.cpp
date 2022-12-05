@@ -246,7 +246,6 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
             combustible_suficiente(respuesta, costo_camino, vehiculo);
             if (respuesta == SI){
                 realizar_rescate(mapa_juego, arbol_animales, vehiculo, animal, costo_camino);
-                mapa_juego.marcar_camino_recorrido(vehiculo->obtener_pos().fila, vehiculo->obtener_pos().columna, fila, columna);
                 cout << '\t' << "¡Animal rescatado con éxito!" << endl
                 << '\t' << "Ya forma parte de nuestra reserva :)" << endl << endl
                 << '\t' << "¿Desea rescatar a otro animal?" << endl

@@ -10,6 +10,7 @@ const string TIERRA = "🟨";
 const string CAMINO = "⬜";
 const string MONTANIA = "🟫";
 const string PRECIPICIO = "⬛";
+const string RECORRIDO = "🟥";
 const string AUTO = "🚘";
 const int COSTO_MONTANIA = 5;
 const int COSTO_PRECIPICIO = 40;

@@ -354,7 +354,6 @@ void Mapa::llenar_vector() {
 void Mapa::viajar(int indice){
     
     vehiculo->asignar_posicion(posicion_animales[indice]);
-    terreno[posicion_animales[indice].fila][posicion_animales[indice].columna] = AUTO;
 }
 
 Animal* Mapa::rescatar_animal(int indice){
@@ -388,6 +387,17 @@ void Mapa::remarcar_terreno(int filas_camino[MAX_MATRIZ], int columnas_camino[MA
     }
 }
 
+bool Mapa::fue_recorrido(int fila, int columna, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida){
+
+    bool recorrido = false;
+    for (int i = 0; i <= cantidad_recorrida; i++){
+        if (filas_camino[i] == fila && columnas_camino[i] == columna){
+            recorrido = true;
+        }
+    }  
+    return recorrido;  
+}
+
 void Mapa::marcar_camino_recorrido(int fila_origen, int columna_origen, int fila_destino, int columna_destino){
     
     int origen = grafo->calcular_vertice(fila_origen, columna_origen);
@@ -398,7 +408,19 @@ void Mapa::marcar_camino_recorrido(int fila_origen, int columna_origen, int fila
     int cantidad_recorrida = 0;
 
     grafo->calcular_coordenadas_camino(origen, destino, filas_camino, columnas_camino, cantidad_recorrida);
-    remarcar_terreno(filas_camino, columnas_camino, cantidad_recorrida);
+
+    for (int i = 0; i < MAX_TERRENO; i++) {
+        for (int j = 0; j < MAX_TERRENO; j++) {
+            if (esta_auto(i, j)){
+                cout << AUTO << " "; 
+            }else if (fue_recorrido(i, j, filas_camino, columnas_camino, cantidad_recorrida)){
+                cout << RECORRIDO << " ";                
+            }else {
+                cout << terreno[i][j] << " ";
+            }            
+        }
+        cout << endl;
+    }
 
 }
 

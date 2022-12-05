@@ -79,6 +79,8 @@ public:
     //Pre: 
     int costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
+    bool fue_recorrido(int fila, int columna, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
+    
     void marcar_camino_recorrido(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
     //Destructor

@@ -105,10 +105,8 @@ void Camino_minimo::calcular_recorrido(int origen, int destino, int filas_camino
         while (origen != destino){
             origen = caminos[origen][destino];
             cantidad_recorrida++;
-            cout << cantidad_recorrida << endl;
             filas_camino[cantidad_recorrida] = convertir_a_fila(origen);
             columnas_camino[cantidad_recorrida] = convertir_a_columna(origen);
-
         };
     }
     cout << endl;
