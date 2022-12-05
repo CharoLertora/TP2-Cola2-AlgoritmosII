@@ -119,6 +119,8 @@ private:
     //Post: Guarda la posición de cada animal en el indice del vector correspondiente-
     void guardar_posicion_animales(int indice, int fila, int columna);
 
+    //Pre: Tanto "fila" como "columna" deben tener valores válidos.
+    //Post: Corrobora que en el espacio del terreno correspondiente a la fila y columna ingresada no se encuentre el auto.
     bool esta_auto(int fila, int columna);
 
     //Pre: -
@@ -129,7 +131,7 @@ private:
     //Post: Genera un numero random respetando el rango y el minimo ingresado. 
     int numero_random(int rango, int minimo);
 
-    //Pre: -
+    //Pre: Tanto "fila" como "columna" deben tener valores válidos.
     //Post: Corrobora que en el espacio del terreno correspondiente a la fila y columna ingresada no se encuentre ningún animal.
     bool hay_animal(int fila, int columna);
 
