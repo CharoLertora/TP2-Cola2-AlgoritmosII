@@ -78,7 +78,7 @@ public:
 
     int costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
-    //void marcar_camino(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
+    void marcar_camino(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
     //Destructor
     //Pre: -

@@ -6,19 +6,6 @@
 
 using namespace std;
 
-const string TIERRA = "🟨"; 
-const string CAMINO = "⬜";
-const string MONTANIA = "🟫";
-const string PRECIPICIO = "⬛";
-const string AUTO = "🚘";
-const int COSTO_MONTANIA = 5;
-const int COSTO_PRECIPICIO = 40;
-const int COSTO_CAMINO = 1;
-const int COSTO_TIERRA = 2;
-
-const int MAX_TERRENO = 8;
-const int MAX_MATRIZ = MAX_TERRENO * MAX_TERRENO;
-const int INFINITO = 99;
 class Grafo {
     //Atributos:
 private:
@@ -69,6 +56,8 @@ public:
     //Pre: origen y destino deben ser vértices existentes en la matriz adyacente del grafo.
     //Post: calcula el costo mínimo que tendrá el camino desde el origen hasta el destino pasados por parámetro.
     int calcular_camino_minimo(int origen, int destino);
+
+    void calcular_coordenadas_camino(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida);
 
     //Pre: -
     //Post: destructor del grafo. Libera la memoria solicitada para la creación del grafo.

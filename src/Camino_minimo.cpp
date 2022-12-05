@@ -1,15 +1,11 @@
 #include "../include/Camino_minimo.hpp"
-#include <iostream>
-#include <cstring>
-#include <fstream>
 
-using namespace std;
-
+/*
 const int MAX_TERRENO = 8;
 const int MAX_MATRIZ = MAX_TERRENO*MAX_TERRENO;
-const int POSICION_NO_ENCONTRADA = -1;
-const int INFINITO = 99;
 
+const int INFINITO = 99;
+*/
 Camino_minimo::Camino_minimo(int** matriz_grafo) {
 
     this->matriz_adyacencia = matriz_grafo;
@@ -86,23 +82,33 @@ int Camino_minimo::calcular_costo(int origen, int destino) {
     return distancias[origen][destino];
 }
 
-void Camino_minimo::mostrar_camino(int origen, int destino) {
+int Camino_minimo::pasar_a_fila(int origen) {
+    return origen / MAX_TERRENO;
+}
+
+int Camino_minimo::pasar_a_columna(int origen) {
+    return origen % MAX_TERRENO;
+}
+
+void Camino_minimo::mostrar_camino(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida) {
 
     if(caminos[origen][destino] == POSICION_NO_ENCONTRADA){
         cout << "No hay un camino que conecte " <<  origen << " con " << destino;
         
     } else {
 
-        //cout << "El camino minimo que une " << origen << " con " << destino;
-        //cout << " tiene un costo de: " << distancias[origen][destino] << " y su recorrido por los vértices es el siguiente: ";
-        
         origen = caminos[origen][destino];
-        cout << origen;
         
-        while(origen != destino) {
+        filas_camino[cantidad_recorrida] = pasar_a_fila(origen);
+        columnas_camino[cantidad_recorrida] = pasar_a_columna(origen);
+
+        do {
             origen = caminos[origen][destino];
-            cout << " -> " << origen;
-        };
+            cantidad_recorrida++;
+            cout << cantidad_recorrida << endl;
+            filas_camino[cantidad_recorrida] = pasar_a_fila(origen);
+            columnas_camino[cantidad_recorrida] = pasar_a_columna(origen);
+        } while(origen != destino);
     }
     cout << endl;
 }
