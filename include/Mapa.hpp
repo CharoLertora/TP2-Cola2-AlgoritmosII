@@ -158,6 +158,7 @@ private:
     //Pre: los vectores filas_camino y columnas_camino más el parámetro cantidad_recorrida deben estar inicializados y cargados anteriormente.
     //Post: remarca en el terreno el camino mínimo que siguió el auto para rescatar al animal solicitado por el usuario.
     void remarcar_terreno(int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
+
 };  
 
 #endif //_MAPA_HPP
