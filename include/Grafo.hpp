@@ -3,7 +3,6 @@
 
 #include "Camino_minimo.hpp"
 
-
 using namespace std;
 
 class Grafo {
@@ -13,6 +12,33 @@ private:
     Camino_minimo* algoritmo;
 
     //Métodos:
+public:
+
+    //Constructor sin parámetros
+    //Pre: -
+    //Post: construye un grafo sin parámetros.
+    Grafo();
+
+    //Constructor con parámetros
+    //Pre: el parámetro terreno debe estar inicializado y estar cargado previamente.
+    //Post: construye un grafo con parámetros.
+    Grafo(string terreno[MAX_TERRENO][MAX_TERRENO]);
+
+    //Pre: -
+    //Post: calculará el vértice correspondiente según la fila y la columna del terreno que se estén pasando como parámetros.
+    int calcular_vertice(int fila, int columna);
+
+    //Pre: origen y destino deben ser vértices existentes en la matriz adyacente del grafo.
+    //Post: calcula el costo mínimo que tendrá el camino desde el origen hasta el destino pasados por parámetro.
+    int calcular_camino_minimo(int origen, int destino);
+
+    void calcular_coordenadas_camino(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida);
+
+    //Destructor
+    //Pre: -
+    //Post: destructor del grafo. Libera la memoria solicitada para la creación del grafo.
+    ~Grafo();
+
 private: 
     
     //Pre: la matriz de adyacencia debe estar previamente inicializada
@@ -38,31 +64,6 @@ private:
     //Pre: -
     //Post: liberá la memoria ocupada por la matriz de adyacencia del grafo.
     void liberar_matriz_adyacente();
-
-public:
-
-    //Pre: -
-    //Post: construye un grafo sin parámetros.
-    Grafo();
-
-    //Pre: el parámetro terreno debe estar inicializado y estar cargado previamente.
-    //Post: construye un grafo con parámetros.
-    Grafo(string terreno[MAX_TERRENO][MAX_TERRENO]);
-
-    //Pre: -
-    //Post: calculará el vértice correspondiente según la fila y la columna del terreno que se estén pasando como parámetros.
-    int calcular_vertice(int fila, int columna);
-
-    //Pre: origen y destino deben ser vértices existentes en la matriz adyacente del grafo.
-    //Post: calcula el costo mínimo que tendrá el camino desde el origen hasta el destino pasados por parámetro.
-    int calcular_camino_minimo(int origen, int destino);
-
-    void calcular_coordenadas_camino(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida);
-
-    //Pre: -
-    //Post: destructor del grafo. Libera la memoria solicitada para la creación del grafo.
-    ~Grafo();
-
 };
 
 #endif

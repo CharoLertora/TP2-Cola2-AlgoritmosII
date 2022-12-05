@@ -17,26 +17,27 @@ Sistema::Sistema()
     arbol_animales = new Arbol_B(2);
     vehiculo = new Auto();
     llenar_arbol(arbol_animales);
+    menu = new Menu(vehiculo);
 }
 
 void Sistema::inicializar_sistema(Sistema sistema)
 {
 
-    menu.mostrar_menu();
-    int opcion = menu.pedir_opcion();
-    menu.validar_opcion(opcion);
+    menu->mostrar_menu();
+    int opcion = menu->pedir_opcion();
+    menu->validar_opcion(opcion);
 
     while (opcion != GUARDAR_Y_SALIR && !partida_terminada)
     {
         cambiar_hambre_higiene(arbol_animales);
         vehiculo->reducir_combustible(REDUCCION_COMBUSTIBLE);
-        menu.procesar_opcion(arbol_animales, opcion, vehiculo);
+        menu->procesar_opcion(arbol_animales, opcion, vehiculo);
         verificar_si_partida_continua(arbol_animales);
         if (!partida_terminada)
         {
-            menu.mostrar_menu();
-            opcion = menu.pedir_opcion();
-            menu.validar_opcion(opcion);
+            menu->mostrar_menu();
+            opcion = menu->pedir_opcion();
+            menu->validar_opcion(opcion);
         }
     }
 
@@ -50,6 +51,7 @@ void Sistema::inicializar_sistema(Sistema sistema)
 
     delete arbol_animales;
     delete vehiculo;
+    delete menu;
 }
 
 void Sistema::agregar_animal(Arbol_B *arbol_animales, string nombre, int edad, string tamanio, string especie, string personalidad)

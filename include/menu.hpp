@@ -32,8 +32,14 @@ enum Opcion_submenu {
 };
 
 class Menu {
+    //Atributos:
+private:
+    Mapa *mapa;
+
     //Métodos:
 public:
+
+    Menu(Auto *vehiculo);
 
     //Pre: -
     //Post: Imprime por pantalla el menu del programa
@@ -51,6 +57,9 @@ public:
     //Post: Dependiendo de la opcion, se accede a distintas funcionalidades del programa
     void procesar_opcion(Arbol_B *arbol_animales, int opcion, Auto *vehiculo);
 
+
+    ~Menu();
+
 private:
 
     //Pre: -
@@ -67,11 +76,11 @@ private:
 
     //Pre: Ambos objetos deben estar inicializados.
     //Post: Muestra por pantalla la cantidad de combustible disponible y los animales a rescatar.
-    void mostrar_datos_rescate(Auto *vehiculo, Mapa mapa);
+    void mostrar_datos_rescate(Auto *vehiculo);
 
     //Pre: -
     //Post: Le muestra al usuario sus opciones.
-    void mostrar_opciones(Mapa mapa_juego);
+    void mostrar_opciones();
 
     //Pre:-
     //Post: Le pide al usuario que ingrese una respuesta válida y no dejará de hacerlo hasta que lo haga.
@@ -79,7 +88,7 @@ private:
 
     //Pre:-
     //Post: Le pide al usuario que ingrese el número del animal que desea rescatar y no dejará de pedirselo hasta que ingrese un valor válido.
-    void elegir_animal(int &animal, Mapa mapa);
+    void elegir_animal(int &animal);
 
     //Pre:-
     //Post: Le notificará al usuario que el combustible es infuciente para rescatar a ese animal y lw preguntará si desea rescatar a otro.
@@ -104,7 +113,7 @@ private:
 
     //Pre: Todos los parámetros deben ser previamente inicializados.
     //Post: Llevará a cabo el rescate del animal seleccionado, llamando a las funciones necesarias para sacarlo del mapa y agregarlo al arbol de animales.
-    void realizar_rescate(Mapa &mapa_juego, Arbol_B *arbol_animales, Auto *vehiculo, int animal, int costo);
+    void realizar_rescate(Arbol_B *arbol_animales, Auto *vehiculo, int animal, int costo);
     
     //Pre: Ambos parámetros deben ser previamente inicializados.
     //Post: Le mostrará al usuario el mapa y le preguntará si desea salvar a alguno de los animales, llevando a cabo el rescate en caso de que sea posible.

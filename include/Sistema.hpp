@@ -66,7 +66,7 @@ private:
     Arbol_B* arbol_animales;
     Auto *vehiculo;
     bool partida_terminada;
-    Menu menu;
+    Menu* menu;
     
     //Métodos
 public:

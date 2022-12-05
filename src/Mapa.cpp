@@ -372,15 +372,6 @@ int Mapa::costo_viaje(int fila_origen, int columna_origen, int fila_destino, int
     return grafo->calcular_camino_minimo(origen, destino); 
 }
 
-void Mapa::remarcar_terreno(int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida) {
-
-    for (int i = 0; i <= cantidad_recorrida; i++) {
-        for (int j = 0; j <= cantidad_recorrida; j++) {
-            terreno[filas_camino[i]][columnas_camino[i]] = PRECIPICIO;
-        }
-    }
-}
-
 bool Mapa::fue_recorrido(int fila, int columna, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida){
 
     bool recorrido = false;
@@ -432,7 +423,7 @@ Mapa::Mapa(Auto* vehiculo) {
     llenar_sexta_fila(terreno);
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
-    
+
     grafo = new Grafo(terreno);
     ubicar_animales();
 
@@ -452,14 +443,11 @@ void Mapa::mostrar_mapa() {
     }
 }
 
-/*
+Mapa::~Mapa(){
 
-
-Mapa::~Mapa() {
-
-    for (int i = 0; i < animales_sin_rescatar(); i++) {
+    for (int i = 0; i < animales_sin_rescatar(); i++){
         delete animales_a_rescatar[i];
     }
 
     delete grafo;
-}*/
+}
