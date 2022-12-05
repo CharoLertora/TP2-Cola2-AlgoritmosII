@@ -435,17 +435,6 @@ void Mapa::mostrar_mapa() {
 }
 
 /*
-void Mapa::copiar_en_grafo(){
-    
-    int contador = 1;
-
-    for (int i = 0; i < MAX_TERRENO; i++) {
-        for (int j = 0; j < MAX_TERRENO; j++) {
-            grafo->agregar_vertice(contador);
-            contador++;
-        }
-    }    
-}
 
 
 Mapa::~Mapa() {
