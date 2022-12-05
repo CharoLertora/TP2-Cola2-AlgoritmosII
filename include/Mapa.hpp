@@ -53,8 +53,6 @@ public:
     //Post: mostrara el mapa disponible por pantalla.
     void mostrar_mapa();
 
-    int obtener_animales_sin_rescatar();
-
     //Pre: -
     //Post: Devuelve el vector "animales" del Mapa.
     Animal* obtener_vector_animales(); 
@@ -78,16 +76,18 @@ public:
 
     //Pre: 
     //  + fila_origen y columna_origen deben corresponder a las coordenadas que el auto tenga en el terreno.
-    //  + fila_destino y columna_destino deben corresponder a las coordenadas de la ubicación que debería moverse el auto    en el terreno.
+    //  + fila_destino y columna_destino deben corresponder a las coordenadas de la ubicación que debería moverse el auto en el terreno.
     //Post: devuelve el costo que tendrá en combustible el auto para moverse de su lugar de origen al destino.
     int costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
+    //Pre: fila y columna deben ser coordenadas válidas y ambos vectores, filas_camino y columnas_camino, deben ser inicializados previamente.
+    //Post: Devolverá true en caso de que la fila y columna ingresada corresponda a alguna de las coordenadas del camino minimo.
     bool fue_recorrido(int fila, int columna, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
     
     //Pre: 
     //  + fila_origen y columna_origen deben corresponder a las coordenadas que el auto tenga en el terreno.
-    //  + fila_destino y columna_destino deben corresponder a las coordenadas de la ubicación que debería moverse el auto    en el terreno.
-    //Post: consigue las coordenadas de cada lugar que va ocupando el auto desde su lugar de origen hasta llegar al destino.
+    //  + fila_destino y columna_destino deben corresponder a las coordenadas de la ubicación que debería moverse el auto en el terreno.
+    //Post: consigue las coordenadas de cada lugar que va ocupando el auto desde su lugar de origen hasta llegar al destino, y lo marca en el mapa, mostrandoselo al usuario.
     void marcar_camino_recorrido(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
     //Destructor

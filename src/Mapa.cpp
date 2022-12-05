@@ -152,10 +152,6 @@ void Mapa::obtener_coords_animal(int indice, int &fila, int &columna){
     columna = posicion_animales[indice - 1].columna;
 }
 
-int Mapa::obtener_animales_sin_rescatar(){
-    return animales_sin_rescatar();
-}
-
 bool Mapa::esta_auto(int fila, int columna){
     return (fila == vehiculo->obtener_pos().fila && columna == vehiculo->obtener_pos().columna);
 }

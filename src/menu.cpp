@@ -232,7 +232,7 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
     mostrar_opciones();
     pedir_respuesta(respuesta);
 
-    while (respuesta == RESCATAR_ANIMAL && mapa->obtener_animales_sin_rescatar() != 0){
+    while (respuesta == RESCATAR_ANIMAL && mapa->animales_sin_rescatar() != 0){
         int animal = 0;
         int fila = 0;
         int columna = 0;
@@ -258,7 +258,7 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
         }
     }
 
-    if (mapa->obtener_animales_sin_rescatar() == 0){
+    if (mapa->animales_sin_rescatar() == 0){
         cout << endl << '\t' << " ¡YA HAS RESCATADO A TODOS LOS ANIMALES!" << endl
         << '\t' << "GRACIAS POR DARLES UN NUEVO HOGAR <3" << endl << endl;
     }
