@@ -79,10 +79,6 @@ public:
     //  + fila_destino y columna_destino deben corresponder a las coordenadas de la ubicación que debería moverse el auto en el terreno.
     //Post: devuelve el costo que tendrá en combustible el auto para moverse de su lugar de origen al destino.
     int costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
-
-    //Pre: fila y columna deben ser coordenadas válidas y ambos vectores, filas_camino y columnas_camino, deben ser inicializados previamente.
-    //Post: Devolverá true en caso de que la fila y columna ingresada corresponda a alguna de las coordenadas del camino minimo.
-    bool fue_recorrido(int fila, int columna, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
     
     //Pre: 
     //  + fila_origen y columna_origen deben corresponder a las coordenadas que el auto tenga en el terreno.
@@ -157,10 +153,9 @@ private:
     //Post: Genera un tamaño random entre los posibles.
     string tamanio_random();
 
-    //Pre: los vectores filas_camino y columnas_camino más el parámetro cantidad_recorrida deben estar inicializados y cargados anteriormente.
-    //Post: remarca en el terreno el camino mínimo que siguió el auto para rescatar al animal solicitado por el usuario.
-    void remarcar_terreno(int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
-
+    //Pre: fila y columna deben ser coordenadas válidas y ambos vectores, filas_camino y columnas_camino, deben ser inicializados previamente.
+    //Post: Devolverá true en caso de que la fila y columna ingresada corresponda a alguna de las coordenadas del camino minimo.
+    bool fue_recorrido(int fila, int columna, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
 };  
 
 #endif //_MAPA_HPP
