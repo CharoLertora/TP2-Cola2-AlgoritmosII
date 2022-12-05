@@ -77,10 +77,17 @@ public:
     Animal* rescatar_animal(int indice);
 
     //Pre: 
+    //  + fila_origen y columna_origen deben corresponder a las coordenadas que el auto tenga en el terreno.
+    //  + fila_destino y columna_destino deben corresponder a las coordenadas de la ubicación que debería moverse el auto    en el terreno.
+    //Post: devuelve el costo que tendrá en combustible el auto para moverse de su lugar de origen al destino.
     int costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
     bool fue_recorrido(int fila, int columna, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
     
+    //Pre: 
+    //  + fila_origen y columna_origen deben corresponder a las coordenadas que el auto tenga en el terreno.
+    //  + fila_destino y columna_destino deben corresponder a las coordenadas de la ubicación que debería moverse el auto    en el terreno.
+    //Post: consigue las coordenadas de cada lugar que va ocupando el auto desde su lugar de origen hasta llegar al destino.
     void marcar_camino_recorrido(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
     //Destructor
@@ -122,8 +129,8 @@ private:
     //Post: Guarda la posición de cada animal en el indice del vector correspondiente-
     void guardar_posicion_animales(int indice, int fila, int columna);
 
-    //Pre: Tanto "fila" como "columna" deben tener valores válidos.
-    //Post: Corrobora que en el espacio del terreno correspondiente a la fila y columna ingresada no se encuentre el auto.
+    //Pre: fila y columna deben estar dentro del rango de MAX_TERRENO
+    //Post: devuelve true en el caso de que la fila y la columna pasadas por parámetro coincidan con la ubicación del auto en el terreno. Devuelve false en caso contrario.
     bool esta_auto(int fila, int columna);
 
     //Pre: -
@@ -150,7 +157,10 @@ private:
     //Post: Genera un tamaño random entre los posibles.
     string tamanio_random();
 
+    //Pre: los vectores filas_camino y columnas_camino más el parámetro cantidad_recorrida deben estar inicializados y cargados anteriormente.
+    //Post: remarca en el terreno el camino mínimo que siguió el auto para rescatar al animal solicitado por el usuario.
     void remarcar_terreno(int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
+
 };  
 
 #endif //_MAPA_HPP

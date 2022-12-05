@@ -15,12 +15,6 @@
 const string NOMBRE_RESCATADO = "SIN NOMBRE";
 
 
-/*CAMBIAR ESTOS MÉTODOS Y HARDCODEAR EL MAPA COMO
-INT MAPA[MAX][MAX] = {
-    {c, P, T, T},
-    {C, C, C, C}.
-    ....
-};*/
 void llenar_primera_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 
     terreno[0][0] = CAMINO;
@@ -438,27 +432,11 @@ Mapa::Mapa(Auto* vehiculo) {
     llenar_sexta_fila(terreno);
     llenar_septima_fila(terreno);
     llenar_octava_fila(terreno);
+    
     grafo = new Grafo(terreno);
     ubicar_animales();
 
 }
-
-/*
-void Mapa::inicializar_mapa() {
-
-    this->terreno[MAX_TERRENO][MAX_TERRENO] = {
-        {CAMINO, PRECIPICIO, TIERRA, TIERRA, TIERRA, TIERRA, TIERRA, TIERRA},
-        {CAMINO, TIERRA, TIERRA, TIERRA, PRECIPICIO, PRECIPICIO, PRECIPICIO, PRECIPICIO},
-        {CAMINO, CAMINO, CAMINO, CAMINO, CAMINO, TIERRA, MONTANIA, MONTANIA},
-        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
-        {MONTANIA, MONTANIA, MONTANIA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
-        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
-        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, TIERRA, MONTANIA, MONTANIA},
-        {TIERRA, TIERRA, TIERRA, TIERRA, CAMINO, CAMINO, CAMINO, CAMINO},
-    };
-}
-*/
-
 
 void Mapa::mostrar_mapa() {
 

@@ -85,6 +85,13 @@ private:
     //Post: Le notificará al usuario que el combustible es infuciente para rescatar a ese animal y lw preguntará si desea rescatar a otro.
     void combustible_insuficiente(int &respuesta, int costo, Auto *vehiculo);
 
+    /*
+     *Pre: 
+        + respuesta debe estar previamente inicializado y ser pasado por referencia.
+        + costo debe ser un valor entero y positivo.
+        + vehiculo debe estar previamente inicializado.
+     *Post: imprimirá por pantalla un mensaje para el usuario en el caso de que tenga el combustible suficiente para rescatar al animal que eligió.
+    */
     void combustible_suficiente(int &respuesta, int costo, Auto *vehiculo);
 
     //Pre: "palabra" debe estar inicializado.
