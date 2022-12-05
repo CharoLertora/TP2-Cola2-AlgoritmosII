@@ -102,13 +102,16 @@ void Grafo::mostrar_matriz_adyacencia(int** matriz_adyacencia) {
     cout << endl;
 }
 
+void Grafo::calcular_coordenadas_camino(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida) {
+
+    algoritmo->calcular_recorrido(origen, destino, filas_camino, columnas_camino, cantidad_recorrida);
+}
+
 int Grafo::calcular_camino_minimo(int origen, int destino) {
 
-    //delete algoritmo; 
     this->algoritmo = new Camino_minimo(matriz_adyacencia);
     algoritmo->inicializar_matrices();
     algoritmo->calcular_caminos_minimos();
-    //algoritmo->mostrar_camino(origen, destino);
     
     return algoritmo->calcular_costo(origen, destino);
 }

@@ -372,17 +372,35 @@ Animal* Mapa::rescatar_animal(int indice){
 }
 
 int Mapa::costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino){
+    
     int origen = grafo->calcular_vertice(fila_origen, columna_origen);
     int destino = grafo->calcular_vertice(fila_destino, columna_destino);
+
     return grafo->calcular_camino_minimo(origen, destino); 
 }
 
-/*
-void Mapa::marcar_camino(int fila_origen, int columna_origen, int fila_destino, int columna_destino){
+void Mapa::remarcar_terreno(int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida) {
+
+    for (int i = 0; i <= cantidad_recorrida; i++) {
+        for (int j = 0; j <= cantidad_recorrida; j++) {
+            terreno[filas_camino[i]][columnas_camino[i]] = PRECIPICIO;
+        }
+    }
+}
+
+void Mapa::marcar_camino_recorrido(int fila_origen, int columna_origen, int fila_destino, int columna_destino){
+    
     int origen = grafo->calcular_vertice(fila_origen, columna_origen);
     int destino = grafo->calcular_vertice(fila_destino, columna_destino);
-    grafo.
-}*/
+    
+    int filas_camino[MAX_MATRIZ];
+    int columnas_camino[MAX_MATRIZ];
+    int cantidad_recorrida = 0;
+
+    grafo->calcular_coordenadas_camino(origen, destino, filas_camino, columnas_camino, cantidad_recorrida);
+    remarcar_terreno(filas_camino, columnas_camino, cantidad_recorrida);
+
+}
 
 Mapa::Mapa(Auto* vehiculo) {
 
@@ -435,17 +453,6 @@ void Mapa::mostrar_mapa() {
 }
 
 /*
-void Mapa::copiar_en_grafo(){
-    
-    int contador = 1;
-
-    for (int i = 0; i < MAX_TERRENO; i++) {
-        for (int j = 0; j < MAX_TERRENO; j++) {
-            grafo->agregar_vertice(contador);
-            contador++;
-        }
-    }    
-}
 
 
 Mapa::~Mapa() {
