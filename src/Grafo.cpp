@@ -104,7 +104,7 @@ void Grafo::mostrar_matriz_adyacencia(int** matriz_adyacencia) {
 
 void Grafo::calcular_coordenadas_camino(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida) {
 
-    algoritmo->mostrar_camino(origen, destino, filas_camino, columnas_camino, cantidad_recorrida);
+    algoritmo->calcular_recorrido(origen, destino, filas_camino, columnas_camino, cantidad_recorrida);
 }
 
 int Grafo::calcular_camino_minimo(int origen, int destino) {

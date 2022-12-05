@@ -82,15 +82,15 @@ int Camino_minimo::calcular_costo(int origen, int destino) {
     return distancias[origen][destino];
 }
 
-int Camino_minimo::pasar_a_fila(int origen) {
+int Camino_minimo::convertir_a_fila(int origen) {
     return origen / MAX_TERRENO;
 }
 
-int Camino_minimo::pasar_a_columna(int origen) {
+int Camino_minimo::convertir_a_columna(int origen) {
     return origen % MAX_TERRENO;
 }
 
-void Camino_minimo::mostrar_camino(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida) {
+void Camino_minimo::calcular_recorrido(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida) {
 
     if(caminos[origen][destino] == POSICION_NO_ENCONTRADA){
         cout << "No hay un camino que conecte " <<  origen << " con " << destino;
@@ -99,16 +99,17 @@ void Camino_minimo::mostrar_camino(int origen, int destino, int filas_camino[MAX
 
         origen = caminos[origen][destino];
         
-        filas_camino[cantidad_recorrida] = pasar_a_fila(origen);
-        columnas_camino[cantidad_recorrida] = pasar_a_columna(origen);
-
-        do {
+        filas_camino[cantidad_recorrida] = convertir_a_fila(origen);
+        columnas_camino[cantidad_recorrida] = convertir_a_columna(origen);
+        
+        while (origen != destino){
             origen = caminos[origen][destino];
             cantidad_recorrida++;
             cout << cantidad_recorrida << endl;
-            filas_camino[cantidad_recorrida] = pasar_a_fila(origen);
-            columnas_camino[cantidad_recorrida] = pasar_a_columna(origen);
-        } while(origen != destino);
+            filas_camino[cantidad_recorrida] = convertir_a_fila(origen);
+            columnas_camino[cantidad_recorrida] = convertir_a_columna(origen);
+
+        };
     }
     cout << endl;
 }

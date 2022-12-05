@@ -38,9 +38,13 @@ class Camino_minimo {
         //Post: libera la memoria ocupada por las matrices del Camino_minimo.
         void liberar_matrices();
 
-        int pasar_a_fila(int origen);
+        //Pre: origen debe pertenecer a un vértice de la matriz de caminos.
+        //Post: devolverá el valor correspondiente a la fila del terreno que esté asociada al vértice pasado por parámetro.
+        int convertir_a_fila(int origen);
 
-        int pasar_a_columna(int origen);
+        //Pre: origen debe pertenecer a un vértice de la matriz de caminos.
+        //Post: devolverá el valor correspondiente a la columna del terreno que esté asociada al vértice pasado por parámetro.
+        int convertir_a_columna(int origen);
 
     public:
 
@@ -62,7 +66,7 @@ class Camino_minimo {
 
         //Pre: origen y destino deben corresponder a valores válidos de la matriz de caminos.
         //Post: mostrará el camino que recorre el auto con respecto a los vértices de la matriz de adyacencia.
-        void mostrar_camino(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida);
+        void calcular_recorrido(int origen, int destino, int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int &cantidad_recorrida);
 
         //Pre: -
         //Post: libera la memoria utilizada por el Camino_minimo.

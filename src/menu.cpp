@@ -238,13 +238,15 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
         elegir_animal(animal, mapa_juego);
         mapa_juego.obtener_coords_animal(animal, fila, columna); //esta función ya devuelve la fila y columna correspondiente al animal :)
         int costo_camino = mapa_juego.costo_viaje(vehiculo->obtener_pos().fila, vehiculo->obtener_pos().columna, fila, columna);
+        mapa_juego.marcar_camino_recorrido(vehiculo->obtener_pos().fila, vehiculo->obtener_pos().columna, fila, columna);
+
         if (costo_camino > vehiculo->combustible_actual()){
             combustible_insuficiente(respuesta, costo_camino, vehiculo);
         }else {
             combustible_suficiente(respuesta, costo_camino, vehiculo);
             if (respuesta == SI){
                 realizar_rescate(mapa_juego, arbol_animales, vehiculo, animal, costo_camino);
-                mapa_juego.marcar_camino(vehiculo->obtener_pos().fila, vehiculo->obtener_pos().columna, fila, columna);
+                mapa_juego.marcar_camino_recorrido(vehiculo->obtener_pos().fila, vehiculo->obtener_pos().columna, fila, columna);
                 cout << '\t' << "¡Animal rescatado con éxito!" << endl
                 << '\t' << "Ya forma parte de nuestra reserva :)" << endl << endl
                 << '\t' << "¿Desea rescatar a otro animal?" << endl

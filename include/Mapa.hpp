@@ -76,9 +76,10 @@ public:
     //Post: Se encarga de eliminar el animal rescatado de la lista de animales por rescatar y devuelve dicho animal.
     Animal* rescatar_animal(int indice);
 
+    //Pre: 
     int costo_viaje(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
-    void marcar_camino(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
+    void marcar_camino_recorrido(int fila_origen, int columna_origen, int fila_destino, int columna_destino);
 
     //Destructor
     //Pre: -
@@ -144,6 +145,8 @@ private:
     //Pre: -
     //Post: Genera un tamaño random entre los posibles.
     string tamanio_random();
+
+    void remarcar_terreno(int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
 };  
 
 #endif //_MAPA_HPP
