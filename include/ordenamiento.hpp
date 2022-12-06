@@ -1,4 +1,4 @@
-#include "Animal.hpp"
+#include "animal.hpp"
 using namespace std;
 
 class Ordenamiento {

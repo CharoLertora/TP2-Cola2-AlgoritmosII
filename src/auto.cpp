@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/Auto.hpp"
+#include "../include/auto.hpp"
 
 Auto::Auto(){
     combustible = TANQUE_LLENO;

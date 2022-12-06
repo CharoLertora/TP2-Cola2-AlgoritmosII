@@ -1,4 +1,4 @@
-#include "../include/Camino_minimo.hpp"
+#include "../include/camino_minimo.hpp"
 
 Camino_minimo::Camino_minimo(int** matriz_grafo) {
 

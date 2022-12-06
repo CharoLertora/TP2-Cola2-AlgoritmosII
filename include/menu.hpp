@@ -1,15 +1,15 @@
 #ifndef _MENU_HPP_
 #define _MENU_HPP_
 #include <iostream>
-#include "Sistema.hpp"
-#include "Perro.hpp"
-#include "Gato.hpp"
-#include "Lagartija.hpp"
-#include "Erizo.hpp"
-#include "Caballo.hpp"
-#include "Roedor.hpp"
-#include "Conejo.hpp"
-#include "Mapa.hpp"
+#include "sistema.hpp"
+#include "perro.hpp"
+#include "gato.hpp"
+#include "lagartija.hpp"
+#include "erizo.hpp"
+#include "caballo.hpp"
+#include "roedor.hpp"
+#include "conejo.hpp"
+#include "mapa.hpp"
 
 const int RESCATAR_ANIMAL = 1;
 const int VOLVER_AL_INICIO = 2;

@@ -1,4 +1,4 @@
-#include "../include/Nodo.hpp"
+#include "../include/nodo.hpp"
 #include "../include/funciones_auxiliares.hpp"
 #include <iostream>
 using namespace std;

@@ -2,7 +2,7 @@
 #define _FUNCIONES_AUXILIARES_
 #include <string>
 #include <iostream>
-#include "Sistema.hpp"
+#include "sistema.hpp"
 
 using namespace std;
 

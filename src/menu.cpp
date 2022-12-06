@@ -1,6 +1,6 @@
-#include "../include/Sistema.hpp"
+#include "../include/sistema.hpp"
 #include "../include/menu.hpp"
-#include "../include/Mapa.hpp"
+#include "../include/mapa.hpp"
 #include <fstream>
 #include <sstream>
 

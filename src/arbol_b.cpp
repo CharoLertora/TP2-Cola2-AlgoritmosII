@@ -1,7 +1,7 @@
-#include "../include/Arbol_b.hpp"
+#include "../include/arbol_b.hpp"
 #include "../include/funciones_auxiliares.hpp"
-#include "../include/Sistema.hpp"
-#include "../include/quicksort.hpp"
+#include "../include/sistema.hpp"
+#include "../include/ordenamiento.hpp"
 
 #include <stdio.h>
 #include <string.h>

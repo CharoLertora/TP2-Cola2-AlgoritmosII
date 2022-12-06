@@ -1,7 +1,7 @@
 #ifndef _ARBOL_B_HPP_
 #define _ARBOL_B_HPP_
 
-#include "../include/Nodo.hpp"
+#include "../include/nodo.hpp"
 
 const int CANT_MAXIMA_ESCAPES = 3;
 

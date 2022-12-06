@@ -1,8 +1,7 @@
 #ifndef _GRAFO_HPP_
 #define _GRAFO_HPP_
 
-#include "Camino_minimo.hpp"
-
+#include "camino_minimo.hpp"
 
 using namespace std;
 

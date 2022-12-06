@@ -2,7 +2,7 @@
 #define _LAGARTIJA_HPP_
 
 #include <string>
-#include "Animal.hpp"
+#include "animal.hpp"
 
 using namespace std;
 

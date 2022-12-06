@@ -1,5 +1,5 @@
 #include "../include/funciones_auxiliares.hpp"
-#include "../include/Arbol_b.hpp"
+#include "../include/arbol_b.hpp"
 
 string obtener_estado_adopcion(bool esta_adoptado) {
     

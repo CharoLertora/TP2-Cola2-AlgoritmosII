@@ -1,19 +1,18 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "../include/Mapa.hpp"
-#include "../include/Perro.hpp"
-#include "../include/Gato.hpp"
-#include "../include/Caballo.hpp"
-#include "../include/Roedor.hpp"
-#include "../include/Conejo.hpp"
-#include "../include/Erizo.hpp"
-#include "../include/Lagartija.hpp"
+#include "../include/mapa.hpp"
+#include "../include/perro.hpp"
+#include "../include/gato.hpp"
+#include "../include/caballo.hpp"
+#include "../include/roedor.hpp"
+#include "../include/conejo.hpp"
+#include "../include/erizo.hpp"
+#include "../include/lagartija.hpp"
 #include "../include/funciones_auxiliares.hpp"
-#include "../include/Grafo.hpp"
+#include "../include/grafo.hpp"
 
 const string NOMBRE_RESCATADO = "SIN NOMBRE";
-
 
 void llenar_primera_fila(string terreno[MAX_TERRENO][MAX_TERRENO]) {
 

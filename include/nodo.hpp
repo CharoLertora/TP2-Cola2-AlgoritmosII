@@ -1,7 +1,7 @@
 #ifndef _NODO_HPP_
 #define _NODO_HPP_
 #include <iostream>
-#include "Animal.hpp"
+#include "animal.hpp"
 
 const int MAX_CLAVES  = 2;
 const int MAX_HIJOS = 3;

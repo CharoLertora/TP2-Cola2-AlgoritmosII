@@ -1,6 +1,5 @@
 #include <iostream>
-#include "../include/Grafo.hpp"
-
+#include "../include/grafo.hpp"
 
 Grafo::Grafo(){
 

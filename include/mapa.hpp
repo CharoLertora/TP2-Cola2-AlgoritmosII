@@ -1,8 +1,8 @@
 #ifndef _MAPA_HPP_
 #define _MAPA_HPP_
-#include "Animal.hpp"
-#include "Grafo.hpp"
-#include "Auto.hpp"
+#include "animal.hpp"
+#include "grafo.hpp"
+#include "auto.hpp"
 
 using namespace std;
 

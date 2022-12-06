@@ -3,9 +3,9 @@
 
 #include <fstream>
 #include <cstring>
-#include "Arbol_b.hpp"
-#include "Animal.hpp"
-#include "Auto.hpp"
+#include "arbol_b.hpp"
+#include "animal.hpp"
+#include "auto.hpp"
 #include "../include/menu.hpp"
 
 using namespace std;
@@ -95,10 +95,6 @@ public:
     //Pre: -
     //Postt: Le notifica al usuario que ha perdido la partida.
     void imprimir_msje_partida_perdida();
-
-    //Pre:-
-    //Post: Devuelve el atributo "vehiculo" del sistema.
-    Auto* obtener_auto();
 
 private:
 

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "../include/Animal.hpp"
+#include "../include/animal.hpp"
 
 using namespace std;
 
