@@ -131,7 +131,7 @@ void Menu::mostrar_datos_rescate(Auto *vehiculo, Mapa mapa){
     cout << "Animales a rescatar = " << mapa.animales_sin_rescatar() << endl << endl;
 }
 
-void Menu::mostrar_opciones(Mapa mapa_juego){
+void Menu::mostrar_opciones(){
 
     cout << '\t' << "¿Qué desea hacer?" << endl
     << '\t' << "1. Rescatar algún animal" << endl
@@ -245,7 +245,7 @@ void Menu::rescatar_animal(Arbol_B *arbol_animales, Auto *vehiculo) {
     Mapa mapa_juego(vehiculo);
     mapa_juego.mostrar_mapa();
     mostrar_datos_rescate(vehiculo, mapa_juego);
-    mostrar_opciones(mapa_juego);
+    mostrar_opciones();
     pedir_respuesta(respuesta);
 
     while (respuesta == RESCATAR_ANIMAL && mapa_juego.obtener_animales_sin_rescatar() != 0) {

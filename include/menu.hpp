@@ -71,7 +71,7 @@ private:
 
     //Pre: -
     //Post: Le muestra al usuario sus opciones.
-    void mostrar_opciones(Mapa mapa_juego);
+    void mostrar_opciones();
 
     //Pre:-
     //Post: Le pide al usuario que ingrese una respuesta válida y no dejará de hacerlo hasta que lo haga.
