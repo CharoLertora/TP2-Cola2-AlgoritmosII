@@ -153,6 +153,11 @@ private:
     //Pre:-
     //Post: solicita al usuario la cantidad de combustible que desea cargar y luego, cargara el tanque con dicha cantidad.
     void cargar_combustible(Auto *vehiculo);
+
+    
+    int calcular_costo_camino(Mapa mapa_juego, Auto* vehiculo, int &animal, int &fila, int &columna);
+
+    void notificar_rescate(int &respuesta);
 };
 
 #endif //_MENU_HPP_

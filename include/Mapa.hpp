@@ -53,6 +53,8 @@ public:
     //Post: mostrara el mapa disponible por pantalla.
     void mostrar_mapa();
 
+    //Pre: -
+    //Post: devuleve la cantidad de animales que quedan sin rescatar.
     int obtener_animales_sin_rescatar();
 
     //Pre: -
@@ -92,7 +94,7 @@ public:
 
     //Destructor
     //Pre: -
-    //Post: Libera la memoria ocupada por el Mapa y sus atributos.  
+    //Post: Libera la memoria ocupada por los atributos del mapa.  
     //~Mapa();
 
 private:
@@ -156,10 +158,6 @@ private:
     //Pre: -
     //Post: Genera un tamaño random entre los posibles.
     string tamanio_random();
-
-    //Pre: los vectores filas_camino y columnas_camino más el parámetro cantidad_recorrida deben estar inicializados y cargados anteriormente.
-    //Post: remarca en el terreno el camino mínimo que siguió el auto para rescatar al animal solicitado por el usuario.
-    void remarcar_terreno(int filas_camino[MAX_MATRIZ], int columnas_camino[MAX_MATRIZ], int cantidad_recorrida);
 
 };  
 

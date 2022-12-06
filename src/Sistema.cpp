@@ -26,26 +26,24 @@ void Sistema::inicializar_sistema(Sistema sistema)
     int opcion = menu.pedir_opcion();
     menu.validar_opcion(opcion);
 
-    while (opcion != GUARDAR_Y_SALIR && !partida_terminada)
-    {
+    while (opcion != GUARDAR_Y_SALIR && !partida_terminada) {
         cambiar_hambre_higiene(arbol_animales);
         vehiculo->reducir_combustible(REDUCCION_COMBUSTIBLE);
         menu.procesar_opcion(arbol_animales, opcion, vehiculo);
         verificar_si_partida_continua(arbol_animales);
-        if (!partida_terminada)
-        {
+        
+        if (!partida_terminada) {
             menu.mostrar_menu();
             opcion = menu.pedir_opcion();
             menu.validar_opcion(opcion);
         }
     }
-
     guardar_y_salir(arbol_animales);
-    if (opcion == GUARDAR_Y_SALIR)
-    {
+    
+    if (opcion == GUARDAR_Y_SALIR) {
         cout << endl
-             << "¡Hasta la próxima!" << endl
-             << endl;
+        << "¡Hasta la próxima!" << endl
+        << endl;
     }
 
     delete arbol_animales;

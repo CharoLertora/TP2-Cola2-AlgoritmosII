@@ -1,11 +1,5 @@
 #include "../include/Camino_minimo.hpp"
 
-/*
-const int MAX_TERRENO = 8;
-const int MAX_MATRIZ = MAX_TERRENO*MAX_TERRENO;
-
-const int INFINITO = 99;
-*/
 Camino_minimo::Camino_minimo(int** matriz_grafo) {
 
     this->matriz_adyacencia = matriz_grafo;
@@ -114,18 +108,21 @@ void Camino_minimo::calcular_recorrido(int origen, int destino, int filas_camino
 
 void Camino_minimo::liberar_matrices() {
     
-    for (int i = 0; MAX_MATRIZ; i++) {
-        delete[] distancias[i];
-        delete[] caminos[i];
+    if(distancias != nullptr && caminos != nullptr){
+        for(int i = 0; i < MAX_MATRIZ; i++){
+            delete[] distancias[i];
+            delete[] caminos[i];
+        }
+        delete[] distancias;
+        delete[] caminos;
+
+        distancias = nullptr;
+        caminos = nullptr;
     }
-    delete[] distancias;
-    delete[] caminos;
 }
 
 Camino_minimo::~Camino_minimo() {
     
     liberar_matrices();
-    distancias = nullptr;
-    caminos = nullptr;
 }
 
