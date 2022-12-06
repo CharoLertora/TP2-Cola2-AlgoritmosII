@@ -450,6 +450,6 @@ Mapa::~Mapa() {
         delete animales_a_rescatar[i];
     }
 
-    //delete grafo;
+    delete grafo;
 }
 */

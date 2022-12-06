@@ -154,9 +154,12 @@ private:
     //Post: solicita al usuario la cantidad de combustible que desea cargar y luego, cargara el tanque con dicha cantidad.
     void cargar_combustible(Auto *vehiculo);
 
-    
+    //Pre: Todos los parámetros deben ser previamente inicializados.
+    //Post: Llama a la función necesaria para preguntarle al usuario qué animal rescatar, obtiene sus coordenadas y calcula el costo del camino.
     int calcular_costo_camino(Mapa mapa_juego, Auto* vehiculo, int &animal, int &fila, int &columna);
 
+    //Pre:-
+    //Post: Le notifica al usuario que el animal ha sido rescatado y le pregunta si desea rescatar a otro.
     void notificar_rescate(int &respuesta);
 };
 
